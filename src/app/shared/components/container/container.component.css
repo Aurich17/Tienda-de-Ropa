@@ -1,0 +1,15 @@
+
+
+
+.containers{
+
+    display: block;
+    min-height: calc(100vh) - 122px;
+  
+}
+
+.mat-card {
+
+    height: calc(100vh -160px);
+}
+

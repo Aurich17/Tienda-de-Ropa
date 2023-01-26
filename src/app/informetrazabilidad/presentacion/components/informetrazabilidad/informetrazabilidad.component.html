@@ -1,0 +1,135 @@
+
+<mat-toolbar color ="primary" style="height: 33px;" fxLayout fxLayoutAlign="space-between left" >
+
+    <h3 class="title">Informe trazabilidad</h3>
+    <div fxLayout fxLayoutAlign="end center">
+        <button mat-button (click)="collapsed=true">
+        <mat-icon>expand_less</mat-icon>
+
+        </button>
+        <button mat-button (click)="collapsed=false">
+
+            <mat-icon>expand_more</mat-icon>
+        </button>
+    </div>
+    
+
+</mat-toolbar>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="0px" fxLayoutAlign="center center" style="margin-top: 1px;">
+
+    <div fxFlex="100" style=" padding: 0px;">
+        <mat-card>
+            <mat-card-content *ngIf="!collapsed">
+                <form [formGroup] = "group" > 
+                <div fxLayout="row" fxLayoutGap="2px" >
+                  <div fxFlex="100" fxLayout="column" fxLayoutAlign="center" style="padding: 24px;">
+                      <div fxLayout="row" fxLayoutGap="20px">
+                          <mat-form-field appearance="outline"  class="example-full-width">
+                              <mat-label>Empleados</mat-label>
+                              <input type="text" #empleado  matInput required formControlName = "codigoEmpleado" 
+                              (keyup)="cambiarfocus('empleado')"
+                              (keydown)="handleKeyDown($event,'empleado')"
+
+
+                              >
+                              <mat-error>Ingrese un empleado por favor</mat-error>
+                              <mat-icon matSuffix (click) = "limpiartexto('Empleado')">close</mat-icon>
+                          </mat-form-field>
+                          
+                          
+                   
+                         <mat-form-field appearance="outline" class="example-full-width">
+                           <mat-label>Estacion</mat-label>
+                           <input type="text" #estacion matInput required formControlName = "codigoEstacion"
+                           (keyup)="cambiarfocus('estacion')"
+                           (keydown)="handleKeyDown($event,'estacion')"
+                           >
+                           <mat-error>Ingrese una Estacion  por favor</mat-error>
+                           <mat-icon matSuffix (click) = "limpiartexto('Estacion')">close</mat-icon>
+                        </mat-form-field>
+                        
+           
+                      </div>
+          
+                      <div fxLayout="row" fxLayoutGap="20px">
+                         <mat-form-field appearance="outline" class="example-full-width">
+                          <mat-label>Orden de Trabajo</mat-label>
+                          <input type="text"  #ot matInput required formControlName = "codigoOrdenTrabajo"
+                          (keyup)="cambiarfocus('ot')"
+                          (keydown)="handleKeyDown($event,'ot')"
+                          >
+                          <mat-error>Ingrese una OT por favor</mat-error>
+                          <mat-icon matSuffix (click) = "limpiartexto('OT')">close</mat-icon>
+                        </mat-form-field>
+                         
+                        <mat-form-field>
+                            <mat-label>Fecha Desde</mat-label>
+                            <input matInput  formControlName = "fechadesde" [matDatepicker]="picker1" autocomplete="off"  placeholder="and placeholder">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1 color="primary"></mat-datepicker>
+                        </mat-form-field>
+                    
+                        <mat-form-field>
+                            <mat-label>Fecha Hasta</mat-label>
+                            <input matInput formControlName = "fechahasta" [matDatepicker]="picker2" autocomplete="off"  placeholder="and placeholder">
+                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+                        </mat-form-field>
+                       </div>
+
+                  </div>
+          
+                 </div>
+                </form>
+                 <div fxLayoutAlign="center center" fxLayoutGap="20px"  style="background-color: rgb(219, 217, 217); padding: 10px;margin: 0;">
+     
+                    <button mat-raised-button color="warn"
+                        matTooltip="Buscar registro"
+                        (click) = "listar(1)"
+                        type="button"
+                        
+                    >Buscar
+                        <mat-icon>search</mat-icon>
+                    </button>
+
+                
+                    <button mat-raised-button color="warn"
+                        matTooltip="Cerrar de la pantalla actual"
+                        (click) = "Salir('')"
+                        type="button"
+                    >Salir
+                    <mat-icon>exit_to_app</mat-icon>
+                    </button>
+                   
+                </div>
+           
+              </mat-card-content>
+
+          </mat-card>
+
+     
+          <div fxLayout="column" fxLayout.xs="column" fxLayoutGap="20px">
+        
+            <div fxFlex="50"  style="background-color:  rgb(219, 217, 217); padding: 24px;">
+            <app-table [dataTable]="dataTable" 
+                [metadataTable]="metadataTable"
+                [paginator]= "matPaginator"
+                
+               >
+    
+            </app-table>
+
+            <mat-paginator  pageSize="10" [length]="dataTable?.length">
+
+            </mat-paginator>
+            
+            </div>
+          </div>
+    
+    </div>
+
+  </div>
+
+
+

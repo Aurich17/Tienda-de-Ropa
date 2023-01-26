@@ -1,0 +1,13 @@
+<div fxLayout="row" fxLayoutGap = "15px">
+<button mat-raised-button [color]="button.color"
+ *ngFor="let button of keypadButtons"
+  [matTooltip]="button.tooltip"
+  (click) = "action(button.action)"
+  [disabled] = "statusButton"
+  >
+     {{button.texto}}
+    <mat-icon>{{button.icon}} </mat-icon>
+</button>
+
+
+</div>

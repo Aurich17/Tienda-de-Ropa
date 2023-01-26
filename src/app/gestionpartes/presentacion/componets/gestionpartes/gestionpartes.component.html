@@ -1,0 +1,38 @@
+
+  <div fxLayout="column"   fxLayoutGap="2rem" class="mat-elevation-z0">
+    <div fxLayout="row"   fxLayoutGap="2rem" class="mat-elevation-z0">
+        <mat-card  class="mat-elevation-z5" fxLayoutAlign="start center" disabled="disabled">
+           <div fxLayout="column" fxLayoutAlign="center center" >
+            
+            <img src="./assets/Img/registrarparte.png" (click)="goto(path)"   />
+            <h3>Aperturar Parte</h3>
+
+           </div>
+        </mat-card>
+       
+        <mat-card  class="mat-elevation-z5"  >
+          <div fxLayout="column" fxLayoutAlign="center center"  >
+           <img    src="./assets/Img/vizualizarparte.png" (click)="gotov('/vizualizarparte')"/>
+           <h3>Liquidar Parte</h3>
+
+          </div>
+          </mat-card>
+    </div>  
+
+    <div  fxLayout="row"   fxLayoutGap="2rem" class="mat-elevation-z0">
+        <mat-card *ngIf="isHabilitado" class="mat-elevation-z5" >
+          <div fxLayout="column" fxLayoutAlign="center center"  >
+          <img   src="./assets/Img/editar.png" (click)="gotofinal('/modificarparte')"/>
+          <h3>Modificar Parte</h3>
+          </div>
+        </mat-card>
+       
+        <mat-card  *ngIf="isHabilitado2" class="mat-elevation-z5"  >
+          <div fxLayout="column" fxLayoutAlign="center center"  >
+           <img   src="./assets/Img/informe.png" (click)="gotoinforme('/informeparte')"/>
+           <h3>Informe Parte</h3>
+          </div>
+        </mat-card>
+    </div>  
+
+</div> 

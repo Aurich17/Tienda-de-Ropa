@@ -1,0 +1,71 @@
+
+.align-right{
+
+    text-align: right !important;
+  }
+  
+  .example-form {
+      min-width: 150px;
+      max-width: 500px;
+      width: 100%;
+    }
+    
+    .example-full-width {
+      width: 100%;
+    }
+    
+    .example-full-div-width {
+      width: 50%;
+    }
+    
+
+    td {
+      padding-right: 8px;
+    }
+  
+    .small-video {
+      max-height: 70vh;
+      width: 100vw;
+      object-fit: contain;
+  }
+  
+  
+  .example-table {
+      width: 100%;
+    }
+  
+  
+  .mat-card{
+  
+   padding:  0px 0px 10px 0px;
+  
+  }
+  
+  
+    .container-form mat-dialog-container{
+        padding: 0;
+      
+    }
+    
+    .mat-toolbar  mat-dialog-content{
+    
+    margin: 0;
+    padding: 24px;
+    
+    }
+    
+    @media (max-width: 500px){
+    
+        .container-form{
+        width: 320px;
+        }
+    }
+  
+  
+    @media all and (max-width: 600px){
+      div{
+          width:100%;
+          height:auto;
+          margin-left:10px;
+      }
+  }

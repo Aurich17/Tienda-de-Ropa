@@ -1,0 +1,57 @@
+
+
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+/* For use in src/lib/core/theming/_palette.scss */
+$mat-mcredfiltroslys: (
+  50 : #f3e0e0,
+  100 : #e0b3b3,
+  200 : #cc8080,
+  300 : #b74d4d,
+  400 : #a72626,
+  500 : #980000,
+  600 : #900000,
+  700 : #850000,
+  800 : #7b0000,
+  900 : #6a0000,
+  A100 : #ff9999,
+  A200 : #ff6666,
+  A400 : #ff3333,
+  A700 : #ff1a1a,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #ffffff,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #ffffff,
+      A700 : #ffffff,
+  )
+);
+
+
+
+$SistemasKopito-primary: mat-palette($mat-mcredfiltroslys);
+$SistemasKopito-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$SistemasKopito-warn: mat-palette($mat-red);
+
+$SistemasKopito-theme: mat-light-theme((
+  color: (
+    primary: $SistemasKopito-primary,
+    accent: $SistemasKopito-accent,
+    warn: $SistemasKopito-warn,
+  )
+));
+
+@include angular-material-theme($SistemasKopito-theme);
+

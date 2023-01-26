@@ -1,0 +1,27 @@
+
+<mat-card fxFlex="1 1 340px" class="mat-elevation-z7" fxLayout="column">
+  <div fxLayout="column" fxLayoutAlign="center center"  > 
+      <h3 >LOGIN</h3>
+    </div>
+    
+    <form [formGroup] = "group" fxLayout="column">
+
+    <mat-form-field appearance = 'outline'>
+        <mat-label>Usuario</mat-label>
+         <mat-icon matSuffix>face</mat-icon>
+         <input type="text"  matInput required formControlName="usuario" (keydown)="handleKeyDown($event)"/>
+         <mat-error>el campo es obligatorio</mat-error>
+
+    </mat-form-field>
+
+  <mat-form-field  appearance = 'outline'>
+    <mat-label>Password</mat-label>
+    <mat-icon matSuffix>visibility</mat-icon>
+     <input type="password"  (keydown)="handleKeyDown($event)" matInput required formControlName = "password">
+     <mat-error>el campo es obligatorio</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button  color= "warn"  (click) = "login()" type="button" [disabled]= "group.invalid"> Ingresar</button>
+
+</form>
+</mat-card>
