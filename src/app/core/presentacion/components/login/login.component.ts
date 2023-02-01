@@ -9,6 +9,7 @@ import { UserEntity } from 'src/app/usuario/domain/user-entity';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  hide = true;
 
   @Output() outputLogin:EventEmitter<UserEntity>= new EventEmitter<UserEntity>();
 
@@ -31,7 +32,6 @@ initializeForm(){
 }
 
   login(){
-
     const user: UserEntity = this.group.value;
     this.outputLogin.emit(this.group.value);
     // console.log(this.group);
@@ -62,3 +62,4 @@ initializeForm(){
   }
 
 }
+

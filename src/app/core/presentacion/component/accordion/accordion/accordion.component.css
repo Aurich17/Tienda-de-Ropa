@@ -46,7 +46,7 @@
   }
   
   /* Show submenu */
-  .accordion li.active .submenu {
+  /*.accordion li.active .submenu {
     /*
       height: 0 -> height: auto;는 transition이 동작하지 않는다.
       max-height: 임의의 높이;를 지정하면 transition이 동작하지만 타이밍이 망가진다.
@@ -55,7 +55,7 @@
     */
     /* max-height: 1000px; */
     /* max-height: 133px; */
-  }
+  /*}*/
   
   .submenu {
     height: 0;

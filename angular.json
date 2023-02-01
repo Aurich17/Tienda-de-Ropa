@@ -149,5 +149,8 @@
       }
     }
   },
-  "defaultProject": "SistemasKopito"
+  "defaultProject": "SistemasKopito",
+  "cli": {
+    "analytics": "adbf43ca-cca3-4474-879d-88f5ad8db8ab"
+  }
 }

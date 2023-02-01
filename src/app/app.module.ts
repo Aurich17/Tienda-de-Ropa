@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { AperturaparteRepository } from './aperturaparte/domain/parte.repository';
 import { AperturaparteService } from './services/aperturaparte.service';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import {MatInputModule} from '@angular/material/input';
 
 import { InformeTrazabilidadRepository } from './informetrazabilidad/domain/informetrazabilidad.repository';
 
@@ -37,7 +38,7 @@ import { InformeTrazabilidadRepository } from './informetrazabilidad/domain/info
     SharedModule,
     CoreModule,
     HttpClientModule,
-    AppRoutingModule,
+    AppRoutingModule,MatInputModule,
     RouterModule
     
   ],
