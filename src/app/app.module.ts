@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
@@ -39,8 +40,9 @@ import { InformeTrazabilidadRepository } from './informetrazabilidad/domain/info
     CoreModule,
     HttpClientModule,
     AppRoutingModule,MatInputModule,
-    RouterModule
-    
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,    
   ],
   providers: [
   {provide: UserRepository, useClass: UserOperations},{provide: APP_BASE_HREF, useValue: '/'},
