@@ -1,29 +1,28 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$prueba-app-light-primary: mat-palette($mat-orange, 300);
+$prueba-app-light-primary: mat-palette($mat-grey, 100);
 $prueba-app-light-accent:  mat-palette($mat-blue, 800);
-$prueba-app-light-warn:    mat-palette($mat-red,500);
+$prueba-app-light-warn:    mat-palette($mat-red,900);
 
-$prueba-app-dark-primary: mat-palette($mat-green, A200);
-$prueba-app-dark-accent:  mat-palette($mat-purple, A700);
+$prueba-app-dark-primary: mat-palette($mat-pink, A200);
+$prueba-app-dark-accent:  mat-palette($mat-green, 700);
 $prueba-app-dark-warn:    mat-palette($mat-red,A400);
 
 $light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
 $dark-app-theme: mat-dark-theme($prueba-app-dark-primary, $prueba-app-dark-accent, $prueba-app-dark-warn);
 
-@include angular-material-theme($dark-app-theme);
+@include angular-material-theme($light-app-theme);
 
 .light-theme{
-    @include angular-material-theme($light-app-theme);
-    background-color: red;
-    color: green;
-}
+  @include angular-material-theme($light-app-theme);
+  border-radius: 50%;
+};
+
+
 
 .dark-theme{
   @include angular-material-theme($dark-app-theme);
-  background-color: black;
   color: white;
 }
-
 

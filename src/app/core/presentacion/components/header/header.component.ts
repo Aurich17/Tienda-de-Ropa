@@ -6,17 +6,10 @@ import { StorageService } from 'src/app/services/storage.service';
 import { ResponseLogin } from 'src/app/usuario/domain/user-entity';
 import { AuthService } from 'src/app/services/auth.service';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
 
 
 //IMPORT ISMA
 import {OverlayContainer} from '@angular/cdk/overlay'
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-      const isSubmitted = form && form.submitted;
-      return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-    }
-  }
 
 @Component({
   selector: 'app-header',
@@ -24,6 +17,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+    selected1 = 'light-theme';
+
     selected = new FormControl('valid', [
         Validators.required,
         Validators.pattern('valid'),
@@ -38,9 +33,6 @@ export class HeaderComponent implements OnInit {
         Validators.required,
         Validators.pattern('valid'),
       ]);
-    
-      matcher = new MyErrorStateMatcher();
-
 
     //Cambios Isma
     @HostBinding('class') componentCssClass: any
@@ -104,18 +96,18 @@ export class HeaderComponent implements OnInit {
                 this.changeMode();
             });
         };
-
         //Lista
     }
-
     //Cambia Color
     public onSetTheme(e: string){
-        this.overlayContainer.getContainerElement().classList.add(e);
-        this.componentCssClass = e;
-  
+        if(e != 'dark-theme')
+            this.overlayContainer.getContainerElement().classList.add(e);
+            this.componentCssClass = e;
+        if(e != 'light-theme')
+            this.overlayContainer.getContainerElement().classList.add(e);
+            this.componentCssClass = e;
     }
-    
-    
+
 
     logout()
     {

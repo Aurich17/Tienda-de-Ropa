@@ -5,7 +5,7 @@
     
     <form [formGroup] = "group" fxLayout="column">
 
-    <mat-form-field appearance = 'outline'>
+    <mat-form-field appearance = 'outline' color="accent">
         <mat-label>Usuario</mat-label>
          <mat-icon matSuffix>face</mat-icon>
          <input type="text"  matInput required formControlName="usuario" (keydown)="handleKeyDown($event)"/>
@@ -13,8 +13,8 @@
 
     </mat-form-field>
 
-  <mat-form-field  appearance = 'outline'>
-    <mat-label>Password</mat-label>
+  <mat-form-field  appearance = 'outline' color="accent">
+    <mat-label class="border">Password</mat-label>
      <input matInput type="password" formControlName="password" [type]="hide ? 'password':'text' ">
      <i class="material-icons" matSuffix (click) ="hide =!hide">{{hide ? 'visibility':'visibility_off'}}</i>
      <mat-error>el campo es obligatorio</mat-error>
