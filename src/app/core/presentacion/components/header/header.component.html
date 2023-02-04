@@ -1,16 +1,28 @@
 
-<mat-toolbar   class="main-nav mat-elevation-z4" fxLayout fxLayoutAlign="space-between left">
+<mat-toolbar   class="main-nav mat-elevation-z4" fxLayout fxLayoutAlign="space-between left" color="primary">
      
     <div fxLayout fxLayoutAlign="center center">
      <button mat-mini-fab color="" class="icon-padding" (click)="start.toggle()" aria-label="Example icon button with a menu icon">
         <mat-icon>menu</mat-icon>
       </button>
-      <img  width="150px" height="70px" src="./assets/Img/logo.png">
+      <img  width="150px" height="70px" src="">
 
     </div>
  
      <!-- This fills the remaining space of the current row -->
      <span class="fill-remaining-space"></span>
+
+     <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field appearance="fill">
+            <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
+              <mat-option value="valid" (click)="onSetTheme('dark-theme')">Dark</mat-option>
+              <mat-option value="invalid" (click)="onSetTheme('light-theme')">Light</mat-option>
+              <mat-option value="valid" (click)="onSetTheme('dark-theme')">Dark</mat-option>
+              <mat-option value="invalid" (click)="onSetTheme('light-theme')">Light</mat-option>
+            </mat-select>
+        </mat-form-field>   
+     </div>
+    <!-- BOTONES-->
       
      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
         <div fxLayout = "row" fxLayoutAlign="start center" class="title" fxLayoutGap="50px"> 
@@ -41,8 +53,7 @@
  <mat-sidenav-container class="sidenav-container" >
  
      <mat-sidenav style="background-color: aqua;" class="mat-elevation-z10" #start [opened]="open" fixedTopGap="64" [mode]="mode" fixedInViewport="true" style="width:300px;background-color:#f3f0f0;">
-         <app-menu></app-menu>
-         
+         <app-menu></app-menu>      
      </mat-sidenav>
  
        <mat-sidenav-content style="margin-top:64px;">

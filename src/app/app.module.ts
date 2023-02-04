@@ -30,8 +30,6 @@ import { InformeTrazabilidadRepository } from './informetrazabilidad/domain/info
 @NgModule({
   declarations: [
     AppComponent,
-   
-
   ],
   imports: [
     BrowserModule,
