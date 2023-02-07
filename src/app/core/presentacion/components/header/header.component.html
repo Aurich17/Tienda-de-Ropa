@@ -1,8 +1,8 @@
 
-<mat-toolbar   class="main-nav mat-elevation-z4" fxLayout fxLayoutAlign="space-between left" color="accent">
+<mat-toolbar   class="main-nav mat-elevation-z4" fxLayout fxLayoutAlign="space-between left" color="primary">
      
     <div fxLayout fxLayoutAlign="center center">
-     <button mat-mini-fab color="" class="icon-padding" (click)="start.toggle()" aria-label="Example icon button with a menu icon">
+     <button mat-mini-fab color="" class="icon-padding" (click)="start.toggle()" aria-label="Example icon button with a menu icon" matTooltip="Menu">
         <mat-icon>menu</mat-icon>
       </button>
       <img  width="150px" height="70px" src="">
@@ -14,31 +14,27 @@
 
      <mat-form-field appearance="fill" class="selector" >
         <mat-label>Theme</mat-label>
-        <mat-select [(value)]="selected1" >
-          <mat-option class="prueba" value="light-theme" (click)="onSetTheme('light-theme')">Light</mat-option>
-          <mat-option  class="prueba" value="dark-theme" (click)="onSetTheme('dark-theme')">Dark</mat-option>
-          <mat-option class="prueba" value="option3" (click)="onSetTheme('light-theme')">Cian</mat-option>
+        <mat-select [(value)]="selected1">
+          <mat-option  value="light-theme" (click)="onSetTheme('light-theme')">Light</mat-option>
+          <mat-option  value="dark-theme" (click)="onSetTheme('dark-theme')">Dark</mat-option>
+          <mat-option  value="vivo-theme" (click)="onSetTheme('vivo-theme')">Vivo</mat-option>
         </mat-select>
       </mat-form-field>
     <!-- BOTONES-->
       
      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
         <div fxLayout = "row" fxLayoutAlign="start center" class="title" fxLayoutGap="50px"> 
-          <button mat-mini-fab color="" class="icon-padding" aria-label="Example icon button with a menu icon" matTooltip="Busines" >
             <mat-icon>business</mat-icon>
                 {{nombreempresa}}
-          </button>
         </div>
 
         <div fxLayout = "row" fxLayoutAlign="start center" class="title" fxLayoutGap="50px"> 
-          <button mat-mini-fab color="" class="icon-padding" aria-label="Example icon button with a menu icon" matTooltip="Face" >
             <mat-icon>face</mat-icon>
-                        {{nombreusuario}}
-          </button>                                     
+                        {{nombreusuario}}                                  
         </div>
         
             <div>
-                <button mat-mini-fab color="" class= "title" mat-button (click) = logout()  matTooltip="Cerrar Session" >
+                <button  class= "title" mat-button (click) = logout()  matTooltip="Cerrar Session" >
                    <mat-icon>exit_to_app</mat-icon>   
                 </button>
             </div>

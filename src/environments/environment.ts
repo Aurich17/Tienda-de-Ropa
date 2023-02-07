@@ -8,7 +8,7 @@ export const environment = {
    //PATH_API: 'http://190.187.78.101:9000/api'
    //PATH_API: 'http://10.0.2.5:9000/api'
    //PATH_API: 'http://100.100.100.122:9000/api'
-   PATH_API: 'http://localhost:9002/api'
+   PATH_API: 'http://localhost:9000/api'
 };
 
 /*

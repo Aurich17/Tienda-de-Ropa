@@ -1,28 +1,50 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$prueba-app-light-primary: mat-palette($mat-grey, 100);
-$prueba-app-light-accent:  mat-palette($mat-blue, 800);
+$prueba-app-light-primary: mat-palette($mat-blue, 800);
+$prueba-app-light-accent:  mat-palette($mat-grey, 50);
 $prueba-app-light-warn:    mat-palette($mat-red,900);
 
-$prueba-app-dark-primary: mat-palette($mat-pink, A200);
-$prueba-app-dark-accent:  mat-palette($mat-green, 700);
+$prueba-app-dark-primary: mat-palette($mat-pink, 500);
+$prueba-app-dark-accent:  mat-palette($mat-blue-grey, 900);
 $prueba-app-dark-warn:    mat-palette($mat-red,A400);
+
+$prueba-app-vivo-primary: mat-palette($mat-amber, 400);
+$prueba-app-vivo-accent:  mat-palette($mat-green, A200);
+$prueba-app-vivo-warn:    mat-palette($mat-red,A400);
 
 $light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
 $dark-app-theme: mat-dark-theme($prueba-app-dark-primary, $prueba-app-dark-accent, $prueba-app-dark-warn);
+$vivo-app-theme: mat-dark-theme($prueba-app-vivo-primary, $prueba-app-vivo-accent, $prueba-app-vivo-warn);
 
+//Nuevo Tema de prueba
+:root{
+  --color-primary: #{mat-color($prueba-app-light-primary)};
+  --color-accent: #{mat-color($prueba-app-light-accent)};
+  --color-warn: #{mat-color($prueba-app-light-warn)};
+}
 @include angular-material-theme($light-app-theme);
+//Aqui termina el experimento
+
 
 .light-theme{
+  --color-primary: #{mat-color($prueba-app-light-primary)};
+  --color-accent: #{mat-color($prueba-app-light-accent)};
+  --color-warn: #{mat-color($prueba-app-light-warn)};
   @include angular-material-theme($light-app-theme);
-  border-radius: 50%;
 };
 
 
-
 .dark-theme{
+  --color-primary: #{mat-color($prueba-app-dark-primary)};
+  --color-accent: #{mat-color($prueba-app-dark-accent)};
+  --color-warn: #{mat-color($prueba-app-dark-warn)};
   @include angular-material-theme($dark-app-theme);
-  color: white;
 }
 
+.vivo-theme{
+  --color-primary: #{mat-color($prueba-app-vivo-primary)};
+  --color-accent: #{mat-color($prueba-app-vivo-accent)};
+  --color-warn: #{mat-color($prueba-app-vivo-warn)};
+  @include angular-material-theme($vivo-app-theme);
+}
