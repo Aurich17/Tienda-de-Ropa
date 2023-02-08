@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { RolesComponent } from "./aperturaparte/ventanas/roles/roles.component";
 import { RouterModule, Routes } from "@angular/router";
 import { PageLoginComponent } from "./core/presentacion/page-login/page-login.component";
 import { PageDashboardComponent } from "./dashboard/presentacion/page-dashboard/page-dashboard.component";
@@ -24,6 +25,11 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 
     path: "aperturapartes",
     loadChildren: () => import("./aperturaparte/aperturaparte.module").then(m => m.AperturaparteModule)
+
+},
+{
+
+    path: "roles", component: RolesComponent,
 
 },
 /*
