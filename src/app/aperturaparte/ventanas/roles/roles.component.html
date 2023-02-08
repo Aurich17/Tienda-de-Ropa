@@ -1,0 +1,76 @@
+<h1>MANTENIMIENTO ROLES</h1>
+<div class='acciones'>
+    <label for="desMenu"> Usuario: </label>
+    <input type="text" id="desMenu">
+
+    <label>Roles: </label>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Roles</option>
+      <option value="1">Rol1</option>
+      <option value="2">Rol2</option>
+      <option value="3">Rol3</option>
+    </select>
+
+    <label>Menus: </label>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Menu: </option>
+      <option value="1">MenuA1</option>
+      <option value="2">MenuA2</option>
+      <option value="3">MenuA3</option>
+    </select>
+    
+    <label for="activo"> Activo: </label>
+    <input type="radio" id="activo" name="estado">
+    <label for="inactivo"> Inactivo: </label>
+    <input type="radio" id="inactivo" name="estado">
+</div>
+
+<!--Botones-->
+<div class="botones">
+    <button mat-raised-button color="primary">Buscar</button>
+    <button mat-raised-button color="primary">Agregar</button>   
+    <button mat-raised-button color="warn">Salir</button>   
+</div>
+  <!--TABLA-->
+  <table mat-table [dataSource]="dataSource" class="table mat-elevation-z8">
+    <!-- codigo Usuario-->
+    <ng-container matColumnDef="codUsuario">
+      <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Cod.Usuario</th>
+      <td mat-cell *matCellDef="let element" class="contenido">{{element.codUsuario}}</td>
+    </ng-container>
+  
+    <!-- Usuario-->
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Usuario</th>
+      <td mat-cell *matCellDef="let element" class="contenido">{{element.usuario}}</td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="rol">
+      <th mat-header-cell *matHeaderCellDef class="contenido contTitle" contTitle>Rol</th>
+      <td mat-cell *matCellDef="let element" class="contenido">{{element.rol}}</td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Estado</th>
+      <td mat-cell *matCellDef="let element" class="contenido">{{element.estado}}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="menu">
+      <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Menu</th>
+      <td mat-cell *matCellDef="let element" class="contenido">{{element.menu}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="opciones" class="contenedor">
+      <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Opciones</th>
+      <td mat-cell *matCellDef="let element" class="contenido">
+        <div class="opciones">
+          <mat-icon>create</mat-icon><mat-icon>delete</mat-icon>
+        </div>
+      </td>
+    </ng-container>
+
+    
+    <mat-header-row *matHeaderRowDef="displayedColumns" class="contenedor"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
