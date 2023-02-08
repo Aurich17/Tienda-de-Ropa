@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { MenusComponent } from "./aperturaparte/ventanas/menus/menus.component";
 import { RolesComponent } from "./aperturaparte/ventanas/roles/roles.component";
 import { RouterModule, Routes } from "@angular/router";
 import { PageLoginComponent } from "./core/presentacion/page-login/page-login.component";
@@ -27,11 +28,8 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     loadChildren: () => import("./aperturaparte/aperturaparte.module").then(m => m.AperturaparteModule)
 
 },
-{
-
-    path: "roles", component: RolesComponent,
-
-},
+{ path: "roles", component: RolesComponent,},
+{ path: "menus", component: MenusComponent,},
 /*
 {
 
