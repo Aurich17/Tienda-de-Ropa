@@ -8,6 +8,8 @@ import {DataSource} from '@angular/cdk/table';
 import {MatSort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatTableModule} from '@angular/material/table'; 
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { RegRolesComponent } from '../reg-roles/reg-roles.component';
 
 export interface MantenimientoRoles {
   usuario: string;
@@ -38,6 +40,8 @@ export interface MantenimientoRoles {
   styleUrls: ['./mante-roles.component.css']
 })
 export class ManteRolesComponent implements OnInit {
+  dialogConfig = new MatDialogConfig();
+  modalDialog: MatDialogRef<RegRolesComponent, any> | undefined;
   displayedColumns: string[] = ['codUsuario', 'usuario', 'rol', 'menu', 'estado', 'opciones'];
   dataSource = ELEMENT_DATA;
   //Roles
@@ -53,7 +57,23 @@ export class ManteRolesComponent implements OnInit {
     {value: 'menu3', viewValue: 'MenuA3'},
   ];
 
-  constructor() { }
+  constructor(public matDialog: MatDialog) { }
+
+  ngAfterViewInit(): void {
+    document.onclick = (args: any) : void => {
+          if(args.target.tagName === 'BODY') {
+              this.modalDialog?.close()
+          }
+      }
+  }
+
+  openModal() {
+    
+    this.dialogConfig.id = "projects-modal-component";
+    this.dialogConfig.height = "800px";
+    this.dialogConfig.width = "700px";
+    this.modalDialog = this.matDialog.open(RegRolesComponent, this.dialogConfig);
+  }
 
   ngOnInit(): void {
   }

@@ -1,4 +1,5 @@
 import { ManteRolesComponent } from './presentacion/components/mante-roles/mante-roles.component';
+import { RegRolesComponent } from './presentacion/components/reg-roles/reg-roles.component';
 import { ManteRolesRoutingModule } from './mante-roles-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
@@ -10,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PageManteRolesComponent } from './presentacion/page-mante-roles/page-mante-roles.component';
 
 @NgModule({
-  declarations: [ManteRolesComponent, PageManteRolesComponent],
+  declarations: [ManteRolesComponent, PageManteRolesComponent, RegRolesComponent],
   imports: [
     CommonModule,
     SharedModule,
