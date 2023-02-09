@@ -1,6 +1,4 @@
 import { NgModule } from "@angular/core";
-import { MenusComponent } from "./aperturaparte/ventanas/menus/menus.component";
-import { RolesComponent } from "./aperturaparte/ventanas/roles/roles.component";
 import { RouterModule, Routes } from "@angular/router";
 import { PageLoginComponent } from "./core/presentacion/page-login/page-login.component";
 import { PageDashboardComponent } from "./dashboard/presentacion/page-dashboard/page-dashboard.component";
@@ -28,8 +26,14 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     loadChildren: () => import("./aperturaparte/aperturaparte.module").then(m => m.AperturaparteModule)
 
 },
-{ path: "roles", component: RolesComponent,},
-{ path: "menus", component: MenusComponent,},
+{
+    path: "menu",
+    loadChildren: () => import("./menus/mante-menu.module").then(m => m.ManteMenuModule)
+},
+{
+    path: "roles",
+    loadChildren: () => import("./roles/mante-roles.module").then(m => m.ManteRolesModule)
+},
 /*
 {
 

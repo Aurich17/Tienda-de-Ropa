@@ -30,13 +30,6 @@ h1{
     border: none;
     }
   
-    .selector{
-      display: inline-block;
-      font-size: 11px;
-      width:  180px;
-      height: 40px;
-    }
-  
     .contenedor{
       background-color: var(--color-primary);
       text-align: center;

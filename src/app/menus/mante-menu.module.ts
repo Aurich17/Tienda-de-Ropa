@@ -8,16 +8,17 @@ import {NgxQRCodeModule} from 'ngx-qrcode2';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageManteMenuComponent } from './presentacion/page-mante-menu/page-mante-menu.component';
+import { RegMenuComponent } from './presentacion/components/reg-menu/reg-menu.component';
 
 @NgModule({
-  declarations: [ManteMenuComponent, PageManteMenuComponent],
+  declarations: [ManteMenuComponent, PageManteMenuComponent, RegMenuComponent],
   imports: [
     CommonModule,
     SharedModule,
     NgxQRCodeModule,
     ZXingScannerModule,
     ReactiveFormsModule,
-    ManteMenuComponent  
+    ManteMenuRoutingModule 
   ],
   exports: [ManteMenuComponent],
   providers:[DatePipe]

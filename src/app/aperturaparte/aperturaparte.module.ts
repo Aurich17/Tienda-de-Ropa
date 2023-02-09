@@ -9,11 +9,9 @@ import {NgxQRCodeModule} from 'ngx-qrcode2';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { FormAperturaparteComponent } from './presentacion/components/form-aperturaparte/form-aperturaparte.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RolesComponent } from './ventanas/roles/roles.component';
-import { MenusComponent } from './ventanas/menus/menus.component';
 
 @NgModule({
-  declarations: [PageAperturaparteComponent, AperturaparteComponent,FormAperturaparteComponent, RolesComponent, MenusComponent ],
+  declarations: [PageAperturaparteComponent, AperturaparteComponent,FormAperturaparteComponent],
   imports: [
     CommonModule,
     AperturaparteRoutingModule,

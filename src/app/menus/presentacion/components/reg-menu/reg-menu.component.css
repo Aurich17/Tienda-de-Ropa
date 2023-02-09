@@ -1,0 +1,79 @@
+h1{
+    margin-top:5%;
+    margin-bottom:5%;
+    text-align: center;
+    background: none;
+  }
+  
+  .input{
+    width: 150px;
+  }
+
+  .sMenu{
+    margin-left: 42px;
+  }
+
+  .acciones{
+    background: none;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 350px;
+    margin: 0 auto;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .botones{
+    margin-top: 100px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: 0px auto;
+    margin-bottom: 10px;
+    margin-top:  10px;
+  }
+
+  .table {
+    background-color: var(--color-accent);
+    margin: 0 auto;
+    width: 90%;
+    border: none;
+    }
+  
+    .contenedor{
+      background-color: var(--color-primary);
+      text-align: center;
+    }
+  
+    .contenido{
+      align-items: center;
+      width: 16%;
+      border-bottom: none;
+      border-top: none;
+      margin: 0 auto;
+    }
+  
+  
+    .contTitle{
+      width: 100%;
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+    }
+  
+    .opciones{
+      margin: 0 auto;
+      display: flex;
+      width: 70%;
+      justify-content: space-around;
+    }
+
+    .estado{
+      width: 60%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
