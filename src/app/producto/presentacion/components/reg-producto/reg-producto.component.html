@@ -1,0 +1,77 @@
+<h1>REGISTRO PRODUCTO</h1>
+<div class="acciones">
+    <div class="sMenu">
+        <input type="text" id="desMenu" class="input" placeholder="Descripcion Producto" class="list">
+    </div>
+    <div class="sMenu">
+        <select class="form-select" aria-label="Default select example" class="list">
+            <option disabled selected>Escoge un Color</option>
+            <option value="1">Rojo</option>
+            <option value="2">Azul</option>
+            <option value="3">Amarillo</option>
+        </select>
+    </div>
+
+    <div class="sMenu">
+        <select class="form-select" aria-label="Default select example" class="list">
+            <option disabled selected>Escoge una Talla</option>
+            <option value="1">XL</option>
+            <option value="2">M</option>
+            <option value="3">S</option>
+        </select>
+    </div>
+
+    <div class="sMenu">
+        <select class="form-select" aria-label="Default select example" class="list">
+            <option disabled selected>Escoge una Prenda</option>
+            <option value="1">Casaca</option>
+            <option value="2">Polo</option>
+            <option value="3">Blusa</option>
+        </select>
+    </div>
+
+    <div class="sMenu">
+        <select class="form-select" aria-label="Default select example" class="list">
+            <option disabled selected>Escoge un genero</option>
+            <option value="1">Masculino</option>
+            <option value="2">Femenino</option>
+        </select>
+    </div>
+
+    <div class="estado">
+        <div class="radio">
+            <div class="etiqueta">
+                <label for="a">Activo</label>
+                <label for="i">Inactivo</label>
+            </div>
+            <div class="etiqueta">
+                <input type="radio" id="a" name="estado">
+                <input type="radio" id="i" name="estado">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="botones">
+    <button mat-raised-button color="primary">Limpiar</button>
+    <button mat-raised-button color="primary">Agregar</button>   
+    <button mat-raised-button color="primary">Guardar</button>   
+    <button mat-raised-button color="warn" (click)="closeModal()">Salir</button> 
+</div>
+
+<table mat-table [dataSource]="dataSource" class="table mat-elevation-z8">
+    <ng-container matColumnDef="producto">
+        <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Productos</th>
+        <td mat-cell *matCellDef="let element" class="contenido">{{element.producto}}</td>
+    </ng-container>    
+
+    <ng-container matColumnDef="opciones" class="contenedor">
+        <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Opciones</th>
+        <td mat-cell *matCellDef="let element" class="contenido">
+          <div class="opciones">
+            <mat-icon>delete</mat-icon>
+          </div>
+        </td>
+      </ng-container>
+    
+    <mat-header-row *matHeaderRowDef="displayedColumns" class="contenedor"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

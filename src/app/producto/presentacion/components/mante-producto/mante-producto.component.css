@@ -1,0 +1,67 @@
+h1{
+    margin-top:5%;
+    margin-bottom:5%;
+    text-align: center;
+  }
+  
+  .acciones{
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+    width:90%;
+    justify-content: space-between;
+    align-items: center;
+    font-size:  18px;
+  }
+
+  .list{
+    height: 30px;
+    width: 140px;
+    text-align: center;
+  }
+  
+  .botones{
+    margin-top: 100px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+    margin-left: 70%;
+  }
+
+  .table {
+    background-color: var(--color-accent);
+    margin: 0 auto;
+    width: 90%;
+    border: none;
+    }
+  
+    .contenedor{
+      background-color: var(--color-primary);
+      text-align: center;
+    }
+  
+    .contenido{
+      align-items: center;
+      text-align: center;
+      width: 12%;
+      border-bottom: none;
+      border-top: none;
+    }
+  
+  
+    .contTitle{
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+    }
+  
+    .opciones{
+      margin: 0 auto;
+      display: flex;
+      width: 60%;
+      justify-content: space-around;
+    }
