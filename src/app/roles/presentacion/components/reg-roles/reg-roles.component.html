@@ -1,36 +1,37 @@
 <h1>REGISTRO ROLES</h1>
 <div class="acciones">
-    <div>
-        <label for="desMenu">Usuario: </label>
-        <input type="text" id="desMenu" class="input">
+    <div class="sMenu">
+        <select class="form-select" aria-label="Default select example" class="list">
+            <option  disabled selected>Selecciona un Usuario</option>
+            <option value="1">Usuario1</option>
+            <option value="2">Usuario2</option>
+            <option value="3">Usuario3</option>
+        </select>
     </div>
     <div class="sMenu">
-        <label>Rol: </label>
-        <select class="form-select" aria-label="Default select example" class="input">
-            <option selected>Roles</option>
+        <select class="form-select" aria-label="Default select example" class="list">
+            <option disabled selected>Seleccion un Rol</option>
             <option value="1">Rol1</option>
             <option value="2">Rol2</option>
             <option value="3">Rol3</option>
         </select>
     </div>
     <div class="sMenu">
-        <label>Menu: </label>
-        <select class="form-select" aria-label="Default select example" class="input">
-            <option selected>Menus</option>
+        <select class="form-select" aria-label="Default select example" class="list">
+            <option disabled selected>Selecciona un Menu</option>
             <option value="1">MenuA1</option>
             <option value="2">MenuA2</option>
             <option value="3">MenuA3</option>
         </select>
     </div>
     <div class="estado">
-        <label>Estado: </label>
         <div class="radio">
-            <div>
+            <div class="etiqueta">
                 <label for="a">Activo</label>
-                <input type="radio" id="a" name="estado">
-            </div>
-            <div>
                 <label for="i">Inactivo</label>
+            </div>
+            <div class="etiqueta">
+                <input type="radio" id="a" name="estado">
                 <input type="radio" id="i" name="estado">
             </div>
         </div>

@@ -4,25 +4,25 @@ h1{
     text-align: center;
     background: none;
   }
-  
-  .input{
-    width: 150px;
+
+  .list{
+    height: 30px;
+    width: 200px;
+    text-align: center;
   }
 
   .sMenu{
-    margin-left: 42px;
+    margin: 0 auto;
   }
 
   .acciones{
-    background: none;
     font-weight: bold;
     display: flex;
     flex-direction: column;
-    width: 50%;
-    height: 350px;
+    width: 40%;
+    height: 300px;
     margin: 0 auto;
     justify-content: space-around;
-    align-items: center;
   }
   
   .botones{
@@ -76,15 +76,21 @@ h1{
     }
 
     .estado{
-      width: 60%;
+      width: 200px;
       display: flex;
       flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
+      margin: 0 auto;
     }
 
     .radio{
-      height: 60px;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .etiqueta{
       display: flex;
       flex-direction: column;
       justify-content: space-around;
