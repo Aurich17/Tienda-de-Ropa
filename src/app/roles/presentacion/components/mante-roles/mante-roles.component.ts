@@ -1,13 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {Observable, ReplaySubject} from 'rxjs';
-import { ImgSrcDirective } from '@angular/flex-layout';
-import { ICON_REGISTRY_PROVIDER } from '@angular/material/icon';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {DataSource} from '@angular/cdk/table';
-import {MatSort} from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import {MatTableModule} from '@angular/material/table'; 
+import { Component, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegRolesComponent } from '../reg-roles/reg-roles.component';
 
@@ -40,6 +31,9 @@ export interface MantenimientoRoles {
   styleUrls: ['./mante-roles.component.css']
 })
 export class ManteRolesComponent implements OnInit {
+  usuario='usuario';
+  roles='roles';
+  menu='menu';
   dialogConfig = new MatDialogConfig();
   modalDialog: MatDialogRef<RegRolesComponent, any> | undefined;
   displayedColumns: string[] = ['codUsuario', 'usuario', 'rol', 'menu', 'estado', 'opciones'];

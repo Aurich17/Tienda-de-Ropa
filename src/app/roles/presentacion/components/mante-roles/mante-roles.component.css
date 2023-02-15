@@ -1,34 +1,54 @@
 h1{
-    margin-top:5%;
-    margin-bottom:5%;
-    text-align: center;
-  }
+  margin-top:5%;
+  margin-bottom:5%;
+  text-align: center;
+}
   
   .acciones{
     text-align: center;
     display: flex;
+    flex-direction: column;
     margin: 0 auto;
-    width:90%;
+    width:50%;
     justify-content: space-between;
-    align-items: center;
-    font-size:  18px;
   }
 
-  
   .list{
-    height: 30px;
-    width: 200px;
+    font-size: 32px;
     text-align: center;
+    height: 100%;
+    width: 100%;
   }
-
   
   .botones{
-    margin-top: 100px;
     margin-bottom: 20px;
     display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: 20px auto 20px auto;
+  }
+
+  .radio{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    font-size:32px;
+  }
+
+  .radio_contenedor{
+    width: 100%;
+  } 
+
+  button{
+    font-size: 30px;
+    width: 30%;
+  }
+
+  .botones_contenedor{
+    display: flex;
     justify-content: space-between;
-    width: 25%;
-    margin-left: 70%;
+    width: 100%;
   }
 
   .table {
@@ -71,4 +91,134 @@ h1{
       display: flex;
       width: 60%;
       justify-content: space-around;
+    }
+
+    @media (min-width: 1600px) and (max-width: 2529px) {
+      .acciones{
+        text-align: center;
+        display: flex;
+        margin: 0 auto 0 auto;
+        flex-direction: row;
+        width:90%;
+        justify-content: space-between;
+        align-items: center;
+      }
+  
+      .botones{
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: flex-end;
+        width: 90%;
+        margin: 100px auto 20px auto;
+      }
+  
+      button{
+        font-size: 16px;
+        width: 100px;
+      }
+  
+      .botones_contenedor{
+        display: flex;
+        justify-content: space-between;
+        width: 25%;
+      }
+  
+      .list{
+        font-size: 20px;
+        height: 20%;
+        width: 280px;
+        text-align: center;
+      }
+  
+      .radio_contenedor{
+        width: 15%;
+        justify-content: end;
+      }
+  
+      .radio{
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+      }
+    }
+  
+  
+    /*PANTALLA chica DE ESCRITORIO*/
+    @media (min-width: 1258px) and (max-width: 1600px){
+      
+      .acciones{
+        text-align: center;
+        display: flex;
+        margin: 0 auto;
+        flex-direction: row;
+        width:90%;
+        justify-content: space-between;
+        align-items: center;
+      }
+    
+      .list{
+        font-size: 14px;
+        height: 30px;
+        width: 230px;
+        text-align: center;
+      }
+    
+      .alinear{
+        height: 40px;
+      }
+    
+      .radio{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size:14px;
+        margin-top: 10px;
+      }
+    
+      .radio_contenedor{
+        width: 18%;
+        height: 100%;
+      }
+      
+      .botones{
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: flex-end;
+        width: 90%;
+        margin: 100px auto 20px auto;
+      }
+  
+      button{
+        font-size: 16px;
+        width: 100px;
+      }
+    
+      .botones_contenedor{
+        display: flex;
+        justify-content: space-between;
+        width: 35%;
+      }
+    }
+  
+    @media (min-width: 800px) and (max-width: 1258px){
+      .list{
+        font-size: 24px;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+      }
+    
+      .radio{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        font-size:24px;
+      }   
+        
+      button{
+        font-size: 24px;
+        width: 25%;
+      }
+      
     }

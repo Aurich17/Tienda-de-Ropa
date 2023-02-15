@@ -1,58 +1,66 @@
 <h1>MANTENIMIENTO PRODUCTO</h1>
 <div class='acciones'>
-    <div>
-        <input type="text" placeholder="Descripcion Producto" class="list">
+    <div class="alinear">
+      <mat-form-field class="list">
+        <input matInput type="text" placeholder="Descripcion Producto">
+      </mat-form-field>
+    </div>
+    <div class="alinear">
+      <mat-form-field class="list">
+        <mat-select [(value)]="colores">
+          <mat-option value="colores">Todos los Colores</mat-option>
+          <mat-option value="option2">Rojo</mat-option>
+          <mat-option value="option3">Azul</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="alinear">
+      <mat-form-field class="list">
+        <mat-select [(value)]="tallas">
+          <mat-option value="tallas">Todas las Tallas</mat-option>
+          <mat-option value="1">XL</mat-option>
+          <mat-option value="2">M</mat-option>
+          <mat-option value="3">S</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="alinear">
+      <mat-form-field class="list">
+        <mat-select [(value)]="prendas">
+          <mat-option value="prendas">Todas las Prendas</mat-option>
+          <mat-option value="1">Polo</mat-option>
+          <mat-option value="2">Blusa</mat-option>
+          <mat-option value="3">Camisa</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
-    <div>
-        <select class="form-select" aria-label="Default select example" class="list">
-        <option selected> Todos los Colores</option>
-        <option value="1">Rojo</option>
-        <option value="2">Amarillo</option>
-        <option value="3">Verde</option>
-        </select>
-    </div>
-    <div>
-      <select class="form-select" aria-label="Default select example" class="list">
-      <option selected> Todas los Tallas</option>
-      <option value="1">XL</option>
-      <option value="2">M</option>
-      <option value="3">S</option>
-      </select>
-    </div>
-
-    <div>
-      <select class="form-select" aria-label="Default select example" class="list">
-      <option selected> Todas los Prendas</option>
-      <option value="1">Polo</option>
-      <option value="2">Vestido</option>
-      <option value="3">Blusa</option>
-      </select>
-    </div>
-
-    <div>
-      <select class="form-select" aria-label="Default select example" class="list">
-      <option selected> Todos los Generos</option>
-      <option value="1">Masculino</option>
-      <option value="2">Femenino</option>
-      </select>
+    <div class="alinear">
+      <mat-form-field class="list">
+        <mat-select [(value)]="genero">
+          <mat-option value="genero">Todos los Generos</mat-option>
+          <mat-option value="1">Polo</mat-option>
+          <mat-option value="2">Blusa</mat-option>
+          <mat-option value="3">Camisa</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     
-    <div>
-        <label for="activo"> Activo</label>
-        <input type="radio" id="activo" name="estado">
-    </div>
-    <div>
-        <label for="inactivo"> Inactivo</label>
-        <input type="radio" id="inactivo" name="estado">
+    <div class="radio_contenedor">
+      <mat-radio-group aria-label="Select an option" class="radio">
+        <mat-radio-button value="1" color="primary">Activo</mat-radio-button>
+        <mat-radio-button value="2" color="primary">Inactivo</mat-radio-button>
+      </mat-radio-group>
     </div>
 </div>
 
 <!--Botones-->
 <div class="botones">
+  <div class="botones_contenedor">
     <button mat-raised-button color="primary">Buscar</button>
     <button mat-raised-button color="primary" (click)="openModal()">Agregar</button>   
     <button mat-raised-button color="warn">Salir</button>   
+  </div>
 </div>
   <!--TABLA-->
   <table mat-table [dataSource]="dataSource" class="table mat-elevation-z8">

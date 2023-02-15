@@ -1,33 +1,42 @@
 <h1>MANTENIMIENTO MENU</h1>
 <div class='acciones'>
-    <div>
-        <input type="text" placeholder="Descripcion Menu" class="list">
-    </div>
-
-    <div>
-        <select class="form-select" aria-label="Default select example" class="list">
-        <option selected> Todos los Menus</option>
-        <option value="1">MenuA1</option>
-        <option value="2">MenuA2</option>
-        <option value="3">MenuA3</option>
-        </select>
-    </div>
-    
-    <div>
-        <label for="activo"> Activo</label>
-        <input type="radio" id="activo" name="estado">
+  <div>
+        <mat-form-field class="list">
+          <input matInput type="text" placeholder="Descripcion Menu">
+        </mat-form-field>
     </div>
     <div>
-        <label for="inactivo"> Inactivo</label>
-        <input type="radio" id="inactivo" name="estado">
+      <mat-form-field class="list">
+        <mat-select [(value)]="menus">
+          <mat-option value="menus">Todos los Menus</mat-option>
+          <mat-option value="option2">Menu A1</mat-option>
+          <mat-option value="option3">Menu A2</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="list">
+        <mat-select [(value)]="nivel">
+          <mat-option value="nivel">Todos los Niveles</mat-option>
+          <mat-option value="option2">Nivel A</mat-option>
+          <mat-option value="option3">Nivel B</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="radio_contenedor">
+      <mat-radio-group aria-label="Select an option" class="radio">
+        <mat-radio-button value="1" color="primary">Activo</mat-radio-button>
+        <mat-radio-button value="2" color="primary">Inactivo</mat-radio-button>
+      </mat-radio-group>
     </div>
 </div>
 
-<!--Botones-->
 <div class="botones">
+  <div class="botones_contenedor">
     <button mat-raised-button color="primary">Buscar</button>
     <button mat-raised-button color="primary" (click)="openModal()">Agregar</button>   
     <button mat-raised-button color="warn">Salir</button>   
+  </div>
 </div>
   <!--TABLA-->
   <table mat-table [dataSource]="dataSource" class="table mat-elevation-z8">

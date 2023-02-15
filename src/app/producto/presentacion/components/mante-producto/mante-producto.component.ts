@@ -1,13 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {Observable, ReplaySubject} from 'rxjs';
-import { ImgSrcDirective } from '@angular/flex-layout';
-import { ICON_REGISTRY_PROVIDER } from '@angular/material/icon';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {DataSource} from '@angular/cdk/table';
-import {MatSort} from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import {MatTableModule} from '@angular/material/table'; 
+import { Component, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegProductoComponent } from '../reg-producto/reg-producto.component';
 
@@ -43,7 +34,11 @@ export interface MantenimientoRoles {
   styleUrls: ['./mante-producto.component.css']
 })
 export class ManteProductoComponent implements OnInit {
-
+  
+  colores = 'colores';
+  tallas = 'tallas';
+  prendas = 'prendas';
+  genero = 'genero';
   dialogConfig = new MatDialogConfig();
   modalDialog: MatDialogRef<RegProductoComponent, any> | undefined;
 

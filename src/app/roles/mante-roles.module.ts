@@ -9,6 +9,7 @@ import {NgxQRCodeModule} from 'ngx-qrcode2';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageManteRolesComponent } from './presentacion/page-mante-roles/page-mante-roles.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [ManteRolesComponent, PageManteRolesComponent, RegRolesComponent],
@@ -18,7 +19,8 @@ import { PageManteRolesComponent } from './presentacion/page-mante-roles/page-ma
     NgxQRCodeModule,
     ZXingScannerModule,
     ReactiveFormsModule,
-    ManteRolesRoutingModule 
+    ManteRolesRoutingModule,
+    MatRadioModule 
   ],
   exports: [ManteRolesComponent],
   providers:[DatePipe]

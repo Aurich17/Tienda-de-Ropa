@@ -1,13 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {Observable, ReplaySubject} from 'rxjs';
-import { ImgSrcDirective } from '@angular/flex-layout';
-import { ICON_REGISTRY_PROVIDER } from '@angular/material/icon';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {DataSource} from '@angular/cdk/table';
-import {MatSort} from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import {MatTableModule} from '@angular/material/table'; 
+import { Component, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegMenuComponent } from '../reg-menu/reg-menu.component';
 
@@ -42,6 +33,8 @@ export interface MantenimientoRoles {
   styleUrls: ['./mante-menu.component.css']
 })
 export class ManteMenuComponent implements OnInit {
+  nivel='nivel'
+  menus='menus'
 
   dialogConfig = new MatDialogConfig();
   modalDialog: MatDialogRef<RegMenuComponent, any> | undefined;

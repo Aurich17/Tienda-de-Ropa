@@ -9,6 +9,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageManteMenuComponent } from './presentacion/page-mante-menu/page-mante-menu.component';
 import { RegMenuComponent } from './presentacion/components/reg-menu/reg-menu.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [ManteMenuComponent, PageManteMenuComponent, RegMenuComponent],
@@ -18,7 +20,9 @@ import { RegMenuComponent } from './presentacion/components/reg-menu/reg-menu.co
     NgxQRCodeModule,
     ZXingScannerModule,
     ReactiveFormsModule,
-    ManteMenuRoutingModule 
+    ManteMenuRoutingModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   exports: [ManteMenuComponent],
   providers:[DatePipe]

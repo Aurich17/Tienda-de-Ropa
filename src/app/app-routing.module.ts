@@ -27,12 +27,16 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 
 },
 {
-    path: "menu",
+    path: "Menu",
     loadChildren: () => import("./menus/mante-menu.module").then(m => m.ManteMenuModule)
 },
 {
-    path: "roles",
+    path: "Roles",
     loadChildren: () => import("./roles/mante-roles.module").then(m => m.ManteRolesModule)
+},
+{
+    path: "Producto",
+    loadChildren: () => import("./producto/mante-producto.module").then(m => m.ManteProductoModule)
 },
 /*
 {
