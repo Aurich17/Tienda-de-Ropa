@@ -11,6 +11,7 @@ import { PageMantePersonalComponent } from './presentacion/page-mante-personal/p
 import { RegPersonalComponent } from './presentacion/components/reg-personal/reg-personal.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [MantePersonalComponent, PageMantePersonalComponent, RegPersonalComponent],
@@ -22,7 +23,8 @@ import {MatRadioModule} from '@angular/material/radio';
     ReactiveFormsModule,
     MantePersonalRoutingModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDatepickerModule
   ],
   exports: [MantePersonalComponent],
   providers:[DatePipe]

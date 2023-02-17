@@ -17,14 +17,6 @@ export interface MantenimientoRoles {
     {codUsuario: 5, usuario: 'Usuario4', rol:'rol1', menu: 'Menu A1', estado: 'activo',},
     ];
 
-  interface Roles {
-    value: string;
-    viewValue: string;
-  }
-  interface Menus {
-    value: string;
-    viewValue: string;
-  }
 @Component({
   selector: 'app-mante-roles',
   templateUrl: './mante-roles.component.html',
@@ -38,18 +30,6 @@ export class ManteRolesComponent implements OnInit {
   modalDialog: MatDialogRef<RegRolesComponent, any> | undefined;
   displayedColumns: string[] = ['codUsuario', 'usuario', 'rol', 'menu', 'estado', 'opciones'];
   dataSource = ELEMENT_DATA;
-  //Roles
-  Roles: Roles[] = [
-    {value: 'rol1', viewValue: 'Rol1'},
-    {value: 'rol2', viewValue: 'Rol2'},
-    {value: 'rol3', viewValue: 'Rol3'},
-  ];
-  //Menus
-  Menus: Menus[] = [
-    {value: 'menu1', viewValue: 'MenuA1'},
-    {value: 'menu2', viewValue: 'MenuA2'},
-    {value: 'menu3', viewValue: 'MenuA3'},
-  ];
 
   constructor(public matDialog: MatDialog) { }
 

@@ -1,40 +1,40 @@
 <h1>REGISTRO ROLES</h1>
 <div class="acciones">
     <div class="sMenu">
-        <select class="form-select" aria-label="Default select example" class="list">
-            <option  disabled selected>Selecciona un Usuario</option>
-            <option value="1">Usuario1</option>
-            <option value="2">Usuario2</option>
-            <option value="3">Usuario3</option>
-        </select>
+        <mat-form-field class="list">
+            <mat-select [(value)]="usuario">
+              <mat-option  disabled value="usuario">Selecciona un Usuario</mat-option>
+              <mat-option value="1">UsuarioA</mat-option>
+              <mat-option value="2">UsuarioB</mat-option>
+              <mat-option value="3">UsuarioC</mat-option>
+            </mat-select>
+          </mat-form-field>
     </div>
     <div class="sMenu">
-        <select class="form-select" aria-label="Default select example" class="list">
-            <option disabled selected>Seleccion un Rol</option>
-            <option value="1">Rol1</option>
-            <option value="2">Rol2</option>
-            <option value="3">Rol3</option>
-        </select>
+        <mat-form-field class="list">
+            <mat-select [(value)]="rol">
+              <mat-option  disabled value="rol">Selecciona un Rol</mat-option>
+              <mat-option value="1">RolA</mat-option>
+              <mat-option value="2">RolB</mat-option>
+              <mat-option value="3">RolC</mat-option>
+            </mat-select>
+          </mat-form-field>
     </div>
     <div class="sMenu">
-        <select class="form-select" aria-label="Default select example" class="list">
-            <option disabled selected>Selecciona un Menu</option>
-            <option value="1">MenuA1</option>
-            <option value="2">MenuA2</option>
-            <option value="3">MenuA3</option>
-        </select>
+        <mat-form-field class="list">
+            <mat-select [(value)]="usuario">
+              <mat-option  disabled value="usuario">Selecciona un Menu</mat-option>
+              <mat-option value="1">Menu A</mat-option>
+              <mat-option value="2">Menu B</mat-option>
+              <mat-option value="3">Menu C</mat-option>
+            </mat-select>
+          </mat-form-field>
     </div>
     <div class="estado">
-        <div class="radio">
-            <div class="etiqueta">
-                <label for="a">Activo</label>
-                <label for="i">Inactivo</label>
-            </div>
-            <div class="etiqueta">
-                <input type="radio" id="a" name="estado">
-                <input type="radio" id="i" name="estado">
-            </div>
-        </div>
+      <mat-radio-group aria-label="Select an option" class="radio">
+        <mat-radio-button value="1" color="primary">Activo</mat-radio-button>
+        <mat-radio-button value="2" color="primary">Inactivo</mat-radio-button>
+      </mat-radio-group>
     </div>
 </div>
 <div class="botones">

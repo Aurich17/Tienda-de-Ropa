@@ -19,6 +19,9 @@ export interface RegMenus {
   styleUrls: ['./reg-roles.component.css']
 })
 export class RegRolesComponent implements OnInit {
+  usuario ='usuario'
+  rol = 'rol'
+  menu = 'menu'
   constructor(public dialogRef: MatDialogRef<RegRolesComponent>) { }
   
   displayedColumns: string[] = ['menu','rol','opciones'];

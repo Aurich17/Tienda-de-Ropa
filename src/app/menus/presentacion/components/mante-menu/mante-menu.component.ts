@@ -3,29 +3,19 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 import { RegMenuComponent } from '../reg-menu/reg-menu.component';
 
 export interface MantenimientoRoles {
-  usuario: string;
-  codUsuario: number;
-  rol: string;
   menu: string;
+  codUsuario: number;
+  url: string;
+  nivel: string;
   estado: string;
   }
 
   const ELEMENT_DATA: MantenimientoRoles[] = [
-    {codUsuario: 2, usuario: 'Usuario1', rol:'rol1', menu: 'Menu A1', estado: 'activo',},
-    {codUsuario: 3, usuario: 'Usuario2', rol:'rol1', menu: 'Menu A2', estado: 'activo',},
-    {codUsuario: 4, usuario: 'Usuario3', rol:'rol1', menu: 'Menu A1', estado: 'activo',},
-    {codUsuario: 5, usuario: 'Usuario4', rol:'rol1', menu: 'Menu A1', estado: 'activo',},
+    {codUsuario: 2, menu: 'Menu 1', url:'URL', nivel: 'Menu A1', estado: 'activo',},
+    {codUsuario: 3, menu: 'Menu 2', url:'URL', nivel: 'Menu A2', estado: 'activo',},
+    {codUsuario: 4, menu: 'Menu 3', url:'URL', nivel: 'Menu A1', estado: 'activo',},
+    {codUsuario: 5, menu: 'Menu 4', url:'URL', nivel: 'Menu A1', estado: 'activo',},
     ];
-
-  interface Roles {
-    value: string;
-    viewValue: string;
-  }
-  interface Menus {
-    value: string;
-    viewValue: string;
-  }
-
 
 @Component({
   selector: 'app-mante-menu',
@@ -39,20 +29,8 @@ export class ManteMenuComponent implements OnInit {
   dialogConfig = new MatDialogConfig();
   modalDialog: MatDialogRef<RegMenuComponent, any> | undefined;
 
-  displayedColumns: string[] = ['codUsuario', 'usuario', 'rol', 'menu', 'estado', 'opciones'];
+  displayedColumns: string[] = ['codUsuario', 'menu', 'nivel', 'url', 'estado', 'opciones'];
   dataSource = ELEMENT_DATA;
-  //Roles
-  Roles: Roles[] = [
-    {value: 'rol1', viewValue: 'Rol1'},
-    {value: 'rol2', viewValue: 'Rol2'},
-    {value: 'rol3', viewValue: 'Rol3'},
-  ];
-  //Menus
-  Menus: Menus[] = [
-    {value: 'menu1', viewValue: 'MenuA1'},
-    {value: 'menu2', viewValue: 'MenuA2'},
-    {value: 'menu3', viewValue: 'MenuA3'},
-  ];
 
 
   constructor(public matDialog: MatDialog) { }

@@ -40,35 +40,32 @@
 </div>
   <!--TABLA-->
   <table mat-table [dataSource]="dataSource" class="table mat-elevation-z8">
-    <!-- codigo Usuario-->
+
     <ng-container matColumnDef="codUsuario">
       <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Cod.Usuario</th>
       <td mat-cell *matCellDef="let element" class="contenido">{{element.codUsuario}}</td>
     </ng-container>
   
-    <!-- Usuario-->
-    <ng-container matColumnDef="usuario">
-      <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Usuario</th>
-      <td mat-cell *matCellDef="let element" class="contenido">{{element.usuario}}</td>
+    <ng-container matColumnDef="menu">
+      <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Desc. Menu</th>
+      <td mat-cell *matCellDef="let element" class="contenido">{{element.menu}}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="nivel">
+      <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Desc. SubMenu</th>
+      <td mat-cell *matCellDef="let element" class="contenido">{{element.nivel}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef class="contenido contTitle" contTitle>Url</th>
+      <td mat-cell *matCellDef="let element" class="contenido">{{element.url}}</td>
     </ng-container>
   
-    <!-- Weight Column -->
-    <ng-container matColumnDef="rol">
-      <th mat-header-cell *matHeaderCellDef class="contenido contTitle" contTitle>Rol</th>
-      <td mat-cell *matCellDef="let element" class="contenido">{{element.rol}}</td>
-    </ng-container>
-  
-    <!-- Symbol Column -->
     <ng-container matColumnDef="estado">
       <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Estado</th>
       <td mat-cell *matCellDef="let element" class="contenido">{{element.estado}}</td>
     </ng-container>
     
-    <ng-container matColumnDef="menu">
-      <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Menu</th>
-      <td mat-cell *matCellDef="let element" class="contenido">{{element.menu}}</td>
-    </ng-container>
-
     <ng-container matColumnDef="opciones" class="contenedor">
       <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Opciones</th>
       <td mat-cell *matCellDef="let element" class="contenido">
@@ -77,7 +74,6 @@
         </div>
       </td>
     </ng-container>
-
-    
+  
     <mat-header-row *matHeaderRowDef="displayedColumns" class="contenedor"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

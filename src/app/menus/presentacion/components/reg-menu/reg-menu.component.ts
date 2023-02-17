@@ -18,6 +18,7 @@ export interface RegMenus {
   styleUrls: ['./reg-menu.component.css']
 })
 export class RegMenuComponent implements OnInit {
+  subMenu = 'subMenu'
 
   constructor(public dialogRef: MatDialogRef<RegMenuComponent>) { }
   

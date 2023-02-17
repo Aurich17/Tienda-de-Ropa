@@ -1,30 +1,29 @@
 <h1>REGISTRO MENU</h1>
 <div class="acciones">
     <div class="sMenu">
-        <input type="text" id="desMenu" class="input" placeholder="Descripcion Menu" class="list">
+        <mat-form-field class="list">
+            <input matInput type="text" placeholder="Descripcion Menu">
+          </mat-form-field>
     </div>
     <div class="sMenu">
-        <select class="form-select" aria-label="Default select example" class="list">
-            <option disabled selected>Nivel del Menu</option>
-            <option value="1">MenuA1</option>
-            <option value="2">MenuA2</option>
-            <option value="3">MenuA3</option>
-        </select>
+        <mat-form-field class="list">
+            <mat-select [(value)]="subMenu">
+              <mat-option value="subMenu" disabled>Elige un Sub Menu</mat-option>
+              <mat-option value="option2">Menu A1</mat-option>
+              <mat-option value="option3">Menu A2</mat-option>
+            </mat-select>
+          </mat-form-field>
     </div>
     <div class="sMenu">
-        <input type="text" class="input" placeholder="Descripcion URL" class="list">
+        <mat-form-field class="list">
+            <input matInput type="text" placeholder="Descripcion URL">
+          </mat-form-field>
     </div>
     <div class="estado">
-        <div class="radio">
-            <div class="etiqueta">
-                <label for="a">Activo</label>
-                <label for="i">Inactivo</label>
-            </div>
-            <div class="etiqueta">
-                <input type="radio" id="a" name="estado">
-                <input type="radio" id="i" name="estado">
-            </div>
-        </div>
+        <mat-radio-group aria-label="Select an option" class="radio">
+            <mat-radio-button value="1" color="primary">Activo</mat-radio-button>
+            <mat-radio-button value="2" color="primary">Inactivo</mat-radio-button>
+          </mat-radio-group>
     </div>
 </div>
 <div class="botones">

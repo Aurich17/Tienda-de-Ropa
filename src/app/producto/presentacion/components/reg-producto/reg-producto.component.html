@@ -1,54 +1,55 @@
 <h1>REGISTRO PRODUCTO</h1>
 <div class="acciones">
     <div class="sMenu">
-        <input type="text" id="desMenu" class="input" placeholder="Descripcion Producto" class="list">
+        <mat-form-field class="list">
+            <input matInput type="text" placeholder="Descripcion Producto">
+        </mat-form-field>
     </div>
     <div class="sMenu">
-        <select class="form-select" aria-label="Default select example" class="list">
-            <option disabled selected>Escoge un Color</option>
-            <option value="1">Rojo</option>
-            <option value="2">Azul</option>
-            <option value="3">Amarillo</option>
-        </select>
-    </div>
-
-    <div class="sMenu">
-        <select class="form-select" aria-label="Default select example" class="list">
-            <option disabled selected>Escoge una Talla</option>
-            <option value="1">XL</option>
-            <option value="2">M</option>
-            <option value="3">S</option>
-        </select>
+        <mat-form-field class="list">
+            <mat-select [(value)]="color">
+              <mat-option value="color" disabled>Escoge un color</mat-option>
+              <mat-option value="option2">Rojo</mat-option>
+              <mat-option value="option3">Azul</mat-option>
+            </mat-select>
+          </mat-form-field>
     </div>
 
     <div class="sMenu">
-        <select class="form-select" aria-label="Default select example" class="list">
-            <option disabled selected>Escoge una Prenda</option>
-            <option value="1">Casaca</option>
-            <option value="2">Polo</option>
-            <option value="3">Blusa</option>
-        </select>
+        <mat-form-field class="list">
+            <mat-select [(value)]="talla">
+              <mat-option value="talla" disabled>Escoge una talla</mat-option>
+              <mat-option value="option2">XL</mat-option>
+              <mat-option value="option3">M</mat-option>
+            </mat-select>
+          </mat-form-field>
     </div>
 
     <div class="sMenu">
-        <select class="form-select" aria-label="Default select example" class="list">
-            <option disabled selected>Escoge un genero</option>
-            <option value="1">Masculino</option>
-            <option value="2">Femenino</option>
-        </select>
+        <mat-form-field class="list">
+            <mat-select [(value)]="prenda">
+              <mat-option value="prenda" disabled>Escoge una prenda</mat-option>
+              <mat-option value="option2">Polo</mat-option>
+              <mat-option value="option3">Casaca</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+
+    <div class="sMenu">
+        <mat-form-field class="list">
+            <mat-select [(value)]="genero">
+              <mat-option value="genero" disabled>Escoge un genero</mat-option>
+              <mat-option value="option2">Masculino</mat-option>
+              <mat-option value="option3">Femenino</mat-option>
+            </mat-select>
+          </mat-form-field>
     </div>
 
     <div class="estado">
-        <div class="radio">
-            <div class="etiqueta">
-                <label for="a">Activo</label>
-                <label for="i">Inactivo</label>
-            </div>
-            <div class="etiqueta">
-                <input type="radio" id="a" name="estado">
-                <input type="radio" id="i" name="estado">
-            </div>
-        </div>
+        <mat-radio-group aria-label="Select an option" class="radio">
+            <mat-radio-button value="1" color="primary">Activo</mat-radio-button>
+            <mat-radio-button value="2" color="primary">Inactivo</mat-radio-button>
+          </mat-radio-group>
     </div>
 </div>
 <div class="botones">

@@ -18,6 +18,11 @@ export interface RegMenus {
   styleUrls: ['./reg-producto.component.css']
 })
 export class RegProductoComponent implements OnInit {
+  color = 'color'
+  talla = 'talla'
+  prenda = 'prenda'
+  genero = 'genero'
+
   constructor(public dialogRef: MatDialogRef<RegProductoComponent>) { }
   
   displayedColumns: string[] = ['producto', 'opciones'];

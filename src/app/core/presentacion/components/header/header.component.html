@@ -12,8 +12,8 @@
      <!-- This fills the remaining space of the current row -->
      <span class="fill-remaining-space"></span>
 
-     <mat-form-field class="selector" >
-        <mat-select [(value)]="selected1">
+     <mat-form-field class="selector">
+        <mat-select [(value)]="selected1"color='primary'>
           <mat-option  value="light-theme" (click)="onSetTheme('light-theme')">Light</mat-option>
           <mat-option  value="dark-theme" (click)="onSetTheme('dark-theme')">Dark</mat-option>
           <mat-option  value="vivo-theme" (click)="onSetTheme('vivo-theme')">Vivo</mat-option>
