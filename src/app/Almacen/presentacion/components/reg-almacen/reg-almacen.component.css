@@ -43,55 +43,55 @@ h1{
     border: none;
     }
   
-    .contenedor{
-      background-color: var(--color-primary);
-      text-align: center;
-    }
+  .contenedor{
+    background-color: var(--color-primary);
+    text-align: center;
+  }
   
-    .contenido{
-      align-items: center;
-      width: 16%;
-      border-bottom: none;
-      border-top: none;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-around;
-    }
+  .contenido{
+    align-items: center;
+    width: 16%;
+    border-bottom: none;
+    border-top: none;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+  }
   
   
-    .contTitle{
-      width: 100%;
-      font-weight: bold;
-      font-size: 16px;
-      text-align: center;
-      display: flex;
-      justify-content: space-around;
-    }
+  .contTitle{
+    width: 100%;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+  }
   
-    .opciones{
-      margin: 0 auto;
-      display: flex;
-      width: 70%;
-      justify-content: space-around;
-    }
+  .opciones{
+    margin: 0 auto;
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+  }
 
-    .estado{
-      width: 200px;
-      display: flex;
-      flex-direction: row;
-      margin: 0 auto;
-    }
+  .estado{
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+  }
 
-    .radio{
-      width: 100%;
-      height: 50px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
+  .radio{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-    .etiqueta{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-    }
+  .etiqueta{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }

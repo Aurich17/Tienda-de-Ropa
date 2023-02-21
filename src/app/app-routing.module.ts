@@ -45,7 +45,23 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 {
     path: "Almacen",
     loadChildren: () => import("./almacen/mante-almacen.module").then(m => m.ManteAlmacenModule)
-}
+},
+{
+    path: "Lotes",
+    loadChildren: () => import("./lotes/mante-lotes.module").then(m => m.ManteLotesModule)
+},
+{
+    path: "Tienda",
+    loadChildren: () => import("./tienda/mante-tienda.module").then(m => m.ManteTiendaModule)
+},
+{
+    path: "Promociones",
+    loadChildren: () => import("./promociones/mante-promociones.module").then(m => m.MantePromocionesModule)
+},
+{
+    path: "Medida",
+    loadChildren: () => import("./medida/mante-medida.module").then(m => m.ManteMedidaModule)
+},
 
 /*
 {
