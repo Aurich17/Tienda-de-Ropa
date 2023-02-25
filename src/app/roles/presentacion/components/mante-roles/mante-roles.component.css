@@ -163,10 +163,6 @@ h1{
         text-align: center;
       }
     
-      .alinear{
-        height: 40px;
-      }
-    
       .radio{
         display: flex;
         justify-content: space-between;

@@ -1,3 +1,4 @@
+import { RolRepository } from 'src/app/roles/domain/rol.repository';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -19,6 +20,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import {MatInputModule} from '@angular/material/input';
 
 import { InformeTrazabilidadRepository } from './informetrazabilidad/domain/informetrazabilidad.repository';
+import { RolService } from './services/rol.service';
 
 
 
@@ -45,6 +47,7 @@ import { InformeTrazabilidadRepository } from './informetrazabilidad/domain/info
   providers: [
   {provide: UserRepository, useClass: UserOperations},{provide: APP_BASE_HREF, useValue: '/'},
   {provide: AperturaparteRepository , useClass:AperturaparteService },
+  {provide: RolRepository, useClass:RolService},
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
  
