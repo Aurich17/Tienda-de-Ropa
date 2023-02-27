@@ -11,7 +11,7 @@ import { FormAperturaparteComponent } from './presentacion/components/form-apert
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [PageAperturaparteComponent, AperturaparteComponent,FormAperturaparteComponent ],
+  declarations: [PageAperturaparteComponent, AperturaparteComponent,FormAperturaparteComponent],
   imports: [
     CommonModule,
     AperturaparteRoutingModule,

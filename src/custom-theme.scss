@@ -1,57 +1,51 @@
-
-
 @import '~@angular/material/theming';
-
 @include mat-core();
 
-/* For use in src/lib/core/theming/_palette.scss */
-$mat-mcredfiltroslys: (
-  50 : #f3e0e0,
-  100 : #e0b3b3,
-  200 : #cc8080,
-  300 : #b74d4d,
-  400 : #a72626,
-  500 : #980000,
-  600 : #900000,
-  700 : #850000,
-  800 : #7b0000,
-  900 : #6a0000,
-  A100 : #ff9999,
-  A200 : #ff6666,
-  A400 : #ff3333,
-  A700 : #ff1a1a,
-  contrast: (
-      50 : #000000,
-      100 : #000000,
-      200 : #000000,
-      300 : #ffffff,
-      400 : #ffffff,
-      500 : #ffffff,
-      600 : #ffffff,
-      700 : #ffffff,
-      800 : #ffffff,
-      900 : #ffffff,
-      A100 : #000000,
-      A200 : #000000,
-      A400 : #ffffff,
-      A700 : #ffffff,
-  )
-);
+$prueba-app-light-primary: mat-palette($mat-blue, 800);
+$prueba-app-light-accent:  mat-palette($mat-grey, 50);
+$prueba-app-light-warn:    mat-palette($mat-red,900);
+
+$prueba-app-dark-primary: mat-palette($mat-purple, 500);
+$prueba-app-dark-accent:  mat-palette($mat-blue-grey, 900);
+$prueba-app-dark-warn:    mat-palette($mat-red,A400);
+
+$prueba-app-vivo-primary: mat-palette($mat-amber, 400);
+$prueba-app-vivo-accent:  mat-palette($mat-green, A200);
+$prueba-app-vivo-warn:    mat-palette($mat-red,A400);
+
+$light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
+//Nuevo Tema de prueba
+:root{
+  --color-primary: #{mat-color($prueba-app-light-primary)};
+  --color-accent: #{mat-color($prueba-app-light-accent)};
+  --color-warn: #{mat-color($prueba-app-light-warn)};
+  $light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
+}
+@include angular-material-theme($light-app-theme);
+//Aqui termina el experimento
 
 
+.light-theme{
+  --color-primary: #{mat-color($prueba-app-light-primary)};
+  --color-accent: #{mat-color($prueba-app-light-accent)};
+  --color-warn: #{mat-color($prueba-app-light-warn)};
+  $light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
+  @include angular-material-theme($light-app-theme);
+};
 
-$SistemasKopito-primary: mat-palette($mat-mcredfiltroslys);
-$SistemasKopito-accent: mat-palette($mat-pink, A200, A100, A400);
 
-$SistemasKopito-warn: mat-palette($mat-red);
+.dark-theme{
+  --color-primary: #{mat-color($prueba-app-dark-primary)};
+  --color-accent: #{mat-color($prueba-app-dark-accent)};
+  --color-warn: #{mat-color($prueba-app-dark-warn)};
+  $dark-app-theme: mat-dark-theme($prueba-app-dark-primary, $prueba-app-dark-accent, $prueba-app-dark-warn);
+  @include angular-material-theme($dark-app-theme);
+}
 
-$SistemasKopito-theme: mat-light-theme((
-  color: (
-    primary: $SistemasKopito-primary,
-    accent: $SistemasKopito-accent,
-    warn: $SistemasKopito-warn,
-  )
-));
-
-@include angular-material-theme($SistemasKopito-theme);
-
+.vivo-theme{
+  --color-primary: #{mat-color($prueba-app-vivo-primary)};
+  --color-accent: #{mat-color($prueba-app-vivo-accent)};
+  --color-warn: #{mat-color($prueba-app-vivo-warn)};
+  $vivo-app-theme: mat-dark-theme($prueba-app-vivo-primary, $prueba-app-vivo-accent, $prueba-app-vivo-warn);
+  @include angular-material-theme($vivo-app-theme);
+}

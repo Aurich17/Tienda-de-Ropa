@@ -26,6 +26,43 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     loadChildren: () => import("./aperturaparte/aperturaparte.module").then(m => m.AperturaparteModule)
 
 },
+{
+    path: "Menu",
+    loadChildren: () => import("./menus/mante-menu.module").then(m => m.ManteMenuModule)
+},
+{
+    path: "Roles",
+    loadChildren: () => import("./roles/mante-roles.module").then(m => m.ManteRolesModule)
+},
+{
+    path: "Producto",
+    loadChildren: () => import("./producto/mante-producto.module").then(m => m.ManteProductoModule)
+},
+{
+    path: "Personal",
+    loadChildren: () => import("./personal/mante-personal.module").then(m => m.MantePersonalModule)
+},
+{
+    path: "Almacen",
+    loadChildren: () => import("./almacen/mante-almacen.module").then(m => m.ManteAlmacenModule)
+},
+{
+    path: "Lotes",
+    loadChildren: () => import("./lotes/mante-lotes.module").then(m => m.ManteLotesModule)
+},
+{
+    path: "Tienda",
+    loadChildren: () => import("./tienda/mante-tienda.module").then(m => m.ManteTiendaModule)
+},
+{
+    path: "Promociones",
+    loadChildren: () => import("./promociones/mante-promociones.module").then(m => m.MantePromocionesModule)
+},
+{
+    path: "Medida",
+    loadChildren: () => import("./medida/mante-medida.module").then(m => m.ManteMedidaModule)
+},
+
 /*
 {
 

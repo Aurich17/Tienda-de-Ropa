@@ -1,4 +1,3 @@
-
 <mat-card fxFlex="1 1 340px" class="mat-elevation-z7" fxLayout="column">
   <div fxLayout="column" fxLayoutAlign="center center"  > 
       <h3 >LOGIN</h3>
@@ -6,7 +5,7 @@
     
     <form [formGroup] = "group" fxLayout="column">
 
-    <mat-form-field appearance = 'outline'>
+    <mat-form-field appearance = 'outline' color="primary">
         <mat-label>Usuario</mat-label>
          <mat-icon matSuffix>face</mat-icon>
          <input type="text"  matInput required formControlName="usuario" (keydown)="handleKeyDown($event)"/>
@@ -14,8 +13,8 @@
 
     </mat-form-field>
 
-  <mat-form-field  appearance = 'outline'>
-    <mat-label>Password</mat-label>
+  <mat-form-field  appearance = 'outline' color="primary">
+    <mat-label class="border">Password</mat-label>
      <input matInput type="password" formControlName="password" [type]="hide ? 'password':'text' ">
      <i class="material-icons" matSuffix (click) ="hide =!hide">{{hide ? 'visibility':'visibility_off'}}</i>
      <mat-error>el campo es obligatorio</mat-error>

@@ -8,6 +8,7 @@ import { UserEntity } from 'src/app/usuario/domain/user-entity';
   styleUrls: ['./page-login.component.css']
 })
 export class PageLoginComponent implements OnInit {
+  
 
   constructor(private userlogincu: LoginUserCU) { }
 

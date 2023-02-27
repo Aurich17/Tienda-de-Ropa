@@ -1,0 +1,1 @@
+export interface rolusuariorequest{Descripcion:string,Estado:string};

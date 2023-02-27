@@ -1,5 +1,5 @@
 import { Component, EventEmitter,OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators,} from '@angular/forms';
 import { UserEntity } from 'src/app/usuario/domain/user-entity';
 //import * as EventEmitter from 'events';
 
@@ -9,6 +9,10 @@ import { UserEntity } from 'src/app/usuario/domain/user-entity';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  //Captcha
+  protected aFormGroup: FormGroup;
+  //Modificado
   hide = true;
 
   @Output() outputLogin:EventEmitter<UserEntity>= new EventEmitter<UserEntity>();
@@ -16,12 +20,14 @@ export class LoginComponent implements OnInit {
   group: FormGroup;
 
   usuario : "";
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit(): void {
-
     this.initializeForm();
   }
+  
+  //siteKey:string = "6Ld1fEYkAAAAACmZpBYQtpgqldykOgN7m9qU2aku";
 
 
 initializeForm(){
@@ -62,4 +68,5 @@ initializeForm(){
   }
 
 }
+
 

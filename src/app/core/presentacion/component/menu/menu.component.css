@@ -2,15 +2,13 @@
   width: 100%;
   max-width: 259px;
   margin: auto;
-  background: #fff;
+  background: var(--color-accent);
   border-radius: 4px;
-  background-color:#444359;
 }
 
 .accordion .menu {
   position: relative;
   padding: 15px 15px 15px 45px;
-  color: #f8f6f6;
   font-weight: bold;
   border-bottom: 1px solid #f8f6f6;
   cursor: pointer;
@@ -70,13 +68,12 @@
 .submenu {
   height: 0;
   overflow: hidden;
-  background: #444359;
   font-size: 14px;
   transition: height 0.4s ease;
 }
 
 .submenu li {
-  border-bottom: 1px solid #4b4a5e;
+  border-bottom: 1px solid;
 }
 
 .accordion li:last-child .submenu {
@@ -90,20 +87,13 @@
 .submenu a {
   display: block;
   text-decoration: none;
-  color: #d9d9d9;
   padding: 12px;
   padding-left: 20px;
   transition: all 0.25s ease-in-out;
 }
 
 .submenu a:hover {
-  background: #b63b4d;
-  color: #fff;
+  font-size: 20px;
+  color: var(--color-primary);
 }
 
-.title{
-
-    
-  color: #FFF;
-
-}

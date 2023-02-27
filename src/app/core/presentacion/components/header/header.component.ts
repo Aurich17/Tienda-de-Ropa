@@ -1,11 +1,15 @@
 import { EventEmitter, NgZone, Output } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginUserCU } from 'src/app/usuario/application/user-logincu';
 import { StorageService } from 'src/app/services/storage.service';
 import { ResponseLogin } from 'src/app/usuario/domain/user-entity';
 import { AuthService } from 'src/app/services/auth.service';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
+
+//IMPORT ISMA
+import {OverlayContainer} from '@angular/cdk/overlay'
 
 @Component({
   selector: 'app-header',
@@ -13,6 +17,25 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+    selected1 = 'light-theme';
+
+    selected = new FormControl('valid', [
+        Validators.required,
+        Validators.pattern('valid'),
+      ]);
+    
+      selectFormControl = new FormControl('valid', [
+        Validators.required,
+        Validators.pattern('valid'),
+      ]);
+    
+      nativeSelectFormControl = new FormControl('valid', [
+        Validators.required,
+        Validators.pattern('valid'),
+      ]);
+
+    //Cambios Isma
+    @HostBinding('class') componentCssClass: any
 
     @Output() ResponseLogin = new EventEmitter<ResponseLogin>();
     
@@ -30,7 +53,8 @@ export class HeaderComponent implements OnInit {
                 public route: Router,
                 private readonly storage :StorageService,
                 private readonly serviciologin: LoginUserCU,
-                private readonly auth: AuthService
+                private readonly auth: AuthService,
+                public overlayContainer: OverlayContainer
                 ) {
         this.navList = [
             { categoryName: 'Menu', icon: 'face', dropDown: true,
@@ -72,7 +96,18 @@ export class HeaderComponent implements OnInit {
                 this.changeMode();
             });
         };
+        //Lista
     }
+    //Cambia Color
+    public onSetTheme(e: string){
+        if(e != 'dark-theme')
+            this.overlayContainer.getContainerElement().classList.add(e);
+            this.componentCssClass = e;
+        if(e != 'light-theme')
+            this.overlayContainer.getContainerElement().classList.add(e);
+            this.componentCssClass = e;
+    }
+
 
     logout()
     {

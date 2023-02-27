@@ -1,0 +1,20 @@
+<h1>{{nombre}}</h1>
+<form [formGroup]="mygroup" class="acciones">
+  <div>
+    <mat-form-field class="list">
+      <input matInput type="text" placeholder="Roles" formControlName="descripcion">
+    </mat-form-field>
+  </div>
+  <div class="estado">
+      <mat-radio-group aria-label="Select an option" class="radio" formControlName='radio'>
+        <mat-radio-button value="A" color="primary">Activo</mat-radio-button>
+        <mat-radio-button value="I" color="primary">Inactivo</mat-radio-button>
+      </mat-radio-group>
+  </div>
+</form>
+
+<div class="botones">
+    <button mat-raised-button color="primary" >Limpiar</button>
+    <button mat-raised-button color="primary" (click)="editarol()">Guardar</button>   
+    <button mat-raised-button color="primary" (click)="closeModal()">Salir</button> 
+</div>

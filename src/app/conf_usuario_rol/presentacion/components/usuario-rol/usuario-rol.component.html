@@ -1,0 +1,65 @@
+<h1>MANTENIMIENTO ROLES</h1>
+<div class='acciones'>
+  <form [formGroup] = "group" >
+  <div>
+    <mat-form-field class="list">
+      <mat-select [(value)]="usuario" formControlName='seleccion'>
+        <mat-option value="usuario">Todos los Usuarios</mat-option>
+        <mat-option value="1">UsuarioA</mat-option>
+        <mat-option value="2">UsuarioB</mat-option>
+        <mat-option value="3">UsuarioC</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="list">
+      <input matInput type="text" placeholder="Roles" formControlName="descripcion">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="list">
+      <mat-select [(value)]="menu" formControlName='listMenu'>
+        <mat-option value="menu">Todos los Menu</mat-option>
+        <mat-option value="1">Menu A</mat-option>
+        <mat-option value="2">Menu B</mat-option>
+        <mat-option value="3">Menu C</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="radio_contenedor">
+    <mat-radio-group aria-label="Select an option" class="radio" formControlName="radio">
+      <mat-radio-button value="1" color="primary">Activo</mat-radio-button>
+      <mat-radio-button value="2" color="primary">Inactivo</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  </form>
+</div>
+
+<!--Botones-->
+<div class="botones">
+  <div class="botones_contenedor">
+    <button mat-raised-button color="primary" (click)="listar()">Buscar</button>
+    <button mat-raised-button color="primary" (click)="openModal()">Agregar</button>   
+    <button mat-raised-button color="primary">Salir</button>   
+  </div>
+</div>
+  <!--TABLA-->
+  <div>
+    <app-table [dataTable]="dataTable" [metadataTable]="metadataTable">
+      
+      <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row" >
+      <button mat-button  (click)= "cargarDatos(row)" type="button">
+      <mat-icon>edit</mat-icon>
+      </button>
+      
+      </td>
+      </ng-container>
+  
+    </app-table>
+  </div>
+

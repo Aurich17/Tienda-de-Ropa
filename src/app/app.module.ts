@@ -1,6 +1,8 @@
+import { RolRepository } from 'src/app/roles/domain/rol.repository';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
@@ -18,6 +20,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import {MatInputModule} from '@angular/material/input';
 
 import { InformeTrazabilidadRepository } from './informetrazabilidad/domain/informetrazabilidad.repository';
+import { RolService } from './services/rol.service';
 
 
 
@@ -29,8 +32,6 @@ import { InformeTrazabilidadRepository } from './informetrazabilidad/domain/info
 @NgModule({
   declarations: [
     AppComponent,
-   
-
   ],
   imports: [
     BrowserModule,
@@ -39,12 +40,14 @@ import { InformeTrazabilidadRepository } from './informetrazabilidad/domain/info
     CoreModule,
     HttpClientModule,
     AppRoutingModule,MatInputModule,
-    RouterModule
-    
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,    
   ],
   providers: [
   {provide: UserRepository, useClass: UserOperations},{provide: APP_BASE_HREF, useValue: '/'},
   {provide: AperturaparteRepository , useClass:AperturaparteService },
+  {provide: RolRepository, useClass:RolService},
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
  

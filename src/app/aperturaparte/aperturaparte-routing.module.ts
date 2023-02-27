@@ -5,8 +5,7 @@ import { PageAperturaparteComponent } from './presentacion/page-aperturaparte/pa
 
 const routes: Routes = [
 
-  {path:'', component: PageAperturaparteComponent}
-
+  {path:'', component: PageAperturaparteComponent},
 ];
 
 @NgModule({
