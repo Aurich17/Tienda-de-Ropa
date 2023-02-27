@@ -62,7 +62,6 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     path: "Medida",
     loadChildren: () => import("./medida/mante-medida.module").then(m => m.ManteMedidaModule)
 },
-
 /*
 {
 
