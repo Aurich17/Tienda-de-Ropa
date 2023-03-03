@@ -29,7 +29,6 @@ export class EditaRolesComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.codigoRol= this.data?.codigoRol
-    alert(this.data?.codigoRol)
   }
   closeModal() {
     this.reference.close();
