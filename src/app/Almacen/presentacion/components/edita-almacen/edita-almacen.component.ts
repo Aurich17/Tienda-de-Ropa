@@ -29,6 +29,7 @@ export class EditaAlmacenComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.codigoAlmacen= this.data?.codigoAlmacen
+    alert(this.data?.codigoAlmacen)
   }
 
   closeModal() {

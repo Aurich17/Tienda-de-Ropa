@@ -8,7 +8,7 @@ export abstract class AlmacenRepository{
     abstract listar( fd : almacenrequest):Observable<AlmacenResponse>;
     abstract listarfiltro(fd : almacenrequest):Observable<AlmacenResponse>;
     abstract guardaalmacen(fd : guardaalmacenrequest):Observable<AlmacenResponse>;
-    abstract editaalmacen(fd: editaalmacenrequest):Observable<EditAlmacenResponse>;
+    abstract editaalmacen(fd: editaalmacenrequest):Observable<AlmacenResponse>;
 } 
     // abstract update(aperturaparte: ParteUpdateEntity):  Observable<ParteInsertResponse> 
     // //abstract listar(requestparte: RequestParte):Observable<ParteResponse>;
