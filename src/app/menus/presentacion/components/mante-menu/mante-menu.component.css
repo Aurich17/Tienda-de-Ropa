@@ -3,30 +3,30 @@ h1{
   margin-bottom:5%;
   text-align: center;
 }
-  
-  .acciones{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width:50%;
-    justify-content: space-between;
-  }
 
-  .list{
-    font-size: 32px;
-    text-align: center;
-    height: 100%;
-    width: 100%;
-  }
+.acciones{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width:50%;
+  justify-content: space-between;
+}
+
+.list{
+  font-size: 32px;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
   
-  .botones{
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    width: 90%;
-    margin: 20px auto 20px auto;
-  }
+.botones{
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 20px auto 20px auto;
+}
 
   .radio{
     display: flex;

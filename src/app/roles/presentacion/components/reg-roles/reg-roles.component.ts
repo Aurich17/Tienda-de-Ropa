@@ -25,7 +25,6 @@ export class RegRolesComponent implements OnInit {
     descripcion : new FormControl (this.data?.descripcion,null),
     radio : new   FormControl(this.data?.estado,null),   
    });
-   //alert(this.data?.descripcion.toString());
    }
 
   constructor(private readonly rolService : RolRepository, @Inject(MAT_DIALOG_DATA) private data : ListaRoles,private readonly  reference: MatDialogRef<RegRolesComponent>){ }
@@ -47,11 +46,7 @@ export class RegRolesComponent implements OnInit {
     requestGuardaRol.Estado = valores['radio']
     requestGuardaRol.Usuario = 'Admin'
     requestGuardaRol.Tipo = 'I'
-
-    console.log(requestGuardaRol.Descripcion)
-    console.log(requestGuardaRol.Estado)
-    console.log(requestGuardaRol.Tipo)
-
+    
     this.rolService.guardarol(requestGuardaRol).subscribe(response=>
     {
       this.rolResponse = response

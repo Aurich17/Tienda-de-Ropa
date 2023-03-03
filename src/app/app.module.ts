@@ -1,3 +1,4 @@
+import { MenuRepository } from 'src/app/menus/domain/menu.repository';
 import { RolRepository } from 'src/app/roles/domain/rol.repository';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -21,6 +22,7 @@ import {MatInputModule} from '@angular/material/input';
 
 import { InformeTrazabilidadRepository } from './informetrazabilidad/domain/informetrazabilidad.repository';
 import { RolService } from './services/rol.service';
+import { ManMenuService } from './services/manMenu.service';
 
 
 
@@ -48,6 +50,7 @@ import { RolService } from './services/rol.service';
   {provide: UserRepository, useClass: UserOperations},{provide: APP_BASE_HREF, useValue: '/'},
   {provide: AperturaparteRepository , useClass:AperturaparteService },
   {provide: RolRepository, useClass:RolService},
+  {provide: MenuRepository, useClass:ManMenuService},
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
  

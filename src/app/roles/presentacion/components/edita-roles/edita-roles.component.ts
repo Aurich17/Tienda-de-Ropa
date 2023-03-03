@@ -13,11 +13,7 @@ import { RolRepository } from 'src/app/roles/domain/rol.repository';
 export class EditaRolesComponent implements OnInit {
 
   value = true;
-  nombre = 'REGISTRO ROL';
   rolResponse: RolResponse;
-  usuario ='usuario';
-  rol = 'rol';
-  menu = 'menu';
   codigoRol:number;
   mygroup:FormGroup;
   initializeForm(){
@@ -33,13 +29,13 @@ export class EditaRolesComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.codigoRol= this.data?.codigoRol
+    alert(this.data?.codigoRol)
   }
   closeModal() {
     this.reference.close();
   }
   
   editarol(){
-    alert('EDITA ROL');
     const valores = this.mygroup.value //Esto agarra los valores del HTML dentro del FormGroup
     const requestEditaRol: editarolrequest =<editarolrequest>{}
     
@@ -48,12 +44,6 @@ export class EditaRolesComponent implements OnInit {
     requestEditaRol.Estado = valores['radio']
     requestEditaRol.Usuario = 'Admin'
     requestEditaRol.Tipo = 'U'
-    
-
-    console.log(requestEditaRol.CodigoRol)
-    console.log(requestEditaRol.Descripcion)
-    console.log(requestEditaRol.Estado)
-    console.log(requestEditaRol.Tipo)
 
     this.rolService.editarol(requestEditaRol).subscribe(response=>
     {
