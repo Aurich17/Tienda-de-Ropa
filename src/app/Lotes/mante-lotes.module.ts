@@ -11,9 +11,10 @@ import { PageManteLotesComponent } from './presentacion/page-mante-lotes/page-ma
 import { RegLotesComponent } from './presentacion/components/reg-lotes/reg-lotes.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import { EditaLotesComponent } from './presentacion/components/edita-lotes/edita-lotes.component';
 
 @NgModule({
-  declarations: [ManteLotesComponent, PageManteLotesComponent, RegLotesComponent],
+  declarations: [ManteLotesComponent, PageManteLotesComponent, RegLotesComponent, EditaLotesComponent],
   imports: [
     CommonModule,
     SharedModule,

@@ -2,7 +2,7 @@ import { ManteRolesComponent} from './../mante-roles/mante-roles.component';
 import { Component,Inject,OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { editarolrequest, guardarolrequest, rolrequest } from 'src/app/roles/domain/request/rol_request';
+import {  guardarolrequest} from 'src/app/roles/domain/request/rol_request';
 import { ListaRoles, RolResponse } from 'src/app/roles/domain/response/rol_response';
 import { RolRepository } from 'src/app/roles/domain/rol.repository';
 @Component({

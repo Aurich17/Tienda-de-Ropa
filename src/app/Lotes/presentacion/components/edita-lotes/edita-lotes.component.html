@@ -1,4 +1,4 @@
-<h1>REGISTRO LOTES</h1>
+<h1>EDITA LOTE</h1>
 <form [formGroup]="group" class="acciones">
     <div class="sMenu">
         <mat-form-field class="list">
@@ -13,8 +13,7 @@
     </div>
 </form>
 <div class="botones">
-    <button mat-raised-button color="primary">Limpiar</button>
-    <button mat-raised-button color="primary" (click)="mostrarLista()">Agregar</button>   
-    <button mat-raised-button color="primary" (click)="guardalote()">Guardar</button>   
+    <button mat-raised-button color="primary">Limpiar</button>   
+    <button mat-raised-button color="primary" (click)="editaLote()">Guardar</button>   
     <button mat-raised-button color="primary" (click)="closeModal()">Salir</button> 
 </div>

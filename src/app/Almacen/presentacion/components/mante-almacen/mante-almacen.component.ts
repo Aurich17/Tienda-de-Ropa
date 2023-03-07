@@ -58,6 +58,7 @@ export class ManteAlmacenComponent implements OnInit {
     this.dialogConfig.id = "projects-modal-component";
     this.dialogConfig.height = "800px";
     this.dialogConfig.width = "700px";
+    this.dialogConfig.disableClose = true
     this.modalDialog = this.matDialog.open(RegAlmacenComponent, this.dialogConfig);
   }
 

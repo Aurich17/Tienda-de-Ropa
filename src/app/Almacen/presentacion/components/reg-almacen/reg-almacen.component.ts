@@ -1,10 +1,8 @@
 import { AlmacenResponse, ListaAlmacen } from './../../../domain/response/almacen_response';
-import { ManteAlmacenComponent} from './../mante-almacen/mante-almacen.component';
 import { Component,Inject,OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { editaalmacenrequest, guardaalmacenrequest, almacenrequest } from 'src/app/almacen/domain/request/almacen_request';
-import { ListaRoles, RolResponse } from 'src/app/roles/domain/response/rol_response';
+import {  guardaalmacenrequest } from 'src/app/almacen/domain/request/almacen_request';
 import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
 
 @Component({
@@ -14,9 +12,7 @@ import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
 })
 export class RegAlmacenComponent implements OnInit {
   almacenResponse:AlmacenResponse
-  codigoAlmacen:number
   group:FormGroup
-  subMenu = 'subMenu'
 
   mygroup:FormGroup;
   initializeForm(){
@@ -27,19 +23,17 @@ export class RegAlmacenComponent implements OnInit {
    });
    }
 
-  constructor(private readonly almacenService : AlmacenRepository, @Inject(MAT_DIALOG_DATA) private data : ListaAlmacen,private readonly  reference: MatDialogRef<RegAlmacenComponent>) { }
+  constructor(private readonly almacenService : AlmacenRepository,private readonly  reference: MatDialogRef<RegAlmacenComponent>) { }
   
 
   ngOnInit(): void {
     this.initializeForm();
-    this.codigoAlmacen= this.data?.codigoAlmacen
   }
   closeModal() {
     this.reference.close();
   }
 
   guardaalmacen(){
-    alert('GUARDA ROL');
     const valores = this.group.value //Esto agarra los valores del HTML dentro del FormGroup
     const requestGuardaAlmacen: guardaalmacenrequest =<guardaalmacenrequest>{}
     
@@ -48,16 +42,9 @@ export class RegAlmacenComponent implements OnInit {
     requestGuardaAlmacen.Direccion = valores['dirAlmacen']
     requestGuardaAlmacen.Usuario_reg = 'Admin'
     requestGuardaAlmacen.Tipo = 'I'
-
-    console.log(requestGuardaAlmacen.Descripcion);
-    console.log(requestGuardaAlmacen.Estado);
-    console.log(requestGuardaAlmacen.Direccion);
     
-    
-    console.log('ANTES DE ENTRAR AL SUSCRIBE');
     this.almacenService.guardaalmacen(requestGuardaAlmacen).subscribe(response=>
     {
-      console.log('Entra en SUSCRIBE')
       this.almacenResponse = response
       alert('GUARDADO CON EXITO')
     }

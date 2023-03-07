@@ -27,6 +27,8 @@ import { AlmacenService } from './services/almacen.service';
 import { AlmacenRepository } from './almacen/domain/almacen.repository';
 import { PersonalRepository } from './Personal/domain/personal.repository';
 import { PersonalService } from './services/personal.service';
+import { LoteRepository } from './Lotes/domain/lote.repository';
+import { LoteService } from './services/lote.service';
 
 
 
@@ -58,6 +60,7 @@ import { PersonalService } from './services/personal.service';
   {provide: MenuRepository, useClass:ManMenuService},
   {provide: AlmacenRepository, useClass:AlmacenService},
   {provide: PersonalRepository, useClass: PersonalService},
+  {provide: LoteRepository, useClass: LoteService},
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
  

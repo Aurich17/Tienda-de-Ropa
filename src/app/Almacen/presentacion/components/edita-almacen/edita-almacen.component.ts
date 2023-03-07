@@ -1,9 +1,8 @@
 import { AlmacenResponse, ListaAlmacen } from './../../../domain/response/almacen_response';
-import { ManteAlmacenComponent} from './../mante-almacen/mante-almacen.component';
 import { Component,Inject,OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { editaalmacenrequest, guardaalmacenrequest, almacenrequest } from 'src/app/almacen/domain/request/almacen_request';
+import { editaalmacenrequest } from 'src/app/almacen/domain/request/almacen_request';
 import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
 
 @Component({
