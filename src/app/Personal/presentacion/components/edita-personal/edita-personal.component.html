@@ -1,19 +1,19 @@
-<h1>EDITA PERSONAL</h1>
-<form [formGroup]="group" class="acciones">
+ <h1>EDITA PERSONAL</h1>
+ <form [formGroup]="group" class="acciones">
     <div class="sMenu">
         <mat-form-field class="list">
             <input matInput type="text" placeholder="Nombre del Personal" formControlName="nombre">
-          </mat-form-field>
+        </mat-form-field>
     </div>
     <div class="sMenu">
         <mat-form-field class="list">
             <input matInput type="text" placeholder="Apellidos del Personal" formControlName="apellido">
-          </mat-form-field>
+        </mat-form-field>
     </div>
     <div class="sMenu">
         <mat-form-field class="list">
             <input matInput type="text" placeholder="DNI" formControlName="dni">
-          </mat-form-field>
+        </mat-form-field>
     </div>
     <div class="sMenu">
         <mat-form-field class="fecha">
@@ -21,22 +21,22 @@
             <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento">
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-          </mat-form-field>
+        </mat-form-field>
     </div>
     <div class="sMenu">
         <mat-form-field class="list">
             <input matInput type="text" placeholder="Telefono" formControlName="telefono">
-          </mat-form-field>
+        </mat-form-field>
     </div>
     <div class="sMenu">
         <mat-form-field class="list">
             <input matInput type="text" placeholder="Sueldo" formControlName="sueldo">
-          </mat-form-field>
+        </mat-form-field>
     </div>
     <div class="sMenu">
         <mat-form-field class="list">
             <input matInput type="text" placeholder="Direccion" formControlName="direccion">
-          </mat-form-field>
+        </mat-form-field>
     </div>
     <div class="sMenu">
         <mat-form-field class="fecha">
@@ -44,7 +44,7 @@
             <input matInput [matDatepicker]="ingreso" formControlName="fechaIngreso">
             <mat-datepicker-toggle matIconSuffix [for]="ingreso"></mat-datepicker-toggle>
             <mat-datepicker #ingreso startView="year" [startAt]="startDate"></mat-datepicker>
-          </mat-form-field>
+        </mat-form-field>
     </div>
     <div class="estado">
         <mat-radio-group aria-label="Select an option" class="radio" formControlName="radio">

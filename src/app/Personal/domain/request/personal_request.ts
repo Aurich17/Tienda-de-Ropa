@@ -1,3 +1,3 @@
 export interface personalrequest{Nombres:string,Apellidos:string,Dni:string,Estado:string};
-export interface guardapersonalrequest{nombres:string,apellidos:string,dni:string,fecha_nac:string,telefono:string,fecha_ing:string,sueldo:number,direccion:string,Estado:string,Usuario_reg:string,Tipo:string};
-export interface editapersonalrequest{CodigoPersonal:string,nombres:string,apellidos:string,dni:string,fecha_nac:string,telefono:string,fecha_ing:string,sueldo:number,direccion:string,Estado:string,Usuario_reg:string,Tipo:string}
+export interface guardapersonalrequest{CodigoPersonal:number,nombres:string,apellidos:string,dni:string,fecha_nac:string,telefono:string,fecha_ing:string,sueldo:number,direccion:string,Estado:string,Usuario_reg:string,Tipo:string};
+export interface editapersonalrequest{CodigoPersonal:number,nombres:string,apellidos:string,dni:string,fecha_nac:string,telefono:string,fecha_ing:string,sueldo:number,direccion:string,Estado:string,Usuario_reg:string,Tipo:string}

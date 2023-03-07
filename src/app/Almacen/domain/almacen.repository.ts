@@ -1,6 +1,6 @@
 import { Observable } from "rxjs/internal/Observable";
 import { guardaalmacenrequest, almacenrequest, editaalmacenrequest } from "./request/almacen_request";
-import { AlmacenResponse, EditAlmacenResponse } from "./response/almacen_response";
+import { AlmacenResponse} from "./response/almacen_response";
 
 export abstract class AlmacenRepository{
 
@@ -8,7 +8,7 @@ export abstract class AlmacenRepository{
     abstract listar( fd : almacenrequest):Observable<AlmacenResponse>;
     abstract listarfiltro(fd : almacenrequest):Observable<AlmacenResponse>;
     abstract guardaalmacen(fd : guardaalmacenrequest):Observable<AlmacenResponse>;
-    abstract editaalmacen(fd: editaalmacenrequest):Observable<AlmacenResponse>;
+    abstract editaalmacen(fd: guardaalmacenrequest):Observable<AlmacenResponse>;
 } 
     // abstract update(aperturaparte: ParteUpdateEntity):  Observable<ParteInsertResponse> 
     // //abstract listar(requestparte: RequestParte):Observable<ParteResponse>;

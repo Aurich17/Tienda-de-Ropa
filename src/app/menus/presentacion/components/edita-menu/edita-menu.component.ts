@@ -7,6 +7,7 @@ import { editamenurequest, guardamenurequest, menurequest } from 'src/app/menus/
 import { MenuResponse } from 'src/app/menus/domain/response/menu_response';
 import { MenuRepository } from 'src/app/menus/domain/menu.repository';
 import { RegMenuComponent } from '../reg-menu/reg-menu.component';
+import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 
 @Component({
   selector: 'app-edita-menu',
@@ -52,6 +53,13 @@ export class EditaMenuComponent implements OnInit {
     requestEditaMenu.Estado = valores['radio']//SE PUEDE EDITAR
     requestEditaMenu.Usuario_reg = 'admin'
     requestEditaMenu.Tipo = 'U'
+    
+    if(requestEditaMenu.IndicadorGrupoMenu == true){
+      requestEditaMenu.IndicadorGrupoMenu = false;
+    }
+    else{
+      requestEditaMenu.IndicadorGrupoMenu = true;
+    }
 
     this.menuService.editamenu(requestEditaMenu).subscribe(response=>
 
@@ -60,5 +68,6 @@ export class EditaMenuComponent implements OnInit {
       alert('Editado con EXITO');
     }
     )
-  }  
+  }
+  
 }

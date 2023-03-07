@@ -7,6 +7,7 @@ import { editaalmacenrequest, guardaalmacenrequest, almacenrequest } from 'src/a
 import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
 import { PersonalRepository } from 'src/app/Personal/domain/personal.repository';
 import { editapersonalrequest } from 'src/app/Personal/domain/request/personal_request';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-edita-personal',
   templateUrl: './edita-personal.component.html',
@@ -31,7 +32,7 @@ export class EditaPersonalComponent implements OnInit {
     radio : new   FormControl(this.data?.estado,null), 
    });
    }
-  constructor(private readonly personalService : PersonalRepository, @Inject(MAT_DIALOG_DATA) private data : ListaPersonal,private readonly  reference: MatDialogRef<EditaPersonalComponent>) { }
+  constructor(private readonly personalService : PersonalRepository, @Inject(MAT_DIALOG_DATA) private data : ListaPersonal,private readonly  reference: MatDialogRef<EditaPersonalComponent>, private miDatePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -47,15 +48,15 @@ export class EditaPersonalComponent implements OnInit {
     const valores = this.group.value //Esto agarra los valores del HTML dentro del FormGroup
     const requestEditaPersonal: editapersonalrequest =<editapersonalrequest>{}
     
-    requestEditaPersonal.CodigoPersonal = this.codigoPersonal.toString()
+    requestEditaPersonal.CodigoPersonal = this.codigoPersonal
     requestEditaPersonal.nombres = valores['nombre']
     requestEditaPersonal.apellidos = valores['apellido']
     requestEditaPersonal.dni = valores['dni']
-    requestEditaPersonal.fecha_nac = valores['fechaNacimiento']
+    requestEditaPersonal.fecha_nac = this.miDatePipe.transform(valores['fechaNacimiento'], "yyyy-MM-ddTHH:mm:ss")
     requestEditaPersonal.telefono = valores['telefono']
-    requestEditaPersonal.fecha_ing = valores['sueldo']
-    requestEditaPersonal.sueldo = valores['direccion']
-    requestEditaPersonal.direccion = valores['fechaIngreso']
+    requestEditaPersonal.fecha_ing = this.miDatePipe.transform(valores['fechaIngreso'], "yyyy-MM-ddTHH:mm:ss")
+    requestEditaPersonal.sueldo = valores['sueldo']
+    requestEditaPersonal.direccion = valores['direccion']
     requestEditaPersonal.Estado = valores['radio']
     requestEditaPersonal.Usuario_reg = 'Admin'
     requestEditaPersonal.Tipo = 'U'

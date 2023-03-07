@@ -12,9 +12,10 @@ import { RegPersonalComponent } from './presentacion/components/reg-personal/reg
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { EditaPersonalComponent } from './presentacion/components/edita-personal/edita-personal.component';
 
 @NgModule({
-  declarations: [MantePersonalComponent, PageMantePersonalComponent, RegPersonalComponent],
+  declarations: [MantePersonalComponent, PageMantePersonalComponent, RegPersonalComponent, EditaPersonalComponent],
   imports: [
     CommonModule,
     SharedModule,

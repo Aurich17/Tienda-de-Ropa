@@ -1,31 +1,14 @@
+import { ListaPersonal, PersonalResponse } from './../../../domain/response/personal_response';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegPersonalComponent } from '../reg-personal/reg-personal.component';
+import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
+import { PersonalRepository } from 'src/app/Personal/domain/personal.repository';
+import { UtilService } from 'src/app/services/util.service';
+import { EditaPersonalComponent } from '../edita-personal/edita-personal.component';
+import { personalrequest } from 'src/app/Personal/domain/request/personal_request';
 
-export interface MantenimientoRoles {
-  nomPersonal: string;
-  codPersonal: number;
-  dni: string;
-  sueldo: string;
-  area: string;
-  estado: string;
-  }
-
-  const ELEMENT_DATA: MantenimientoRoles[] = [
-    {codPersonal: 1, nomPersonal: 'Nombre_Personal_1', dni:'71609237', sueldo: 'S/1200', area:'RRHH',estado: 'activo',},
-    {codPersonal: 2, nomPersonal: 'Nombre_Personal_2', dni:'71609237', sueldo: 'S/1200', area:'RRHH',estado: 'activo',},
-    {codPersonal: 3, nomPersonal: 'Nombre_Personal_3', dni:'71609237', sueldo: 'S/1200', area:'RRHH',estado: 'activo',},
-    {codPersonal: 4, nomPersonal: 'Nombre_Personal_4', dni:'71609237', sueldo: 'S/1200', area:'RRHH',estado: 'activo',},
-    ];
-
-  interface Roles {
-    value: string;
-    viewValue: string;
-  }
-  interface Menus {
-    value: string;
-    viewValue: string;
-  }
 
 @Component({
   selector: 'app-mante-personal',
@@ -33,31 +16,40 @@ export interface MantenimientoRoles {
   styleUrls: ['./mante-personal.component.css']
 })
 export class MantePersonalComponent implements OnInit {
+  group:FormGroup
+  dataTable : ListaPersonal[]
+  listaPersonal : ListaPersonal
+  personalResponse:PersonalResponse
+  personal :string
 
-  colores = 'colores';
-  tallas = 'tallas';
-  prendas = 'prendas';
-  area = 'area';
+
   dialogConfig = new MatDialogConfig();
   modalDialog: MatDialogRef<RegPersonalComponent, any> | undefined;
 
-  displayedColumns: string[] = ['codPersonal', 'nomPersonal', 'dni', 'sueldo', 'area','estado', 'opciones'];
-  dataSource = ELEMENT_DATA;
-  //Roles
-  Roles: Roles[] = [
-    {value: 'rol1', viewValue: 'Rol1'},
-    {value: 'rol2', viewValue: 'Rol2'},
-    {value: 'rol3', viewValue: 'Rol3'},
+  metadataTable: MetadataTable[] = [
+    {field:"codigoPersonal",title: "Cod.Personal"} ,
+    {field:"nombres", title: "Nombres"},
+    {field:"apellidos",title:"Apellidos"},
+    {field:"dni",title:"DNI"},
+    {field:"telefono", title:"Telefono"},
+    {field:"sueldo",title:"Sueldo"},
+    {field:"direccion", title:"Direccion"},
+    {field:"estado", title: "Estado"},
+    {field:"usuarioReg", title: "Usu.Reg"},
+    {field:"fecha_hora_reg", title: "Fecha Hora Registro"},
+    {field:"usuario_mod", title: "Usu.Mod"},
+    {field:"fecha_hora_mod", title: "Fecha Hora Mod"},     
   ];
-  //Menus
-  Menus: Menus[] = [
-    {value: 'menu1', viewValue: 'MenuA1'},
-    {value: 'menu2', viewValue: 'MenuA2'},
-    {value: 'menu3', viewValue: 'MenuA3'},
-  ];
+  initializeForm(){
+    this.group = new FormGroup({
+    nombre : new FormControl (null,null),
+    dni : new   FormControl(null,null),
+    apellido : new FormControl(null,null),
+    radio: new FormControl(null,null),   
+   });
+   }
 
-
-  constructor(public matDialog: MatDialog) { }
+  constructor(public matDialog: MatDialog, private readonly personalService : PersonalRepository, private readonly util: UtilService) { }
 
   ngAfterViewInit(): void {
     document.onclick = (args: any) : void => {
@@ -67,7 +59,7 @@ export class MantePersonalComponent implements OnInit {
       }
   }
 
-  openModal() {
+  agregarPersonal() {
     
     this.dialogConfig.id = "projects-modal-component";
     this.dialogConfig.height = "1000px";
@@ -75,7 +67,94 @@ export class MantePersonalComponent implements OnInit {
     this.modalDialog = this.matDialog.open(RegPersonalComponent, this.dialogConfig);
   }
 
-  ngOnInit(): void {
-  }
+  openModal(record : any){
+    record =  this.listaPersonal
+   //record = this.codigoEmpleado
+   //this.cantidadApoyo = 0;
+ 
+   const options = {
+        
+     disableClose: true,
+     panelClass:'custom-modalbox',
+     data: record,
+   };
+ 
+   const reference =  this.util.openModal(
+    EditaPersonalComponent,
+      options,
+     );
+     reference.subscribe((response) => {
+      this.listar()
+       if (response){
+        
+        // this.cantidadApoyo = response.CantidadApoyo;
+        // this.listaEmpleado = response.listaEmpleado
+       }
+     });
+ }
 
+ ngOnInit(): void {  
+  this.initializeForm();
+  this.listar();
+}
+
+listar (){
+  if (this.group.valid){
+   
+    const fd= new FormData();
+    const values = this.group.value
+  
+    const requestPersonal: personalrequest =<personalrequest>{}//  this.group.value;
+   
+    requestPersonal.Nombres='%'
+    requestPersonal.Apellidos='%'
+    requestPersonal.Dni = '%'
+    requestPersonal.Estado = 'A'
+
+      this.personalService.listar(requestPersonal).subscribe(response => 
+
+        {
+          this.personalResponse = response
+          this.dataTable = this.personalResponse.datos.result;
+        }
+          )
+
+}
+}
+editar(personal:ListaPersonal){
+  this.listaPersonal = personal;
+  this.openModal(this.personal);
+}
+
+listarfiltro(){
+  // console.log(this.jj)
+  if (this.group.valid){
+   
+    const fd= new FormData();
+    const values = this.group.value
+  
+    const requestPersonal: personalrequest =<personalrequest>{}//  this.group.value;
+   
+    requestPersonal.Nombres= values['nombre']
+    requestPersonal.Apellidos = values['apellido']
+    requestPersonal.Dni = values['dni']
+    requestPersonal.Estado= values['radio']
+
+    if(requestPersonal.Nombres === '' || requestPersonal.Nombres == null){
+      requestPersonal.Nombres = '%'
+    }
+    if(requestPersonal.Apellidos === '' || requestPersonal.Apellidos == null){
+      requestPersonal.Apellidos = '%'
+    }
+    if(requestPersonal.Dni === '' || requestPersonal.Dni == null){
+      requestPersonal.Dni = '%'
+    }
+      this.personalService.listarfiltro(requestPersonal).subscribe(response => 
+        {
+          this.personalResponse = response
+          this.dataTable = this.personalResponse.datos.result;
+        }
+          )
+
+}}
 }

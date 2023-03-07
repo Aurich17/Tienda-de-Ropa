@@ -13,7 +13,7 @@ import { UserOperations } from './usuario/infraestructura/user-operation';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StorageService } from './services/storage.service';
 import { AppRoutingModule } from './app-routing.module';
-import {APP_BASE_HREF} from '@angular/common';
+import {APP_BASE_HREF, DatePipe} from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AperturaparteRepository } from './aperturaparte/domain/parte.repository';
 import { AperturaparteService } from './services/aperturaparte.service';
@@ -25,6 +25,8 @@ import { RolService } from './services/rol.service';
 import { ManMenuService } from './services/manMenu.service';
 import { AlmacenService } from './services/almacen.service';
 import { AlmacenRepository } from './almacen/domain/almacen.repository';
+import { PersonalRepository } from './Personal/domain/personal.repository';
+import { PersonalService } from './services/personal.service';
 
 
 
@@ -49,11 +51,13 @@ import { AlmacenRepository } from './almacen/domain/almacen.repository';
     ReactiveFormsModule,    
   ],
   providers: [
+  DatePipe,
   {provide: UserRepository, useClass: UserOperations},{provide: APP_BASE_HREF, useValue: '/'},
   {provide: AperturaparteRepository , useClass:AperturaparteService },
   {provide: RolRepository, useClass:RolService},
   {provide: MenuRepository, useClass:ManMenuService},
   {provide: AlmacenRepository, useClass:AlmacenService},
+  {provide: PersonalRepository, useClass: PersonalService},
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
  

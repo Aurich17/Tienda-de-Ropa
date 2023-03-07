@@ -69,7 +69,7 @@ export class ManteMenuComponent implements OnInit {
    const options = {
         
      disableClose: true,
-     panelClass:'container-form',
+     panelClass:'custom-modalbox',
      data: record,
    };
  

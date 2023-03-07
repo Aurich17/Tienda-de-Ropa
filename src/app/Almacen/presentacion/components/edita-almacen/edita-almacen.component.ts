@@ -4,7 +4,6 @@ import { Component,Inject,OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { editaalmacenrequest, guardaalmacenrequest, almacenrequest } from 'src/app/almacen/domain/request/almacen_request';
-import { ListaRoles, RolResponse } from 'src/app/roles/domain/response/rol_response';
 import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
 
 @Component({
@@ -23,7 +22,6 @@ export class EditaAlmacenComponent implements OnInit {
     direccion : new FormControl(null,null),
    });
   }
-
   constructor(private readonly almacenService : AlmacenRepository, @Inject(MAT_DIALOG_DATA) private data : ListaAlmacen,private readonly  reference: MatDialogRef<EditaAlmacenComponent>) { }
 
   ngOnInit(): void {
@@ -40,7 +38,7 @@ export class EditaAlmacenComponent implements OnInit {
     const valores = this.group.value //Esto agarra los valores del HTML dentro del FormGroup
     const requestEditaAlmacen: editaalmacenrequest =<editaalmacenrequest>{}
     
-    requestEditaAlmacen.CodigoRol = this.codigoAlmacen.toString()
+    requestEditaAlmacen.CodigoAlmacen = this.codigoAlmacen.toString()
     requestEditaAlmacen.Descripcion = valores['desAlmacen']
     requestEditaAlmacen.Estado = valores['radio']
     requestEditaAlmacen.Usuario_reg = 'Admin'
@@ -51,7 +49,13 @@ export class EditaAlmacenComponent implements OnInit {
     {
       this.almacenResponse = response
       alert('eDITADO CORRECTAMENTE');
+      console.log(requestEditaAlmacen.CodigoAlmacen)
+      console.log(requestEditaAlmacen.Descripcion)
+      console.log(requestEditaAlmacen.Estado)
+      console.log(requestEditaAlmacen.Direccion)
+      console.log(requestEditaAlmacen.Tipo)
     }
+    
     )
   }  
 

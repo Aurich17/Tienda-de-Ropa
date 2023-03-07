@@ -1,4 +1,4 @@
-import { guardaalmacenrequest, almacenrequest } from './../almacen/domain/request/almacen_request';
+import { guardaalmacenrequest, almacenrequest, editaalmacenrequest } from './../almacen/domain/request/almacen_request';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -34,7 +34,7 @@ export class AlmacenService extends AlmacenRepository{
   {
     return this.http.post<AlmacenResponse>(`${environment.PATH_API}/almacen/MantAlmacen`,prolrequest);
   }
-  editaalmacen(prolrequest:guardaalmacenrequest): Observable<AlmacenResponse>
+  editaalmacen(prolrequest:editaalmacenrequest): Observable<AlmacenResponse>
   {
     return this.http.post<AlmacenResponse>(`${environment.PATH_API}/almacen/MantAlmacen`,prolrequest);
   }

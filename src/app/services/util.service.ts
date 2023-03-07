@@ -54,7 +54,6 @@ export class UtilService {
     {
       with: "320px",
       disableClose:true,
-        
     },
     true
     );
