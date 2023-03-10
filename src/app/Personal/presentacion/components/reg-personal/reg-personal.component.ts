@@ -1,7 +1,7 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Component, Inject, OnInit} from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ListaPersonal, PersonalResponse } from 'src/app/personal/domain/response/personal_response';
+import { Component, OnInit} from '@angular/core';
+import {MatDialogRef } from '@angular/material/dialog';
+import {  PersonalResponse } from 'src/app/personal/domain/response/personal_response';
 import { PersonalRepository } from 'src/app/Personal/domain/personal.repository';
 import { guardapersonalrequest } from 'src/app/Personal/domain/request/personal_request';
 import { DatePipe } from '@angular/common';
@@ -36,7 +36,7 @@ export class RegPersonalComponent implements OnInit {
    });
    }
 
-  constructor(private readonly personalService : PersonalRepository, @Inject(MAT_DIALOG_DATA) private data : ListaPersonal,private readonly  reference: MatDialogRef<RegPersonalComponent>, private miDatePipe: DatePipe) { }
+  constructor(private readonly personalService : PersonalRepository,private readonly  reference: MatDialogRef<RegPersonalComponent>, private miDatePipe: DatePipe) { }
 
   ngOnInit(): void {
     console.log('Se a inicializado el REG-PERSONAL');

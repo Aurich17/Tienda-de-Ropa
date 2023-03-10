@@ -1,3 +1,4 @@
+import { TiendaService } from './services/tienda.service';
 import { MenuRepository } from 'src/app/menus/domain/menu.repository';
 import { RolRepository} from 'src/app/roles/domain/rol.repository';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,6 +30,7 @@ import { PersonalRepository } from './Personal/domain/personal.repository';
 import { PersonalService } from './services/personal.service';
 import { LoteRepository } from './Lotes/domain/lote.repository';
 import { LoteService } from './services/lote.service';
+import { TiendaRepository } from './Tienda/domain/tienda.repository';
 
 
 
@@ -61,6 +63,7 @@ import { LoteService } from './services/lote.service';
   {provide: AlmacenRepository, useClass:AlmacenService},
   {provide: PersonalRepository, useClass: PersonalService},
   {provide: LoteRepository, useClass: LoteService},
+  {provide: TiendaRepository, useClass: TiendaService},
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
  

@@ -61,6 +61,7 @@ export class ManteLotesComponent implements OnInit {
     this.dialogConfig.disableClose = true;
     this.modalDialog = this.matDialog.open(RegLotesComponent, this.dialogConfig);
   }
+  
   openModal(record : any){
     record =  this.listaLote
    //record = this.codigoEmpleado

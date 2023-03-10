@@ -12,12 +12,7 @@ import { RolRepository } from 'src/app/roles/domain/rol.repository';
 })
 
 export class RegRolesComponent implements OnInit {
-  value = true;
-  nombre = 'REGISTRO ROL';
   rolResponse: RolResponse;
-  usuario ='usuario';
-  rol = 'rol';
-  menu = 'menu';
   codigoRol:number;
   mygroup:FormGroup;
   initializeForm(){
