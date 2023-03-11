@@ -35,7 +35,6 @@ export class MantePersonalComponent implements OnInit {
     {field:"sueldo",title:"Sueldo"},
     {field:"direccion", title:"Direccion"},
     {field:"estado", title: "Estado"},
-    {field:"usuarioReg", title: "Usu.Reg"},
     {field:"fecha_hora_reg", title: "Fecha Hora Registro"},
     {field:"usuario_mod", title: "Usu.Mod"},
     {field:"fecha_hora_mod", title: "Fecha Hora Mod"},     

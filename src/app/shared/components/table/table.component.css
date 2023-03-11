@@ -1,7 +1,15 @@
-
-
+/* .tabla{
+    background-color: red;
+} */
+.cabecera{
+    background-color: var(--color-primary);
+}
+.highline{
+    text-align: center;
+}
 .highline:hover {
-
-background-color:grey;
-
+    background-color:grey;
+}
+.centro{
+    text-align: center;
 }
