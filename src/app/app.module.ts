@@ -1,3 +1,5 @@
+import { PromocionService } from './services/promocion.service';
+import { PromocionRepository } from 'src/app/Promociones/domain/promociones.repository';
 import { TiendaService } from './services/tienda.service';
 import { MenuRepository } from 'src/app/menus/domain/menu.repository';
 import { RolRepository} from 'src/app/roles/domain/rol.repository';
@@ -64,6 +66,7 @@ import { TiendaRepository } from './Tienda/domain/tienda.repository';
   {provide: PersonalRepository, useClass: PersonalService},
   {provide: LoteRepository, useClass: LoteService},
   {provide: TiendaRepository, useClass: TiendaService},
+  {provide: PromocionRepository, useClass: PromocionService},
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
  

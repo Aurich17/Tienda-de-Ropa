@@ -1,7 +1,7 @@
-import { LoteResponse, ListaLote } from './../../../domain/response/lote_response';
+import { LoteResponse} from './../../../domain/response/lote_response';
 import { Component,OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatDialogRef} from '@angular/material/dialog';
 import {  guardaloterequest } from 'src/app/Lotes/domain/request/lote_request';
 import { LoteRepository } from 'src/app/Lotes/domain/lote.repository';
 
