@@ -95,7 +95,7 @@ export class MantePromocionesComponent implements OnInit {
   this.listar();
 }
 
-listar (){
+listar(){
   if (this.group.valid){
    
     const fd= new FormData();

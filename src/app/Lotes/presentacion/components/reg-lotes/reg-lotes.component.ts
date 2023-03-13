@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
 import {  guardaloterequest } from 'src/app/Lotes/domain/request/lote_request';
 import { LoteRepository } from 'src/app/Lotes/domain/lote.repository';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-reg-lotes',
@@ -20,7 +21,7 @@ export class RegLotesComponent implements OnInit {
     radio : new   FormControl(null,null),   
    });
    }
-  constructor(private readonly  loteService : LoteRepository,private readonly  reference: MatDialogRef<RegLotesComponent>) { }
+  constructor(private readonly  loteService : LoteRepository,private readonly  reference: MatDialogRef<RegLotesComponent>,  private readonly util: UtilService) { }
   
 
   ngOnInit(): void {
@@ -46,7 +47,7 @@ export class RegLotesComponent implements OnInit {
       }
       )
     }
-    alert('GUARDADO CON EXITO');
+    this.util.showMessage('Guardado con Exito')
   }
   mostrarLista(){
     const valores = this.group.value
@@ -60,5 +61,8 @@ export class RegLotesComponent implements OnInit {
     for(let i = 0 ; i < this.loteAgregar.length; i++){
        console.log(this.loteAgregar[i]);
      }
+  }
+  clear() {
+    this.group.reset();
   }
 }

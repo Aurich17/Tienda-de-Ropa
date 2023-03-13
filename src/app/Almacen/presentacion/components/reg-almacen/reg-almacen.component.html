@@ -2,12 +2,12 @@
 <form [formGroup]="group" class="acciones">
     <div class="sMenu">
         <mat-form-field class="list">
-            <input matInput type="text" placeholder="Descripcion Almacen" formControlName="desAlmacen">
+            <input matInput type="text" placeholder="Descripcion Almacen" formControlName="descripcion">
           </mat-form-field>
     </div>
     <div class="sMenu">
         <mat-form-field class="list">
-            <input matInput type="text" placeholder="Direccion Almacen" formControlName="dirAlmacen">
+            <input matInput type="text" placeholder="Direccion Almacen" formControlName="direccion">
           </mat-form-field>
     </div>
     <div class="estado">
@@ -18,8 +18,8 @@
     </div>
 </form>
 <div class="botones">
-    <button mat-raised-button color="primary">Limpiar</button>
-    <button mat-raised-button color="primary">Agregar</button>   
+    <button mat-raised-button color="primary" (click)="clear()">Limpiar</button>
+    <button mat-raised-button color="primary" (click)="mostrarLista()">Agregar</button>   
     <button mat-raised-button color="primary" (click)="guardaalmacen()">Guardar</button>   
     <button mat-raised-button color="primary" (click)="closeModal()">Salir</button> 
 </div>

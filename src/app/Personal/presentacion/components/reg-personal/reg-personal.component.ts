@@ -5,6 +5,7 @@ import {  PersonalResponse } from 'src/app/personal/domain/response/personal_res
 import { PersonalRepository } from 'src/app/Personal/domain/personal.repository';
 import { guardapersonalrequest } from 'src/app/Personal/domain/request/personal_request';
 import { DatePipe } from '@angular/common';
+import { UtilService } from 'src/app/services/util.service';
 
 
 @Component({
@@ -36,7 +37,7 @@ export class RegPersonalComponent implements OnInit {
    });
    }
 
-  constructor(private readonly personalService : PersonalRepository,private readonly  reference: MatDialogRef<RegPersonalComponent>, private miDatePipe: DatePipe) { }
+  constructor(private readonly personalService : PersonalRepository,private readonly  reference: MatDialogRef<RegPersonalComponent>, private miDatePipe: DatePipe,  private readonly util: UtilService) { }
 
   ngOnInit(): void {
     console.log('Se a inicializado el REG-PERSONAL');
@@ -71,7 +72,7 @@ export class RegPersonalComponent implements OnInit {
       }
       )
     }
-    alert('GUARDADO CON EXITO');
+    this.util.showMessage('Guardado con Exito');
   }
   mostrarLista(){
     const valores = this.group.value
@@ -96,8 +97,10 @@ export class RegPersonalComponent implements OnInit {
        console.log(this.personalAgregar[i]);
      }
   }
+  clear() {
+    this.group.reset();
+  }
   SendDataonChange(event: any) {
     console.log(event.target.value);
     }
-  
 }

@@ -18,5 +18,5 @@ export interface ListaTienda{
   usuario_reg:string;
   fecha_hora_reg:string;
   usuario_mod:string;
-  fecha_hora_mod:string  
+  fecha_hora_mod:string;  
 }

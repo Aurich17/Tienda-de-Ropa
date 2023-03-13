@@ -13,6 +13,7 @@ export interface AlmacenResponse{
 export interface ListaAlmacen{
   codigoAlmacen:number;
   descripcion:string;
+  direccion:string;
   estado:string;
   usuario_reg:string;
   fecha_hora_reg:string;

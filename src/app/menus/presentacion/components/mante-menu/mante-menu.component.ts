@@ -17,6 +17,7 @@ import { MenuService } from 'src/app/services/menu.service';
   styleUrls: ['./mante-menu.component.css'],
 })
 export class ManteMenuComponent implements OnInit {
+  selected = new FormControl('valid', [Validators.required, Validators.pattern('false')]);
   dataTable : ListaMenus[];
   menuResponse : MenuResponse;
   listaMenu: ListaMenus;

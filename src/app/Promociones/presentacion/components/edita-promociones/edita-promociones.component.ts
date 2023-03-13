@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { editapromocionrequest } from 'src/app/Promociones/domain/request/promociones_request';
 import { PromocionRepository } from 'src/app/Promociones/domain/promociones.repository';
+import { UtilService } from 'src/app/services/util.service';
 @Component({
   selector: 'app-edita-promociones',
   templateUrl: './edita-promociones.component.html',
@@ -20,12 +21,11 @@ export class EditaPromocionesComponent implements OnInit {
    });
   }
 
-  constructor(private readonly promocionService : PromocionRepository, @Inject(MAT_DIALOG_DATA) private data : ListaPromocion,private readonly  reference: MatDialogRef<EditaPromocionesComponent>) { }
+  constructor(private readonly promocionService : PromocionRepository, @Inject(MAT_DIALOG_DATA) private data : ListaPromocion,private readonly  reference: MatDialogRef<EditaPromocionesComponent>, private readonly util: UtilService) { }
 
   ngOnInit(): void {
     this.initializeForm();
     this.codigoPromocion= this.data?.codigoPromocion
-    alert(this.data?.codigoPromocion)
   }
 
   closeModal() {
@@ -36,7 +36,7 @@ export class EditaPromocionesComponent implements OnInit {
     const valores = this.group.value //Esto agarra los valores del HTML dentro del FormGroup
     const requestEditaPromocion: editapromocionrequest =<editapromocionrequest>{}
     
-    requestEditaPromocion.CodigoPromocion = this.codigoPromocion.toString()
+    requestEditaPromocion.CodigoPromociones = this.codigoPromocion.toString()
     requestEditaPromocion.Descripcion = valores['descripcion']
     requestEditaPromocion.Estado = valores['radio']
     requestEditaPromocion.Usuario = 'Admin'
@@ -45,10 +45,8 @@ export class EditaPromocionesComponent implements OnInit {
     this.promocionService.editapromocion(requestEditaPromocion).subscribe(response=>
     {
       this.promocionResponse = response
-      alert('eDITADO CORRECTAMENTE');
+      this.util.showMessage('Editado Correctamente')
     }
-    
     )
   }  
-
 }

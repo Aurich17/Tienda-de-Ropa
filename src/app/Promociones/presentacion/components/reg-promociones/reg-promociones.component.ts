@@ -4,6 +4,7 @@ import {MatDialogRef } from '@angular/material/dialog';
 import {  PromocionResponse } from 'src/app/Promociones/domain/response/promociones_response';
 import { PromocionRepository } from 'src/app/Promociones/domain/promociones.repository';
 import { guardapromocionrequest } from 'src/app/Promociones/domain/request/promociones_request';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-reg-promociones',
@@ -20,7 +21,7 @@ export class RegPromocionesComponent implements OnInit {
     radio : new   FormControl(null,null),   
    });
    }
-  constructor(private readonly  promocionService : PromocionRepository,private readonly  reference: MatDialogRef<RegPromocionesComponent>) { }
+  constructor(private readonly  promocionService : PromocionRepository,private readonly  reference: MatDialogRef<RegPromocionesComponent>, private readonly util: UtilService) { }
   
 
   ngOnInit(): void {
@@ -46,7 +47,7 @@ export class RegPromocionesComponent implements OnInit {
       }
       )
     }
-    alert('GUARDADO CON EXITO');
+    this.util.showMessageError('Guardado con Exito')
   }
   mostrarLista(){
     const valores = this.group.value
@@ -60,5 +61,8 @@ export class RegPromocionesComponent implements OnInit {
     for(let i = 0 ; i < this.promocionAgregar.length; i++){
        console.log(this.promocionAgregar[i]);
      }
+  }
+  clear() {
+    this.group.reset();
   }
 }

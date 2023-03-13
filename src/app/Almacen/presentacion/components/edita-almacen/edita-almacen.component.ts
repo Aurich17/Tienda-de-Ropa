@@ -18,7 +18,7 @@ export class EditaAlmacenComponent implements OnInit {
     this.group = new FormGroup({
     desAlmacen : new FormControl (this.data?.descripcion,null),
     radio : new   FormControl(this.data?.estado,null),
-    direccion : new FormControl(null,null),
+    direccion : new FormControl(this.data?.direccion,null),
    });
   }
   constructor(private readonly almacenService : AlmacenRepository, @Inject(MAT_DIALOG_DATA) private data : ListaAlmacen,private readonly  reference: MatDialogRef<EditaAlmacenComponent>) { }
