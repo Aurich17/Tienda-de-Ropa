@@ -10,9 +10,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PageManteProductoComponent } from './presentacion/page-mante-producto/page-mante-producto.component';
 import { RegProductoComponent } from './presentacion/components/reg-producto/reg-producto.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { EditaProductoComponent } from './presentacion/components/edita-producto/edita-producto.component';
 
 @NgModule({
-  declarations: [ManteProductoComponent, PageManteProductoComponent, RegProductoComponent],
+  declarations: [ManteProductoComponent, PageManteProductoComponent, RegProductoComponent, EditaProductoComponent],
   imports: [
     CommonModule,
     SharedModule,

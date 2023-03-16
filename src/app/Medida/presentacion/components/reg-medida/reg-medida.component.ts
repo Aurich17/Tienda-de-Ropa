@@ -1,16 +1,10 @@
+import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 import {MatDialogRef } from '@angular/material/dialog';
-
-export interface RegMenus {
-  medida: string;
-  }
-
-  const ELEMENT_DATA: RegMenus[] = [
-    {medida: 'Medida 1'},
-    {medida: 'Medida 2'},
-    {medida: 'Medida 1'},
-    {medida: 'Medida 1'},
-    ];
+import { MedidaRepository } from 'src/app/Medida/domain/medida.repository';
+import { AlmacenResponse } from 'src/app/Medida/domain/response/medida_response';
+import { UtilService } from 'src/app/services/util.service';
+import { guardaalmacenrequest } from 'src/app/Medida/domain/request/medida_request';
 
 @Component({
   selector: 'app-reg-medida',
@@ -18,16 +12,42 @@ export interface RegMenus {
   styleUrls: ['./reg-medida.component.css']
 })
 export class RegMedidaComponent implements OnInit {
-  subMenu = 'subMenu'
+  almacenResponse:AlmacenResponse
+  group:FormGroup
+  almacenAgregar = []
+  initializeForm(){
+    this.group = new FormGroup({
+    descripcion : new FormControl (null,null),
+    radio : new   FormControl(null,null),   
+   });
+   }
 
-  constructor(public dialogRef: MatDialogRef<RegMedidaComponent>) { }
+  constructor(private readonly almacenService : MedidaRepository,private readonly  reference: MatDialogRef<RegMedidaComponent>, private readonly util: UtilService) { }
   
-  displayedColumns: string[] = ['medida', 'opciones'];
-  dataSource = ELEMENT_DATA;
 
   ngOnInit(): void {
+    this.initializeForm();
   }
   closeModal() {
-    this.dialogRef.close();
+    this.reference.close();
+  }
+
+  guarda(){
+    const valores = this.group.value
+    const requestGuardaAlmacen: guardaalmacenrequest =<guardaalmacenrequest>{}
+      requestGuardaAlmacen.Descripcion = valores['descripcion']
+      requestGuardaAlmacen.Estado = valores['radio']
+      requestGuardaAlmacen.Usuario_reg = 'Admin'
+      requestGuardaAlmacen.Tipo = 'I'
+      
+      this.almacenService.guardaalmacen(requestGuardaAlmacen).subscribe(response=>
+      {
+        this.almacenResponse = response
+      }
+      )
+    this.util.showMessage('Guardado con Exito')
+  }
+  clear() {
+    this.group.reset();
   }
 }

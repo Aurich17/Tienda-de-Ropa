@@ -33,6 +33,8 @@ import { PersonalService } from './services/personal.service';
 import { LoteRepository } from './Lotes/domain/lote.repository';
 import { LoteService } from './services/lote.service';
 import { TiendaRepository } from './Tienda/domain/tienda.repository';
+import { MedidaRepository } from './Medida/domain/medida.repository';
+import { MedidaService } from './services/medida.service';
 
 
 
@@ -67,6 +69,7 @@ import { TiendaRepository } from './Tienda/domain/tienda.repository';
   {provide: LoteRepository, useClass: LoteService},
   {provide: TiendaRepository, useClass: TiendaService},
   {provide: PromocionRepository, useClass: PromocionService},
+  {provide: MedidaRepository, useClass: MedidaService},
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
  
