@@ -121,8 +121,10 @@ export class HeaderComponent implements OnInit {
 
 
 
+        //Lista
     }
-
+    //Cambia Color
+  
 
     logout()
     {
