@@ -10,9 +10,10 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageManteRolesComponent } from './presentacion/page-mante-roles/page-mante-roles.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { EditaRolesComponent } from './presentacion/components/edita-roles/edita-roles.component';
 
 @NgModule({
-  declarations: [ManteRolesComponent, PageManteRolesComponent, RegRolesComponent],
+  declarations: [ManteRolesComponent, PageManteRolesComponent, RegRolesComponent, EditaRolesComponent],
   imports: [
     CommonModule,
     SharedModule,

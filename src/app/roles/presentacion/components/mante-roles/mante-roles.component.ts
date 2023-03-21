@@ -8,6 +8,7 @@ import { RegRolesComponent } from '../reg-roles/reg-roles.component';
 import { RolRepository } from 'src/app/roles/domain/rol.repository';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { UtilService } from 'src/app/services/util.service';
+import { EditaRolesComponent } from '../edita-roles/edita-roles.component';
 
 
 @Component({
@@ -55,20 +56,18 @@ export class ManteRolesComponent implements OnInit {
       }
   }
 
-  // openModal(record : any) {
-  //   this.dialogConfig.id = "projects-modal-component";
-  //   this.dialogConfig.height = "800px";
-  //   this.dialogConfig.width = "700px";
-  //   this.modalDialog = this.matDialog.open(RegRolesComponent, this.dialogConfig);
-
-  
-  // }
-  openModal(record : any){
-    record =  this.listaRoles
+  agregaRol() {
     this.dialogConfig.id = "projects-modal-component";
     this.dialogConfig.height = "800px";
-     this.dialogConfig.width = "700px";
-    //this.modalDialog = this.matDialog.open(RegRolesComponent, this.dialogConfig);
+    this.dialogConfig.width = "700px";
+    this.modalDialog = this.matDialog.open(RegRolesComponent, this.dialogConfig);
+  }
+
+
+  openModal(record : any){
+    console.log(record);
+    console.log('Hasta aqui todo correcto')
+    record =  this.listaRoles
    //record = this.codigoEmpleado
    //this.cantidadApoyo = 0;
  
@@ -80,8 +79,7 @@ export class ManteRolesComponent implements OnInit {
    };
  
    const reference =  this.util.openModal(
-      // this.matDialog.open(RegRolesComponent, this.dialogConfig),
-      this.matDialog.open(RegRolesComponent, this.dialogConfig),
+    EditaRolesComponent,
       options,
      
      );
@@ -132,8 +130,7 @@ export class ManteRolesComponent implements OnInit {
   }
   editar(roles:ListaRoles){
     this.listaRoles = roles;
-    this.openModal(roles);
-    //alert(roles['codigoRol'])
+    this.openModal(this.roles);
   }
 
   listarfiltro(){

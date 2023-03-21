@@ -6,12 +6,12 @@ import { editarolrequest, guardarolrequest, rolrequest } from 'src/app/roles/dom
 import { ListaRoles, RolResponse } from 'src/app/roles/domain/response/rol_response';
 import { RolRepository } from 'src/app/roles/domain/rol.repository';
 @Component({
-  selector: 'app-reg-roles',
-  templateUrl: './reg-roles.component.html',
-  styleUrls: ['./reg-roles.component.css']
+  selector: 'app-edita-roles',
+  templateUrl: './edita-roles.component.html',
+  styleUrls: ['./edita-roles.component.css']
 })
+export class EditaRolesComponent implements OnInit {
 
-export class RegRolesComponent implements OnInit {
   value = true;
   nombre = 'REGISTRO ROL';
   rolResponse: RolResponse;
@@ -25,10 +25,10 @@ export class RegRolesComponent implements OnInit {
     descripcion : new FormControl (this.data?.descripcion,null),
     radio : new   FormControl(this.data?.estado,null),   
    });
-   //alert(this.data?.descripcion.toString());
+   alert(this.data?.descripcion.toString());
    }
 
-  constructor(private readonly rolService : RolRepository, @Inject(MAT_DIALOG_DATA) private data : ListaRoles,private readonly  reference: MatDialogRef<RegRolesComponent>){ }
+  constructor(private readonly rolService : RolRepository, @Inject(MAT_DIALOG_DATA) private data : ListaRoles,private readonly  reference: MatDialogRef<EditaRolesComponent>){ }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -38,24 +38,27 @@ export class RegRolesComponent implements OnInit {
     this.reference.close();
   }
   
-  guardarol(){
-    alert('GUARDA ROL');
+  editarol(){
+    alert('EDITA ROL');
     const valores = this.mygroup.value //Esto agarra los valores del HTML dentro del FormGroup
-    const requestGuardaRol: guardarolrequest =<guardarolrequest>{}
+    const requestEditaRol: editarolrequest =<editarolrequest>{}
     
-    requestGuardaRol.Descripcion = valores['descripcion']
-    requestGuardaRol.Estado = valores['radio']
-    requestGuardaRol.Usuario = 'Admin'
-    requestGuardaRol.Tipo = 'I'
+    requestEditaRol.CodigoRol = this.codigoRol.toString()
+    requestEditaRol.Descripcion = valores['descripcion']
+    requestEditaRol.Estado = valores['radio']
+    requestEditaRol.Usuario = 'Admin'
+    requestEditaRol.Tipo = 'U'
+    
 
-    console.log(requestGuardaRol.Descripcion)
-    console.log(requestGuardaRol.Estado)
-    console.log(requestGuardaRol.Tipo)
+    console.log(requestEditaRol.CodigoRol)
+    console.log(requestEditaRol.Descripcion)
+    console.log(requestEditaRol.Estado)
+    console.log(requestEditaRol.Tipo)
 
-    this.rolService.guardarol(requestGuardaRol).subscribe(response=>
+    this.rolService.editarol(requestEditaRol).subscribe(response=>
     {
       this.rolResponse = response
     }
     )
-  }
+  }  
 }

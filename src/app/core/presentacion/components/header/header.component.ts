@@ -100,12 +100,27 @@ export class HeaderComponent implements OnInit {
     }
     //Cambia Color
     public onSetTheme(e: string){
-        if(e != 'dark-theme')
-            this.overlayContainer.getContainerElement().classList.add(e);
-            this.componentCssClass = e;
+       if(e != 'dark-theme')
+          //  this.overlayContainer.getContainerElement().classList.add(e);
+            this.overlayContainer.getContainerElement().classList.remove("dark-theme")
+           
+          //  this.componentCssClass = e;
         if(e != 'light-theme')
+            //this.overlayContainer.getContainerElement().classList.add(e);
+           // this.componentCssClass = e;
+           this.overlayContainer.getContainerElement().classList.remove("light-theme")
+
+           if(e != 'vivo-theme')
+           //this.overlayContainer.getContainerElement().classList.add(e);
+          // this.componentCssClass = e;
+          this.overlayContainer.getContainerElement().classList.remove("vivo-theme")
+
+
             this.overlayContainer.getContainerElement().classList.add(e);
             this.componentCssClass = e;
+
+
+
     }
 
 
