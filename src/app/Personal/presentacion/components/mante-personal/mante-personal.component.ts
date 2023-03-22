@@ -16,6 +16,7 @@ import { personalrequest } from 'src/app/Personal/domain/request/personal_reques
   styleUrls: ['./mante-personal.component.css']
 })
 export class MantePersonalComponent implements OnInit {
+  labelPosition: 'I'|'A' ='A'
   group:FormGroup
   dataTable : ListaPersonal[]
   listaPersonal : ListaPersonal
@@ -61,8 +62,9 @@ export class MantePersonalComponent implements OnInit {
   agregarPersonal() {
     
     this.dialogConfig.id = "projects-modal-component";
-    this.dialogConfig.height = "1000px";
-    this.dialogConfig.width = "700px";
+    this.dialogConfig.height = "620px";
+    this.dialogConfig.width = "650px";
+    this.dialogConfig.disableClose =true;
     this.modalDialog = this.matDialog.open(RegPersonalComponent, this.dialogConfig);
   }
 
@@ -74,7 +76,7 @@ export class MantePersonalComponent implements OnInit {
    const options = {
         
      disableClose: true,
-     panelClass:'custom-modalbox',
+     panelClass:'editaPersonal',
      data: record,
    };
  

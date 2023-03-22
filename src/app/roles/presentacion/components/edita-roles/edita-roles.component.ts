@@ -1,10 +1,11 @@
 import { ManteRolesComponent} from './../mante-roles/mante-roles.component';
 import { Component,Inject,OnInit} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { editarolrequest, guardarolrequest, rolrequest } from 'src/app/roles/domain/request/rol_request';
 import { ListaRoles, RolResponse } from 'src/app/roles/domain/response/rol_response';
 import { RolRepository } from 'src/app/roles/domain/rol.repository';
+import { UtilService } from 'src/app/services/util.service';
 @Component({
   selector: 'app-edita-roles',
   templateUrl: './edita-roles.component.html',
@@ -18,13 +19,12 @@ export class EditaRolesComponent implements OnInit {
   mygroup:FormGroup;
   initializeForm(){
     this.mygroup = new FormGroup({
-    descripcion : new FormControl (this.data?.descripcion,null),
+    descripcion : new FormControl (this.data?.descripcion,Validators.required),
     radio : new   FormControl(this.data?.estado,null),   
    });
-   alert(this.data?.descripcion.toString());
    }
 
-  constructor(private readonly rolService : RolRepository, @Inject(MAT_DIALOG_DATA) private data : ListaRoles,private readonly  reference: MatDialogRef<EditaRolesComponent>){ }
+  constructor(private readonly rolService : RolRepository, @Inject(MAT_DIALOG_DATA) private data : ListaRoles,private readonly  reference: MatDialogRef<EditaRolesComponent>, private readonly util: UtilService){ }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -47,7 +47,12 @@ export class EditaRolesComponent implements OnInit {
     this.rolService.editarol(requestEditaRol).subscribe(response=>
     {
       this.rolResponse = response
+      this.util.showMessage('EDITADO CORRECTAMENTE')
+      this.closeModal()
     }
     )
-  }  
+  }
+  clear(){
+    this.mygroup.reset({radio: 'A'})
+  }    
 }

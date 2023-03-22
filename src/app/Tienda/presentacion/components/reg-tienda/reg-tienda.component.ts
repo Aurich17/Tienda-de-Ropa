@@ -1,9 +1,10 @@
 import { TiendaResponse} from './../../../domain/response/tienda_response';
 import { Component,OnInit} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
 import {guardatiendarequest } from 'src/app/Tienda/domain/request/tienda_request';
 import {TiendaRepository } from 'src/app/Tienda/domain/tienda.repository';
+import { UtilService } from 'src/app/services/util.service';
 
 
 @Component({
@@ -12,20 +13,20 @@ import {TiendaRepository } from 'src/app/Tienda/domain/tienda.repository';
   styleUrls: ['./reg-tienda.component.css']
 })
 export class RegTiendaComponent implements OnInit {
-  tiendaAgregar =[]; //ESTOS VALORES SON LOS QUE SE AGREGAn A LA TABLA CUANDO DE GUARDAR
+  select: 'A'|'I' ='A'
   group:FormGroup
   tiendaResponse : TiendaResponse
   tienda:string
 
   initializeForm(){
     this.group = new FormGroup({
-    descripcion : new FormControl (null,null),
-    direccion : new FormControl (null, null),
-    radio : new   FormControl(null,null),
+    descripcion : new FormControl (null,Validators.required),
+    direccion : new FormControl (null, Validators.required),
+    radio : new   FormControl(null,Validators.required),
    });
    }
 
-  constructor(private readonly tiendaService : TiendaRepository,private readonly  reference: MatDialogRef<RegTiendaComponent>) { }
+  constructor(private readonly tiendaService : TiendaRepository,private readonly  reference: MatDialogRef<RegTiendaComponent>,  private readonly util: UtilService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -37,39 +38,26 @@ export class RegTiendaComponent implements OnInit {
   guardatienda(){
     //Esto agarra los valores del HTML dentro del FormGroup
     const requestGuardaTienda: guardatiendarequest =<guardatiendarequest>{}
+    const valores = this.group.value
 
-    for(let i = 0 ; i < this.tiendaAgregar.length; i++){
-      console.log('Este es el Array Nro: '+i);
-      requestGuardaTienda.Descripcion = this.tiendaAgregar[i][0]
-      requestGuardaTienda.Direccion = this.tiendaAgregar[i][1]
-      requestGuardaTienda.Estado = this.tiendaAgregar[i][2]
+      requestGuardaTienda.Descripcion = valores['descripcion']
+      requestGuardaTienda.Direccion = valores['direccion']
+      requestGuardaTienda.Estado = valores['radio']
       requestGuardaTienda.Usuario_reg = 'Admin'
       requestGuardaTienda.Tipo = 'I'
       
       this.tiendaService.guardatienda(requestGuardaTienda).subscribe(response=>
       {
         this.tiendaResponse = response
+        this.util.showMessage('GUARDADO CORRECTAMENTE')
+        this.closeModal()
       }
       )
-    }
-    alert('GUARDADO CON EXITO');
-  }
-  mostrarLista(){
-    const valores = this.group.value
-    let lista = [];
-
-    lista.push(valores['descripcion'])
-    lista.push(valores['direccion'])
-    lista.push(valores['radio'])
-    this.tiendaAgregar.push(lista)
-
-     console.log('Tamano del array: '+this.tiendaAgregar.length)
-    for(let i = 0 ; i < this.tiendaAgregar.length; i++){
-       console.log(this.tiendaAgregar[i]);
-     }
   }
   SendDataonChange(event: any) {
     console.log(event.target.value);
     }
-  
+  clear(){
+    this.group.reset({radio: 'A'})
+  }
 }

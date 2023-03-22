@@ -17,6 +17,7 @@ import { UtilService } from 'src/app/services/util.service';
   styleUrls: ['./mante-tienda.component.css']
 })
 export class ManteTiendaComponent implements OnInit {
+  labelPosition: 'I'|'A' ='A'
 
   tienda:string
   dataTable: ListaTienda[]
@@ -58,8 +59,8 @@ export class ManteTiendaComponent implements OnInit {
   agregarTienda() {
     
     this.dialogConfig.id = "projects-modal-component";
-    this.dialogConfig.height = "800px";
-    this.dialogConfig.width = "700px";
+    this.dialogConfig.height = "500px";
+    this.dialogConfig.width = "500px";
     this.dialogConfig.disableClose = true
     this.modalDialog = this.matDialog.open(RegTiendaComponent, this.dialogConfig);
   }
@@ -72,7 +73,7 @@ export class ManteTiendaComponent implements OnInit {
    const options = {
         
      disableClose: true,
-     panelClass:'container-form',
+     panelClass:'editaTienda',
      data: record,
    };
  

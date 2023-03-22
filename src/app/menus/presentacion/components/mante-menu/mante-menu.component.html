@@ -7,14 +7,14 @@
     </div>
     <div>
       <mat-form-field class="list">
-        <mat-select formControlName="listMenu">
+        <mat-select formControlName="listMenu"  [(ngModel)]="select">
           <mat-option value="false" selected>subMenu</mat-option>
           <mat-option value="true">menu</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div class="radio_contenedor">
-      <mat-radio-group aria-label="Select an option" class="radio" formControlName="estado">
+      <mat-radio-group aria-label="Select an option" class="radio" formControlName="estado" [(ngModel)]="labelPosition">
         <mat-radio-button value="A" color="primary">Activo</mat-radio-button>
         <mat-radio-button value="I" color="primary">Inactivo</mat-radio-button>
       </mat-radio-group>

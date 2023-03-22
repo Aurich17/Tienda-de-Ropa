@@ -18,7 +18,7 @@
     </div>
 </form>
 <div class="botones">
-    <button mat-raised-button color="primary">Limpiar</button> 
-    <button mat-raised-button color="primary" (click)="editaTienda()">Guardar</button>   
+    <button mat-raised-button color="primary" (click)="clear()">Limpiar</button> 
+    <button mat-raised-button color="primary" (click)="editaTienda()" [disabled]="group.invalid">Guardar</button>   
     <button mat-raised-button color="primary" (click)="closeModal()">Salir</button> 
 </div>

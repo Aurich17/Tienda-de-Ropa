@@ -1,4 +1,4 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 import {MatDialogRef } from '@angular/material/dialog';
 import { MedidaRepository } from 'src/app/Medida/domain/medida.repository';
@@ -12,13 +12,14 @@ import { guardaalmacenrequest } from 'src/app/Medida/domain/request/medida_reque
   styleUrls: ['./reg-medida.component.css']
 })
 export class RegMedidaComponent implements OnInit {
+  select: 'A'|'I' ='A'
   almacenResponse:AlmacenResponse
   group:FormGroup
   almacenAgregar = []
   initializeForm(){
     this.group = new FormGroup({
-    descripcion : new FormControl (null,null),
-    radio : new   FormControl(null,null),   
+    descripcion : new FormControl (null,Validators.required),
+    radio : new   FormControl(null,Validators.required),   
    });
    }
 
@@ -43,11 +44,12 @@ export class RegMedidaComponent implements OnInit {
       this.almacenService.guardaalmacen(requestGuardaAlmacen).subscribe(response=>
       {
         this.almacenResponse = response
+        this.util.showMessage('GUARDADO CORRECTAMENTE')
+        this.closeModal()
       }
       )
-    this.util.showMessage('Guardado con Exito')
   }
   clear() {
-    this.group.reset();
+    this.group.reset({radio: 'A'})
   }
 }

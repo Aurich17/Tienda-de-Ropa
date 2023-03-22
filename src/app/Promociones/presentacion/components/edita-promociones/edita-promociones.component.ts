@@ -1,6 +1,6 @@
 import { PromocionResponse, ListaPromocion } from './../../../domain/response/promociones_response';
 import { Component,Inject,OnInit} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup,Validators } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { editapromocionrequest } from 'src/app/Promociones/domain/request/promociones_request';
 import { PromocionRepository } from 'src/app/Promociones/domain/promociones.repository';
@@ -16,8 +16,8 @@ export class EditaPromocionesComponent implements OnInit {
   promocionResponse:PromocionResponse
   initializeForm(){
     this.group = new FormGroup({
-    descripcion : new FormControl (this.data?.descripcion,null),
-    radio : new   FormControl(this.data?.estado,null),
+    descripcion : new FormControl (this.data?.descripcion,Validators.required),
+    radio : new   FormControl(this.data?.estado,Validators.required),
    });
   }
 
@@ -45,8 +45,13 @@ export class EditaPromocionesComponent implements OnInit {
     this.promocionService.editapromocion(requestEditaPromocion).subscribe(response=>
     {
       this.promocionResponse = response
-      this.util.showMessage('Editado Correctamente')
+      this.util.showMessage('EDITADO CORRECTAMENTE')
+      this.closeModal()
     }
     )
-  }  
+  }
+  
+  clear(){
+    this.group.reset({radio: 'A'})
+  }
 }

@@ -1,9 +1,10 @@
 import { LoteResponse, ListaLote } from './../../../domain/response/lote_response';
 import { Component,Inject,OnInit} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { editaloterequest } from 'src/app/Lotes/domain/request/lote_request';
 import { LoteRepository } from 'src/app/Lotes/domain/lote.repository';
+import { UtilService } from 'src/app/services/util.service';
 @Component({
   selector: 'app-edita-lotes',
   templateUrl: './edita-lotes.component.html',
@@ -15,17 +16,16 @@ export class EditaLotesComponent implements OnInit {
   loteResponse:LoteResponse
   initializeForm(){
     this.group = new FormGroup({
-    descripcion : new FormControl (this.data?.descripcion,null),
-    radio : new   FormControl(this.data?.estado,null),
+    descripcion : new FormControl (this.data?.descripcion,Validators.required),
+    radio : new   FormControl(this.data?.estado,Validators.required),
    });
   }
 
-  constructor(private readonly loteService : LoteRepository, @Inject(MAT_DIALOG_DATA) private data : ListaLote,private readonly  reference: MatDialogRef<EditaLotesComponent>) { }
+  constructor(private readonly loteService : LoteRepository, @Inject(MAT_DIALOG_DATA) private data : ListaLote,private readonly  reference: MatDialogRef<EditaLotesComponent>, private readonly util: UtilService) { }
 
   ngOnInit(): void {
     this.initializeForm();
     this.codigoLote= this.data?.codigoLote
-    alert(this.data?.codigoLote)
   }
 
   closeModal() {
@@ -45,10 +45,14 @@ export class EditaLotesComponent implements OnInit {
     this.loteService.editalote(requestEditaLote).subscribe(response=>
     {
       this.loteResponse = response
-      alert('eDITADO CORRECTAMENTE');
+      this.util.showMessage('EDITADO CORRECTAMENTE')
+      this.closeModal()
     }
     
     )
+  }
+  clear() {
+    this.group.reset({radio: 'A'})
   }  
 
 }

@@ -17,6 +17,7 @@ import { UtilService } from 'src/app/services/util.service';
   styleUrls: ['./mante-lotes.component.css']
 })
 export class ManteLotesComponent implements OnInit {
+  labelPosition: 'I'|'A' = 'A'
   lote:string
   dataTable: ListaLote[]
   listaLote:ListaLote
@@ -56,8 +57,8 @@ export class ManteLotesComponent implements OnInit {
   agregaLote() {
     
     this.dialogConfig.id = "projects-modal-component";
-    this.dialogConfig.height = "800px";
-    this.dialogConfig.width = "700px";
+    this.dialogConfig.height = "500px";
+    this.dialogConfig.width = "500px";
     this.dialogConfig.disableClose = true;
     this.modalDialog = this.matDialog.open(RegLotesComponent, this.dialogConfig);
   }
@@ -70,7 +71,7 @@ export class ManteLotesComponent implements OnInit {
    const options = {
         
      disableClose: true,
-     panelClass:'container-form',
+     panelClass:'editaLote',
      data: record,
    };
  

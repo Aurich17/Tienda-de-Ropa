@@ -2,13 +2,15 @@ import { RolService } from './../../../../services/rol.service';
 import { ListaRoles, RolResponse } from './../../../domain/response/rol_response';
 import { guardarolrequest, rolrequest } from './../../../domain/request/rol_request';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegRolesComponent } from '../reg-roles/reg-roles.component';
 import { RolRepository } from 'src/app/roles/domain/rol.repository';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { UtilService } from 'src/app/services/util.service';
 import { EditaRolesComponent } from '../edita-roles/edita-roles.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 
 @Component({
@@ -17,7 +19,10 @@ import { EditaRolesComponent } from '../edita-roles/edita-roles.component';
   styleUrls: ['./mante-roles.component.css']
 })
 export class ManteRolesComponent implements OnInit {
- 
+  labelPosition: 'I' | 'A' = 'A';
+  @ViewChild(MatPaginator) paginacion: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  
   dataTable :  ListaRoles[]
   rolResponse: RolResponse;
   group:FormGroup;
@@ -56,8 +61,9 @@ export class ManteRolesComponent implements OnInit {
 
   agregaRol() {
     this.dialogConfig.id = "projects-modal-component";
-    this.dialogConfig.height = "800px";
-    this.dialogConfig.width = "700px";
+    this.dialogConfig.height = "500px";
+    this.dialogConfig.width = "500px";
+    this.dialogConfig.disableClose =true;
     this.modalDialog = this.matDialog.open(RegRolesComponent, this.dialogConfig);
   }
 
@@ -68,9 +74,8 @@ export class ManteRolesComponent implements OnInit {
    //this.cantidadApoyo = 0;
  
    const options = {
-        
      disableClose: true,
-     panelClass:'container-form',
+     panelClass:'editaRol',
      data: record,
    };
  

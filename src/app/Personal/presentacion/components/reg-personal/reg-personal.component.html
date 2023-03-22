@@ -1,54 +1,59 @@
 <h1>REGISTRO PERSONAL</h1>
-<form [formGroup]="group" class="acciones">
-    <div class="sMenu">
-        <mat-form-field class="list">
-            <input matInput type="text" placeholder="Nombre del Personal" formControlName="nombre">
-          </mat-form-field>
-    </div>
-    <div class="sMenu">
-        <mat-form-field class="list">
-            <input matInput type="text" placeholder="Apellidos del Personal" formControlName="apellido">
-          </mat-form-field>
-    </div>
-    <div class="sMenu">
-        <mat-form-field class="list">
-            <input matInput type="text" placeholder="DNI" formControlName="dni">
-          </mat-form-field>
-    </div>
-    <div class="sMenu">
-        <mat-form-field class="fecha">
-            <mat-label>Fecha Nacimiento</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento">
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-          </mat-form-field>
-    </div>
-    <div class="sMenu">
-        <mat-form-field class="list">
-            <input matInput type="text" placeholder="Telefono" formControlName="telefono">
-          </mat-form-field>
-    </div>
-    <div class="sMenu">
-        <mat-form-field class="list">
-            <input matInput type="text" placeholder="Sueldo" formControlName="sueldo">
-          </mat-form-field>
-    </div>
-    <div class="sMenu">
-        <mat-form-field class="list">
-            <input matInput type="text" placeholder="Direccion" formControlName="direccion">
-          </mat-form-field>
-    </div>
-    <div class="sMenu">
-        <mat-form-field class="fecha">
-            <mat-label>Fecha Ingreso</mat-label>
-            <input matInput [matDatepicker]="ingreso" formControlName="fechaIngreso">
-            <mat-datepicker-toggle matIconSuffix [for]="ingreso"></mat-datepicker-toggle>
-            <mat-datepicker #ingreso startView="year" [startAt]="startDate"></mat-datepicker>
-          </mat-form-field>
+<form [formGroup]="group">
+    <div class="acciones">
+        <div class="first">
+            <div class="sMenu">
+                <mat-form-field class="list">
+                    <input matInput type="text" placeholder="Nombre del Personal" formControlName="nombre">
+                  </mat-form-field>
+            </div>
+            <div class="sMenu">
+                <mat-form-field class="list">
+                    <input matInput type="text" placeholder="Apellidos del Personal" formControlName="apellido">
+                  </mat-form-field>
+            </div>
+            <div class="sMenu">
+                <mat-form-field class="list">
+                    <input matInput type="text" placeholder="DNI" formControlName="dni">
+                  </mat-form-field>
+            </div>
+            <div class="sMenu">
+                <mat-form-field class="fecha">
+                    <mat-label>Fecha Nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                  </mat-form-field>
+            </div>
+        </div>
+        <div class="second">
+            <div class="sMenu">
+                <mat-form-field class="list">
+                    <input matInput type="text" placeholder="Telefono" formControlName="telefono">
+                  </mat-form-field>
+            </div>
+            <div class="sMenu">
+                <mat-form-field class="list">
+                    <input matInput type="text" placeholder="Sueldo" formControlName="sueldo">
+                  </mat-form-field>
+            </div>
+            <div class="sMenu">
+                <mat-form-field class="list">
+                    <input matInput type="text" placeholder="Direccion" formControlName="direccion">
+                  </mat-form-field>
+            </div>
+            <div class="sMenu">
+                <mat-form-field class="fecha">
+                    <mat-label>Fecha Ingreso</mat-label>
+                    <input matInput [matDatepicker]="ingreso" formControlName="fechaIngreso">
+                    <mat-datepicker-toggle matIconSuffix [for]="ingreso"></mat-datepicker-toggle>
+                    <mat-datepicker #ingreso startView="year" [startAt]="startDate"></mat-datepicker>
+                  </mat-form-field>
+            </div>
+        </div>
     </div>
     <div class="estado">
-        <p>{{fechaIngreso | date}}</p>
-        <mat-radio-group aria-label="Select an option" class="radio" formControlName="radio">
+        <mat-radio-group aria-label="Select an option" class="radio" formControlName="radio" [(ngModel)]="select">
             <mat-radio-button value="A" color="primary">Activo</mat-radio-button>
             <mat-radio-button value="I" color="primary">Inactivo</mat-radio-button>
         </mat-radio-group>
@@ -56,7 +61,6 @@
 </form>
 <div class="botones">
     <button mat-raised-button color="primary" (click)="clear()">Limpiar</button>
-    <button mat-raised-button color="primary" (click)="mostrarLista()">Agregar</button>   
-    <button mat-raised-button color="primary" (click)="guardapersonal()">Guardar</button>   
+    <button mat-raised-button color="primary" (click)="guarda()" [disabled]="group.invalid">Guardar</button>   
     <button mat-raised-button color="primary" (click)="closeModal()">Salir</button> 
 </div>

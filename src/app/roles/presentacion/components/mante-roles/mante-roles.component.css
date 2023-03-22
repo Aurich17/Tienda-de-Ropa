@@ -24,8 +24,8 @@ h1{
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
-    width: 90%;
-    margin: 20px auto 20px auto;
+    width: 100%;
+    margin: 80px auto 20px auto;
   }
 
   .radio{
@@ -93,7 +93,7 @@ h1{
       justify-content: space-around;
     }
 
-    @media (min-width: 1600px) and (max-width: 2529px) {
+    @media (min-width: 1600px) and (max-width: 3000px) {
       .acciones{
         text-align: center;
         display: flex;
@@ -108,8 +108,8 @@ h1{
         margin-bottom: 20px;
         display: flex;
         justify-content: flex-end;
-        width: 90%;
-        margin: 100px auto 20px auto;
+        width: 100%;
+        margin: 80px auto 20px auto;
       }
   
       button{
@@ -181,7 +181,7 @@ h1{
         display: flex;
         justify-content: flex-end;
         width: 90%;
-        margin: 100px auto 20px auto;
+        margin: 80px auto 20px auto;
       }
   
       button{

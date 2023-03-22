@@ -1,6 +1,6 @@
 import { AlmacenResponse } from './../../../domain/response/almacen_response';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegAlmacenComponent } from '../reg-almacen/reg-almacen.component';
 import { ListaAlmacen } from 'src/app/almacen/domain/response/almacen_response';
@@ -9,6 +9,8 @@ import { EditaAlmacenComponent } from '../edita-almacen/edita-almacen.component'
 import { almacenrequest } from 'src/app/almacen/domain/request/almacen_request';
 import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
 import { UtilService } from 'src/app/services/util.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 
 @Component({
@@ -17,6 +19,7 @@ import { UtilService } from 'src/app/services/util.service';
   styleUrls: ['./mante-almacen.component.css']
 })
 export class ManteAlmacenComponent implements OnInit {
+  labelPosition: 'I'|'A'='A'
   almacen:string
   dataTable: ListaAlmacen[]
   listaAlmacen : ListaAlmacen
@@ -56,8 +59,8 @@ export class ManteAlmacenComponent implements OnInit {
   agregarAlmacen() {
     
     this.dialogConfig.id = "projects-modal-component";
-    this.dialogConfig.height = "800px";
-    this.dialogConfig.width = "700px";
+    this.dialogConfig.height = "500px";
+    this.dialogConfig.width = "500px";
     this.dialogConfig.disableClose = true
     this.modalDialog = this.matDialog.open(RegAlmacenComponent, this.dialogConfig);
   }
@@ -70,7 +73,7 @@ export class ManteAlmacenComponent implements OnInit {
    const options = {
         
      disableClose: true,
-     panelClass:'container-form',
+     panelClass:'editaAlmacen',
      data: record,
    };
  

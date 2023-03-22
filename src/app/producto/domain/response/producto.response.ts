@@ -1,8 +1,8 @@
-export interface AlmacenResponse{
+export interface ProductoResponse{
 
     datos : {status:number ,TotalRegistro : number ,
     
-        result :ListaAlmacen[]
+        result :ListaProducto[]
 
     },
 
@@ -10,9 +10,13 @@ export interface AlmacenResponse{
     meta: { mensaje : string }        
 }
 
-export interface ListaAlmacen{
-  codigoUnidadMedida:number;
+export interface ListaProducto{
+  codigoProducto:number;
   descripcion:string;
+  color:string;
+  talla:string;
+  tipoPrenda:number;
+  genero:string;
   estado:string;
   usuario_reg:string;
   fecha_hora_reg:string;

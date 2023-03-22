@@ -1,13 +1,14 @@
 import { AgregarMenu, ListaMenus} from 'src/app/menus/domain/response/menu_response';
 import { ManteMenuComponent} from './../mante-menu/mante-menu.component';
 import { Component,Inject,OnInit, ViewChild} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { editamenurequest, guardamenurequest, menurequest } from 'src/app/menus/domain/request/menu_request';
 import { MenuResponse } from 'src/app/menus/domain/response/menu_response';
 import { MenuRepository } from 'src/app/menus/domain/menu.repository';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { MatTable } from '@angular/material/table';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-reg-menu',
@@ -16,6 +17,7 @@ import { MatTable } from '@angular/material/table';
 })
 
 export class RegMenuComponent implements OnInit  {
+  select: 'A'|'I'='A'
 
   //------------------------------------------------------------------------------
   menusAgregar =[]; //ESTOS VALORES SON LOS QUE SE AGREGAn A LA TABLA CUANDO DE GUARDAR
@@ -37,15 +39,15 @@ export class RegMenuComponent implements OnInit  {
 
   initializeForm(){
     this.group = new FormGroup({
-    desMenu : new FormControl (null,null),
-    desIcono : new FormControl (null,null),
-    grupoMenu : new FormControl (null,null),
-    subMenu : new FormControl (null,null),
-    desUrl : new FormControl (null,null),
+    desMenu : new FormControl (null,Validators.required),
+    desIcono : new FormControl (null,Validators.required),
+    grupoMenu : new FormControl (null,Validators.required),
+    subMenu : new FormControl (null,Validators.required),
+    desUrl : new FormControl (null,Validators.required),
     radio : new   FormControl(null,null),   
    })};
 
-  constructor(private readonly menuService : MenuRepository, @Inject(MAT_DIALOG_DATA) private data : ListaMenus,private readonly  reference: MatDialogRef<RegMenuComponent>){}
+  constructor(private readonly menuService : MenuRepository, @Inject(MAT_DIALOG_DATA) private data : ListaMenus,private readonly  reference: MatDialogRef<RegMenuComponent>, private readonly util: UtilService){}
   
   ngOnInit(): void {
     console.log('Se a inicializado el REG-MENU');
@@ -58,16 +60,15 @@ export class RegMenuComponent implements OnInit  {
   guardamenu(){
     //Esto agarra los valores del HTML dentro del FormGroup
     const requestGuardaRol: guardamenurequest =<guardamenurequest>{}
+    const valores = this.group.value
 
-    for(let i = 0 ; i < this.menusAgregar.length; i++){
-      console.log('Este es el Array Nro: '+i);
       requestGuardaRol.CodigoMenu = 0
-      requestGuardaRol.Descripcion = this.menusAgregar[i][0]
-      requestGuardaRol.IndicadorGrupoMenu = this.menusAgregar[i][1]
-      requestGuardaRol.CodigoGrupoMenu = this.menusAgregar[i][2]
-      requestGuardaRol.linkmenu = this.menusAgregar[i][3]
-      requestGuardaRol.Estado = this.menusAgregar[i][4]
-      requestGuardaRol.iconomenu = this.menusAgregar[i][5]
+      requestGuardaRol.Descripcion = valores['desMenu']
+      requestGuardaRol.IndicadorGrupoMenu = valores['subMenu']
+      requestGuardaRol.CodigoGrupoMenu = valores['grupoMenu']
+      requestGuardaRol.linkmenu = valores['desUrl']
+      requestGuardaRol.Estado = valores['radio']
+      requestGuardaRol.iconomenu = valores['desIcono']
       requestGuardaRol.Usuario_reg = 'admin'
       requestGuardaRol.Tipo = 'I'
 
@@ -80,25 +81,13 @@ export class RegMenuComponent implements OnInit  {
       this.menuService.guardamenu(requestGuardaRol).subscribe(response=>
       {
         this.menuResponse = response
+        this.util.showMessage('GUARDADO CORRECTAMENTE')
+        this.closeModal()
       }
       )
-    }
-    alert('GUARDADO CON EXITO');
   }
-  mostrarLista(){
-    const valores = this.group.value
-    let lista = [];
-    lista.push(valores['desMenu'])
-    lista.push(valores['subMenu'])
-    lista.push(valores['grupoMenu'])
-    lista.push(valores['desUrl'])
-    lista.push(valores['radio'])
-    lista.push(valores['desIcono'])
-    this.menusAgregar.push(lista)
 
-     console.log('Tamano del array: '+this.menusAgregar.length)
-    for(let i = 0 ; i < this.menusAgregar.length; i++){
-       console.log(this.menusAgregar[i]);
-     }
+  clear() {
+    this.group.reset({radio: 'A'})
   }
 }

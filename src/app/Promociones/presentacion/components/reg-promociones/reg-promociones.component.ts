@@ -12,13 +12,14 @@ import { UtilService } from 'src/app/services/util.service';
   styleUrls: ['./reg-promociones.component.css']
 })
 export class RegPromocionesComponent implements OnInit {
+  select: 'A'|'I' = 'A'
   promocionAgregar =[];
   promocionResponse:PromocionResponse
   group:FormGroup;
   initializeForm(){
     this.group = new FormGroup({
-    descripcion : new FormControl (null,null),
-    radio : new   FormControl(null,null),   
+    descripcion : new FormControl (null,Validators.required),
+    radio : new   FormControl(null,Validators.required),   
    });
    }
   constructor(private readonly  promocionService : PromocionRepository,private readonly  reference: MatDialogRef<RegPromocionesComponent>, private readonly util: UtilService) { }
@@ -33,36 +34,22 @@ export class RegPromocionesComponent implements OnInit {
 
   guardaPromocion(){
     const requestGuardaPromocion: guardapromocionrequest =<guardapromocionrequest>{}
+    const valores = this.group.value
     
-    for(let i = 0 ; i < this.promocionAgregar.length; i++){
-      console.log('Este es el Array Nro: '+i);
-      requestGuardaPromocion.Descripcion = this.promocionAgregar[i][0]
-      requestGuardaPromocion.Estado = this.promocionAgregar[i][1]
+      requestGuardaPromocion.Descripcion = valores['descripcion']
+      requestGuardaPromocion.Estado = valores['radio']
       requestGuardaPromocion.Usuario = 'Admin'
       requestGuardaPromocion.Tipo = 'I'
       
       this.promocionService.guardapromocion(requestGuardaPromocion).subscribe(response=>
       {
         this.promocionResponse = response
+        this.util.showMessage('GUARDADO CORRECTAMENTE')
+        this.closeModal()
       }
       )
-    }
-    this.util.showMessageError('Guardado con Exito')
-  }
-  mostrarLista(){
-    const valores = this.group.value
-    let lista = [];
-
-    lista.push(valores['descripcion'])
-    lista.push(valores['radio'])
-    
-    this.promocionAgregar.push(lista)
-    console.log('Tamano del array: '+this.promocionAgregar.length)
-    for(let i = 0 ; i < this.promocionAgregar.length; i++){
-       console.log(this.promocionAgregar[i]);
-     }
   }
   clear() {
-    this.group.reset();
+    this.group.reset({radio: 'A'})
   }
 }

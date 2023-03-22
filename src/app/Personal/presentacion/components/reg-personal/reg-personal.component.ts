@@ -14,6 +14,7 @@ import { UtilService } from 'src/app/services/util.service';
   styleUrls: ['./reg-personal.component.css']
 })
 export class RegPersonalComponent implements OnInit {
+  select: 'A'|'I' = 'A'
   fechaIngreso:string
   personalAgregar =[]; //ESTOS VALORES SON LOS QUE SE AGREGAn A LA TABLA CUANDO DE GUARDAR
   group:FormGroup
@@ -24,15 +25,14 @@ export class RegPersonalComponent implements OnInit {
 
   initializeForm(){
     this.group = new FormGroup({
-    nombre : new FormControl (null,null),
-    apellido : new FormControl (null, null),
-    dni : new   FormControl(null,null),
-    areas : new   FormControl(null,null),
-    fechaNacimiento : new   FormControl(null,null),
-    telefono : new   FormControl(null,null),
-    sueldo : new   FormControl(null,null),
+    nombre : new FormControl (null,Validators.required),
+    apellido : new FormControl (null, Validators.required),
+    dni : new   FormControl(null,Validators.required),
+    fechaNacimiento : new   FormControl(null,Validators.required),
+    telefono : new   FormControl(null,Validators.required),
+    sueldo : new   FormControl(null,Validators.required),
     direccion : new   FormControl(null,null),
-    fechaIngreso : new   FormControl(null,null),
+    fechaIngreso : new   FormControl(null,Validators.required),
     radio : new   FormControl(null,null), 
    });
    }
@@ -47,58 +47,40 @@ export class RegPersonalComponent implements OnInit {
     this.reference.close();
   }
 
-  guardapersonal(){
+  guarda(){//QUEDA PENDIENTE LAS DOS FILAS
     //Esto agarra los valores del HTML dentro del FormGroup
     const requestGuardaPersonal: guardapersonalrequest =<guardapersonalrequest>{}
+    const valores = this.group.value
+    let fechaNacimiento = this.miDatePipe.transform(valores['fechaNacimiento'], "yyyy-MM-ddTHH:mm:ss")
+    let fechaIngreso = this.miDatePipe.transform(valores['fechaIngreso'], "yyyy-MM-ddTHH:mm:ss")
 
     for(let i = 0 ; i < this.personalAgregar.length; i++){
       console.log('Este es el Array Nro: '+i);
       requestGuardaPersonal.CodigoPersonal = 0
-      requestGuardaPersonal.nombres = this.personalAgregar[i][0]
-      requestGuardaPersonal.apellidos = this.personalAgregar[i][1]
-      requestGuardaPersonal.dni = this.personalAgregar[i][2]
-      requestGuardaPersonal.fecha_nac = this.personalAgregar[i][3]
-      requestGuardaPersonal.telefono = this.personalAgregar[i][4]
-      requestGuardaPersonal.fecha_ing = this.personalAgregar[i][5]
-      requestGuardaPersonal.sueldo = this.personalAgregar[i][6]
-      requestGuardaPersonal.direccion = this.personalAgregar[i][7]
-      requestGuardaPersonal.Estado = this.personalAgregar[i][8]
+      requestGuardaPersonal.nombres = valores['nombre']
+      requestGuardaPersonal.apellidos = valores['apellido']
+      requestGuardaPersonal.dni = valores['dni']
+      requestGuardaPersonal.fecha_nac = fechaNacimiento
+      requestGuardaPersonal.telefono = valores['telefono']
+      requestGuardaPersonal.fecha_ing = fechaIngreso
+      requestGuardaPersonal.sueldo = valores['sueldo']
+      requestGuardaPersonal.direccion = valores['direccion']
+      requestGuardaPersonal.Estado = valores['radio']
       requestGuardaPersonal.Usuario_reg = 'Admin'
       requestGuardaPersonal.Tipo = 'I'
       
       this.personalService.guardapersonal(requestGuardaPersonal).subscribe(response=>
       {
         this.personalResponse = response
+        this.util.showMessage('GUARDADO CORRECTAMENTE');
+        this.closeModal()
       }
       )
     }
-    this.util.showMessage('Guardado con Exito');
-  }
-  mostrarLista(){
-    const valores = this.group.value
-    let lista = [];
-    let fechaNacimiento = this.miDatePipe.transform(valores['fechaNacimiento'], "yyyy-MM-ddTHH:mm:ss")
-    let fechaIngreso = this.miDatePipe.transform(valores['fechaIngreso'], "yyyy-MM-ddTHH:mm:ss")
-
-
-    lista.push(valores['nombre'])
-    lista.push(valores['apellido'])
-    lista.push(valores['dni'])
-    lista.push(fechaNacimiento)
-    lista.push(valores['telefono'])
-    lista.push(fechaIngreso)
-    lista.push(valores['sueldo'])
-    lista.push(valores['direccion'])
-    lista.push(valores['radio'])
-    this.personalAgregar.push(lista)
-
-     console.log('Tamano del array: '+this.personalAgregar.length)
-    for(let i = 0 ; i < this.personalAgregar.length; i++){
-       console.log(this.personalAgregar[i]);
-     }
+   
   }
   clear() {
-    this.group.reset();
+    this.group.reset({radio: 'A'})
   }
   SendDataonChange(event: any) {
     console.log(event.target.value);

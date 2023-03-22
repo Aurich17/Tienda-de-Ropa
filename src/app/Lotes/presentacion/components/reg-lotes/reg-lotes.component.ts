@@ -1,6 +1,6 @@
 import { LoteResponse} from './../../../domain/response/lote_response';
 import { Component,OnInit} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
 import {  guardaloterequest } from 'src/app/Lotes/domain/request/lote_request';
 import { LoteRepository } from 'src/app/Lotes/domain/lote.repository';
@@ -12,13 +12,14 @@ import { UtilService } from 'src/app/services/util.service';
   styleUrls: ['./reg-lotes.component.css']
 })
 export class RegLotesComponent implements OnInit {
+  select: 'A'|'I' ='A'
   loteAgregar =[];
   loteResponse:LoteResponse
   group:FormGroup;
   initializeForm(){
     this.group = new FormGroup({
-    descripcion : new FormControl (null,null),
-    radio : new   FormControl(null,null),   
+    descripcion : new FormControl (null,Validators.required),
+    radio : new   FormControl(null,Validators.required),   
    });
    }
   constructor(private readonly  loteService : LoteRepository,private readonly  reference: MatDialogRef<RegLotesComponent>,  private readonly util: UtilService) { }
@@ -33,36 +34,22 @@ export class RegLotesComponent implements OnInit {
 
   guardalote(){
     const requestGuardaLote: guardaloterequest =<guardaloterequest>{}
+    const valores = this.group.value
     
-    for(let i = 0 ; i < this.loteAgregar.length; i++){
-      console.log('Este es el Array Nro: '+i);
-      requestGuardaLote.Descripcion = this.loteAgregar[i][0]
-      requestGuardaLote.Estado = this.loteAgregar[i][1]
+      requestGuardaLote.Descripcion = valores['descripcion']
+      requestGuardaLote.Estado = valores['radio']
       requestGuardaLote.Usuario = 'Admin'
       requestGuardaLote.Tipo = 'I'
       
       this.loteService.guardalote(requestGuardaLote).subscribe(response=>
       {
         this.loteResponse = response
+        this.util.showMessage('GUARDADO CORRECTAMENTE')
+        this.closeModal()
       }
       )
-    }
-    this.util.showMessage('Guardado con Exito')
-  }
-  mostrarLista(){
-    const valores = this.group.value
-    let lista = [];
-
-    lista.push(valores['descripcion'])
-    lista.push(valores['radio'])
-    
-    this.loteAgregar.push(lista)
-    console.log('Tamano del array: '+this.loteAgregar.length)
-    for(let i = 0 ; i < this.loteAgregar.length; i++){
-       console.log(this.loteAgregar[i]);
-     }
   }
   clear() {
-    this.group.reset();
+    this.group.reset({radio: 'A'})
   }
 }

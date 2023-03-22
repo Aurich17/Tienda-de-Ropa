@@ -1,3 +1,3 @@
-export interface almacenrequest{Descripcion:string,Estado:string};
-export interface guardaalmacenrequest{Descripcion:string,Estado:string,Usuario_reg:string,Tipo:string};
-export interface editaalmacenrequest{CodigoUnidadMedida:string, Descripcion:string,Estado:string,Usuario_reg:string,Tipo:string}
+export interface productorequest{Descripcion:string,Color:string,Talla:string,Tipo_Prenda:number,Genero:string,Estado:string};
+export interface guardaproductorequest{CodigoProducto:string,Descripcion:string,Color:string,Talla:string,Tipo_Prenda:string,Genero:string,Estado:string,Usuario_reg:string,Tipo:string};
+export interface editaproductorequest{CodigoProducto:string,Descripcion:string,Color:string,Talla:string,Tipo_Prenda:string,Genero:string,Estado:string,Usuario_reg:string,Tipo:string}

@@ -17,6 +17,7 @@ import { UtilService } from 'src/app/services/util.service';
   styleUrls: ['./mante-promociones.component.css']
 })
 export class MantePromocionesComponent implements OnInit {
+  labelPosition: 'I'|'A'='A'
   group:FormGroup
   dataTable:ListaPromocion[]
   listaPromocion:ListaPromocion
@@ -57,8 +58,8 @@ export class MantePromocionesComponent implements OnInit {
   agregarPromocion() {
     
     this.dialogConfig.id = "projects-modal-component";
-    this.dialogConfig.height = "800px";
-    this.dialogConfig.width = "700px";
+    this.dialogConfig.height = "500px";
+    this.dialogConfig.width = "500px";
     this.dialogConfig.disableClose = true
     this.modalDialog = this.matDialog.open(RegPromocionesComponent, this.dialogConfig);
   }
@@ -71,7 +72,7 @@ export class MantePromocionesComponent implements OnInit {
    const options = {
         
      disableClose: true,
-     panelClass:'container-form',
+     panelClass:'editaPromo',
      data: record,
    };
  

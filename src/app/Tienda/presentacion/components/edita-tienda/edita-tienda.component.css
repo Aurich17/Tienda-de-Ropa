@@ -1,6 +1,6 @@
-::ng-deep.mat-dialog-container {
-  width: 550px;
-  height:  600px;
+::ng-deep.editaTienda {
+  width: 500px;
+  height:  500px;
 }
 
 h1{

@@ -1,6 +1,6 @@
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { Component, OnInit} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormControlName } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { MenuRepository } from 'src/app/menus/domain/menu.repository';
 import { ListaMenus, MenuResponse } from 'src/app/menus/domain/response/menu_response';
@@ -17,6 +17,8 @@ import { MenuService } from 'src/app/services/menu.service';
   styleUrls: ['./mante-menu.component.css'],
 })
 export class ManteMenuComponent implements OnInit {
+  select: 'false'|'true'='false';
+  labelPosition: 'I' | 'A' = 'A';
   selected = new FormControl('valid', [Validators.required, Validators.pattern('false')]);
   dataTable : ListaMenus[];
   menuResponse : MenuResponse;
@@ -26,6 +28,7 @@ export class ManteMenuComponent implements OnInit {
   menus='menus'
   dialogConfig = new MatDialogConfig();
   modalDialog: MatDialogRef<RegMenuComponent, any> | undefined;
+  estado = new FormControl('listMenu');
 
   metadataTable : MetadataTable[] = [
     {field:'codigoMenu',title:'Cod.Menu'},
@@ -58,8 +61,9 @@ export class ManteMenuComponent implements OnInit {
 
   agregarMenu() {
     this.dialogConfig.id = "projects-modal-component";
-    this.dialogConfig.height = "800px";
-    this.dialogConfig.width = "700px";
+    this.dialogConfig.height = "600px";
+    this.dialogConfig.width = "500px";
+    this.dialogConfig.disableClose = true;
     this.modalDialog = this.matDialog.open(RegMenuComponent, this.dialogConfig);
   }
   openModal(record : any){
@@ -68,9 +72,8 @@ export class ManteMenuComponent implements OnInit {
    //this.cantidadApoyo = 0;
  
    const options = {
-        
      disableClose: true,
-     panelClass:'custom-modalbox',
+     panelClass:'editaMenu',
      data: record,
    };
  

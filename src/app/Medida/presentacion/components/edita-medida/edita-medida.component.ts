@@ -1,9 +1,10 @@
 import { Component,Inject,OnInit} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MedidaRepository } from 'src/app/Medida/domain/medida.repository';
 import { editaalmacenrequest } from 'src/app/Medida/domain/request/medida_request';
 import { AlmacenResponse, ListaAlmacen } from 'src/app/Medida/domain/response/medida_response';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-edita-medida',
@@ -17,11 +18,11 @@ export class EditaMedidaComponent implements OnInit {
   almacenResponse:AlmacenResponse
   initializeForm(){
     this.group = new FormGroup({
-    descripcion : new FormControl (this.data?.descripcion,null),
-    radio : new FormControl(this.data?.estado,null),
+    descripcion : new FormControl (this.data?.descripcion,Validators.required),
+    radio : new FormControl(this.data?.estado,Validators.required),
    });
   }
-  constructor(private readonly almacenService : MedidaRepository, @Inject(MAT_DIALOG_DATA) private data : ListaAlmacen,private readonly  reference: MatDialogRef<EditaMedidaComponent>) { }
+  constructor(private readonly almacenService : MedidaRepository, @Inject(MAT_DIALOG_DATA) private data : ListaAlmacen,private readonly  reference: MatDialogRef<EditaMedidaComponent>, private readonly util: UtilService) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -45,13 +46,14 @@ export class EditaMedidaComponent implements OnInit {
     this.almacenService.editaalmacen(requestEditaAlmacen).subscribe(response=>
     {
       this.almacenResponse = response
-      alert('eDITADO CORRECTAMENTE');
+      this.util.showMessage('EDITADO CORRECTAMENTE')
+      this.closeModal()
     }
     
     )
   }
   clear() {
-    this.group.reset();
+    this.group.reset({radio: 'A'})
   }  
 
 }

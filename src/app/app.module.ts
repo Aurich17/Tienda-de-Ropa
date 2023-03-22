@@ -35,6 +35,8 @@ import { LoteService } from './services/lote.service';
 import { TiendaRepository } from './Tienda/domain/tienda.repository';
 import { MedidaRepository } from './Medida/domain/medida.repository';
 import { MedidaService } from './services/medida.service';
+import { ProductoRepository } from './producto/domain/producto.repository';
+import { ProductoService } from './services/producto.service';
 
 
 
@@ -56,7 +58,7 @@ import { MedidaService } from './services/medida.service';
     AppRoutingModule,MatInputModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,
   ],
   providers: [
   DatePipe,
@@ -70,6 +72,7 @@ import { MedidaService } from './services/medida.service';
   {provide: TiendaRepository, useClass: TiendaService},
   {provide: PromocionRepository, useClass: PromocionService},
   {provide: MedidaRepository, useClass: MedidaService},
+  {provide: ProductoRepository, useClass: ProductoService},
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
  

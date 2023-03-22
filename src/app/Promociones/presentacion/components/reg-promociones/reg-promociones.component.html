@@ -6,7 +6,7 @@
           </mat-form-field>
     </div>
     <div class="estado">
-        <mat-radio-group aria-label="Select an option" class="radio" formControlName="radio">
+        <mat-radio-group aria-label="Select an option" class="radio" formControlName="radio" [(ngModel)]="select">
             <mat-radio-button value="A" color="primary">Activo</mat-radio-button>
             <mat-radio-button value="I" color="primary">Inactivo</mat-radio-button>
         </mat-radio-group>
@@ -14,7 +14,6 @@
 </form>
 <div class="botones">
     <button mat-raised-button color="primary" (click)="clear()">Limpiar</button>
-    <button mat-raised-button color="primary" (click)="mostrarLista()">Agregar</button>   
-    <button mat-raised-button color="primary" (click)="guardaPromocion()">Guardar</button>   
+    <button mat-raised-button color="primary" (click)="guardaPromocion()" [disabled]="group.invalid">Guardar</button>   
     <button mat-raised-button color="primary" (click)="closeModal()">Salir</button> 
 </div>

@@ -1,9 +1,10 @@
 import {TiendaResponse, ListaTienda } from './../../../domain/response/tienda_response';
 import { Component,Inject,OnInit} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { editatiendarequest } from 'src/app/Tienda/domain/request/tienda_request';
 import { TiendaRepository } from 'src/app/Tienda/domain/tienda.repository';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-edita-tienda',
@@ -16,17 +17,16 @@ export class EditaTiendaComponent implements OnInit {
   tiendaResponse:TiendaResponse
   initializeForm(){
     this.group = new FormGroup({
-    descripcion : new FormControl (this.data?.descripcion,null),
-    radio : new   FormControl(this.data?.estado,null),
-    direccion : new FormControl(this.data?.direccion,null),
+    descripcion : new FormControl (this.data?.descripcion,Validators.required),
+    radio : new   FormControl(this.data?.estado,Validators.required),
+    direccion : new FormControl(this.data?.direccion,Validators.required),
    });
   }
-  constructor(private readonly tiendaService : TiendaRepository, @Inject(MAT_DIALOG_DATA) private data : ListaTienda,private readonly  reference: MatDialogRef<EditaTiendaComponent>) { }
+  constructor(private readonly tiendaService : TiendaRepository, @Inject(MAT_DIALOG_DATA) private data : ListaTienda,private readonly  reference: MatDialogRef<EditaTiendaComponent>,  private readonly util: UtilService) { }
 
   ngOnInit(): void {
     this.initializeForm();
     this.codigoTienda= this.data?.codigoTienda
-    alert(this.data?.codigoTienda)
   }
 
   closeModal() {
@@ -48,10 +48,13 @@ export class EditaTiendaComponent implements OnInit {
     this.tiendaService.editatienda(requestEditaTienda).subscribe(response=>
     {
       this.tiendaResponse = response
-      alert('eDITADO CORRECTAMENTE');
+      this.util.showMessage('EDITADO CORRECTAMENTE')
+      this.closeModal()
     }
     
     )
+  }
+  clear(){
+    this.group.reset({radio: 'A'})
   }  
-
 }

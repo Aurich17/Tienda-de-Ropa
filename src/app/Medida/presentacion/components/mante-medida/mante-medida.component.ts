@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from '@angular/forms';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegMedidaComponent } from '../reg-medida/reg-medida.component';
 import { AlmacenResponse, ListaAlmacen } from 'src/app/Medida/domain/response/medida_response';
@@ -8,6 +8,10 @@ import { MedidaRepository } from 'src/app/Medida/domain/medida.repository';
 import { UtilService } from 'src/app/services/util.service';
 import { EditaMedidaComponent } from '../edita-medida/edita-medida.component';
 import { almacenrequest } from 'src/app/Medida/domain/request/medida_request';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+
+
 
 
 
@@ -17,6 +21,8 @@ import { almacenrequest } from 'src/app/Medida/domain/request/medida_request';
   styleUrls: ['./mante-medida.component.css']
 })
 export class ManteMedidaComponent implements OnInit {
+  labelPosition: 'I'|'A'='A'
+  public page:number
   almacen:string
   dataTable: ListaAlmacen[]
   listaAlmacen : ListaAlmacen
@@ -56,8 +62,8 @@ export class ManteMedidaComponent implements OnInit {
   agregar() {
     
     this.dialogConfig.id = "projects-modal-component";
-    this.dialogConfig.height = "800px";
-    this.dialogConfig.width = "700px";
+    this.dialogConfig.height = "500px";
+    this.dialogConfig.width = "500px";
     this.dialogConfig.disableClose = true
     this.modalDialog = this.matDialog.open(RegMedidaComponent, this.dialogConfig);
   }
@@ -70,7 +76,7 @@ export class ManteMedidaComponent implements OnInit {
    const options = {
         
      disableClose: true,
-     panelClass:'container-form',
+     panelClass:'editaMedida',
      data: record,
    };
  

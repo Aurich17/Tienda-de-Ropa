@@ -38,7 +38,7 @@ h1{
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
-  width: 90%;
+  width: 100%;
   margin: 20px auto 20px auto;
 }
 
@@ -93,7 +93,7 @@ button{
 
 
   /*PANTALLA GRANDE DE ESCRITORIO*/
-  @media (min-width: 1600px) and (max-width: 2529px) {
+  @media (min-width: 1600px) and (max-width: 3000px) {
 
     .acciones{
       text-align: center;
@@ -109,8 +109,8 @@ button{
       margin-bottom: 20px;
       display: flex;
       justify-content: flex-end;
-      width: 90%;
-      margin: 100px auto 20px auto;
+      width: 100%;
+      margin: 80px auto 20px auto;
     }
 
     button{
@@ -185,8 +185,8 @@ button{
       margin-bottom: 20px;
       display: flex;
       justify-content: flex-end;
-      width: 90%;
-      margin: 100px auto 20px auto;
+      width: 100%;
+      margin: 80px auto 20px auto;
     }
 
     button{
