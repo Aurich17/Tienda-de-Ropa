@@ -17,7 +17,10 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 
 }, // lo que hace es cargar los archivo de ese modulo
 
-
+{
+    path: "IngresoProducto",
+    loadChildren: () => import("./IngresoProducto/ingreso-producto.module").then(m => m.IngresoProductoModule)
+},
 
 
 {
@@ -62,6 +65,8 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     path: "Medida",
     loadChildren: () => import("./medida/mante-medida.module").then(m => m.ManteMedidaModule)
 },
+
+
 /*
 {
 

@@ -10,7 +10,7 @@ import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { AperturaParteEmpleado, AperturaParteEstacion, RequestParte } from 'src/app/aperturaparte/domain/parte-entity';
 import { ActividadResponse, EmpleadoResponse, EstacionResponse } from 'src/app/aperturaparte/domain/parte-respuesta';
 import { AperturaparteRepository } from 'src/app/aperturaparte/domain/parte.repository';
-import { InformeParteRepository } from 'src/app/informeparte/domain/informeparte.repository';
+
 import { RequestInformeTrazabilidad } from 'src/app/informetrazabilidad/domain/informetrazabilidad-entity';
 import { InformeTrazabilidadList, InformeTrazabilidadResponse } from 'src/app/informetrazabilidad/domain/informetrazabilidad-response';
 import { InformeTrazabilidadRepository } from 'src/app/informetrazabilidad/domain/informetrazabilidad.repository';
