@@ -1,7 +1,18 @@
-
-
+/* .tabla{
+    background-color: red;
+} */
+.cabecera{
+    font-size: 50px;
+    background-color: var(--color-primary);
+}
+.highline{
+    text-align: center;
+}
 .highline:hover {
-
-background-color:grey;
-
+    background-color:grey;
+}
+.centro{
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
 }

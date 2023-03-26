@@ -2,11 +2,11 @@
 <div fxLayout="column">
 
 <table matTableExporter mat-table [dataSource] = "dataSource"  
-#exporter="matTableExporter"  
+#exporter="matTableExporter"
 >
  <ng-container></ng-container>
     <ng-container *ngFor="let metadata of metadataTable" [matColumnDef]="metadata.field">
-        <th mat-sort-header="name" mat-header-cell *matHeaderCellDef>
+        <th mat-sort-header="name" mat-header-cell *matHeaderCellDef class="centro">
           {{ metadata.title }}
         </th>
         <td mat-cell *matCellDef="let row">
@@ -14,14 +14,11 @@
         </td>
     </ng-container>
     
-    <tr mat-header-row *matHeaderRowDef="columnsToView"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToView" class = "highline"></tr>
-    
- </table>
-
- 
-                 
+    <tr mat-header-row *matHeaderRowDef="columnsToView" class="cabecera"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToView" class="highline"></tr>
+ </table>         
 </div>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 <div>
   <button mat-raised-button style="width: 10%;" color="warn" (click)="exporter.exportTable('xlsx', {fileName:'Informe', sheet: 'Datos', Props: {Author: 'Filtros lys'}})">Excel</button>
 </div>

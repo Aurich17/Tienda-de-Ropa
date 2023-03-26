@@ -11,9 +11,10 @@ import { PageMantePromocionesComponent } from './presentacion/page-mante-promoci
 import { RegPromocionesComponent } from './presentacion/components/reg-promociones/reg-promociones.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import { EditaPromocionesComponent } from './presentacion/components/edita-promociones/edita-promociones.component';
 
 @NgModule({
-  declarations: [MantePromocionesComponent, PageMantePromocionesComponent, RegPromocionesComponent],
+  declarations: [MantePromocionesComponent, PageMantePromocionesComponent, RegPromocionesComponent, EditaPromocionesComponent],
   imports: [
     CommonModule,
     SharedModule,

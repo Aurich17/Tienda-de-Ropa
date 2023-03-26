@@ -9,8 +9,8 @@ $prueba-app-dark-primary: mat-palette($mat-purple, 500);
 $prueba-app-dark-accent:  mat-palette($mat-blue-grey, 900);
 $prueba-app-dark-warn:    mat-palette($mat-red,A400);
 
-$prueba-app-vivo-primary: mat-palette($mat-amber, 400);
-$prueba-app-vivo-accent:  mat-palette($mat-green, A200);
+$prueba-app-vivo-primary: mat-palette($mat-pink, A400);
+$prueba-app-vivo-accent:  mat-palette($mat-blue-grey, 900);
 $prueba-app-vivo-warn:    mat-palette($mat-red,A400);
 
 $light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);

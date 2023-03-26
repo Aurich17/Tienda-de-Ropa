@@ -1,16 +1,10 @@
-import { Component, OnInit} from '@angular/core';
-import {MatDialogRef } from '@angular/material/dialog';
-
-export interface RegMenus {
-  almacen: string;
-  }
-
-  const ELEMENT_DATA: RegMenus[] = [
-    {almacen: 'Almacen A1'},
-    {almacen: 'Almacen A2'},
-    {almacen: 'Almacen A1'},
-    {almacen: 'Almacen A1'},
-    ];
+import { AlmacenResponse, ListaAlmacen } from './../../../domain/response/almacen_response';
+import { Component,Inject,OnInit} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {  guardaalmacenrequest } from 'src/app/almacen/domain/request/almacen_request';
+import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-reg-almacen',
@@ -18,16 +12,46 @@ export interface RegMenus {
   styleUrls: ['./reg-almacen.component.css']
 })
 export class RegAlmacenComponent implements OnInit {
-  subMenu = 'subMenu'
+  select: 'A'|'I' ='A'
+  almacenResponse:AlmacenResponse
+  group:FormGroup
+  almacenAgregar = []
+  initializeForm(){
+    this.group = new FormGroup({
+    descripcion : new FormControl (null,Validators.required),
+    direccion : new FormControl (null, Validators.required),
+    radio : new   FormControl(null,Validators.required),   
+   });
+   }
 
-  constructor(public dialogRef: MatDialogRef<RegAlmacenComponent>) { }
+  constructor(private readonly almacenService : AlmacenRepository,private readonly  reference: MatDialogRef<RegAlmacenComponent>, private readonly util: UtilService) { }
   
-  displayedColumns: string[] = ['almacen', 'opciones'];
-  dataSource = ELEMENT_DATA;
 
   ngOnInit(): void {
+    this.initializeForm();
   }
   closeModal() {
-    this.dialogRef.close();
+    this.reference.close();
+  }
+
+  guardaalmacen(){
+    const requestGuardaAlmacen: guardaalmacenrequest =<guardaalmacenrequest>{}
+    const valores = this.group.value
+      requestGuardaAlmacen.Descripcion = valores['descripcion']
+      requestGuardaAlmacen.Direccion = valores['direccion']
+      requestGuardaAlmacen.Estado = valores['radio']
+      requestGuardaAlmacen.Usuario_reg = 'Admin'
+      requestGuardaAlmacen.Tipo = 'I'
+      
+      this.almacenService.guardaalmacen(requestGuardaAlmacen).subscribe(response=>
+      {
+        this.almacenResponse = response
+        this.util.showMessage('GUARDADO CON EXITO')
+        this.closeModal()
+      }
+      )
+  }
+  clear(){
+    this.group.reset({radio: 'A'})
   }
 }

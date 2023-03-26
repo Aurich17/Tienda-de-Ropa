@@ -11,9 +11,10 @@ import { PageManteAlmacenComponent } from './presentacion/page-mante-almacen/pag
 import { RegAlmacenComponent } from './presentacion/components/reg-almacen/reg-almacen.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import { EditaAlmacenComponent } from './presentacion/components/edita-almacen/edita-almacen.component';
 
 @NgModule({
-  declarations: [ManteAlmacenComponent, PageManteAlmacenComponent, RegAlmacenComponent],
+  declarations: [ManteAlmacenComponent, PageManteAlmacenComponent, RegAlmacenComponent, EditaAlmacenComponent],
   imports: [
     CommonModule,
     SharedModule,

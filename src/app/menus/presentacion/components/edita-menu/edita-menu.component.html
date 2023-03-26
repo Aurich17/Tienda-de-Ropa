@@ -1,0 +1,46 @@
+<h1>REGISTRO MENU</h1>
+<form [formGroup]="group" class="acciones">
+  <div class="sMenu">
+      <mat-form-field class="list">
+          <input matInput type="text" placeholder="Descripcion Menu" formControlName="desMenu">
+      </mat-form-field>
+  </div>
+  <div class="sMenu">
+    <mat-form-field class="list">
+        <input matInput type="text" placeholder="Icono Menu" formControlName="desIcono">
+    </mat-form-field>
+</div>
+<div class="sMenu">
+  <mat-form-field class="list">
+    <mat-label>Grupo-Menu</mat-label>
+    <mat-select formControlName="grupoMenu">
+      <mat-option value="0">0</mat-option>
+      <mat-option value="1">1</mat-option>
+      <mat-option value="2">2</mat-option>
+      <mat-option value="3">3</mat-option>
+      <mat-option value="4">4</mat-option>
+      <mat-option value="5">5</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+  <div class="sCheck">
+    <mat-checkbox value="true" color="primary" formControlName="boolean">SubMenu</mat-checkbox>
+  </div>
+  <div class="sMenu url">
+      <mat-form-field class="list">
+          <input matInput type="text" placeholder="Descripcion URL"  formControlName="desUrl">
+        </mat-form-field>
+  </div>
+  <div class="estado">
+      <mat-radio-group aria-label="Select an option" class="radio" formControlName="radio">
+          <mat-radio-button value="A" color="primary">Activo</mat-radio-button>
+          <mat-radio-button value="I" color="primary">Inactivo</mat-radio-button>
+        </mat-radio-group>
+  </div>
+</form>
+<div class="botones">
+  <button mat-raised-button color="primary" (click)="clear()">Limpiar</button> 
+  <button mat-raised-button color="primary"(click)="editamenu()" [disabled]= "group.invalid">Guardar</button>   
+  <button mat-raised-button color="primary" (click)="closeModal()">Salir</button> 
+</div>
+

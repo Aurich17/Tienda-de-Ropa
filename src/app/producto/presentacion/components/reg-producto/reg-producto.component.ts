@@ -1,16 +1,10 @@
+import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 import {MatDialogRef } from '@angular/material/dialog';
-
-export interface RegMenus {
-  producto: string;
-  }
-
-  const ELEMENT_DATA: RegMenus[] = [
-    {producto: 'Casaca'},
-    {producto: 'Polo'},
-    {producto: 'Blusa'},
-    {producto: 'Casaca'},
-    ];
+import { ProductoResponse } from 'src/app/producto/domain/response/producto.response';
+import { ProductoRepository } from 'src/app/producto/domain/producto.repository';
+import { UtilService } from 'src/app/services/util.service';
+import { guardaproductorequest } from 'src/app/producto/domain/request/producto_request';
 
 @Component({
   selector: 'app-reg-producto',
@@ -18,20 +12,52 @@ export interface RegMenus {
   styleUrls: ['./reg-producto.component.css']
 })
 export class RegProductoComponent implements OnInit {
-  color = 'color'
-  talla = 'talla'
-  prenda = 'prenda'
-  genero = 'genero'
+  select:'A'|'I'='A'
+  productoResponse:ProductoResponse
+  group:FormGroup
+  initializeForm(){
+    this.group = new FormGroup({
+    descripcion : new FormControl (null,Validators.required),
+    color : new FormControl (null, Validators.required),
+    talla : new FormControl (null,Validators.required),
+    prenda : new FormControl (null,Validators.required),
+    genero : new FormControl (null,Validators.required),
+    radio : new   FormControl(null,null),   
+   });
+   }
 
-  constructor(public dialogRef: MatDialogRef<RegProductoComponent>) { }
+  constructor(private readonly productoService : ProductoRepository,private readonly  reference: MatDialogRef<RegProductoComponent>, private readonly util: UtilService) { }
   
-  displayedColumns: string[] = ['producto', 'opciones'];
-  dataSource = ELEMENT_DATA;
 
   ngOnInit(): void {
+    this.initializeForm();
   }
   closeModal() {
-    this.dialogRef.close();
+    this.reference.close();
   }
 
+  guarda(){
+    const valores = this.group.value
+    const requestGuardaProducto: guardaproductorequest =<guardaproductorequest>{}
+      requestGuardaProducto.CodigoProducto = '0'
+      requestGuardaProducto.Descripcion = valores['descripcion']
+      requestGuardaProducto.Color = valores['color']
+      requestGuardaProducto.Talla = valores['talla']
+      requestGuardaProducto.Genero = valores['genero']
+      requestGuardaProducto.Tipo_Prenda = valores['prenda']
+      requestGuardaProducto.Estado = valores['radio']
+      requestGuardaProducto.Usuario_reg = 'Admin'
+      requestGuardaProducto.Tipo = 'I'
+      
+      this.productoService.guardaproducto(requestGuardaProducto).subscribe(response=>
+      {
+        this.productoResponse = response
+        this.util.showMessage('GUARDADO CORRECTAMENTE')
+        this.closeModal()
+      }
+      )
+  }
+  clear() {
+    this.group.reset({radio: 'A'})
+  }
 }

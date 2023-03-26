@@ -1,32 +1,15 @@
+import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegProductoComponent } from '../reg-producto/reg-producto.component';
+import { ListaProducto, ProductoResponse } from 'src/app/producto/domain/response/producto.response';
+import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
+import { ProductoRepository } from 'src/app/producto/domain/producto.repository';
+import { UtilService } from 'src/app/services/util.service';
+import { EditaProductoComponent } from '../edita-producto/edita-producto.component';
+import { productorequest } from 'src/app/producto/domain/request/producto_request';
 
-export interface MantenimientoRoles {
-  desProducto: string;
-  codProducto: number;
-  color: string;
-  talla: string;
-  tipPrenda: string;
-  genero:string;
-  estado: string;
-  }
 
-  const ELEMENT_DATA: MantenimientoRoles[] = [
-    {codProducto: 1, desProducto: 'DesProducto1', color:'Azul', talla: 'Menu A1', tipPrenda:'Polo',genero:'M' ,estado: 'activo',},
-    {codProducto: 3, desProducto: 'DesProducto2', color:'Rojo', talla: 'Menu A2', tipPrenda:'Polo',genero:'F' ,estado: 'activo',},
-    {codProducto: 4, desProducto: 'DesProducto3', color:'Verde', talla: 'Menu A1', tipPrenda:'Polo',genero:'M' ,estado: 'activo',},
-    {codProducto: 5, desProducto: 'DesProducto4', color:'Blanco', talla: 'Menu A1', tipPrenda:'Polo',genero:'F' ,estado: 'activo',},
-    ];
-
-  interface Roles {
-    value: string;
-    viewValue: string;
-  }
-  interface Menus {
-    value: string;
-    viewValue: string;
-  }
 
 @Component({
   selector: 'app-mante-producto',
@@ -34,31 +17,42 @@ export interface MantenimientoRoles {
   styleUrls: ['./mante-producto.component.css']
 })
 export class ManteProductoComponent implements OnInit {
-  
-  colores = 'colores';
-  tallas = 'tallas';
-  prendas = 'prendas';
-  genero = 'genero';
+  select: 'M'|'F'|'%' = '%'
+  labelPosition: 'I'|'A' = 'A'
+  producto:string
+  dataTable: ListaProducto[]
+  listaProducto : ListaProducto
+  productoResponse:ProductoResponse
+  group:FormGroup
   dialogConfig = new MatDialogConfig();
   modalDialog: MatDialogRef<RegProductoComponent, any> | undefined;
 
-  displayedColumns: string[] = ['codProducto', 'desProducto', 'color', 'talla', 'tipPrenda', 'genero','estado', 'opciones'];
-  dataSource = ELEMENT_DATA;
-  //Roles
-  Roles: Roles[] = [
-    {value: 'rol1', viewValue: 'Rol1'},
-    {value: 'rol2', viewValue: 'Rol2'},
-    {value: 'rol3', viewValue: 'Rol3'},
-  ];
-  //Menus
-  Menus: Menus[] = [
-    {value: 'menu1', viewValue: 'MenuA1'},
-    {value: 'menu2', viewValue: 'MenuA2'},
-    {value: 'menu3', viewValue: 'MenuA3'},
-  ];
+  metadataTable: MetadataTable[] = [
+    {field:"codigoProducto",title: "Cod.Producto"} ,
+    {field:"descripcion", title: "Desc.Almacen"},
+    {field:"color", title: "Color"},
+    {field:"talla",title:"Talla"},
+    {field:"tipoPrenda", title:"Tipo Prenda"},
+    {field:"genero",title:"Genero"},
+    {field:"estado", title: "Estado"},
+    {field:"usuarioReg", title: "Usu.Reg"},
+    {field:"fecha_hora_reg", title: "Fecha Hora Registro"},
+    {field:"usuario_mod", title: "Usu.Mod"},
+    {field:"fecha_hora_mod", title: "Fecha Hora Mod"},     
 
+  ];
+  initializeForm(){
+    this.group = new FormGroup({
+    descripcion : new FormControl (null,null),
+    colores : new FormControl(null,null),
+    tallas: new FormControl(null,null),
+    prendas: new FormControl(null,null),
+    genero: new FormControl(null,null),
+    radio : new   FormControl(null,null),   
+   });
+   }
 
-  constructor(public matDialog: MatDialog) { }
+  constructor(public matDialog: MatDialog, private readonly productoService : ProductoRepository, private readonly util: UtilService) { }
 
   ngAfterViewInit(): void {
     document.onclick = (args: any) : void => {
@@ -67,16 +61,116 @@ export class ManteProductoComponent implements OnInit {
           }
       }
   }
+  
 
-  openModal() {
+  agregar() {
     
     this.dialogConfig.id = "projects-modal-component";
-    this.dialogConfig.height = "800px";
-    this.dialogConfig.width = "700px";
+    this.dialogConfig.height = "600px";
+    this.dialogConfig.width = "500px";
+    this.dialogConfig.disableClose = true
     this.modalDialog = this.matDialog.open(RegProductoComponent, this.dialogConfig);
   }
 
-  ngOnInit(): void {
-  }
+  openModal(record : any){
+    record =  this.listaProducto
+   //record = this.codigoEmpleado
+   //this.cantidadApoyo = 0;
+ 
+   const options = {
+        
+     disableClose: true,
+     panelClass:'editaProducto',
+     data: record,
+   };
+ 
+   const reference =  this.util.openModal(
+    EditaProductoComponent,
+      options,
+     
+     );
+     reference.subscribe((response) => {
+      this.listar()
+       if (response){
+        
+        // this.cantidadApoyo = response.CantidadApoyo;
+        // this.listaEmpleado = response.listaEmpleado
+       }
+     });
+ }
 
+ ngOnInit(): void {  
+  this.initializeForm();
+  this.listar();
+}
+
+listar (){
+  if (this.group.valid){
+   
+    const fd= new FormData();
+    const values = this.group.value
+  
+    const requestProducto: productorequest =<productorequest>{}//  this.group.value;
+   
+    requestProducto.Descripcion='%'
+    requestProducto.Color='%'
+    requestProducto.Talla='%'
+    requestProducto.Tipo_Prenda=0
+    requestProducto.Genero='%'
+    requestProducto.Estado='A'
+
+      this.productoService.listar(requestProducto).subscribe(response => 
+
+        {
+          this.productoResponse = response
+          this.dataTable = this.productoResponse.datos.result;
+        }
+          )
+
+}
+}
+editar(producto:ListaProducto){
+  this.listaProducto = producto;
+  this.openModal(this.producto);
+}
+
+listarfiltro(){
+  // console.log(this.jj)
+  if (this.group.valid){
+   
+    const fd= new FormData();
+    const values = this.group.value
+  
+    const requestProducto: productorequest =<productorequest>{}//  this.group.value;
+   
+    requestProducto.Descripcion= values['descripcion']
+    requestProducto.Color = values['colores']
+    requestProducto.Talla = values['tallas']
+    requestProducto.Tipo_Prenda = values['prendas']
+    requestProducto.Genero = values['genero']
+    requestProducto.Estado= values['radio']
+
+    if(requestProducto.Descripcion === '' || requestProducto.Descripcion == null){
+      requestProducto.Descripcion = '%'
+    }
+    if(requestProducto.Color === '' || requestProducto.Color == null){
+      requestProducto.Color = '%'
+    }
+    if(requestProducto.Talla === '' || requestProducto.Talla == null){
+      requestProducto.Talla = '%'
+    }
+    if(requestProducto.Tipo_Prenda == null){
+      requestProducto.Tipo_Prenda = 0
+    }
+    if(requestProducto.Genero === '' || requestProducto.Genero == null){
+      requestProducto.Genero = '%'
+    }
+      this.productoService.listarfiltro(requestProducto).subscribe(response => 
+        {
+          this.productoResponse = response
+          this.dataTable = this.productoResponse.datos.result;
+        }
+          )
+
+}}
 }

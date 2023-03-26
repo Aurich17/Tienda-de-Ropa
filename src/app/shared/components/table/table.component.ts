@@ -1,5 +1,6 @@
 import { Component, ContentChildren, Input, OnInit, QueryList, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatColumnDef, MatTable, MatTableDataSource } from '@angular/material/table';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 
@@ -9,14 +10,15 @@ import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-
-
+  
+  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @Input() dataTable: any[];
   @Input() metadataTable : MetadataTable[];
   @ViewChild(MatTable,{static: true}) table : MatTable<any>  //contiene una referencia al componente mat-table ,static: true que haga una excepcion
   @ContentChildren(MatColumnDef) columnsDef: QueryList<MatColumnDef>// contieen referencia a mas de un elemento
   columnsToView: string []=[];
-  @Input() paginator:MatPaginator
+
 
   dataSource:any;
   constructor() {

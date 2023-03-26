@@ -1,0 +1,59 @@
+<h1>REGISTRO PRODUCTO</h1>
+<form class="acciones" [formGroup]="group">
+    <div class="sMenu">
+        <mat-form-field class="list">
+            <input matInput type="text" placeholder="Descripcion Producto" formControlName="descripcion">
+        </mat-form-field>
+    </div>
+    <div class="sMenu">
+        <mat-form-field class="list">
+          <mat-label>Color</mat-label>
+            <mat-select formControlName="color">
+              <mat-option value="Rojo">Rojo</mat-option>
+              <mat-option value="Azul">Azul</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+
+    <div class="sMenu">
+        <mat-form-field class="list">
+          <mat-label>Talla</mat-label>
+            <mat-select  formControlName="talla">
+              <mat-option value="XL">XL</mat-option>
+              <mat-option value="M">M</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+
+    <div class="sMenu">
+      <mat-form-field class="list">
+          <mat-label>Tipo Prenda</mat-label>
+            <mat-select  formControlName="prenda">
+              <mat-option value=1>1</mat-option>
+              <mat-option value=2>2</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+
+    <div class="sMenu">
+        <mat-form-field class="list">
+          <mat-label>Genero</mat-label>
+            <mat-select formControlName="genero">
+              <mat-option value="M">Masculino</mat-option>
+              <mat-option value="F">Femenino</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+
+    <div class="estado">
+        <mat-radio-group aria-label="Select an option" class="radio" formControlName="radio">
+            <mat-radio-button value="A" color="primary">Activo</mat-radio-button>
+            <mat-radio-button value="I" color="primary">Inactivo</mat-radio-button>
+          </mat-radio-group>
+    </div>
+</form>
+<div class="botones">
+    <button mat-raised-button color="primary" (click)="clear()">Limpiar</button>
+    <button mat-raised-button color="primary" (click)="guarda()" [disabled]="group.invalid">Guardar</button>   
+    <button mat-raised-button color="primary" (click)="closeModal()">Salir</button> 
+</div>

@@ -11,9 +11,10 @@ import { PageManteMedidaComponent } from './presentacion/page-mante-medida/page-
 import { RegMedidaComponent } from './presentacion/components/reg-medida/reg-medida.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import { EditaMedidaComponent } from './presentacion/components/edita-medida/edita-medida.component';
 
 @NgModule({
-  declarations: [ManteMedidaComponent, PageManteMedidaComponent, RegMedidaComponent],
+  declarations: [ManteMedidaComponent, PageManteMedidaComponent, RegMedidaComponent, EditaMedidaComponent],
   imports: [
     CommonModule,
     SharedModule,

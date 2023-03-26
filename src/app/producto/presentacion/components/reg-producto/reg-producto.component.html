@@ -1,78 +1,59 @@
 <h1>REGISTRO PRODUCTO</h1>
-<div class="acciones">
+<form class="acciones" [formGroup]="group">
     <div class="sMenu">
         <mat-form-field class="list">
-            <input matInput type="text" placeholder="Descripcion Producto">
+            <input matInput type="text" placeholder="Descripcion Producto" formControlName="descripcion">
         </mat-form-field>
     </div>
     <div class="sMenu">
         <mat-form-field class="list">
-            <mat-select [(value)]="color">
-              <mat-option value="color" disabled>Escoge un color</mat-option>
-              <mat-option value="option2">Rojo</mat-option>
-              <mat-option value="option3">Azul</mat-option>
+          <mat-label>Color</mat-label>
+            <mat-select formControlName="color">
+              <mat-option value="Rojo">Rojo</mat-option>
+              <mat-option value="Azul">Azul</mat-option>
             </mat-select>
           </mat-form-field>
     </div>
 
     <div class="sMenu">
         <mat-form-field class="list">
-            <mat-select [(value)]="talla">
-              <mat-option value="talla" disabled>Escoge una talla</mat-option>
-              <mat-option value="option2">XL</mat-option>
-              <mat-option value="option3">M</mat-option>
+          <mat-label>Talla</mat-label>
+            <mat-select  formControlName="talla">
+              <mat-option value="XL">XL</mat-option>
+              <mat-option value="M">M</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+
+    <div class="sMenu">
+      <mat-form-field class="list">
+          <mat-label>Tipo Prenda</mat-label>
+            <mat-select  formControlName="prenda">
+              <mat-option value=1>1</mat-option>
+              <mat-option value=2>2</mat-option>
             </mat-select>
           </mat-form-field>
     </div>
 
     <div class="sMenu">
         <mat-form-field class="list">
-            <mat-select [(value)]="prenda">
-              <mat-option value="prenda" disabled>Escoge una prenda</mat-option>
-              <mat-option value="option2">Polo</mat-option>
-              <mat-option value="option3">Casaca</mat-option>
-            </mat-select>
-          </mat-form-field>
-    </div>
-
-    <div class="sMenu">
-        <mat-form-field class="list">
-            <mat-select [(value)]="genero">
-              <mat-option value="genero" disabled>Escoge un genero</mat-option>
-              <mat-option value="option2">Masculino</mat-option>
-              <mat-option value="option3">Femenino</mat-option>
+          <mat-label>Genero</mat-label>
+            <mat-select formControlName="genero">
+              <mat-option value="M">Masculino</mat-option>
+              <mat-option value="F">Femenino</mat-option>
             </mat-select>
           </mat-form-field>
     </div>
 
     <div class="estado">
-        <mat-radio-group aria-label="Select an option" class="radio">
-            <mat-radio-button value="1" color="primary">Activo</mat-radio-button>
-            <mat-radio-button value="2" color="primary">Inactivo</mat-radio-button>
+        <mat-radio-group aria-label="Select an option" class="radio" formControlName="radio" [(ngModel)]="select">
+            <mat-radio-button value="A" color="primary">Activo</mat-radio-button>
+            <mat-radio-button value="I" color="primary">Inactivo</mat-radio-button>
           </mat-radio-group>
     </div>
-</div>
+</form>
 <div class="botones">
-    <button mat-raised-button color="primary">Limpiar</button>
-    <button mat-raised-button color="primary">Agregar</button>   
-    <button mat-raised-button color="primary">Guardar</button>   
+    <button mat-raised-button color="primary" (click)="clear()">Limpiar</button>
+    <button mat-raised-button color="primary" (click)="guarda()" [disabled]="group.invalid">Guardar</button>   
     <button mat-raised-button color="primary" (click)="closeModal()">Salir</button> 
 </div>
-
-<table mat-table [dataSource]="dataSource" class="table mat-elevation-z8">
-    <ng-container matColumnDef="producto">
-        <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Productos</th>
-        <td mat-cell *matCellDef="let element" class="contenido">{{element.producto}}</td>
-    </ng-container>    
-
-    <ng-container matColumnDef="opciones" class="contenedor">
-        <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Opciones</th>
-        <td mat-cell *matCellDef="let element" class="contenido">
-          <div class="opciones">
-            <mat-icon>delete</mat-icon>
-          </div>
-        </td>
-      </ng-container>
-    
-    <mat-header-row *matHeaderRowDef="displayedColumns" class="contenedor"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

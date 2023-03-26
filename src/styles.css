@@ -9,3 +9,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     background:  rgb(5, 151, 83);
     font-weight: bolder;
 }
+
+.message-error{
+    background:  rgb(170, 34, 7);
+    font-weight: bolder;
+}

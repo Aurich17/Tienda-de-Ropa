@@ -1,20 +1,17 @@
-import { Component, OnInit} from '@angular/core';
+import { AlmacenResponse } from './../../../domain/response/almacen_response';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegAlmacenComponent } from '../reg-almacen/reg-almacen.component';
+import { ListaAlmacen } from 'src/app/almacen/domain/response/almacen_response';
+import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
+import { EditaAlmacenComponent } from '../edita-almacen/edita-almacen.component';
+import { almacenrequest } from 'src/app/almacen/domain/request/almacen_request';
+import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
+import { UtilService } from 'src/app/services/util.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
-export interface MantenimientoRoles {
-  almacen: string;
-  codAlmacen: number;
-  direccion: string;
-  estado: string;
-  }
-
-  const ELEMENT_DATA: MantenimientoRoles[] = [
-    {codAlmacen: 1, almacen: 'Almacen_A', direccion:'Centro 6300 Tepic, Nay Mexico', estado: 'activo',},
-    {codAlmacen: 2, almacen: 'Almacen_B', direccion:'Centro 6300 Tepic, Nay Mexico', estado: 'activo',},
-    {codAlmacen: 3, almacen: 'Almacen_C', direccion:'Centro 6300 Tepic, Nay Mexico', estado: 'activo',},
-    {codAlmacen: 4, almacen: 'Almacen_D', direccion:'Centro 6300 Tepic, Nay Mexico', estado: 'activo',},
-    ];
 
 @Component({
   selector: 'app-mante-almacen',
@@ -22,16 +19,33 @@ export interface MantenimientoRoles {
   styleUrls: ['./mante-almacen.component.css']
 })
 export class ManteAlmacenComponent implements OnInit {
-
-  usuario='usuario';
-  roles='roles';
-  menu='menu';
+  labelPosition: 'I'|'A'='A'
+  almacen:string
+  dataTable: ListaAlmacen[]
+  listaAlmacen : ListaAlmacen
+  almacenResponse:AlmacenResponse
+  group:FormGroup
   dialogConfig = new MatDialogConfig();
   modalDialog: MatDialogRef<RegAlmacenComponent, any> | undefined;
-  displayedColumns: string[] = ['codAlmacen', 'almacen', 'direccion', 'estado', 'opciones'];
-  dataSource = ELEMENT_DATA;
 
-  constructor(public matDialog: MatDialog) { }
+  metadataTable: MetadataTable[] = [
+    {field:"codigoAlmacen",title: "Cod.Almacen"} ,
+    {field:"descripcion", title: "Desc.Almacen"},
+    {field:"estado", title: "Estado"},
+    {field:"usuarioReg", title: "Usu.Reg"},
+    {field:"fecha_hora_reg", title: "Fecha Hora Registro"},
+    {field:"usuario_mod", title: "Usu.Mod"},
+    {field:"fecha_hora_mod", title: "Fecha Hora Mod"},     
+
+  ];
+  initializeForm(){
+    this.group = new FormGroup({
+    descripcion : new FormControl (null,null),
+    radio : new   FormControl(null,null),   
+   });
+   }
+
+  constructor(public matDialog: MatDialog, private readonly almacenService : AlmacenRepository, private readonly util: UtilService) { }
 
   ngAfterViewInit(): void {
     document.onclick = (args: any) : void => {
@@ -40,15 +54,96 @@ export class ManteAlmacenComponent implements OnInit {
           }
       }
   }
+  
 
-  openModal() {
+  agregarAlmacen() {
     
     this.dialogConfig.id = "projects-modal-component";
-    this.dialogConfig.height = "800px";
-    this.dialogConfig.width = "700px";
+    this.dialogConfig.height = "500px";
+    this.dialogConfig.width = "500px";
+    this.dialogConfig.disableClose = true
     this.modalDialog = this.matDialog.open(RegAlmacenComponent, this.dialogConfig);
   }
-  ngOnInit(): void {
-  }
 
+  openModal(record : any){
+    record =  this.listaAlmacen
+   //record = this.codigoEmpleado
+   //this.cantidadApoyo = 0;
+ 
+   const options = {
+        
+     disableClose: true,
+     panelClass:'editaAlmacen',
+     data: record,
+   };
+ 
+   const reference =  this.util.openModal(
+    EditaAlmacenComponent,
+      options,
+     
+     );
+     reference.subscribe((response) => {
+      this.listar()
+       if (response){
+        
+        // this.cantidadApoyo = response.CantidadApoyo;
+        // this.listaEmpleado = response.listaEmpleado
+       }
+     });
+ }
+
+ ngOnInit(): void {  
+  this.initializeForm();
+  this.listar();
+}
+
+listar (){
+  if (this.group.valid){
+   
+    const fd= new FormData();
+    const values = this.group.value
+  
+    const requestAlmacen: almacenrequest =<almacenrequest>{}//  this.group.value;
+   
+    requestAlmacen.Descripcion='%'
+    requestAlmacen.Estado='A'
+
+      this.almacenService.listar(requestAlmacen).subscribe(response => 
+
+        {
+          this.almacenResponse = response
+          this.dataTable = this.almacenResponse.datos.result;
+        }
+          )
+
+}
+}
+editar(almacen:ListaAlmacen){
+  this.listaAlmacen = almacen;
+  this.openModal(this.almacen);
+}
+
+listarfiltro(){
+  // console.log(this.jj)
+  if (this.group.valid){
+   
+    const fd= new FormData();
+    const values = this.group.value
+  
+    const requestRoles: almacenrequest =<almacenrequest>{}//  this.group.value;
+   
+    requestRoles.Descripcion= values['descripcion']
+    requestRoles.Estado= values['radio']
+
+    if(requestRoles.Descripcion === '' || requestRoles.Descripcion == null){
+      requestRoles.Descripcion = '%'
+    }
+      this.almacenService.listarfiltro(requestRoles).subscribe(response => 
+        {
+          this.almacenResponse = response
+          this.dataTable = this.almacenResponse.datos.result;
+        }
+          )
+
+}}
 }

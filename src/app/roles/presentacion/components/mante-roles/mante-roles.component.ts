@@ -2,13 +2,15 @@ import { RolService } from './../../../../services/rol.service';
 import { ListaRoles, RolResponse } from './../../../domain/response/rol_response';
 import { guardarolrequest, rolrequest } from './../../../domain/request/rol_request';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegRolesComponent } from '../reg-roles/reg-roles.component';
 import { RolRepository } from 'src/app/roles/domain/rol.repository';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { UtilService } from 'src/app/services/util.service';
 import { EditaRolesComponent } from '../edita-roles/edita-roles.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 
 @Component({
@@ -17,14 +19,14 @@ import { EditaRolesComponent } from '../edita-roles/edita-roles.component';
   styleUrls: ['./mante-roles.component.css']
 })
 export class ManteRolesComponent implements OnInit {
- 
-  estado = 'I';
+  labelPosition: 'I' | 'A' = 'A';
+  @ViewChild(MatPaginator) paginacion: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  
   dataTable :  ListaRoles[]
   rolResponse: RolResponse;
   group:FormGroup;
-  usuario='usuario';
   roles='roles';
-  menu='menu';
   listaRoles:ListaRoles;
   dialogConfig = new MatDialogConfig();
   modalDialog: MatDialogRef<RegRolesComponent, any> | undefined;
@@ -36,7 +38,8 @@ export class ManteRolesComponent implements OnInit {
     {field:"usuarioReg", title: "Usu.Reg"},
     {field:"fecha_hora_reg", title: "Fecha Hora Registro"},
     {field:"usuario_mod", title: "Usu.Mod"},
-    {field:"fecha_hora_mod", title: "Fecha Hora Mod"},            
+    {field:"fecha_hora_mod", title: "Fecha Hora Mod"},     
+
   ];
 
   initializeForm(){
@@ -58,23 +61,21 @@ export class ManteRolesComponent implements OnInit {
 
   agregaRol() {
     this.dialogConfig.id = "projects-modal-component";
-    this.dialogConfig.height = "800px";
-    this.dialogConfig.width = "700px";
+    this.dialogConfig.height = "500px";
+    this.dialogConfig.width = "500px";
+    this.dialogConfig.disableClose =true;
     this.modalDialog = this.matDialog.open(RegRolesComponent, this.dialogConfig);
   }
 
 
   openModal(record : any){
-    console.log(record);
-    console.log('Hasta aqui todo correcto')
     record =  this.listaRoles
    //record = this.codigoEmpleado
    //this.cantidadApoyo = 0;
  
    const options = {
-        
      disableClose: true,
-     panelClass:'container-form',
+     panelClass:'editaRol',
      data: record,
    };
  
@@ -93,10 +94,6 @@ export class ManteRolesComponent implements OnInit {
      });
  }
 
-  // mandarValor() {
-  //   this.gato = '';
-  //   return this.gato;
-  // }
 
 
 
@@ -106,8 +103,6 @@ export class ManteRolesComponent implements OnInit {
   }
 
   listar (){
-
-
     if (this.group.valid){
      
       const fd= new FormData();
@@ -134,7 +129,6 @@ export class ManteRolesComponent implements OnInit {
   }
 
   listarfiltro(){
-    console.log();
     // console.log(this.jj)
     if (this.group.valid){
      
@@ -146,24 +140,18 @@ export class ManteRolesComponent implements OnInit {
       requestRoles.Descripcion= values['descripcion']
       requestRoles.Estado= values['radio']
 
-
-      if(requestRoles.Descripcion == null){
+      if(requestRoles.Descripcion === '' || requestRoles.Descripcion == null){
         requestRoles.Descripcion = '%'
       }
-      console.log(requestRoles.Descripcion)
-      console.log(requestRoles.Estado)
-
         this.rolService.listarfiltro(requestRoles).subscribe(response => 
-  
           {
             this.rolResponse = response
             this.dataTable = this.rolResponse.datos.result;
           }
             )
 
-  }
+  }}
 
-  }
 }
 
 

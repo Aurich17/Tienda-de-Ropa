@@ -1,59 +1,19 @@
 <h1>REGISTRO PROMOCION</h1>
-<div class="acciones">
+<form class="acciones" [formGroup]="group">
     <div class="sMenu">
         <mat-form-field class="list">
-            <input matInput type="text" placeholder="Descripcion Promocion">
-          </mat-form-field>
-    </div>
-    <div class="sMenu">
-        <mat-form-field class="list">
-            <input matInput type="text" placeholder="Monto del descuento">
-          </mat-form-field>
-    </div>
-    <div class="sMenu">
-        <mat-form-field class="fecha">
-            <mat-label>Fecha de Inicio</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-          </mat-form-field>
-    </div>
-    <div class="sMenu">
-        <mat-form-field class="fecha">
-            <mat-label>Fecha de Fin</mat-label>
-            <input matInput [matDatepicker]="ingreso">
-            <mat-datepicker-toggle matIconSuffix [for]="ingreso"></mat-datepicker-toggle>
-            <mat-datepicker #ingreso startView="year" [startAt]="startDate"></mat-datepicker>
+            <input matInput type="text" placeholder="Descripcion Promocion" formControlName="descripcion">
           </mat-form-field>
     </div>
     <div class="estado">
-        <mat-radio-group aria-label="Select an option" class="radio">
-            <mat-radio-button value="1" color="primary">Activo</mat-radio-button>
-            <mat-radio-button value="2" color="primary">Inactivo</mat-radio-button>
+        <mat-radio-group aria-label="Select an option" class="radio" formControlName="radio" [(ngModel)]="select">
+            <mat-radio-button value="A" color="primary">Activo</mat-radio-button>
+            <mat-radio-button value="I" color="primary">Inactivo</mat-radio-button>
         </mat-radio-group>
     </div>
-</div>
+</form>
 <div class="botones">
-    <button mat-raised-button color="primary">Limpiar</button>
-    <button mat-raised-button color="primary">Agregar</button>   
-    <button mat-raised-button color="primary">Guardar</button>   
+    <button mat-raised-button color="primary" (click)="clear()">Limpiar</button>
+    <button mat-raised-button color="primary" (click)="guardaPromocion()" [disabled]="group.invalid">Guardar</button>   
     <button mat-raised-button color="primary" (click)="closeModal()">Salir</button> 
 </div>
-
-<table mat-table [dataSource]="dataSource" class="table mat-elevation-z8">
-    <ng-container matColumnDef="personal">
-        <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Promociones</th>
-        <td mat-cell *matCellDef="let element" class="contenido">{{element.personal}}</td>
-    </ng-container>    
-
-    <ng-container matColumnDef="opciones" class="contenedor">
-        <th mat-header-cell *matHeaderCellDef class="contenido contTitle">Opciones</th>
-        <td mat-cell *matCellDef="let element" class="contenido">
-          <div class="opciones">
-            <mat-icon>delete</mat-icon>
-          </div>
-        </td>
-      </ng-container>
-    
-    <mat-header-row *matHeaderRowDef="displayedColumns" class="contenedor"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

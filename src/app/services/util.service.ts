@@ -40,11 +40,15 @@ export class UtilService {
   }
 
   showMessage(message: string):void {
-
     this.notifier.open(message,null,
       {duration: 5000,horizontalPosition: 'end',
         verticalPosition: 'top',panelClass: ['blue-snackbar']})
+  }
 
+  showMessageError(message:string):void{
+    this.notifier.open(message,null,
+      {duration: 5000,horizontalPosition:'end',
+    verticalPosition:'top', panelClass: ['message-error']})
   }
 
   confirm(message: string=""): Observable<any>{
@@ -54,7 +58,6 @@ export class UtilService {
     {
       with: "320px",
       disableClose:true,
-        
     },
     true
     );

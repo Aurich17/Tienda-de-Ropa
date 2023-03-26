@@ -71,18 +71,14 @@
                        <mat-form-field appearance="fill"  class="example-full-width-alterno">
                         <mat-label>Almacen</mat-label>
                         <mat-select  #turnos formControlName = "almacen">
-                          <mat-option *ngFor="let food of turno" [value]="food.value">
-                            {{food.viewValue}}
-                          </mat-option>
+                         
                         </mat-select>
                       </mat-form-field>
 
                       <mat-form-field appearance="fill"  class="example-full-width-alterno">
                         <mat-label>Tienda</mat-label>
                         <mat-select  #turnos formControlName = "tienda">
-                          <mat-option *ngFor="let food of turno" [value]="food.value">
-                            {{food.viewValue}}
-                          </mat-option>
+                          
                         </mat-select>
                       </mat-form-field>
 
@@ -129,19 +125,8 @@
         
             <div fxFlex="50"  >
 
-                <app-table [dataTable]="dataTable" [metadataTable]="metadataTable">
-    
-                    <ng-container matColumnDef="actions">
-                    <th mat-header-cell *matHeaderCellDef></th>
-                    <td mat-cell *matCellDef="let row" >
-                    <button mat-button  (click)= "cargarDatos(row)" type="button">
-                    <mat-icon>edit</mat-icon>
-                    </button>
-                    
-                    </td>
-                    </ng-container>
+               
                 
-            </app-table>
 
             
             </div>

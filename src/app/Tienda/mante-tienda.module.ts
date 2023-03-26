@@ -11,9 +11,10 @@ import { PageManteTiendaComponent } from './presentacion/page-mante-tienda/page-
 import { RegTiendaComponent } from './presentacion/components/reg-tienda/reg-tienda.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import { EditaTiendaComponent } from './presentacion/components/edita-tienda/edita-tienda.component';
 
 @NgModule({
-  declarations: [ManteTiendaComponent, PageManteTiendaComponent, RegTiendaComponent],
+  declarations: [ManteTiendaComponent, PageManteTiendaComponent, RegTiendaComponent, EditaTiendaComponent],
   imports: [
     CommonModule,
     SharedModule,
