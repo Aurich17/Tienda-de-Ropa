@@ -1,3 +1,13 @@
+/* body{
+  background-color: var(--color-fondo);
+} */
+*{
+  margin: 0;
+}
+body{
+  overflow: hidden;
+}
+
 h1{
     margin-top:5%;
     margin-bottom:5%;
@@ -43,6 +53,13 @@ h1{
     button{
       font-size: 30px;
       width: 30%;
+    }
+    .boton{
+      background-color: var(--color-boton);
+    }
+
+    .boton:hover{
+      background-color: var(--color-hover);
     }
   
     .botones_contenedor{
@@ -94,12 +111,13 @@ h1{
       }
   
       @media (min-width: 1600px) and (max-width: 3000px) {
+        
         .acciones{
           text-align: center;
           display: flex;
           margin: 0 auto 0 auto;
           flex-direction: row;
-          width:90%;
+          width:100%;
           justify-content: space-between;
           align-items: center;
         }
@@ -201,6 +219,7 @@ h1{
       }
     
       @media (min-width: 800px) and (max-width: 1258px){
+        
         .list{
           font-size: 24px;
           text-align: center;

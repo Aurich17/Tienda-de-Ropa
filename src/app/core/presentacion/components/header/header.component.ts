@@ -98,7 +98,7 @@ export class HeaderComponent implements OnInit {
         };
         //Lista
     }
-    //Cambia Color
+    //VALIDA EL CAMBIO DE COLOR
     public onSetTheme(e: string){
         if(e != 'dark-theme')
         this.overlayContainer.getContainerElement().classList.remove("dark-theme")
@@ -109,6 +109,9 @@ export class HeaderComponent implements OnInit {
 
          if(e != 'vivo-theme')
          this.overlayContainer.getContainerElement().classList.remove("vivo-theme")
+
+         if(e != 'tema-claro-dos')
+         this.overlayContainer.getContainerElement().classList.remove("tema-claro-dos")
 
 
           this.overlayContainer.getContainerElement().classList.add(e);

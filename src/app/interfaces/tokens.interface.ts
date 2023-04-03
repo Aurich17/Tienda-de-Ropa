@@ -8,8 +8,8 @@ export interface Tokens{
 }
 
 export interface Result{
-    codigoCompañia : string ,
-    nombreCompañia: string,
+    codigoempresa : string ,
+    desEmpresa: string,
     nombreUsuario:string ,
     token:string;
     menu: Menu;

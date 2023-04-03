@@ -312,7 +312,7 @@ listarOT (){
 
   const RequestOT:  RequestOT = <RequestOT>{}; 
   const values = this.group.value
-  RequestOT.CodigoCompañia ='02100000'
+  RequestOT.codigoempresa ='02100000'
   RequestOT.CodigoOrdenTrabajo= values["codigoOrdenTrabajo"];
   if  (this.group.controls['codigoOrdenTrabajo'].valid){
 
@@ -373,7 +373,7 @@ AsignarReproceso(){
         
         const RequestEmpleado: AperturaParteEmpleado = <AperturaParteEmpleado>{}; 
         const values = this.group.value
-        RequestEmpleado.codigoCompañia ='02100000'
+        RequestEmpleado.codigoempresa ='02100000'
         RequestEmpleado.codigoEmpleado=  values["codigoEmpleado"];
         if  (this.group.controls['codigoEmpleado'].valid){
 
@@ -526,7 +526,7 @@ insertnew() {
  this.MensajeValidarParte = "" 
  const  partevalidar : RequestValidarParte = <RequestValidarParte>{}
 
- partevalidar.CodigoCompañia="02100000"
+ partevalidar.codigoempresa="02100000"
  partevalidar.CodigoOrdenTrabajo = values["codigoOrdenTrabajo"]
  partevalidar.Secuencia=values["secuencia"]
 
@@ -604,7 +604,7 @@ insertnew() {
               
                   fd.append("fechaHoraTerminoOt",null);
                   const parte: AperturaParteTransaccion = <AperturaParteTransaccion>{};  
-                  parte.codigoCompañia = fd.get("codigoCompania").toString() ;
+                  parte.codigoempresa = fd.get("codigoCompania").toString() ;
                   parte.codigoEstacion= fd.get("codigoEstacion").toString() ;
                   parte.codigoOrdenTrabajo = parseInt(fd.get("codigoOrdenTrabajo").toString()) ;
                   parte.cantidadApoyo= parseInt(fd.get("cantidadApoyo").toString()) ;

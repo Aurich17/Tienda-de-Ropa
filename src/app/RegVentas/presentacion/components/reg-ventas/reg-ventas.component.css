@@ -1,0 +1,240 @@
+
+body{
+    background-color: var(--color-fondo);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Oculta la barra de scroll horizontal */
+    overflow-y: auto;
+}
+mat-card{
+    margin: 15px;
+}
+
+.caja{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.caja_venta{
+    background-color: var(--color-tarjeta);
+}
+.caja_uno{
+    display: flex;
+    width: 55%;
+}
+
+.caja_prod{
+    width: 85%;
+}
+
+.caja_producto{
+    width: 42%;
+    background-color: var(--color-tarjeta);
+}
+
+.caja_producto_uno{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 30%;
+}
+
+.caja_producto_dos{
+    display: flex;
+    width: 80%;
+}
+
+
+.caja_cliente{
+    width: 50%;
+    background-color: var(--color-tarjeta);
+}
+
+.caja_cliente_datos{
+    width: 90%;
+    display: flex;
+    flex-direction: column; 
+}
+
+.caja_datos_dos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.caja_tres{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button{
+    width: 150px;
+    margin-right: 12px;
+    background-color: var(--color-fondo);
+}
+
+.input{
+    width: 95%;
+}
+
+.list{
+    height: 60px;
+    width: 250px;
+}
+
+.button_venta{
+    font-size: 20px;
+    margin: 10 auto;
+    width: 180px;
+    height: 40px;
+    margin-right: 12px;
+    border-radius: 15px;
+    background-color: var(--color-boton);
+}
+.button_venta:hover{
+    background-color: var(--color-hover);
+}
+
+.iconos{
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+    margin-top:10px;
+}
+
+.icon{
+    font-size: 44px;
+    margin: 0 auto;
+}
+
+.fecha{
+    margin: 0 auto;
+    height: 30px;
+    margin-left: 20px;
+}
+
+.stock{
+    display: inline-block;
+    text-align: center;
+    width: 62%;
+    margin-left: 0px;
+}
+
+.caja_cliente_datos_uno{
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.datos_producto{
+    display: flex;
+    justify-content: space-between;
+}
+
+.caja_final{
+    display: flex;
+    justify-content: space-between;
+}
+
+ .botones{
+    display: flex;
+    justify-content: space-between;
+    width: 72%;
+
+} 
+
+button {
+    height: 44px;
+    width: 44px;
+    background-color: var(--color-boton);
+}
+
+.demo-table {
+    width: 100%;
+  }
+  
+  .demo-button-container {
+    padding-bottom: 16px;
+  }
+  
+  .demo-button + .demo-button {
+    margin-left: 8px;
+  }
+
+  .datos_cliente{
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+  /*Estilos de la tabla*/
+  .table {
+    font-family: Arial, sans-serif;
+    border-collapse: collapse;
+    width: 99%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #1e1e1e;
+    padding: 8px;
+    text-align: center;  
+  }
+  
+  .table th {
+    font-size: 24px;
+    background-color:  var(--color-primary);
+  }
+
+  .table td{
+    background-color: var(--color-filas);
+  }
+
+  .cuerpo{
+    background-color: rgb(228, 224, 224);
+  }
+  
+  .cuerpo input[type="number"] {
+    width: 4rem;
+    text-align: center;
+    font-size: 1.5rem;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .delete {
+    font-size: 1.5rem;
+  }
+
+  .btn-add {
+    background-color: var(--color-boton);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 45px;
+    cursor: pointer;
+    width: 40%;
+    height: 100%;
+    width: var(--button-size);
+    height: var(--button-size);
+  }
+  
+  .btn-add:hover{
+    background-color: var(--color-hover);
+  }
+.boton_icono{
+    background-color: var(--color-filas);
+}
+
+
+
+  

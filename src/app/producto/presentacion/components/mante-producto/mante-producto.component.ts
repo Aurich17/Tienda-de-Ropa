@@ -8,6 +8,7 @@ import { ProductoRepository } from 'src/app/producto/domain/producto.repository'
 import { UtilService } from 'src/app/services/util.service';
 import { EditaProductoComponent } from '../edita-producto/edita-producto.component';
 import { productorequest } from 'src/app/producto/domain/request/producto_request';
+import { StorageService } from 'src/app/services/storage.service';
 
 
 
@@ -29,7 +30,7 @@ export class ManteProductoComponent implements OnInit {
 
   metadataTable: MetadataTable[] = [
     {field:"codigoProducto",title: "Cod.Producto"} ,
-    {field:"descripcion", title: "Desc.Almacen"},
+    {field:"descripcion", title: "Desc.Producto"},
     {field:"color", title: "Color"},
     {field:"talla",title:"Talla"},
     {field:"tipoPrenda", title:"Tipo Prenda"},
@@ -52,7 +53,7 @@ export class ManteProductoComponent implements OnInit {
    });
    }
 
-  constructor(public matDialog: MatDialog, private readonly productoService : ProductoRepository, private readonly util: UtilService) { }
+  constructor(public matDialog: MatDialog, private readonly productoService : ProductoRepository, private readonly util: UtilService, private readonly storage :StorageService,) { }
 
   ngAfterViewInit(): void {
     document.onclick = (args: any) : void => {
@@ -111,16 +112,17 @@ listar (){
     const values = this.group.value
   
     const requestProducto: productorequest =<productorequest>{}//  this.group.value;
-   
-    requestProducto.Descripcion='%'
-    requestProducto.Color='%'
-    requestProducto.Talla='%'
-    requestProducto.Tipo_Prenda=0
-    requestProducto.Genero='%'
-    requestProducto.Estado='A'
+    requestProducto.CodigoEmpresa = this.storage.get("codcompania").toString()
+    requestProducto.CodigoProducto = '0'
+    requestProducto.Descripcion= '%'
+    requestProducto.Color = '%'
+    requestProducto.Talla = '%'
+    requestProducto.Tipo_Prenda = 0
+    requestProducto.Genero = '%'
+    requestProducto.Estado= 'A'
+    console.log('Esta Listando')
 
       this.productoService.listar(requestProducto).subscribe(response => 
-
         {
           this.productoResponse = response
           this.dataTable = this.productoResponse.datos.result;
@@ -171,6 +173,5 @@ listarfiltro(){
           this.dataTable = this.productoResponse.datos.result;
         }
           )
-
 }}
 }

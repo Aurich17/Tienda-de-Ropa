@@ -54,7 +54,6 @@ button{
 }
 
 .table {
-  background-color: var(--color-accent);
   margin: 0 auto;
   width: 90%;
   border: none;

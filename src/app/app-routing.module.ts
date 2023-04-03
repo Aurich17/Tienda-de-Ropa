@@ -1,3 +1,4 @@
+import { RegVentasComponent } from './RegVentas/presentacion/components/reg-ventas/reg-ventas.component';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { PageLoginComponent } from "./core/presentacion/page-login/page-login.component";
@@ -62,6 +63,11 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     path: "Medida",
     loadChildren: () => import("./medida/mante-medida.module").then(m => m.ManteMedidaModule)
 },
+{
+    path: "Registro",
+    loadChildren: () => import("./RegVentas/reg-ventas.module").then(m => m.RegVentasModule)
+},
+{ path: './RegVentas/reg-ventas.component/:datos', component: RegVentasComponent }
 /*
 {
 

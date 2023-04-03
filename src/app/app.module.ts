@@ -1,3 +1,5 @@
+import { ClienteService } from './services/cliente.service';
+import { ClienteRepository } from 'src/app/RegVentas/domain/cliente.repository';
 import { PromocionService } from './services/promocion.service';
 import { PromocionRepository } from 'src/app/Promociones/domain/promociones.repository';
 import { TiendaService } from './services/tienda.service';
@@ -42,6 +44,7 @@ import { ProductoService } from './services/producto.service';
 
 
 
+
 //import { AccordionComponent } from './core/presentacion/component/accordion/accordion/accordion.component';
 //import { AccordionComponent } from './core/presentacion/component/accordion/accordion/accordion.component';
 
@@ -73,6 +76,7 @@ import { ProductoService } from './services/producto.service';
   {provide: PromocionRepository, useClass: PromocionService},
   {provide: MedidaRepository, useClass: MedidaService},
   {provide: ProductoRepository, useClass: ProductoService},
+  {provide: ClienteRepository, useClass: ClienteService},
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
  

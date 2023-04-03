@@ -81,8 +81,8 @@ const listausuario : ResponseLogin = <ResponseLogin>{}
       this.storage.save('accessToken',data.datos.result.token);
       this.storage.save('usuario',data.datos.result.nombreUsuario);
       this.storage.save('codusuario',user.usuario);
-      this.storage.save('codcompania',data.datos.result.codigoCompañia);
-      this.storage.save('compania',data.datos.result.nombreCompañia);
+      this.storage.save('codcompania',data.datos.result.codigoempresa);
+      this.storage.save('compania',data.datos.result.desEmpresa);
       this.storage.save('userLogged',"true");
      this.storage.save('rol',data.datos.result.menu.codigoRol.toString())
       listausuario.datos =data.datos

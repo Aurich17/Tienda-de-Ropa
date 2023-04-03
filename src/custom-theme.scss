@@ -1,9 +1,10 @@
 @import '~@angular/material/theming';
 @include mat-core();
 
-$prueba-app-light-primary: mat-palette($mat-blue, 800);
-$prueba-app-light-accent:  mat-palette($mat-grey, 50);
-$prueba-app-light-warn:    mat-palette($mat-red,900);
+
+$prueba-app-light-primary: mat-palette($mat-blue, 500);
+$prueba-app-light-accent:  mat-palette($mat-grey, 100);
+$prueba-app-light-warn:    mat-palette($mat-red, 700);
 
 $prueba-app-dark-primary: mat-palette($mat-purple, 500);
 $prueba-app-dark-accent:  mat-palette($mat-blue-grey, 900);
@@ -16,9 +17,15 @@ $prueba-app-vivo-warn:    mat-palette($mat-red,A400);
 $light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
 //Nuevo Tema de prueba
 :root{
-  --color-primary: #{mat-color($prueba-app-light-primary)};
+  --color-fondo: #F5F5F5;
+  --color-tarjeta: #ECF0F1;
+  --color-boton: #1ABC9C;
+  --color-hover: #17A589;
+  --color-primary: #1ABC9C;
+  --color-filas: #ECF0F1;
+  --color-warn: #117A65;
+  --color-texto: black;
   --color-accent: #{mat-color($prueba-app-light-accent)};
-  --color-warn: #{mat-color($prueba-app-light-warn)};
   $light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
 }
 @include angular-material-theme($light-app-theme);
@@ -26,26 +33,54 @@ $light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-a
 
 
 .light-theme{
-  --color-primary: #{mat-color($prueba-app-light-primary)};
+  --color-fondo: #F5F5F5;
+  --color-tarjeta: #ECF0F1;
+  --color-boton: #1ABC9C;
+  --color-hover: #17A589;
+  --color-primary: #1ABC9C;
+  --color-filas: #ECF0F1;
+  --color-warn: #117A65;
+  --color-texto: black;
   --color-accent: #{mat-color($prueba-app-light-accent)};
-  --color-warn: #{mat-color($prueba-app-light-warn)};
-  $light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
-  @include angular-material-theme($light-app-theme);
+  //$light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
 };
 
 
 .dark-theme{
-  --color-primary: #{mat-color($prueba-app-dark-primary)};
+  --color-fondo: #2c2c54;
+  --color-tarjeta: #3D3D7E;
+  --color-boton: #8B78E6;
+  --color-hover: #7B1FA2;
+  --color-primary:  #4d4d8e;
+  --color-filas:  #3d3d6e;
+  --color-texto: white;
   --color-accent: #{mat-color($prueba-app-dark-accent)};
   --color-warn: #{mat-color($prueba-app-dark-warn)};
-  $dark-app-theme: mat-dark-theme($prueba-app-dark-primary, $prueba-app-dark-accent, $prueba-app-dark-warn);
+   $dark-app-theme: mat-dark-theme($prueba-app-dark-primary, $prueba-app-dark-accent, $prueba-app-dark-warn);
   @include angular-material-theme($dark-app-theme);
 }
 
 .vivo-theme{
-  --color-primary: #{mat-color($prueba-app-vivo-primary)};
+  --color-fondo: #1E1E1E;
+  --color-tarjeta: #292929;
+  --color-boton:  #1976D2;
+  --color-hover: #0D47A1;
+  --color-primary: #2196F3;
+  --color-filas: #3F3F3F;
+  --color-texto: white;
   --color-accent: #{mat-color($prueba-app-vivo-accent)};
   --color-warn: #{mat-color($prueba-app-vivo-warn)};
   $vivo-app-theme: mat-dark-theme($prueba-app-vivo-primary, $prueba-app-vivo-accent, $prueba-app-vivo-warn);
   @include angular-material-theme($vivo-app-theme);
+}
+
+.tema-claro-dos{
+  --color-fondo: #FDEFF2;
+  --color-tarjeta: #FFF0F4;
+  --color-boton: #EB5286;
+  --color-hover: #C11D5D;
+  --color-primary: #FC5185;
+  --color-filas: #FFF0F4;
+  --color-texto: black;
+  --color-warn: #{mat-color($prueba-app-light-warn)};
 }

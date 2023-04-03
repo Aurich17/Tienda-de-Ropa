@@ -1,3 +1,3 @@
-export interface productorequest{Descripcion:string,Color:string,Talla:string,Tipo_Prenda:number,Genero:string,Estado:string};
+export interface productorequest{CodigoEmpresa:string,CodigoProducto:string,Descripcion:string,Color:string,Talla:string,Tipo_Prenda:number,Genero:string,Estado:string};
 export interface guardaproductorequest{CodigoProducto:string,Descripcion:string,Color:string,Talla:string,Tipo_Prenda:string,Genero:string,Estado:string,Usuario_reg:string,Tipo:string};
 export interface editaproductorequest{CodigoProducto:string,Descripcion:string,Color:string,Talla:string,Tipo_Prenda:string,Genero:string,Estado:string,Usuario_reg:string,Tipo:string}

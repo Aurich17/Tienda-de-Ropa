@@ -16,3 +16,12 @@
     font-size: 18px;
     text-align: center;
 }
+
+td{
+    background-color: var(--color-filas);
+    color: var(--color-texto);
+}
+table{
+    width: 99%;
+    margin: 0 auto;
+}

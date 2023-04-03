@@ -1,28 +1,28 @@
 <h1>MANTENIMIENTO PRODUCTO</h1>
 <form class='acciones' [formGroup]="group">
     <div class="alinear">
-      <mat-form-field class="list">
-        <input matInput type="text" placeholder="Descripcion Producto" formControlName="descripcion">
+      <mat-form-field class="list"  appearance="outline">
+        <input matInput type="text" placeholder="Descripcion Producto" formControlName="descripcion" (input)="listar()">
       </mat-form-field>
     </div>
     <div class="alinear">
-      <mat-form-field class="list">
+      <mat-form-field class="list"  appearance="outline">
         <input matInput type="text" placeholder="Color" formControlName="colores">
       </mat-form-field>
     </div>
     <div class="alinear">
-      <mat-form-field class="list">
+      <mat-form-field class="list"  appearance="outline">
         <input matInput type="text" placeholder="Talla" formControlName="tallas">
       </mat-form-field>
     </div>
     <div class="alinear">
-      <mat-form-field class="list">
+      <mat-form-field class="list"  appearance="outline">
         <input matInput type="text" placeholder="Prendas" formControlName="prendas">
       </mat-form-field>
     </div>
 
     <div class="alinear">
-      <mat-form-field class="list">
+      <mat-form-field class="list"  appearance="outline">
         <mat-select formControlName="genero" [(ngModel)]="select">
           <mat-option value="%">Ambos generos</mat-option>
           <mat-option value="M">Masculino</mat-option>
@@ -42,7 +42,7 @@
 <!--Botones-->
 <div class="botones">
   <div class="botones_contenedor">
-    <button mat-raised-button color="primary" (click)="listarfiltro()">Buscar</button>
+    <button mat-raised-button color="primary" (click)="listar()">Buscar</button>
     <button mat-raised-button color="primary" (click)="agregar()">Agregar</button>   
     <button mat-raised-button color="primary">Salir</button>   
   </div>

@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PageManteRolesComponent } from './presentacion/page-mante-roles/page-mante-roles.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { EditaRolesComponent } from './presentacion/components/edita-roles/edita-roles.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ManteRolesComponent, PageManteRolesComponent, RegRolesComponent, EditaRolesComponent],
@@ -21,7 +22,8 @@ import { EditaRolesComponent } from './presentacion/components/edita-roles/edita
     ZXingScannerModule,
     ReactiveFormsModule,
     ManteRolesRoutingModule,
-    MatRadioModule 
+    MatRadioModule ,
+    FormsModule,
   ],
   exports: [ManteRolesComponent],
   providers:[DatePipe]
