@@ -1,13 +1,14 @@
+import { result } from './../../../usuario/domain/user-entity';
 export interface ClienteResponse{
 
     datos : {status:number ,TotalRegistro : number ,
-    
+
         result :ListaCliente[]
 
     },
 
-    
-    meta: { mensaje : string }        
+
+    meta: { mensaje : string }
 }
 
 export interface ListaCliente{
@@ -34,16 +35,17 @@ export interface ListaCliente{
 export interface ProductoResponse{
 
   datos : {status:number ,TotalRegistro : number ,
-  
+
       result :ListaProducto[]
 
   },
 
-  
-  meta: { mensaje : string }        
+
+  meta: { mensaje : string }
 }
 
 export interface ListaProducto{
+codigoComprobante:number;
 codigoProducto:number;
 descripcion:string;
 color:string;
@@ -51,11 +53,16 @@ talla:string;
 tipoPrenda:number;
 genero:string;
 precioUnitario:number,
+precioSugerido:number
 estado:string;
+descuento:number,
+cantidad:number,
+subTotal:number,
 usuario_reg:string;
 fecha_hora_reg:string;
 usuario_mod:string;
-fecha_hora_mod:string  
+fecha_hora_mod:string;
+stock:number
 }
 
 
@@ -102,4 +109,20 @@ export interface DetalleResponse {
   CodigoEmpresa: string;
   Estado: string;
   Accion: string;
+}
+
+
+//PARAMETROS
+export interface ParametrosResponse{
+  datos : {status:number ,TotalRegistro : number ,
+    result :ListaParametros[]
+},
+meta: { mensaje : string }
+}
+
+export interface ListaParametros{
+  sistema:string
+  parametrosCodigo:string
+  codigoItem:string
+  descripcion:string
 }

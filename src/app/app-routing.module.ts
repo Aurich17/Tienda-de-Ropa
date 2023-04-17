@@ -8,7 +8,7 @@ const routes: Routes = [
 {path: '', component: PageLoginComponent },
 {
 path: 'dashboard',
-loadChildren: () => 
+loadChildren: () =>
 import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 },
 {
@@ -66,6 +66,14 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 {
     path: "Registro",
     loadChildren: () => import("./RegVentas/reg-ventas.module").then(m => m.RegVentasModule)
+},
+{
+  path: "Kardex",
+  loadChildren: () => import("./Kardex/kardex.module").then(m => m.KardexModule)
+},
+{
+    path: "ListadoVentas",
+    loadChildren: () => import("./ListadoVentas/listado-ventas.module").then(m => m.ListadoVentasModule)
 },
 { path: './RegVentas/reg-ventas.component/:datos', component: RegVentasComponent }
 /*
@@ -139,7 +147,7 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 ];
 
 
-
+//@ts-ignore
 @NgModule({
 
     imports: [RouterModule.forRoot(routes)],

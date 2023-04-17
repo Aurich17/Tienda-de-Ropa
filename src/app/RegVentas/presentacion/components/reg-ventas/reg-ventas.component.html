@@ -1,25 +1,54 @@
 <body>
-    <h1 style="text-align:center">REGISTRO DE VENTA</h1>
+<h1 style="text-align:center; margin-top: 70px;">{{titulo}}</h1>
     <form [formGroup]="groupVenta">
         <mat-card class="caja_venta">
             <div class="caja">
                 <div class="caja_uno">
-                    <!--TIENDA-->
-                    <mat-form-field appearance="fill" class="list" appearance="outline">
-                      <mat-label>Tienda</mat-label>
-                      <mat-select name="documento">
-                        <mat-option value="dni">TIENDA1</mat-option>
-                        <mat-option value="pasaporte">TIENDA2</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                    <!--TIPO DOCUMENTO-->
-                    <mat-form-field appearance="fill" class="list" appearance="outline" style="margin-left: 10px;">
-                        <mat-label>Tipo Documento</mat-label>
-                        <mat-select name="documento" formControlName="documento">
-                          <mat-option value="FA">FACTURA</mat-option>
-                          <mat-option value="BO">BOLETA</mat-option>
+                    <!--TIENDA CUANDO REGISTRA-->
+                    <ng-container *ngIf="condicion; else tiendaModifica">
+                      <mat-form-field appearance="fill" class="list" appearance="outline">
+                        <mat-label>Tienda</mat-label>
+                        <mat-select name="tienda" formControlName="tienda">
+                          <mat-option *ngFor="let tienda of listaTienda" [value]="tienda.codigo">{{tienda.nombre}}</mat-option>
                         </mat-select>
                       </mat-form-field>
+                    </ng-container>
+
+                    <!--TIENDA CUANDO MODIFICA-->
+                    <ng-template #tiendaModifica>
+                      <mat-form-field appearance="outline" style="width: 30%;"  color="primary">
+                        <mat-label>Tienda</mat-label>
+                        <input matInput type="text" class="iput" style="text-align: center; font-size: 16px;" readonly value={{nombreTienda}}>
+                      </mat-form-field>
+                    </ng-template>
+
+                    <!--TIPO DOCUMENTO  CUANDO REGISTRA-->
+                    <ng-container *ngIf="condicion; else inputComponent">
+                      <mat-form-field appearance="fill" class="list" appearance="outline" style="margin-left: 10px;">
+                        <mat-label>Tipo Documento</mat-label>
+                        <mat-select name="documento" formControlName="documento">
+                          <mat-option value="FA" (click)="listarParametros('FA')">FACTURA</mat-option>
+                          <mat-option value="BO" (click)="listarParametros('BO')">BOLETA</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </ng-container>
+
+                    <!--TIPO DOCUMENTO  CUANDO MODIFICA-->
+                    <ng-template #inputComponent>
+                      <mat-form-field appearance="outline" style="width: 30%;"  color="primary">
+                        <mat-label>Tipo Documento</mat-label>
+                        <input matInput type="text" class="iput" style="text-align: center; font-size: 16px;" readonly value={{tipoParametro}}>
+                      </mat-form-field>
+                    </ng-template>
+
+
+                      <!--NUMERO DOCUMENTO CUANDO REGISTRA-->
+                      <mat-form-field appearance="outline" style="width: 30%;"  color="primary">
+                        <mat-label>Nro.Doc</mat-label>
+                        <input matInput type="text" class="iput" style="text-align: center; font-size: 16px;" readonly value="{{numDoc}}">
+                      </mat-form-field>
+
+
                       <!--FECHA VENTA-->
                       <mat-card class="fecha" style="background-color: var(--color-tarjeta);">
                         <mat-label style="font-size: 12px; color: rgb(165, 161, 161);">Fecha Actual</mat-label>
@@ -29,11 +58,12 @@
                       </mat-card>
                 </div>
                 <div class="caja_dos">
+                    <button mat-raised-button class="button_venta" (click)="limpiar()" *ngIf="condicion">Limpiar</button>
                     <button mat-raised-button class="button_venta" (click)="crearVenta()">Terminar Venta</button>
                 </div>
             </div>
         </mat-card>
-        
+
         <div class="caja">
             <!--CAJA CLIENTE-->
             <mat-card class="caja_cliente">
@@ -42,22 +72,22 @@
                     <div class="caja_cliente_datos">
                         <div class="datos_cliente">
                             <mat-form-field appearance="outline" style="width: 65%;"  color="primary">
-                                <input matInput type="text" placeholder="Nombre" class="iput" value={{nombre}} formControlName="nombre">
+                                <input matInput type="text" placeholder="Nombre" class="iput" value={{nombre}} formControlName="nombre" [readonly]="condicion ? 'false' : 'true' ">
                             </mat-form-field>
                             <mat-form-field appearance="outline" style="width: 30%;"  color="primary">
                                 <mat-label>Cod. Cliente</mat-label>
-                                <input matInput type="number" class="iput" formControlName="codigo" (input)="listarCliente()" min="0" style="text-align: center; font-size: 16px;">
+                                <input matInput type="number" class="iput" formControlName="codigo" (change)="listarCliente($event.target.value)" style="text-align: center; font-size: 16px;" value="{{codigoCliente}}" min="0" [readonly]="condicion ? 'false' : 'true' ">
                             </mat-form-field>
                         </div>
                         <div class="caja_datos_dos">
                             <mat-form-field appearance="outline" style="width: 30%;">
-                              <input matInput type="text" placeholder="Tipo Documento" value={{tDocumento}} formControlName="tipoDocumento">
+                              <input matInput type="text" placeholder="Tipo Documento" value={{tDocumento}} formControlName="tipoDocumento" [readonly]="condicion ? 'false' : 'true' ">
                             </mat-form-field>
                             <mat-form-field appearance="outline" style="width: 30%;">
-                                <input matInput type="text" placeholder="Nro Documento" value={{nDocumento}} formControlName="nroDocumento">
+                                <input matInput type="text" placeholder="Nro Documento" value={{nDocumento}} formControlName="nroDocumento" [readonly]="condicion ? 'false' : 'true' ">
                             </mat-form-field>
                             <mat-form-field appearance="outline" style="width: 30%;">
-                                <input matInput type="text" placeholder="Telefono" value={{telefono}} formControlName="telefono">
+                              <input matInput type="text" placeholder="Telefono" value={{telefono}} formControlName="telefono" [disabled]="isTable">
                             </mat-form-field>
                         </div>
                         <div>
@@ -66,15 +96,18 @@
                             </mat-form-field>
                         </div>
                     </div>
-                    <div class="iconos">
-                        <button mat-button type="button" (click)="openModal(buscarCliente)" class="boton_icono"><mat-icon class="icon">search</mat-icon></button>
-                        <button mat-button type="button" (click)="openModal(agregarCliente)" class="boton_icono"><mat-icon class="icon">face</mat-icon></button>
-                    </div>
+                    <ng-container *ngIf="condicion">
+                      <div class="iconos">
+                          <button mat-button type="button"  class="boton_icono" style="background-color: var(--color-tarjeta);"><mat-icon class="icon" (click)= "openModal(buscarCliente)">search</mat-icon></button>
+                          <button mat-button type="button"  class="boton_icono" style="background-color: var(--color-tarjeta);"><mat-icon class="icon">face</mat-icon></button>
+                      </div>
+                    </ng-container>
+
                 </div>
             </mat-card>
-        
-        
-        
+
+
+
             <!--CAJA PRODUCTO-->
             <mat-card class="caja_producto">
                 <h1 style="text-align: center;">Detalle Producto</h1>
@@ -82,7 +115,7 @@
                     <div class="caja_producto_uno">
                         <mat-form-field appearance="outline" style="width: 80%;">
                             <mat-label>Codigo</mat-label>
-                            <input matInput type="number" formControlName="codigo" style="text-align: center; font-size: 25px;" (change)="listarProducto()" min="0">
+                            <input matInput type="number" formControlName="codigo" style="text-align: center; font-size: 25px;" (change)="listarProducto($event.target.value)" min="0" value="{{codigoProducto}}">
                         </mat-form-field>
                         <mat-card class="fecha stock" style="background-color: var(--color-tarjeta);">
                             <mat-label style="font-size: 12px; color: rgb(165, 161, 161);">Stock</mat-label>
@@ -93,22 +126,22 @@
                         <div class="caja_prod">
                             <div>
                                 <mat-form-field class="input" appearance="outline" style="width: 100%;">
-                                    <input matInput type="text" placeholder="Descripción" value={{descProducto}}>
+                                    <input matInput type="text" value={{descProducto}} formControlName="descripcion">
                                 </mat-form-field>
                             </div>
                             <div class="datos_producto">
                                 <mat-form-field appearance="outline" style="width: 25%;">
                                     <mat-label>Cantidad</mat-label>
-                                    <input matInput type="number" style="text-align: center; font-size: 25px;" formControlName="cantidad" min="1" (input)="precioFinal()">
+                                    <input matInput type="number" style="text-align: center; font-size: 25px;" formControlName="cantidad" min="1" max="{{stock}}" (input)="precioFinal()">
                                 </mat-form-field>
                                  <mat-form-field appearance="outline" style="width: 30%;">
                                     <mat-label>Descuento</mat-label>
-                                    <input matInput type="number" value={{descuento}} style="text-align: center; font-size: 25px;" min="0" formControlName="descuento" (input)="precioFinal()">
+                                    <input matInput type="number" style="text-align: center; font-size: 25px;" min="0" max="{{descuentoMaximo}}" formControlName="descuento" (input)="precioFinal()">
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" style="width: 40%;">
                                     <mat-label>Precio Sugerido</mat-label>
-                                    <input matInput type="number" style="text-align: center; font-size: 25px;" value={{precioReal}} readonly>
-                                </mat-form-field>                         
+                                    <input matInput type="number" style="text-align: center; font-size: 25px;" value={{precioReal}} readonly formControlName="precioReal">
+                                </mat-form-field>
                             </div>
                             <div class="caja_final">
                                 <div>
@@ -126,52 +159,40 @@
                     </div>
                 </div>
             </mat-card>
-            <!--TABLA-->
         </div>
-        
-        <form (ngSubmit)="guardarTabla()">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th *ngFor="let column of metadataTable">{{column.title}}</th>
-                    <th>Opciones</th>
-                  </tr>
-                </thead>
-                <tbody class="cuerpo">
-                  <tr *ngFor="let row of tablaProductos; let i = index">
-                    <td *ngFor="let cell of row; let j = index">
-                      <ng-container *ngIf="j === 2; else notEditable">
-                        <input type="number" [(ngModel)]="tablaProductos[i][j]" min="0" [ngModelOptions]="{standalone: true}" style="color: var(--color-texto);">
-                      </ng-container>
-                      <ng-template #notEditable>{{cell}}</ng-template>
-                    </td>
-                    <td>
-                        <button mat-button type="button" (click)="eliminarFila(i)" style="background-color: var(--color-filas);">
-                            <mat-icon class="delete">delete</mat-icon>
-                        </button>
-                    </td>
-                  </tr>
-                </tbody>
-            </table>
-        </form>
-        
+        <!--TABLA-->
+
+        <div>
+          <app-table [dataTable]="dataTable" [metadataTable]="metadataTable">
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let row" style="background-color: var(--color-filas);">
+                <button mat-button (click)="confirmAction(row)" class="eliminarFila">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+          </app-table>
+        </div>
+
+
         <div class="caja_tres">
             <mat-form-field appearance="outline" style="width: 40%;">
                 <mat-label>Sub Total</mat-label>
                 <input matInput type="number" style="text-align: center; font-size: 25px;" value={{subTotal}} readonly>
-            </mat-form-field>     
+            </mat-form-field>
             <mat-form-field appearance="outline" style="width: 40%;">
                 <mat-label>Descuento Total</mat-label>
                 <input matInput type="number" style="text-align: center; font-size: 25px;" value={{descuentoTotal}} readonly>
-            </mat-form-field>     
+            </mat-form-field>
             <mat-form-field appearance="outline" style="width: 40%;">
                 <mat-label>IGV</mat-label>
                 <input matInput type="number" style="text-align: center; font-size: 25px;" value={{igv}} readonly>
-            </mat-form-field>     
+            </mat-form-field>
             <mat-form-field appearance="outline" style="width: 40%;">
                 <mat-label>Total S/.</mat-label>
                 <input matInput type="number" style="text-align: center; font-size: 25px;" value={{total}} readonly>
-            </mat-form-field>     
+            </mat-form-field>
         </div>
     </form>
 </body>

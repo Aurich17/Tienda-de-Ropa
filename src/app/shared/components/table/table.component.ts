@@ -2,16 +2,18 @@ import { Component, ContentChildren, Input, OnInit, QueryList, ViewChild } from 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatColumnDef, MatTable, MatTableDataSource } from '@angular/material/table';
-import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
+import { MetadataTable } from '../../../interfaces/metada-table.interface';
 
+
+//@ts-ignore
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  
-  
+
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @Input() dataTable: any[];
   @Input() metadataTable : MetadataTable[];
@@ -37,9 +39,9 @@ export class TableComponent implements OnInit {
 
       this.loadData();
 
-     
-      
-      
+
+
+
     }
 
     loadData(){
@@ -56,7 +58,7 @@ export class TableComponent implements OnInit {
       }
 
     }
-   
+
   ngOnInit(): void {
   }
 

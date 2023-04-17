@@ -67,6 +67,5 @@ mat-toolbar {
     height: 20px;
     font-size: 16px;
     margin-right: 63%;
+    color: var(--color-texto);
 }
-
-

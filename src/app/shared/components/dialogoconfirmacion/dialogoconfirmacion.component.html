@@ -1,16 +1,15 @@
 
 <mat-toolbar color ="primary" fxLayout fxLayoutAlign="space-between center" >
-    
+
     <h3 class="title">{{mensaje}}</h3>
 
 </mat-toolbar>
 <mat-dialog-content>
-    
 
-<mat-dialog-actions>
-    <button mat-flat-button cdkFocusInitial mat-dialog-close (click)="cerrarDialogo()">No</button>
-    <button mat-flat-button  (click)="confirmado()" >Sí</button>
 
+<mat-dialog-actions class="contenedor">
+    <button mat-button cdkFocusInitial mat-dialog-close (click)="cerrarDialogo()" class="boton">No</button>
+    <button mat-button  (click)="confirmado()" class="boton">Sí</button>
 </mat-dialog-actions>
 
 </mat-dialog-content>

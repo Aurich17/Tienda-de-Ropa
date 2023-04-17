@@ -1,0 +1,1 @@
+export interface listadoVentasRequest{CodigoComprobante:string, CodigoCliente:string, FechaInicio:string, FechaFin:string, CodigoTipoDocumento:string, CodigoTienda:string, CodigoEmpresa:string}

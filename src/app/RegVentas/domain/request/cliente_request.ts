@@ -1,6 +1,7 @@
 export interface clienterequest{CodigoCliente:string,tipoCliente:string,nombres:string,apellidopaterno:string,apellidomaterno:string,c_razonsocial:string,tipodocumento:string,
 numerodocumento:string,departamento:string,provincia:string,distrito:string,estado:string};
 export interface productorequest{CodigoEmpresa:string,CodigoProducto:string,Descripcion:string,Color:string,Talla:string,Tipo_Prenda:number,Genero:string,Estado:string};
+export interface parametrosRequest{CodigoParametros:string,CodigoSistema:string};
 
 //Comprobante
 export interface ventarequest {
@@ -22,18 +23,19 @@ export interface ventarequest {
     SubTotal: number;
     IGV: number;
     MontoTotal: number;
-    FechaAnulacion: string;
+    FechaAnulacion: any;
     Estado: string;
     Usuario: string;
     Tipo: string;
     CodigoEmpresa: string;
+    CodigoTienda: string
     ComprobanteDetalle: DetalleRequest[];
   }
-  
+
   export interface DetalleRequest {
     CodigoComprobante: string;
     CodigoProducto: string;
-    Cantidad: number;
+    Cantidad:number;
     PrecioSugerido: number;
     Descuento: number;
     PrecioFinal: number;
@@ -41,4 +43,5 @@ export interface ventarequest {
     CodigoEmpresa: string;
     Estado: string;
     Accion: string;
+    descripcion:string;
 }

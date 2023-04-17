@@ -1,10 +1,12 @@
+import { ListadoKardexService } from './services/kardex.service';
+//@ts-ignore
 import { ClienteService } from './services/cliente.service';
-import { ClienteRepository } from 'src/app/RegVentas/domain/cliente.repository';
+import { ClienteRepository } from '../../src/app/RegVentas/domain/cliente.repository';
 import { PromocionService } from './services/promocion.service';
-import { PromocionRepository } from 'src/app/Promociones/domain/promociones.repository';
+import { PromocionRepository } from '../../src/app/Promociones/domain/promociones.repository';
 import { TiendaService } from './services/tienda.service';
-import { MenuRepository } from 'src/app/menus/domain/menu.repository';
-import { RolRepository} from 'src/app/roles/domain/rol.repository';
+import { MenuRepository } from '../../src/app/menus/domain/menu.repository';
+import { RolRepository} from '../../src/app/roles/domain/rol.repository';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -39,6 +41,13 @@ import { MedidaRepository } from './Medida/domain/medida.repository';
 import { MedidaService } from './services/medida.service';
 import { ProductoRepository } from './producto/domain/producto.repository';
 import { ProductoService } from './services/producto.service';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ListadoVentasComponent } from './ListadoVentas/presentacion/components/listado-ventas/listado-ventas.component';
+import { ListadoVentasService } from './services/listVentas.service';
+import { ListadoVentasRepository } from './ListadoVentas/domain/listadoVentas.respository';
+import { ListadoKardexComponent } from './Kardex/presentacion/components/listado-kardex/listado-kardex.component';
+import { ListadoKardexRepository } from './Kardex/domain/kardex.repository';
+
 
 
 
@@ -48,6 +57,7 @@ import { ProductoService } from './services/producto.service';
 //import { AccordionComponent } from './core/presentacion/component/accordion/accordion/accordion.component';
 //import { AccordionComponent } from './core/presentacion/component/accordion/accordion/accordion.component';
 
+//@ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +72,7 @@ import { ProductoService } from './services/producto.service';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
   ],
   providers: [
   DatePipe,
@@ -77,9 +88,11 @@ import { ProductoService } from './services/producto.service';
   {provide: MedidaRepository, useClass: MedidaService},
   {provide: ProductoRepository, useClass: ProductoService},
   {provide: ClienteRepository, useClass: ClienteService},
+  {provide: ListadoVentasRepository, useClass: ListadoVentasService},
+  {provide: ListadoKardexRepository, useClass: ListadoKardexService},
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
- 
+
 
   {provide: HTTP_INTERCEPTORS,useClass: TokenInterceptor,multi:true} ,//BarcodeScanner
   ],

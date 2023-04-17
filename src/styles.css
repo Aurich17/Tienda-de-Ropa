@@ -10,7 +10,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     font-weight: bolder;
 }
 
-.message-error{
-    background:  rgb(170, 34, 7);
-    font-weight: bolder;
+.message-error {
+    background-color: var(--color-warn);
+    color: #FFFFFF;
+}
+.dark-theme .message-error {
+    background-color: var(--color-warn);
+    color: #FFFFFF;
 }

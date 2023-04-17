@@ -2,12 +2,15 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SelectionModel } from '@angular/cdk/collections';
-import { ListaProducto, ProductoResponse } from 'src/app/RegVentas/domain/response/cliente_response';
-import { ClienteRepository } from 'src/app/RegVentas/domain/cliente.repository';
-import { StorageService } from 'src/app/services/storage.service';
-import { productorequest } from 'src/app/RegVentas/domain/request/cliente_request';
-import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
+import { ListaProducto, ProductoResponse } from '../../../../RegVentas/domain/response/cliente_response';
+import { ClienteRepository } from '../../../../RegVentas/domain/cliente.repository';
+import { StorageService } from '../../../../services/storage.service';
+import { productorequest } from '../../../../RegVentas/domain/request/cliente_request';
+import { MetadataTable } from '../../../../interfaces/metada-table.interface';
+import { Router } from '@angular/router';
 
+
+//@ts-ignore
 @Component({
   selector: 'app-buscar-producto',
   templateUrl: './buscar-producto.component.html',
@@ -15,7 +18,7 @@ import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 })
 
 export class BuscarProductoComponent implements OnInit {
-  
+
   groupProducto:FormGroup
   select: 'false'|'true'='false';
   productoResponse:ProductoResponse
@@ -24,11 +27,12 @@ export class BuscarProductoComponent implements OnInit {
   dataTable: ListaProducto[]
 
   metadataTable: MetadataTable[] = [
+    {field:"codigoProducto",title: "Cod.Producto"},
     {field:"descripcion", title: "Descripicion"},
     {field:"precioUnitario", title: "Precio"},
     {field:"genero",title:"Genero"},
   ];
-  
+
   initializeForm(){
   this.groupProducto = new FormGroup({
       desMenu : new FormControl(null, null),
@@ -36,7 +40,7 @@ export class BuscarProductoComponent implements OnInit {
     })
   }
 
-  constructor(private readonly  reference: MatDialogRef<BuscarProductoComponent>,  private readonly productoService : ClienteRepository,private readonly storage :StorageService,) { }
+  constructor(private readonly  reference: MatDialogRef<BuscarProductoComponent>,  private readonly productoService : ClienteRepository,private readonly storage :StorageService,private router: Router) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -47,12 +51,12 @@ export class BuscarProductoComponent implements OnInit {
     this.reference.close();
   }
 
-  
+
   listarProducto(){
     if (this.groupProducto.valid){
-     
+
       const values = this.groupProducto.value
-    
+
       const requestProducto: productorequest =<productorequest>{}//  this.group.value;
       requestProducto.CodigoEmpresa = this.storage.get("codcompania").toString()
       requestProducto.CodigoProducto = values['codigo']
@@ -62,10 +66,12 @@ export class BuscarProductoComponent implements OnInit {
       requestProducto.Tipo_Prenda = 0
       requestProducto.Genero = '%'
       requestProducto.Estado= 'A'
-  
-      if(requestProducto.CodigoProducto === '' || requestProducto.CodigoProducto == null || requestProducto.Descripcion == '%'){
-        requestProducto.Descripcion = '%'
+
+      if(requestProducto.CodigoProducto === '' || requestProducto.CodigoProducto == null){
         requestProducto.CodigoProducto = '0'
+      }
+      if(requestProducto.Descripcion === null || requestProducto.Descripcion === ''){
+        requestProducto.Descripcion = '%'
       }
         this.productoService.listarfiltro(requestProducto).subscribe(
           response => {
@@ -77,9 +83,19 @@ export class BuscarProductoComponent implements OnInit {
           }
         );
 
-  
+
   }}
 
-  
+  navigateToRegVentas(row: any): void {
+    this.router.navigate(['/Registro'], {
+      queryParams: {
+        codigoProducto: row.codigoProducto,
+      }
+    }
+    );
+    this.closeModal()
+  }
+
+
 
 }
