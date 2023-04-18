@@ -59,7 +59,8 @@
                 </div>
                 <div class="caja_dos">
                     <button mat-raised-button class="button_venta" (click)="limpiar()" *ngIf="condicion">Limpiar</button>
-                    <button mat-raised-button class="button_venta" (click)="crearVenta()">Terminar Venta</button>
+                    <button mat-raised-button class="button_venta" (click)="crearVenta()" *ngIf="condicion">Terminar Venta</button>
+                    <button mat-raised-button class="button_venta" (click)="modificaVenta()" *ngIf="!condicion">Actualizar Venta</button>
                 </div>
             </div>
         </mat-card>

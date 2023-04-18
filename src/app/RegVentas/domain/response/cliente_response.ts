@@ -63,6 +63,29 @@ fecha_hora_reg:string;
 usuario_mod:string;
 fecha_hora_mod:string;
 stock:number
+accion:string
+}
+
+export interface EditaListaProducto{
+  codigoComprobante:number;
+  codigoProducto:number;
+  descripcion:string;
+  color:string;
+  talla:string;
+  tipoPrenda:number;
+  genero:string;
+  precioUnitario:number,
+  precioSugerido:number
+  estado:string;
+  descuento:number,
+  cantidad:number,
+  subTotal:number,
+  usuario_reg:string;
+  fecha_hora_reg:string;
+  usuario_mod:string;
+  fecha_hora_mod:string;
+  stock:number
+  accion:string
 }
 
 

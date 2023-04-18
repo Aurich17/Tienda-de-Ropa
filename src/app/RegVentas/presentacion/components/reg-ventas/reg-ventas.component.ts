@@ -1,6 +1,6 @@
 import { BuscarProductoComponent } from './../buscar-producto/buscar-producto.component';
 import { BuscarClienteComponent } from './../buscar-cliente/buscar-cliente.component';
-import { ClienteResponse, VentaResponse } from './../../../domain/response/cliente_response';
+import { ClienteResponse, EditaListaProducto, VentaResponse } from './../../../domain/response/cliente_response';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog} from '@angular/material/dialog';
@@ -39,6 +39,7 @@ export class RegVentasComponent implements OnInit {
   //CONDICION
   condicion = true
   descuentoMaximo:number
+  numero:number = 0
 
   //MODAL
   buscarProducto = BuscarProductoComponent
@@ -64,6 +65,7 @@ export class RegVentasComponent implements OnInit {
   listaParametros:any[]=[]
   listaProductoItem:ListaProducto
   listaProductoItemGeneral:ListaProducto[] = []
+  tablaMuestra:EditaListaProducto[] = []
   metadataTable = [
     { field: 'codigoProducto', title: 'Codigo'},
     { field: 'descripcion', title: 'Descripción' },
@@ -85,6 +87,7 @@ export class RegVentasComponent implements OnInit {
   descuentoTotal:number = 0;
   igv:number = 0;
   total:number = 0;
+  codigoComprobante:string
 
   //Comprobante
   groupVenta:FormGroup
@@ -120,18 +123,22 @@ export class RegVentasComponent implements OnInit {
   constructor( private readonly listadoVentasService : ListadoVentasRepository,public matDialog: MatDialog, private readonly util : UtilService,  private readonly productoService : ClienteRepository, private readonly clienteService : ClienteRepository, private readonly storage :StorageService, private route: ActivatedRoute, private readonly tiendaService : TiendaRepository, private dialogo: MatDialog,) { }
 
   ngOnInit(): void {
+    this.tablaMuestra = this.listaProductoItemGeneral.map(item => ({...item}));
     this.initializeForm();
 
     //RECIBE VALOR
     this.route.params.subscribe(params => {
       if(params.codigoComprobante != null){
-        this.muestraComprobante(params.codigoComprobante)
+        if(this.numero === 0){
+          this.numero += 1
+          this.muestraComprobante(params.codigoComprobante)
+        }
+        this.codigoComprobante = params.codigoComprobante
         this.numDoc = params.nroDocumento;
         this.tipoParametro = params.codigoTipoDocumento
         this.listar(params.codigoTienda);
         this.titulo = 'MODIFICA VENTA'
         this.condicion = false
-        console.log(this.titulo)
       }else{this.listar('%')}
     });
 
@@ -166,7 +173,7 @@ export class RegVentasComponent implements OnInit {
     requestTienda.Estado = 'A';
 
     this.tiendaService.listar(requestTienda).subscribe(response => {
-      this.nombreTienda = response.datos.result[0].descripcion
+      this.nombreTienda = String(response.datos.result[0].codigoTienda)
       const tiendas = response.datos.result.map(tienda => {
         return {
           nombre: tienda.descripcion,
@@ -237,10 +244,12 @@ export class RegVentasComponent implements OnInit {
         this.listaProductoItem.subTotal = this.precioSugerido
         this.listaProductoItem.precioUnitario = this.precioReal
         this.listaProductoItem.descuento = values['descuento'] * values['cantidad']
+        this.listaProductoItem.accion = 'I'
 
           const index = this.listaProductoItemGeneral.findIndex(i => i.codigoProducto ===this.listaProductoItem.codigoProducto )
           if (index ===-1){
               this.dataTable = this.listaProductoItemGeneral
+              this.tablaMuestra.push(this.listaProductoItem)
               this.listaProductoItemGeneral.push(this.listaProductoItem)
 
               this.dataTable = Array.from(this.listaProductoItemGeneral)
@@ -249,12 +258,24 @@ export class RegVentasComponent implements OnInit {
               for(let i = 0; i<this.listaProductoItemGeneral.length; i++){
                 //EVALUA CON QUE CODIGO COINCIDE
                 if(this.listaProductoItemGeneral[i].codigoProducto === this.listaProductoItem.codigoProducto){
+                  //MODIFICA
+                  this.tablaMuestra[i].codigoProducto = this.listaProductoItem.codigoProducto
+                  this.tablaMuestra[i].descripcion = this.listaProductoItem.descripcion
+                  this.tablaMuestra[i].cantidad += this.listaProductoItem.cantidad
+                  this.tablaMuestra[i].subTotal += (this.precioReal - values['descuento']) * values['cantidad']
+                  this.tablaMuestra[i].precioUnitario = this.listaProductoItem.precioUnitario
+                  this.tablaMuestra[i].descuento += this.listaProductoItem.descuento
+                  this.tablaMuestra[i].accion = 'U'
+
                   this.listaProductoItemGeneral[i].codigoProducto = this.listaProductoItem.codigoProducto
                   this.listaProductoItemGeneral[i].descripcion = this.listaProductoItem.descripcion
                   this.listaProductoItemGeneral[i].cantidad += this.listaProductoItem.cantidad
-                  this.listaProductoItemGeneral[i].subTotal += this.precioSugerido
+                  this.listaProductoItemGeneral[i].subTotal += (this.precioReal - values['descuento']) * values['cantidad']
                   this.listaProductoItemGeneral[i].precioUnitario = this.listaProductoItem.precioUnitario
                   this.listaProductoItemGeneral[i].descuento += this.listaProductoItem.descuento
+                  this.listaProductoItemGeneral[i].accion = 'U'
+
+
                   this.dataTable = Array.from(this.listaProductoItemGeneral)
                 }
                 this.dataTable = Array.from(this.listaProductoItemGeneral)
@@ -301,14 +322,12 @@ listarCliente(value){
 }}
 
 //ELIMINA DATOS DE LA TABLA
-EliminarItem(row :ListaProducto ){
-
-  const index  = this.listaProductoItemGeneral.findIndex( x => x.codigoProducto === row.codigoProducto )
-
-  if (index !== -1){
-   this.listaProductoItemGeneral.splice(index,1)
-   this.dataTable  =  Array.from(this.listaProductoItemGeneral)
-
+EliminarItem(row: ListaProducto) {
+  const index = this.listaProductoItemGeneral.findIndex(x => x.codigoProducto === row.codigoProducto);
+  if (index !== -1) {
+    this.listaProductoItemGeneral.splice(index, 1);
+    this.tablaMuestra[index].accion = 'D';
+    this.dataTable = Array.from(this.listaProductoItemGeneral);
   }
 }
 
@@ -320,7 +339,6 @@ guardarTabla() {
     this.igv = 0
     this.total = 0
     for(let i=0; i<this.listaProductoItemGeneral.length; i++){
-      console.log('ESTE ES EL PRECIO SUGERIDO: '+this.listaProductoItemGeneral[i].precioUnitario)
       this.subTotal += this.listaProductoItemGeneral[i].subTotal
       this.descuentoTotal += this.listaProductoItemGeneral[i].descuento
       this.igv = Number(Number(this.subTotal*0.18).toFixed(2))
@@ -416,6 +434,7 @@ crearVenta(){
           this.listaProductoItemGeneral = []
           this.util.showMessage('GUARDADO CORRECTAMENTE');
           this.ngOnInit();
+          this.limpiar();
         },
         error => {
           console.log('ESTE ES EL ERROR');
@@ -444,7 +463,7 @@ modificaVenta(){
       }
     }else{requestVenta.CodigoCliente = '0'}
 
-    requestVenta.CodigoComprobante = '0';
+    requestVenta.CodigoComprobante = this.codigoComprobante;
     requestVenta.CodigoTipoDocumento = this.tipoParametro
     requestVenta.SerieDocumento = '001';
     requestVenta.NroDocumento = String(this.numDoc);
@@ -483,34 +502,38 @@ modificaVenta(){
 
     const detalleVenta: DetalleRequest[] = [];
 
+    this.listaProductoItemGeneral = this.tablaMuestra
     for(let i = 0; i<this.listaProductoItemGeneral.length;i++){
         const detalleRequest: DetalleRequest = <DetalleRequest>{};
-        detalleRequest.CodigoComprobante = '0';
+        detalleRequest.CodigoComprobante = this.codigoComprobante;
         detalleRequest.CodigoProducto = String(this.listaProductoItemGeneral[i].codigoProducto);
         detalleRequest.Cantidad =  this.listaProductoItemGeneral[i].cantidad;
         detalleRequest.PrecioSugerido = this.listaProductoItemGeneral[i].precioUnitario;
         detalleRequest.Descuento = this.listaProductoItemGeneral[i].descuento;
         detalleRequest.PrecioFinal = this.listaProductoItemGeneral[i].precioUnitario - this.listaProductoItemGeneral[i].descuento;
-        detalleRequest.SubTotal = this.listaProductoItemGeneral[i].subTotal;
+        detalleRequest.SubTotal = this.listaProductoItemGeneral[i].subTotal; //El valor llega hasta aca correctamente pero no se agrega
         detalleRequest.CodigoEmpresa = '00000001';
         detalleRequest.Estado = 'PR';
-        detalleRequest.Accion = 'U';
-
+        if(this.listaProductoItemGeneral[i].accion === undefined){
+          detalleRequest.Accion = 'U'
+        }else{
+          detalleRequest.Accion = this.listaProductoItemGeneral[i].accion
+        }
         detalleVenta.push(detalleRequest);
       };
       requestVenta.ComprobanteDetalle = detalleVenta;
 
-      this.clienteService.guardaComprobante(requestVenta).subscribe(
-        response => {
-          this.ventaResponse = response;
-          this.util.showMessage('MODIFICADO CORRECTAMENTE');
-          this.ngOnInit();
-        },
-        error => {
-          console.log('ESTE ES EL ERROR');
-          console.log(error);
-        }
-      );
+        this.clienteService.guardaComprobante(requestVenta).subscribe(
+          response => {
+            this.ventaResponse = response;
+            this.util.showMessage('MODIFICADO CORRECTAMENTE');
+            this.ngOnInit();
+          },
+          error => {
+            console.log('ESTE ES EL ERROR');
+            console.log(error);
+          }
+        );
   }
 }
 
@@ -537,14 +560,12 @@ confirmAction(value: any) {
     requestParamtros.CodigoSistema = 'VET';
 
     this.clienteService.listaParametros(requestParamtros).subscribe(response => {
-      console.log(response)
       this.numDoc = Number(response.datos.result[0].descripcion)
     });
   }
 
   //Muestra Comprobante
   muestraComprobante(value:any){
-
       const fd= new FormData();
       const requestListadoVentas: listadoVentasRequest =<listadoVentasRequest>{}//  this.group.value;
 
@@ -564,11 +585,15 @@ confirmAction(value: any) {
             this.codigoCliente = datosVenta.codigoCliente
 
             this.listaProductoItemGeneral = (productosComprados)
+            this.tablaMuestra = JSON.parse(JSON.stringify(this.listaProductoItemGeneral));
+
+
             this.dataTable = Array.from(this.listaProductoItemGeneral)
             this.guardarTabla()
+
           }
         )
-  }
+  };
 
   limpiar(){
     this.listaProductoItemGeneral = []

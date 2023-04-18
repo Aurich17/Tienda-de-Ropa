@@ -11,12 +11,12 @@
     <!--PERIODO INICIO-->
     <mat-form-field appearance="outline" style="width: 10%;"  color="primary">
       <mat-label>Periodo Inicio</mat-label>
-      <input matInput type="number" >
+      <input matInput type="number" formControlName="periodoInicio">
     </mat-form-field>
     <!--PERIODO FIN-->
     <mat-form-field appearance="outline" style="width: 10%;"  color="primary">
       <mat-label>Perido Fin</mat-label>
-      <input matInput type="number">
+      <input matInput type="number" formControlName="periodoFin">
     </mat-form-field>
     <!--TRANSACCION-->
     <mat-form-field class="list" appearance="outline" style="margin-left: 10px; width: 15%;">
@@ -34,14 +34,14 @@
     <!--DESCRIPCION-->
     <mat-form-field appearance="outline" style="width: 30%;"  color="primary">
       <mat-label>Descripcion</mat-label>
-      <input matInput type="text">
+      <input matInput type="text" formControlName="descripcion" (input)="listarProducto()">
     </mat-form-field>
   </form>
 
   <!--BOTONES-->
   <div class="botones">
     <button mat-raised-button>Ver Transaccion</button>
-    <button mat-raised-button (click)="listarKardex()">Buscar</button>
+    <button mat-raised-button (click)="listarKardex(0)">Buscar</button>
     <button mat-raised-button>Salir</button>
   </div>
 

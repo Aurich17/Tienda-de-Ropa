@@ -62,4 +62,5 @@ export interface ListaProductos{
   usuario_mod:string;
   fecha_hora_mod:string;
   stock:number;
+  accion:string;
 }
