@@ -35,12 +35,11 @@ export class TableComponent implements OnInit {
 
     ngAfterContentInit(){
 
-      this.loadData();
-
-     
-      
+      this.loadData()
       
     }
+
+    
 
     loadData(){
       if(!this.columnsDef) return false;

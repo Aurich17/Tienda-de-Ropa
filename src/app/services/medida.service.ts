@@ -1,15 +1,15 @@
-import { guardaalmacenrequest, almacenrequest, editaalmacenrequest } from './../almacen/domain/request/almacen_request';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { EventEmitter, Injectable, Output } from '@angular/core';
+
+import { HttpClient,  } from '@angular/common/http';
+import {  Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { pluck, timeout } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { AlmacenResponse } from '../almacen/domain/response/almacen_response';
 import { StorageService } from './storage.service';
-import { AlmacenRepository } from '../almacen/domain/almacen.repository';
+import { MedidaResponse } from '../Medida/domain/response/medida_response';
+import { Medidarequest, guardaMedidarequest } from '../Medida/domain/request/medida_request';
+import { MedidaRepository } from '../Medida/domain/medida.repository';
 
 @Injectable()
-export class MedidaService extends AlmacenRepository{
+export class MedidaService extends MedidaRepository{
   
   constructor(private readonly http:HttpClient,
     private readonly storage: StorageService
@@ -19,24 +19,25 @@ export class MedidaService extends AlmacenRepository{
     super();
   }
 
-  listar(prolrequest:almacenrequest): Observable<AlmacenResponse> 
+  listar(prolrequest:Medidarequest): Observable<MedidaResponse> 
     {
-        return this.http.post<AlmacenResponse>(`${environment.PATH_API}/unidadmedida/listaunidadmedida`,prolrequest);
+        return this.http.post<MedidaResponse>(`${environment.PATH_API}/unidadmedida/listaunidadmedida`,prolrequest);
     
 
     }
-  listarfiltro(prolrequest:almacenrequest): Observable<AlmacenResponse>
+  listarfiltro(prolrequest:Medidarequest): Observable<MedidaResponse>
     {
-      return this.http.post<AlmacenResponse>(`${environment.PATH_API}/unidadmedida/listaunidadmedida`,prolrequest);
+      return this.http.post<MedidaResponse>(`${environment.PATH_API}/unidadmedida/listaunidadmedida`,prolrequest);
     }
 
-  guardaalmacen(prolrequest:guardaalmacenrequest): Observable<AlmacenResponse>
+  guardaalmacen(prolrequest:guardaMedidarequest): Observable<MedidaResponse>
   {
-    return this.http.post<AlmacenResponse>(`${environment.PATH_API}/unidadmedida/Mantunidadmedida`,prolrequest);
+    return this.http.post<MedidaResponse>(`${environment.PATH_API}/unidadmedida/Mantunidadmedida`,prolrequest);
   }
-  editaalmacen(prolrequest:editaalmacenrequest): Observable<AlmacenResponse>
+
+  editaalmacen(prolrequest:guardaMedidarequest): Observable<MedidaResponse>
   {
-    return this.http.post<AlmacenResponse>(`${environment.PATH_API}/unidadmedida/Mantunidadmedida`,prolrequest);
+    return this.http.post<MedidaResponse>(`${environment.PATH_API}/unidadmedida/Mantunidadmedida`,prolrequest);
   }
 }
 

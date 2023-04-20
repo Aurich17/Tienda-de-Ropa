@@ -1,8 +1,8 @@
-export interface AlmacenResponse{
+export interface MedidaResponse{
 
     datos : {status:number ,TotalRegistro : number ,
     
-        result :ListaAlmacen[]
+        result :ListaMedida[]
 
     },
 
@@ -10,7 +10,7 @@ export interface AlmacenResponse{
     meta: { mensaje : string }        
 }
 
-export interface ListaAlmacen{
+export interface ListaMedida{
   codigoUnidadMedida:number;
   descripcion:string;
   estado:string;

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ManteMedidaComponent } from './presentacion/components/mante-medida/mante-medida.component';
+//import { ManteMedidaComponent } from './presentacion/components/mante-medida/mante-medida.component';
+
 const routes: Routes = [
 
-  {path:'', component: ManteMedidaComponent},
+  //{path:'', component: ManteMedidaComponent},
 ];
 
 @NgModule({

@@ -9,7 +9,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { ContainerComponent } from './components/container/container.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { TableComponent } from './components/table/table.component';
 import { KeypadComponent } from './components/keypad/keypad.component';
@@ -38,7 +38,7 @@ import { MatTableExporterModule } from 'mat-table-exporter';
   imports: [
     CommonModule,MatSidenavModule,MatCardModule,FlexLayoutModule, MatTableModule,MatButtonModule,MatIconModule,
     MatTooltipModule,MatDialogModule,MatBottomSheetModule,MatListModule,MatSelectModule,MatCheckboxModule,MatPaginatorModule,
-     MatTableExporterModule
+     MatTableExporterModule,FormsModule 
   ],
   exports: [FlexLayoutModule,
      MatSidenavModule,

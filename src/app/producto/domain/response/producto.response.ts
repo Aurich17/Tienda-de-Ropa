@@ -17,7 +17,9 @@ export interface ListaProducto{
   talla:string;
   tipoPrenda:number;
   genero:string;
+  precioUnitario:number,
   estado:string;
+  stock:number;
   usuario_reg:string;
   fecha_hora_reg:string;
   usuario_mod:string;

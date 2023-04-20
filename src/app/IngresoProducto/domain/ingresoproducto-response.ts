@@ -3,7 +3,7 @@ export interface IngresoProductoResponse{
 
     datos : {status:number ,TotalRegistro : number ,
     
-        result :IngresoProducto[]
+        result :[]
     },
     
     meta: { mensaje : string } 
@@ -36,4 +36,36 @@ export interface  IngresoProducto{
     usuario_mod:string ,
     fecha_hora_mod :string 
    }
+
+
    
+export interface TransaccionResponse{
+
+    datos : {status:number ,TotalRegistro : number ,
+    
+        result :[]
+    },
+    
+    meta: { mensaje : string } 
+    
+    }
+
+   export  interface  ParametrosResponse{
+    datos : {status:number ,TotalRegistro : number ,
+        
+        result :ListaParametros[]
+    },
+
+     meta: { mensaje : string } 
+
+    }
+
+
+    export interface ListaParametros{
+
+        sistema: string 
+        parametroCodigo:string 
+        codigoItem : string 
+        descripcion: string 
+    
+    }

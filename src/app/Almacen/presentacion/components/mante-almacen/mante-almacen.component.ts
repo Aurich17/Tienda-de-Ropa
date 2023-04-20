@@ -2,15 +2,14 @@ import { AlmacenResponse } from './../../../domain/response/almacen_response';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { RegAlmacenComponent } from '../reg-almacen/reg-almacen.component';
+//import { RegAlmacenComponent } from '../reg-almacen/reg-almacen.component';
 import { ListaAlmacen } from 'src/app/almacen/domain/response/almacen_response';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
-import { EditaAlmacenComponent } from '../edita-almacen/edita-almacen.component';
+
 import { almacenrequest } from 'src/app/almacen/domain/request/almacen_request';
 import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
 import { UtilService } from 'src/app/services/util.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+//import { EditaAlmacenComponent } from 'src/app/almacen/presentacion/components/edita-almacen/edita-almacen.component';
 
 
 @Component({
@@ -26,7 +25,7 @@ export class ManteAlmacenComponent implements OnInit {
   almacenResponse:AlmacenResponse
   group:FormGroup
   dialogConfig = new MatDialogConfig();
-  modalDialog: MatDialogRef<RegAlmacenComponent, any> | undefined;
+ // modalDialog: MatDialogRef<RegAlmacenComponent, any> | undefined;
 
   metadataTable: MetadataTable[] = [
     {field:"codigoAlmacen",title: "Cod.Almacen"} ,
@@ -50,7 +49,7 @@ export class ManteAlmacenComponent implements OnInit {
   ngAfterViewInit(): void {
     document.onclick = (args: any) : void => {
           if(args.target.tagName === 'BODY') {
-              this.modalDialog?.close()
+       //       this.modalDialog?.close()
           }
       }
   }
@@ -62,12 +61,12 @@ export class ManteAlmacenComponent implements OnInit {
     this.dialogConfig.height = "500px";
     this.dialogConfig.width = "500px";
     this.dialogConfig.disableClose = true
-    this.modalDialog = this.matDialog.open(RegAlmacenComponent, this.dialogConfig);
+  //  this.modalDialog = this.matDialog.open(RegAlmacenComponent, this.dialogConfig);
   }
 
   openModal(record : any){
     record =  this.listaAlmacen
-   //record = this.codigoEmpleado
+   /*//record = this.codigoEmpleado
    //this.cantidadApoyo = 0;
  
    const options = {
@@ -89,7 +88,7 @@ export class ManteAlmacenComponent implements OnInit {
         // this.cantidadApoyo = response.CantidadApoyo;
         // this.listaEmpleado = response.listaEmpleado
        }
-     });
+     });*/
  }
 
  ngOnInit(): void {  

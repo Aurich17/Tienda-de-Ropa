@@ -37,6 +37,12 @@ import { MedidaRepository } from './Medida/domain/medida.repository';
 import { MedidaService } from './services/medida.service';
 import { ProductoRepository } from './producto/domain/producto.repository';
 import { ProductoService } from './services/producto.service';
+import { IngresoProductoRepository } from './IngresoProducto/domain/ingresorproducto.repository';
+import { IngresoProductoService } from './services/ingresoproducto';
+import { TransferenciaEntreAlmacenesRepository } from './transferenciaentrealmacenes/domain/transferenciaentrealmacenes.repository';
+import { TransferenciaEntreAlmacenesService } from './services/transferenciaentrealmacenes.service';
+import { DashboardventaComponent } from './dashboardventa/presentacion/components/dashboardventa/dashboardventa.component';
+import { PageDashboardventaComponent } from './dashboardventa/presentacion/components/page-dashboardventa/page-dashboardventa.component';
 
 
 
@@ -47,7 +53,10 @@ import { ProductoService } from './services/producto.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardventaComponent,
+    PageDashboardventaComponent,
+    
     
   ],
   imports: [
@@ -74,6 +83,10 @@ import { ProductoService } from './services/producto.service';
   {provide: PromocionRepository, useClass: PromocionService},
   {provide: MedidaRepository, useClass: MedidaService},
   {provide: ProductoRepository, useClass: ProductoService},
+  {provide: IngresoProductoRepository, useClass: IngresoProductoService},
+  {provide: TransferenciaEntreAlmacenesRepository, useClass: TransferenciaEntreAlmacenesService},
+
+  
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
  

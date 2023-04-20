@@ -20,8 +20,8 @@ export interface ResponseLogin{
 export interface result{
     
   token:string;
-  codigoCompañia : string ,
-  nombreCompañia: string,
+  codigoempresa : string ,
+  desEmpresa: string,
   menu: Menu;
   
 }

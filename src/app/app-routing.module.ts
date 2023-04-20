@@ -67,6 +67,17 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 },
 
 
+{
+    path: "Transferencia",
+    loadChildren: () => import("./transferenciaentrealmacenes/transferenciaentrealmacenes.module").then(m => m.TransferenciaentrealmacenesModule)
+},
+
+{
+    path: "DashboardVenta",
+    loadChildren: () => import("./dashboardventa/dashboardventa.module").then(m => m.DashboardventaModule)
+},
+
+
 /*
 {
 

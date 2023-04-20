@@ -1,17 +1,14 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { RegMedidaComponent } from '../reg-medida/reg-medida.component';
-import { AlmacenResponse, ListaAlmacen } from 'src/app/Medida/domain/response/medida_response';
+
+import { MedidaResponse, ListaMedida } from 'src/app/Medida/domain/response/medida_response';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { MedidaRepository } from 'src/app/Medida/domain/medida.repository';
 import { UtilService } from 'src/app/services/util.service';
-import { EditaMedidaComponent } from '../edita-medida/edita-medida.component';
-import { almacenrequest } from 'src/app/Medida/domain/request/medida_request';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
 
-
+import { Medidarequest } from 'src/app/Medida/domain/request/medida_request';
+//import { RegMedidaComponent } from '../reg-medida/reg-medida.component';
 
 
 
@@ -24,12 +21,12 @@ export class ManteMedidaComponent implements OnInit {
   labelPosition: 'I'|'A'='A'
   public page:number
   almacen:string
-  dataTable: ListaAlmacen[]
-  listaAlmacen : ListaAlmacen
-  almacenResponse:AlmacenResponse
+  dataTable: ListaMedida[]
+  listaAlmacen : ListaMedida
+  almacenResponse:MedidaResponse
   group:FormGroup
   dialogConfig = new MatDialogConfig();
-  modalDialog: MatDialogRef<RegMedidaComponent, any> | undefined;
+  //modalDialog: MatDialogRef<RegMedidaComponent, any> | undefined;
 
   metadataTable: MetadataTable[] = [
     {field:"codigoUnidadMedida",title: "Cod.UnidadMedida"} ,
@@ -48,12 +45,12 @@ export class ManteMedidaComponent implements OnInit {
    });
    }
 
-  constructor(public matDialog: MatDialog, private readonly almacenService : MedidaRepository, private readonly util: UtilService) { }
+  constructor(public matDialog: MatDialog, private readonly MedidaService : MedidaRepository, private readonly util: UtilService) { }
 
   ngAfterViewInit(): void {
     document.onclick = (args: any) : void => {
           if(args.target.tagName === 'BODY') {
-              this.modalDialog?.close()
+        //      this.modalDialog?.close()
           }
       }
   }
@@ -65,10 +62,10 @@ export class ManteMedidaComponent implements OnInit {
     this.dialogConfig.height = "500px";
     this.dialogConfig.width = "500px";
     this.dialogConfig.disableClose = true
-    this.modalDialog = this.matDialog.open(RegMedidaComponent, this.dialogConfig);
+   // this.modalDialog = this.matDialog.open(RegMedidaComponent, this.dialogConfig);
   }
 
-  openModal(record : any){
+ /* openModal(record : any){
     record =  this.listaAlmacen
    //record = this.codigoEmpleado
    //this.cantidadApoyo = 0;
@@ -94,6 +91,7 @@ export class ManteMedidaComponent implements OnInit {
        }
      });
  }
+ */
 
  ngOnInit(): void {  
   this.initializeForm();
@@ -106,12 +104,12 @@ listar (){
     const fd= new FormData();
     const values = this.group.value
   
-    const requestAlmacen: almacenrequest =<almacenrequest>{}//  this.group.value;
+    const requestAlmacen: Medidarequest =<Medidarequest>{}//  this.group.value;
    
     requestAlmacen.Descripcion='%'
     requestAlmacen.Estado='A'
 
-      this.almacenService.listar(requestAlmacen).subscribe(response => 
+      this.MedidaService.listar(requestAlmacen).subscribe(response => 
 
         {
           this.almacenResponse = response
@@ -121,9 +119,9 @@ listar (){
 
 }
 }
-editar(almacen:ListaAlmacen){
+editar(almacen:ListaMedida){
   this.listaAlmacen = almacen;
-  this.openModal(this.almacen);
+  //this.openModal(this.almacen);
 }
 
 listarfiltro(){
@@ -133,7 +131,7 @@ listarfiltro(){
     const fd= new FormData();
     const values = this.group.value
   
-    const requestRoles: almacenrequest =<almacenrequest>{}//  this.group.value;
+    const requestRoles: Medidarequest =<Medidarequest>{}//  this.group.value;
    
     requestRoles.Descripcion= values['descripcion']
     requestRoles.Estado= values['radio']
@@ -141,7 +139,7 @@ listarfiltro(){
     if(requestRoles.Descripcion === '' || requestRoles.Descripcion == null){
       requestRoles.Descripcion = '%'
     }
-      this.almacenService.listarfiltro(requestRoles).subscribe(response => 
+      this.MedidaService.listarfiltro(requestRoles).subscribe(response => 
         {
           this.almacenResponse = response
           this.dataTable = this.almacenResponse.datos.result;
