@@ -116,7 +116,7 @@
                     <div class="caja_producto_uno">
                         <mat-form-field appearance="outline" style="width: 80%;">
                             <mat-label>Codigo</mat-label>
-                            <input matInput type="number" formControlName="codigo" style="text-align: center; font-size: 25px;" (change)="listarProducto($event.target.value)" min="0" value="{{codigoProducto}}">
+                            <input matInput type="number" formControlName="codigo" style="text-align: center; font-size: 25px;" (change)="listarProducto($event.target.value)" min="0" value="{{codigoProducto}}" [readonly]="productoEdita ? 'false' : 'true' ">
                         </mat-form-field>
                         <mat-card class="fecha stock" style="background-color: var(--color-tarjeta);">
                             <mat-label style="font-size: 12px; color: rgb(165, 161, 161);">Stock</mat-label>
@@ -127,22 +127,22 @@
                         <div class="caja_prod">
                             <div>
                                 <mat-form-field class="input" appearance="outline" style="width: 100%;">
-                                    <input matInput type="text" value={{descProducto}} formControlName="descripcion">
+                                    <input matInput type="text" value={{descProducto}} formControlName="descripcion" [readonly]="productoEdita ? 'false' : 'true' ">
                                 </mat-form-field>
                             </div>
                             <div class="datos_producto">
                                 <mat-form-field appearance="outline" style="width: 25%;">
                                     <mat-label>Cantidad</mat-label>
-                                    <input matInput type="number" style="text-align: center; font-size: 25px;" formControlName="cantidad" min="1" max="{{stock}}" (input)="precioFinal()">
+                                    <input matInput type="number" style="text-align: center; font-size: 25px;" formControlName="cantidad" min="1" max="{{stock}}" (input)="precioFinal()" value={{cantidad}}>
                                 </mat-form-field>
                                  <mat-form-field appearance="outline" style="width: 30%;">
                                     <mat-label>Descuento</mat-label>
-                                    <input matInput type="number" style="text-align: center; font-size: 25px;" min="0" max="{{descuentoMaximo}}" formControlName="descuento" (input)="precioFinal()">
+                                    <input matInput type="number" style="text-align: center; font-size: 25px;" min="0" max="{{descuentoMaximo}}" formControlName="descuento" (input)="precioFinal()" value={{descuento}}>
                                 </mat-form-field>
                                 <mat-form-field appearance="outline" style="width: 40%;">
                                     <mat-label>Precio Sugerido</mat-label>
                                     <input matInput type="number" style="text-align: center; font-size: 25px;" value={{precioReal}} readonly formControlName="precioReal">
-                                </mat-form-field>
+                                </mat-form-field> 
                             </div>
                             <div class="caja_final">
                                 <div>
@@ -152,8 +152,10 @@
                                     </mat-card>
                                 </div>
                                 <div class="botones">
-                                    <button mat-button type="button" (click)="addData()" class="btn-add" [disabled]="groupProducto.invalid">Agregar</button>
-                                    <button mat-button type="button" (click)="openModal(buscarProducto)" class="btn-add">Buscar</button>
+                                    <button mat-button type="button" (click)="addData()" class="btn-add" [disabled]="groupProducto.invalid" *ngIf="productoEdita">Agregar</button>
+                                    <button mat-button type="button" (click)="addData()" class="btn-add" [disabled]="groupProducto.invalid" *ngIf="!productoEdita">Actualiza</button>
+                                    <button mat-button type="button" (click)="salir()" class="btn-add" [disabled]="groupProducto.invalid" *ngIf="!productoEdita">Salir</button>
+                                    <button mat-button type="button" (click)="openModal(buscarProducto)" *ngIf="productoEdita" class="btn-add">Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -168,9 +170,8 @@
             <ng-container matColumnDef="actions">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let row" style="background-color: var(--color-filas);">
-                <button mat-button (click)="confirmAction(row)" class="eliminarFila">
-                  <mat-icon>delete</mat-icon>
-                </button>
+                <button mat-button (click)="editaProducto(row)" class="eliminarFila"><mat-icon>edit</mat-icon></button>
+                <button mat-button (click)="confirmAction(row)" class="eliminarFila"><mat-icon>delete</mat-icon></button>
               </td>
             </ng-container>
           </app-table>

@@ -35,11 +35,14 @@ export class RegVentasComponent implements OnInit {
 
   codigoProducto:number = 0
   stock:number
+  cantidad:number
+  descuento:number
 
   //CONDICION
   condicion = true
   descuentoMaximo:number
   numero:number = 0
+  productoEdita = true
 
   //MODAL
   buscarProducto = BuscarProductoComponent
@@ -56,6 +59,7 @@ export class RegVentasComponent implements OnInit {
   fechaActual: Date = new Date();
   fechaString: string = this.fechaActual.toISOString().slice(0, 19).replace('T', ' ');
   precioSugerido = 0;
+  precioSugeridoE = 0;
   descProducto:string;
   codigo:number;
   tablaProductos:any = []
@@ -234,6 +238,7 @@ export class RegVentasComponent implements OnInit {
 
   //AGREGA LOS DATOS A LA TABLA
   addData() {
+      this.productoEdita = true
       const values = this.groupProducto.value
 
         this.listaProductoItem   = <ListaProducto>{}
@@ -243,7 +248,7 @@ export class RegVentasComponent implements OnInit {
         this.listaProductoItem.cantidad = values['cantidad']
         this.listaProductoItem.subTotal = this.precioSugerido
         this.listaProductoItem.precioUnitario = this.precioReal
-        this.listaProductoItem.descuento = values['descuento'] * values['cantidad']
+        this.listaProductoItem.descuento = values['descuento']
         this.listaProductoItem.accion = 'I'
 
           const index = this.listaProductoItemGeneral.findIndex(i => i.codigoProducto ===this.listaProductoItem.codigoProducto )
@@ -261,18 +266,18 @@ export class RegVentasComponent implements OnInit {
                   //MODIFICA
                   this.tablaMuestra[i].codigoProducto = this.listaProductoItem.codigoProducto
                   this.tablaMuestra[i].descripcion = this.listaProductoItem.descripcion
-                  this.tablaMuestra[i].cantidad += this.listaProductoItem.cantidad
-                  this.tablaMuestra[i].subTotal += (this.precioReal - values['descuento']) * values['cantidad']
+                  this.tablaMuestra[i].cantidad = this.listaProductoItem.cantidad
+                  this.tablaMuestra[i].subTotal = (this.precioReal - values['descuento']) * values['cantidad']
                   this.tablaMuestra[i].precioUnitario = this.listaProductoItem.precioUnitario
-                  this.tablaMuestra[i].descuento += this.listaProductoItem.descuento
+                  this.tablaMuestra[i].descuento = this.listaProductoItem.descuento
                   this.tablaMuestra[i].accion = 'U'
 
                   this.listaProductoItemGeneral[i].codigoProducto = this.listaProductoItem.codigoProducto
                   this.listaProductoItemGeneral[i].descripcion = this.listaProductoItem.descripcion
-                  this.listaProductoItemGeneral[i].cantidad += this.listaProductoItem.cantidad
-                  this.listaProductoItemGeneral[i].subTotal += (this.precioReal - values['descuento']) * values['cantidad']
+                  this.listaProductoItemGeneral[i].cantidad = this.listaProductoItem.cantidad
+                  this.listaProductoItemGeneral[i].subTotal = (this.precioReal - values['descuento']) * values['cantidad']
                   this.listaProductoItemGeneral[i].precioUnitario = this.listaProductoItem.precioUnitario
-                  this.listaProductoItemGeneral[i].descuento += this.listaProductoItem.descuento
+                  this.listaProductoItemGeneral[i].descuento = this.listaProductoItem.descuento
                   this.listaProductoItemGeneral[i].accion = 'U'
 
 
@@ -283,6 +288,21 @@ export class RegVentasComponent implements OnInit {
             }
             this.guardarTabla()
   }
+
+  // editData(){
+  //   const values = this.groupProducto.value
+
+  //   this.listaProductoItem   = <ListaProducto>{}
+
+  //   this.listaProductoItem.codigoProducto = values["codigo"]
+  //   this.listaProductoItem.descripcion = values["descripcion"]
+  //   this.listaProductoItem.cantidad = values['cantidad']
+  //   this.listaProductoItem.subTotal = this.precioSugerido
+  //   this.listaProductoItem.precioUnitario = this.precioReal
+  //   this.listaProductoItem.descuento = values['descuento'] * values['cantidad']
+  //   this.listaProductoItem.accion = 'I'
+
+  // }
 
   //PRECIO FINAL DEL PRODUCTO CANTIDAD x PRECIO
   precioFinal(){
@@ -451,18 +471,8 @@ modificaVenta(){
     const valuesCliente = this.groupCliente.value;
 
     const requestVenta: ventarequest = <ventarequest>{};
-    if(valuesCliente['codigo'] != undefined){
-      if(valuesCliente['codigo'] === null){
-        requestVenta.CodigoCliente = String(this.codigoCliente)
-      }
-      else{
-        requestVenta.CodigoCliente = valuesCliente['codigo']
-        if(requestVenta.CodigoCliente === null || requestVenta.CodigoCliente === ''){
-          requestVenta.CodigoCliente = '0'
-        }
-      }
-    }else{requestVenta.CodigoCliente = '0'}
 
+    requestVenta.CodigoCliente = String(this.codigoCliente);
     requestVenta.CodigoComprobante = this.codigoComprobante;
     requestVenta.CodigoTipoDocumento = this.tipoParametro
     requestVenta.SerieDocumento = '001';
@@ -470,10 +480,10 @@ modificaVenta(){
     requestVenta.TipoCambio = '3.35';
     requestVenta.DocumentoReferencia = '';
     requestVenta.ClienteNombre = this.nombre;
-    requestVenta.ClienteDireccion = valuesCliente['direccion']
-    requestVenta.ClienteTelefono = valuesCliente['telefono'];
-    requestVenta.ClienteTipoDoc = valuesCliente['tipoDocumento'];
-    requestVenta.ClienteDocumento = valuesCliente['nroDocumento'];
+    requestVenta.ClienteDireccion = this.direccion
+    requestVenta.ClienteTelefono = '960430798                                                                    '
+    requestVenta.ClienteTipoDoc = this.tDocumento
+    requestVenta.ClienteDocumento = this.nDocumento
     requestVenta.CodigoVendedor = '1';
     requestVenta.Periodo = '202303';
     requestVenta.FechaEmision = String(this.fechaString);
@@ -587,10 +597,8 @@ confirmAction(value: any) {
             this.listaProductoItemGeneral = (productosComprados)
             this.tablaMuestra = JSON.parse(JSON.stringify(this.listaProductoItemGeneral));
 
-
             this.dataTable = Array.from(this.listaProductoItemGeneral)
             this.guardarTabla()
-
           }
         )
   };
@@ -600,6 +608,20 @@ confirmAction(value: any) {
     this.dataTable = this.listaProductoItemGeneral
     this.guardarTabla()
     this.groupCliente.reset()
+  }
+
+  editaProducto(row:any){
+    const index = this.listaProductoItemGeneral.findIndex(i => i.codigoProducto ===row.codigoProducto )
+    this.listaProductoItemGeneral
+    console.log(index)
+    this.productoEdita = false
+    this.listarProducto(row.codigoProducto)
+    this.cantidad = row.cantidad
+    this.descuento = row.descuento
+  }
+  salir(){
+    this.productoEdita =true
+    this.groupProducto.reset()
   }
 }
 

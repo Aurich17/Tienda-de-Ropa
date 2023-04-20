@@ -36,11 +36,12 @@ export class ListadoKardexComponent implements OnInit {
   metadataTable = [
     { field: 'periodo', title: 'Periodo'},
     { field: 'desAlmacen', title:'Almacen Descripcion' },
-    { field: 'desProducto', title:'Desc. Producto'},
     { field: 'codigoProducto', title:'Cod. Producto' },
+    { field: 'desProducto', title:'Desc. Producto'},
     { field: 'fechaDocumento', title: 'Fecha'},
     { field: 'tipoDocumento', title:'T.Documento'},
     { field: 'nroDocumento', title:'Nro.Documento' },
+    { field: 'cantidad', title: 'Cantidad'}
   ];
   iniciaFormulario(){
   this.group = new FormGroup({
