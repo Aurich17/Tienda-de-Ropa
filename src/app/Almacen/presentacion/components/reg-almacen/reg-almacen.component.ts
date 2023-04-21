@@ -1,11 +1,13 @@
 import { AlmacenResponse } from './../../../domain/response/almacen_response';
 import { Component,OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {MatDialogRef } from '@angular/material/dialog';
-import {  guardaalmacenrequest } from 'src/app/almacen/domain/request/almacen_request';
-import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
-import { UtilService } from 'src/app/services/util.service';
+import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {  guardaalmacenrequest } from '../../../../../../src/app/almacen/domain/request/almacen_request';
+import { AlmacenRepository } from '../../../../../../src/app/almacen/domain/almacen.repository';
+import { UtilService } from '../../../../../../src/app/services/util.service';
 
+
+//@ts-ignore
 @Component({
   selector: 'app-reg-almacen',
   templateUrl: './reg-almacen.component.html',
@@ -20,12 +22,12 @@ export class RegAlmacenComponent implements OnInit {
     this.group = new FormGroup({
     descripcion : new FormControl (null,Validators.required),
     direccion : new FormControl (null, Validators.required),
-    radio : new   FormControl(null,Validators.required),   
+    radio : new   FormControl(null,Validators.required),
    });
    }
 
   constructor(private readonly almacenService : AlmacenRepository,private readonly  reference: MatDialogRef<RegAlmacenComponent>, private readonly util: UtilService) { }
-  
+
 
   ngOnInit(): void {
     this.initializeForm();
@@ -42,7 +44,7 @@ export class RegAlmacenComponent implements OnInit {
       requestGuardaAlmacen.Estado = valores['radio']
       requestGuardaAlmacen.Usuario_reg = 'Admin'
       requestGuardaAlmacen.Tipo = 'I'
-      
+
       this.almacenService.guardaalmacen(requestGuardaAlmacen).subscribe(response=>
       {
         this.almacenResponse = response

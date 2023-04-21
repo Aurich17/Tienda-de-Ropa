@@ -3,14 +3,15 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegTiendaComponent } from '../reg-tienda/reg-tienda.component';
-import { ListaTienda } from 'src/app/Tienda/domain/response/tienda_response';
-import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
+import { ListaTienda } from '../../../../Tienda/domain/response/tienda_response';
+import { MetadataTable } from '../../../../interfaces/metada-table.interface';
 import { EditaTiendaComponent } from '../edita-tienda/edita-tienda.component';
-import { tiendarequest } from 'src/app/Tienda/domain/request/tienda_request';
-import { TiendaRepository } from 'src/app/Tienda/domain/tienda.repository';
-import { UtilService } from 'src/app/services/util.service';
+import { tiendarequest } from '../../../../Tienda/domain/request/tienda_request';
+import { TiendaRepository } from '../../../../Tienda/domain/tienda.repository';
+import { UtilService } from '../../../../services/util.service';
 
 
+//@ts-ignore
 @Component({
   selector: 'app-mante-tienda',
   templateUrl: './mante-tienda.component.html',
@@ -35,13 +36,13 @@ export class ManteTiendaComponent implements OnInit {
     {field:"usuario_reg", title: "Usu.Reg"},
     {field:"fecha_hora_reg", title: "Fecha Hora Registro"},
     {field:"usuario_mod", title: "Usu.Mod"},
-    {field:"fecha_hora_mod", title: "Fecha Hora Mod"},     
+    {field:"fecha_hora_mod", title: "Fecha Hora Mod"},
   ];
 
   initializeForm(){
     this.group = new FormGroup({
     descripcion : new FormControl (null,null),
-    radio : new   FormControl(null,null),   
+    radio : new   FormControl(null,null),
    });
    }
 
@@ -54,10 +55,10 @@ export class ManteTiendaComponent implements OnInit {
           }
       }
   }
-  
+
 
   agregarTienda() {
-    
+
     this.dialogConfig.id = "projects-modal-component";
     this.dialogConfig.height = "500px";
     this.dialogConfig.width = "500px";
@@ -69,46 +70,46 @@ export class ManteTiendaComponent implements OnInit {
     record =  this.listaTienda
    //record = this.codigoEmpleado
    //this.cantidadApoyo = 0;
- 
+
    const options = {
-        
+
      disableClose: true,
      panelClass:'editaTienda',
      data: record,
    };
- 
+
    const reference =  this.util.openModal(
     EditaTiendaComponent,
       options,
-     
+
      );
      reference.subscribe((response) => {
       this.listar()
        if (response){
-        
+
         // this.cantidadApoyo = response.CantidadApoyo;
         // this.listaEmpleado = response.listaEmpleado
        }
      });
  }
 
- ngOnInit(): void {  
+ ngOnInit(): void {
   this.initializeForm();
   this.listar();
 }
 
 listar (){
   if (this.group.valid){
-   
+
     const fd= new FormData();
     const values = this.group.value
-  
+
     const requestTienda: tiendarequest =<tiendarequest>{}//  this.group.value;
-   
+
     requestTienda.Descripcion='%'
     requestTienda.Estado='A'
 
-      this.tiendaService.listar(requestTienda).subscribe(response => 
+      this.tiendaService.listar(requestTienda).subscribe(response =>
 
         {
           this.tiendaResponse = response
@@ -126,19 +127,19 @@ editar(tienda:ListaTienda){
 listarfiltro(){
   // console.log(this.jj)
   if (this.group.valid){
-   
+
     const fd= new FormData();
     const values = this.group.value
-  
+
     const requestTienda: tiendarequest =<tiendarequest>{}//  this.group.value;
-   
+
     requestTienda.Descripcion= values['descripcion']
     requestTienda.Estado= values['radio']
 
     if(requestTienda.Descripcion === '' || requestTienda.Descripcion == null){
       requestTienda.Descripcion = '%'
     }
-      this.tiendaService.listarfiltro(requestTienda).subscribe(response => 
+      this.tiendaService.listarfiltro(requestTienda).subscribe(response =>
         {
           this.tiendaResponse = response
           this.dataTable = this.tiendaResponse.datos.result;

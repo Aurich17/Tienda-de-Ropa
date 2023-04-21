@@ -1,0 +1,1 @@
+export interface listadoKardex{CodigoKardex:number,CodigoAlmacen:number,PeriodoInicio:number,PeriodoFin:number,FechaInicio:string,FechaFin:string,CodigoProducto:number,CodigoTipoDocumento:string,TipoTransaccion:string,CodigoEmpresa:string}

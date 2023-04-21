@@ -2,16 +2,16 @@ import { AlmacenResponse } from './../../../domain/response/almacen_response';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-//import { RegAlmacenComponent } from '../reg-almacen/reg-almacen.component';
-import { ListaAlmacen } from 'src/app/almacen/domain/response/almacen_response';
-import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
+import { RegAlmacenComponent } from '../reg-almacen/reg-almacen.component';
+import { ListaAlmacen } from '../../../../Almacen/domain/response/almacen_response';
+import { MetadataTable } from '../../../../interfaces/metada-table.interface';
+import { EditaAlmacenComponent } from '../edita-almacen/edita-almacen.component';
+import { almacenrequest } from '../../../../../../src/app/almacen/domain/request/almacen_request';
+import { AlmacenRepository } from '../../../../almacen/domain/almacen.repository';
+import { UtilService } from './../../../../services/util.service';
 
-import { almacenrequest } from 'src/app/almacen/domain/request/almacen_request';
-import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
-import { UtilService } from 'src/app/services/util.service';
-//import { EditaAlmacenComponent } from 'src/app/almacen/presentacion/components/edita-almacen/edita-almacen.component';
 
-
+//@ts-ignore
 @Component({
   selector: 'app-mante-almacen',
   templateUrl: './mante-almacen.component.html',
@@ -34,13 +34,13 @@ export class ManteAlmacenComponent implements OnInit {
     {field:"usuarioReg", title: "Usu.Reg"},
     {field:"fecha_hora_reg", title: "Fecha Hora Registro"},
     {field:"usuario_mod", title: "Usu.Mod"},
-    {field:"fecha_hora_mod", title: "Fecha Hora Mod"},     
+    {field:"fecha_hora_mod", title: "Fecha Hora Mod"},
 
   ];
   initializeForm(){
     this.group = new FormGroup({
     descripcion : new FormControl (null,null),
-    radio : new   FormControl(null,null),   
+    radio : new   FormControl(null,null),
    });
    }
 
@@ -53,10 +53,10 @@ export class ManteAlmacenComponent implements OnInit {
           }
       }
   }
-  
+
 
   agregarAlmacen() {
-    
+
     this.dialogConfig.id = "projects-modal-component";
     this.dialogConfig.height = "500px";
     this.dialogConfig.width = "500px";
@@ -68,46 +68,46 @@ export class ManteAlmacenComponent implements OnInit {
     record =  this.listaAlmacen
    /*//record = this.codigoEmpleado
    //this.cantidadApoyo = 0;
- 
+
    const options = {
-        
+
      disableClose: true,
      panelClass:'editaAlmacen',
      data: record,
    };
- 
+
    const reference =  this.util.openModal(
     EditaAlmacenComponent,
       options,
-     
+
      );
      reference.subscribe((response) => {
       this.listar()
        if (response){
-        
+
         // this.cantidadApoyo = response.CantidadApoyo;
         // this.listaEmpleado = response.listaEmpleado
        }
      });*/
  }
 
- ngOnInit(): void {  
+ ngOnInit(): void {
   this.initializeForm();
   this.listar();
 }
 
 listar (){
   if (this.group.valid){
-   
+
     const fd= new FormData();
     const values = this.group.value
-  
+
     const requestAlmacen: almacenrequest =<almacenrequest>{}//  this.group.value;
-   
+
     requestAlmacen.Descripcion='%'
     requestAlmacen.Estado='A'
 
-      this.almacenService.listar(requestAlmacen).subscribe(response => 
+      this.almacenService.listar(requestAlmacen).subscribe(response =>
 
         {
           this.almacenResponse = response
@@ -125,19 +125,19 @@ editar(almacen:ListaAlmacen){
 listarfiltro(){
   // console.log(this.jj)
   if (this.group.valid){
-   
+
     const fd= new FormData();
     const values = this.group.value
-  
+
     const requestRoles: almacenrequest =<almacenrequest>{}//  this.group.value;
-   
+
     requestRoles.Descripcion= values['descripcion']
     requestRoles.Estado= values['radio']
 
     if(requestRoles.Descripcion === '' || requestRoles.Descripcion == null){
       requestRoles.Descripcion = '%'
     }
-      this.almacenService.listarfiltro(requestRoles).subscribe(response => 
+      this.almacenService.listarfiltro(requestRoles).subscribe(response =>
         {
           this.almacenResponse = response
           this.dataTable = this.almacenResponse.datos.result;

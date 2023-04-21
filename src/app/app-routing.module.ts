@@ -1,3 +1,4 @@
+import { RegVentasComponent } from './RegVentas/presentacion/components/reg-ventas/reg-ventas.component';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { PageLoginComponent } from "./core/presentacion/page-login/page-login.component";
@@ -7,7 +8,7 @@ const routes: Routes = [
 {path: '', component: PageLoginComponent },
 {
 path: 'dashboard',
-loadChildren: () => 
+loadChildren: () =>
 import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 },
 {
@@ -65,19 +66,19 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     path: "Medida",
     loadChildren: () => import("./medida/mante-medida.module").then(m => m.ManteMedidaModule)
 },
-
-
 {
-    path: "Transferencia",
-    loadChildren: () => import("./transferenciaentrealmacenes/transferenciaentrealmacenes.module").then(m => m.TransferenciaentrealmacenesModule)
+    path: "Registro",
+    loadChildren: () => import("./RegVentas/reg-ventas.module").then(m => m.RegVentasModule)
 },
-
 {
-    path: "DashboardVenta",
-    loadChildren: () => import("./dashboardventa/dashboardventa.module").then(m => m.DashboardventaModule)
+  path: "Kardex",
+  loadChildren: () => import("./Kardex/kardex.module").then(m => m.KardexModule)
 },
-
-
+{
+    path: "ListadoVentas",
+    loadChildren: () => import("./ListadoVentas/listado-ventas.module").then(m => m.ListadoVentasModule)
+},
+{ path: './RegVentas/reg-ventas.component/:datos', component: RegVentasComponent }
 /*
 {
 
@@ -149,7 +150,7 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 ];
 
 
-
+//@ts-ignore
 @NgModule({
 
     imports: [RouterModule.forRoot(routes)],

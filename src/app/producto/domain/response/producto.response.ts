@@ -1,13 +1,13 @@
 export interface ProductoResponse{
 
-    datos : {status:number ,TotalRegistro : number ,
-    
-        result :ListaProducto[]
+  datos : {status:number ,TotalRegistro : number ,
+  
+      result :ListaProducto[]
 
-    },
+  },
 
-    
-    meta: { mensaje : string }        
+  
+  meta: { mensaje : string }        
 }
 
 export interface ListaProducto{

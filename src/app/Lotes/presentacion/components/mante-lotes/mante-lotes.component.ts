@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegLotesComponent } from '../reg-lotes/reg-lotes.component';
-import { ListaLote } from 'src/app/Lotes/domain/response/lote_response';
+import { ListaLote } from '../../../domain/response/lote_response';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { EditaLotesComponent } from '../edita-lotes/edita-lotes.component';
 import { loterequest } from 'src/app/Lotes/domain/request/lote_request';

@@ -28,8 +28,8 @@ export interface ActividadResponse{
  
         codigoParte: number,
         codigoParteActividad: number,
-        codigoCompañia: string ,
-        nombreCompañia: string,
+        codigoEmpresa: string ,
+        descEmpresa: string,
         codigoEmpleado: number,
         nombreEmpleado: string,
         codigoEstacion: string ,
@@ -77,8 +77,8 @@ export interface ParteInsertResponse{
 export interface Resultado{
 
     codigoParte: number ,
-    codigoCompañia: string,
-    nombreCompañia:string ,
+    codigoEmpresa: string,
+    descEmpresa:string ,
     codigoEmpleado: number,
     nombreEmpleado:string,
     codigoEstacion: string ,
@@ -141,7 +141,7 @@ export interface EmpleadoResponse{
 
     export interface ResultadoEmpleado{
 
-        codigoCompañia: string,
+        codigoEmpresa: string,
         codigoEmpleado: number,
         nombreCompleto: string,
         tipoDocumento: string,
@@ -195,7 +195,7 @@ export interface EmpleadoResponse{
 
         export interface OrdenTrabajo{
 
-            codigoCompañia:string ,
+            codigoEmpresa:string ,
             codigoOrdenTrabajo: number,
         }
 
