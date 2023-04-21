@@ -1,0 +1,42 @@
+body {
+  overflow: hidden;
+  background-color: var(--color-fondo);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+.formKardex{
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.botones{
+  margin-top: 130px;
+  margin-bottom: 30px;
+  display: flex;
+  width: 40%;
+  justify-content: end;
+  justify-content: space-around;
+  margin-left: 60%;
+  height: 54px;
+}
+
+.botones button{
+  background-color: var(--color-boton);
+  width: 150px;
+  font-size: 16px;
+  border-radius: 7px;
+  color: var(--color-texto);
+}
+
+.botones button:hover{
+  background-color: var(--color-hover);
+  color: var(--color-texto);
+}

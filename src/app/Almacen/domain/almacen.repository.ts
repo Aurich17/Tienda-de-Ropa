@@ -1,6 +1,6 @@
 import { Observable } from "rxjs/internal/Observable";
 import { guardaalmacenrequest, almacenrequest, editaalmacenrequest } from "./request/almacen_request";
-import { AlmacenResponse} from "./response/almacen_response";
+import { AlmacenResponse} from "./response/Almacen_response";
 
 export abstract class AlmacenRepository{
 

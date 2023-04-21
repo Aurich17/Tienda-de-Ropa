@@ -1,9 +1,7 @@
 
 <div fxLayout="column">
 
-<table matTableExporter mat-table [dataSource] = "dataSource"  
-#exporter="matTableExporter"
->
+<table matTableExporter mat-table [dataSource] = "dataSource"  #exporter="matTableExporter"> <!--Recibe los datos-->
  <ng-container></ng-container>
     <ng-container *ngFor="let metadata of metadataTable" [matColumnDef]="metadata.field">
         <th mat-sort-header="name" mat-header-cell *matHeaderCellDef class="centro">
@@ -19,10 +17,10 @@
 
         </td>
     </ng-container>
-    
+
     <tr mat-header-row *matHeaderRowDef="columnsToView" class="cabecera"></tr>
     <tr mat-row *matRowDef="let row; columns: columnsToView" class="highline"></tr>
- </table>         
+ </table>
 </div>
 <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"   [length]="dataTable?.length"></mat-paginator>
 <div>

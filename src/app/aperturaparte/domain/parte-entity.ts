@@ -1,6 +1,6 @@
 export interface ParteEntity{
 
-codigoCompañia :string ;
+codigoempresa :string ;
 codigoEmpleado:number;
 codigoEstacion:string;
 codigoOrdenTrabajo :number;
@@ -26,7 +26,7 @@ export interface ActividadEntity{
 export interface RequestParte{
 
     CodigoParte: number ,
-    CodigoCompañia: string ,
+    Codigoempresa: string ,
     CodigoEmpleado: number ,
     CodigoEstacion: string ,
     CodigoOrdenTrabajo: number ,
@@ -37,7 +37,7 @@ export interface RequestParte{
 
 export interface AperturaParteEmpleado{
 
-    codigoCompañia : string ,
+    codigoempresa : string ,
     codigoEmpleado : number
 }
 
@@ -57,7 +57,7 @@ export interface EmpleadoLista{
 export interface ParteUpdateEntity{
 
     codigoParte: number,
-    codigoCompañia: string ,
+    codigoempresa: string ,
     codigoEmpleado: number,
     codigoEstacion: string ,
     codigoOrdenTrabajo: number,
@@ -75,7 +75,7 @@ export interface ParteUpdateEntity{
 
 export interface RequestOT {
 
-    CodigoCompañia : string ,
+    codigoempresa : string ,
     CodigoOrdenTrabajo : number
     
 }
@@ -85,7 +85,7 @@ export interface AperturaParteTransaccion
 {
     CodigoParte: number,
     n_parteproduccion: number,
-    codigoCompañia: string ,            
+    codigoempresa: string ,            
     codigoEstacion: string ,
     codigoOrdenTrabajo: number,
     Turno: string ,
@@ -127,7 +127,7 @@ export interface RequestParteActividadList
     {
         CodigoParte : number,
         CodigoParteActividad : number,
-        CodigoCompañia : string ,
+        codigoempresa : string ,
         CodigoEmpleado : number,
         FechaInicio : string ,
         FechaFin : string ,
@@ -154,7 +154,7 @@ export interface RequestParteActividadList
     export interface RequestValidarParte
         {
 
-            CodigoCompañia :string ,
+            codigoempresa :string ,
             CodigoOrdenTrabajo :number ,
             Secuencia :number ,
             

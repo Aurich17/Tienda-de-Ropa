@@ -1,24 +1,40 @@
 
 .container-form {
+    width: 900px;
 
-    width: 500px;
-    
     }
     .container-form mat-dialog-container{
         padding: 0;
-      
+
     }
-    
+
     .container-form mat-dialog-content{
-    
+
+
     margin: 0;
     padding: 24px;
-    
+
     }
-    
-    @media (max-width: 500px){
-    
+
+@media (max-width: 500px){
+
         .container-form{
         width: 320px;
         }
-    }
+}
+
+.contenedor{
+  display: flex;
+  justify-content: space-between;
+}
+
+.boton{
+  border-radius: 10px;
+  background-color: var(--color-boton);
+  width: 70px;
+  height: 30px;
+}
+
+.boton:hover{
+  background-color: var(--color-hover);
+}

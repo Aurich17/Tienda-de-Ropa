@@ -1,11 +1,13 @@
 import { Component,Inject,OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { MedidaRepository } from 'src/app/Medida/domain/medida.repository';
 import { editaMedidarequest } from 'src/app/Medida/domain/request/medida_request';
 import { MedidaResponse, ListaMedida } from 'src/app/Medida/domain/response/medida_response';
 import { UtilService } from 'src/app/services/util.service';
 
+//@ts-ignore
 @Component({
   selector: 'app-edita-medida',
   templateUrl: './edita-medida.component.html',
@@ -35,6 +37,8 @@ export class EditaMedidaComponent implements OnInit {
 
   guarda(){
     const valores = this.group.value //Esto agarra los valores del HTML dentro del FormGroup
+    const requestEditaAlmacen: editaalmacenrequest =<editaalmacenrequest>{}
+
     const requestEditaAlmacen: editaMedidarequest =<editaMedidarequest>{}
     
     requestEditaAlmacen.CodigoUnidadMedida = this.codigoAlmacen.toString()
@@ -42,6 +46,8 @@ export class EditaMedidaComponent implements OnInit {
     requestEditaAlmacen.Estado = valores['radio']
     requestEditaAlmacen.Usuario_reg = 'Admin'
     requestEditaAlmacen.Tipo = 'U'
+
+    this.almacenService.editaalmacen(requestEditaAlmacen).subscribe(response=>
     
     this.MedidaService.editaalmacen(requestEditaAlmacen).subscribe(response=>
     {
@@ -49,11 +55,11 @@ export class EditaMedidaComponent implements OnInit {
       this.util.showMessage('EDITADO CORRECTAMENTE')
       this.closeModal()
     }
-    
+
     )
   }
   clear() {
     this.group.reset({radio: 'A'})
-  }  
+  }
 
 }

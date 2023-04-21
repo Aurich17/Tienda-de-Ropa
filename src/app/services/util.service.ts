@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { ConfirmComponent } from '../shared/components/confirm/confirm.component';
 import { ExportComponent } from '../shared/components/export/export.component';
 
+
+//@ts-ignore
 @Injectable({
   providedIn: 'root'
 })
@@ -36,23 +38,23 @@ export class UtilService {
           return reference.afterClosed();
 
       }
-    
+
   }
 
   showMessage(message: string):void {
     this.notifier.open(message,null,
-      {duration: 5000,horizontalPosition: 'end',
+      {duration: 3000,horizontalPosition: 'end',
         verticalPosition: 'top',panelClass: ['blue-snackbar']})
   }
 
   showMessageError(message:string):void{
     this.notifier.open(message,null,
-      {duration: 5000,horizontalPosition:'end',
+      {duration: 3000,horizontalPosition:'end',
     verticalPosition:'top', panelClass: ['message-error']})
   }
 
   confirm(message: string=""): Observable<any>{
-    
+
     const referenceConfirm  =   this.openModal(
     ConfirmComponent,
     {
