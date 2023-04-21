@@ -4,9 +4,6 @@ import { TiendaService } from './services/tienda.service';
 import { MenuRepository } from 'src/app/menus/domain/menu.repository';
 import { RolRepository} from 'src/app/roles/domain/rol.repository';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
@@ -43,6 +40,8 @@ import { TransferenciaEntreAlmacenesRepository } from './transferenciaentrealmac
 import { TransferenciaEntreAlmacenesService } from './services/transferenciaentrealmacenes.service';
 import { DashboardventaComponent } from './dashboardventa/presentacion/components/dashboardventa/dashboardventa.component';
 import { PageDashboardventaComponent } from './dashboardventa/presentacion/components/page-dashboardventa/page-dashboardventa.component';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 
 

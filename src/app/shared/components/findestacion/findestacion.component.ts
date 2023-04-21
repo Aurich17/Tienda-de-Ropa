@@ -1,13 +1,24 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+
 import { KeyPadButton } from 'src/app/interfaces/keypad-button.interface';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { UtilService } from 'src/app/services/util.service';
 import { DialogoConfirmacionComponent } from '../dialogoconfirmacion/dialogoconfirmacion.component';
+import { Observable } from 'rxjs/dist/types';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
+
+
+
+
+@Component({
+  selector: 'app-pruebadecomponente',
+  templateUrl: './pruebadecomponente.component.html',
+  styleUrls: ['./pruebadecomponente.component.css']
+})
 
 @Component({
   selector: 'app-findestacion',
@@ -28,23 +39,23 @@ export class FindestacionComponent implements OnInit {
  
 // @Output() onEdit :EventEmitter<CapacidadMaquinaEntity>= new EventEmitter<CapacidadMaquinaEntity>();
 
-  group: FormGroup;
+  group: any = null;
   qrData = null;
   scannedCode = null;
-  collapsed: boolean;
+  collapsed: boolean =  false;
   hasCameras = false;
-  hasPermission: boolean;
-  qrResultString: string;
-  availableDevices: MediaDeviceInfo[];
-  selectedDevice: MediaDeviceInfo;
-  path : string ;
+  hasPermission: boolean = false;
+  qrResultString: string = '';
+  availableDevices: MediaDeviceInfo[] = [];
+  selectedDevice: any// MediaDeviceInfo ;
+  path : string  = '';
   statusButton:string = "false";
-  cantidadApoyo: number ;
-  codigoEmpleado:number;
-  codigoEstacion: string ;
-  codigoParte:string ;
+  cantidadApoyo: number = 0  ;
+  codigoEmpleado:number = 0 ;
+  codigoEstacion: string = '' ;
+  codigoParte:string = '';
   listaApertura: any[] = [];
-  dataTable :  []
+  dataTable :  [] = []
 
  
   constructor(
