@@ -1,0 +1,1 @@
+{"ast":null,"code":"/*export interface IStorage{\r\n    save(property: string , value : string | object):void,\r\n    get (property: string ):string\r\n\r\n}*/\nexport class AbstractStorage {\n  cast(value) {\n    return JSON.stringify(value);\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

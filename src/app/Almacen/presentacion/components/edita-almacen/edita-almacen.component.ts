@@ -1,10 +1,11 @@
 import { AlmacenResponse, ListaAlmacen } from './../../../domain/response/almacen_response';
-import { Component,Inject,OnInit} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { editaalmacenrequest } from 'src/app/almacen/domain/request/almacen_request';
 import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
 import { UtilService } from 'src/app/services/util.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-edita-almacen',
