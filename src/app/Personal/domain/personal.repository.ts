@@ -1,6 +1,9 @@
 import { Observable } from "rxjs/internal/Observable";
-import { guardapersonalrequest, personalrequest} from "./request/personal_request";
-import { PersonalResponse} from "./response/personal_response";
+
+
+import { personalrequest, guardapersonalrequest } from "./request/personal_request";
+import { PersonalResponse } from "./response/personal_response";
+
 
 export abstract class PersonalRepository{
 

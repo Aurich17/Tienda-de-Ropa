@@ -32,8 +32,8 @@
                           <mat-form-field appearance="outline"  class="example-full-width">
                               <mat-label>Empleado</mat-label>
                               <input type="text"  #empleado matInput required formControlName = "codigoEmpleado" 
-                              (keyup)="cambiarfocusautomatico()"
-                              (keydown)="handleKeyDown($event)"
+                           
+                             
                               >
                           </mat-form-field>
                         
@@ -59,7 +59,7 @@
                         (click) = "Salir('')"
                         type="button"
                     >Salir
-                        <mat-icon>launch</mat-icon>
+                    <mat-icon >launch</mat-icon>
                     </button>
 
                 </div>

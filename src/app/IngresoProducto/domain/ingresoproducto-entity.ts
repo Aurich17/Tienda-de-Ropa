@@ -1,4 +1,4 @@
-import { StringifyOptions } from "querystring"
+
 
 export interface  IngresoProducto{
 

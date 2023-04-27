@@ -26,14 +26,13 @@ import { ErrorControlDirective } from './directives/error-control.directive';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
-import { FindestacionComponent } from './components/findestacion/findestacion.component'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableExporterModule } from 'mat-table-exporter';
 
 @NgModule({
   declarations: [ContainerComponent, TableComponent, KeypadComponent,DialogoConfirmacionComponent, ConfirmComponent, 
-    ExportComponent,ErrorFormDirective,ErrorControlDirective,FindestacionComponent
+    ExportComponent,ErrorFormDirective,ErrorControlDirective
   ],
   imports: [
     CommonModule,MatSidenavModule,MatCardModule,FlexLayoutModule, MatTableModule,MatButtonModule,MatIconModule,
@@ -64,7 +63,7 @@ import { MatTableExporterModule } from 'mat-table-exporter';
       MatDatepickerModule,
       MatNativeDateModule,
       MatSelectModule,
-      FindestacionComponent,
+      
       MatCheckboxModule,
       MatPaginatorModule,
       MatTableExporterModule

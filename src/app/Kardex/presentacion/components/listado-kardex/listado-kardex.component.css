@@ -1,6 +1,6 @@
 body {
   overflow: hidden;
-  background-color: var(--color-fondo);
+  /*background-color: var(--color-fondo);*/
   height: 100%;
   width: 100%;
   position: absolute;
@@ -22,7 +22,7 @@ body {
   margin-bottom: 30px;
   display: flex;
   width: 40%;
-  justify-content: end;
+  justify-content: flex-end; /* Reemplazar 'end' por 'flex-end' */
   justify-content: space-around;
   margin-left: 60%;
   height: 54px;

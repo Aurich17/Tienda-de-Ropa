@@ -2,12 +2,14 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SelectionModel } from '@angular/cdk/collections';
-import { ListaProducto, ProductoResponse } from '../../../../RegVentas/domain/response/cliente_response';
-import { ClienteRepository } from '../../../../RegVentas/domain/cliente.repository';
+
 import { StorageService } from '../../../../services/storage.service';
-import { productorequest } from '../../../../RegVentas/domain/request/cliente_request';
+
 import { MetadataTable } from '../../../../interfaces/metada-table.interface';
 import { Router } from '@angular/router';
+import { ClienteRepository } from 'src/app/regventas/domain/cliente.repository';
+import { productorequest } from 'src/app/regventas/domain/request/cliente_request';
+import { ProductoResponse, ListaProducto } from 'src/app/regventas/domain/response/cliente_response';
 
 
 //@ts-ignore

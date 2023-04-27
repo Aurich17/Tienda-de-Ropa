@@ -1,12 +1,12 @@
-import { guardapersonalrequest, personalrequest, editapersonalrequest } from './../Personal/domain/request/personal_request';
+import { guardapersonalrequest, personalrequest, editapersonalrequest } from './../personal/domain/request/personal_request';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { pluck, timeout } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { PersonalResponse } from '../Personal/domain/response/personal_response';
+import { PersonalResponse } from '../personal/domain/response/personal_response';
 import { StorageService } from './storage.service';
-import { PersonalRepository } from '../Personal/domain/personal.repository';
+import { PersonalRepository } from '../personal/domain/personal.repository';
 
 @Injectable()
 export class PersonalService extends PersonalRepository{

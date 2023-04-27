@@ -2,10 +2,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 import {MatDialogRef } from '@angular/material/dialog';
 import {  PersonalResponse } from 'src/app/personal/domain/response/personal_response';
-import { PersonalRepository } from 'src/app/Personal/domain/personal.repository';
-import { guardapersonalrequest } from 'src/app/Personal/domain/request/personal_request';
+
 import { DatePipe } from '@angular/common';
 import { UtilService } from 'src/app/services/util.service';
+import { PersonalRepository } from 'src/app/personal/domain/personal.repository';
+import { guardapersonalrequest } from 'src/app/personal/domain/request/personal_request';
 
 
 @Component({

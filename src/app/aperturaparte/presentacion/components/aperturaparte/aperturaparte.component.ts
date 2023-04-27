@@ -2,9 +2,7 @@ import { ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChange, Simpl
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormControlDirective, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { VERSION } from '@angular/platform-browser';
-//import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-//import { ZXingScannerComponent } from '@zxing/ngx-scanner';
-import { Result } from '@zxing/library';
+
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { Router, Routes } from '@angular/router';
 import { KeyPadButton } from 'src/app/interfaces/keypad-button.interface';
@@ -32,48 +30,48 @@ import { MatSelect } from '@angular/material/select';
 })
 export class AperturaparteComponent implements OnInit, OnChanges {
 
-  @Input()listParte: ParteEntity[]
-  @Input()listParterespuesta: ParteResponse;
-  @Input()listInsertParterespuesta: ParteInsertResponse;
-  @Input()RespuestaValidarParte: ValidarParteResponse;
-  @Input()listEmpleadoResponse: EmpleadoResponse;
-  @Input()listEstacionResponse: EstacionResponse;
+  @Input()listParte: ParteEntity[] =[]
+  @Input()listParterespuesta: ParteResponse = <ParteResponse>{};
+  @Input()listInsertParterespuesta: ParteInsertResponse = <ParteInsertResponse>{};
+  @Input()RespuestaValidarParte: ValidarParteResponse = <ValidarParteResponse>{};
+  @Input()listEmpleadoResponse: EmpleadoResponse = <EmpleadoResponse>{};
+  @Input()listEstacionResponse: EstacionResponse = <EstacionResponse>{};
 
-  @Input()listParteAxtividad: ActividadResponse;
+  @Input()listParteAxtividad: ActividadResponse = <ActividadResponse>{};
 
-  listOTResponse : OrdentrabajoResponse;
+  listOTResponse : OrdentrabajoResponse = <OrdentrabajoResponse>{};
 
-  listaparteactividad : ActividadEntity;
+  listaparteactividad : ActividadEntity = <ActividadEntity>{};
    
   @Output() outputParte:EventEmitter<ParteEntity>= new EventEmitter<ParteEntity>();
 
-  group: FormGroup;
+ group: FormGroup = <FormGroup>{} ;
   qrData = null;
   scannedCode = null;
-  collapsed: boolean;
+  collapsed: boolean = false;
   ngVersion = VERSION.full;
   @ViewChild('scanner')
  // scanner: ZXingScannerComponent;
   hasCameras = false;
-  hasPermission: boolean;
-  qrResultString: string;
-  availableDevices: MediaDeviceInfo[];
-  selectedDevice: MediaDeviceInfo;
-  path : string ;
+  hasPermission: boolean = false;
+  qrResultString: string = '';
+  availableDevices: MediaDeviceInfo[] = [];
+  selectedDevice: MediaDeviceInfo = <MediaDeviceInfo>{};
+  path : string = '' ;
   statusButton:string = "false";
-  cantidadApoyo: number ;
-  codigoEmpleado:number;
-  codigoEstacion: string ;
-  codigoParte:number ;
-  Accion : string;
- checkstatus : boolean
-  tituloboton:string;
-habilitar : string 
-  checked:boolean;
-  habilitarbotonguardar:boolean
-  numeroParteProduccion:number
-  GfechaHoraInicioOt:string
-  isEnvioSolicitud : boolean
+  cantidadApoyo: number = 0  ;
+  codigoEmpleado:number = 0 ;
+  codigoEstacion: string  = '';
+  codigoParte:number =  0;
+  Accion : string = ''; 
+ checkstatus : boolean = false
+  tituloboton:string = '';
+habilitar : string = '' 
+  checked:boolean = false
+  habilitarbotonguardar:boolean = false
+  numeroParteProduccion:number = 0
+  GfechaHoraInicioOt:string = ''
+  isEnvioSolicitud : boolean = false
 
   constructor(//private barcodeScanner: BarcodeScanner,
     private readonly router:Router,
@@ -99,11 +97,11 @@ habilitar : string
    // }
   }
 
-  ispasarstockfaltante : boolean
+  ispasarstockfaltante : boolean = false
 
-  @ViewChild('searchElement') searchElement: ElementRef;
+  @ViewChild('searchElement') searchElement: ElementRef  =<ElementRef>{} ;
 
-  @ViewChild(MatSelect) turnos: MatSelect;
+  @ViewChild(MatSelect) turnos: MatSelect = <MatSelect>{};
 
   
   showSearch(){
@@ -113,9 +111,9 @@ habilitar : string
     },0);  
   }
 
-  @ViewChild('estacion') estacion: ElementRef;
+  @ViewChild('estacion') estacion: ElementRef = <ElementRef>{};
 
-  @ViewChild('guardar') guardar: ElementRef;
+  @ViewChild('guardar') guardar: ElementRef = <ElementRef>{};
   cambiarfocus(tipo:string){
 /*
     if (tipo==="empleado"){
@@ -186,8 +184,8 @@ habilitar : string
 }
 
 
-  @ViewChild('ot') ot: ElementRef;
-  @ViewChild('secuencia') secuencia: ElementRef;
+  @ViewChild('ot') ot: ElementRef =  <ElementRef>{};
+  @ViewChild('secuencia') secuencia: ElementRef = <ElementRef>{};
   ngOnInit(): void {
 
     this.initializeForm();
@@ -367,7 +365,7 @@ AsignarReproceso(){
 }
 
    //RequestEmpleado : AperturaParteEmpleado;
-    isvalido : boolean
+    isvalido : boolean = false
     listarEmpleado(codigoEmpleado:string):boolean{
          this.isvalido = false;
         
@@ -480,7 +478,7 @@ this.edit();
     //const fd= new FormData();
    }
   }
-  parteresponse : ParteResponse;
+  parteresponse : ParteResponse = <ParteResponse>{} ;
 
   listar (codigoparte: number){
 
@@ -493,7 +491,7 @@ this.edit();
       const parte: RequestParteActividadList =<RequestParteActividadList>{}//  this.group.value;
      
       parte.CodigoParte = codigoparte;
-      parte.CodigoEmpleado =null 
+      parte.CodigoEmpleado =0 
      // parte.CodigoEstacion= null
      // parte.CodigoOrdenTrabajo = null 
      
@@ -517,7 +515,7 @@ this.edit();
   }
 }
 
-MensajeValidarParte:string
+MensajeValidarParte:string = ''
 
 insertnew() {
 
@@ -595,22 +593,33 @@ insertnew() {
 
                   }else {
 
+                  let formatofecha : string | Blob 
+                  formatofecha =  "yyyy-MM-ddTHH:mm:ss"
                   fd.append("codigoCompania",'02100000');
                   fd.append("codigoEmpleado",this.codigoEmpleado.toString());
                   fd.append("codigoEstacion",this.codigoEstacion);
                   fd.append ("codigoOrdenTrabajo" , values["codigoOrdenTrabajo"]);
                   fd.append("cantidadApoyo", this.cantidadApoyo.toString());
-                  fd.append("fechaHoraInicioOt",this.miDatePipe.transform(new Date(), "yyyy-MM-ddTHH:mm:ss"));//"2021-06-14T10:31:14.507");
-              
-                  fd.append("fechaHoraTerminoOt",null);
+                  let fechaFormateada = this.miDatePipe.transform(new Date(),formatofecha);
+                  if (fechaFormateada) {
+                      fd.append("fechaHoraInicioOt",fechaFormateada)
+                  }else{
+                    fd.append("fechaHoraInicioOt","")
+
+                  }
+                
+                 
+                  
+
+                  fd.append("fechaHoraTerminoOt",'');
                   const parte: AperturaParteTransaccion = <AperturaParteTransaccion>{};  
-                  parte.codigoempresa = fd.get("codigoCompania").toString() ;
+                  /*parte.codigoempresa = fd.get("codigoCompania").toString() ;
                   parte.codigoEstacion= fd.get("codigoEstacion").toString() ;
                   parte.codigoOrdenTrabajo = parseInt(fd.get("codigoOrdenTrabajo").toString()) ;
-                  parte.cantidadApoyo= parseInt(fd.get("cantidadApoyo").toString()) ;
+                  parte.cantidadApoyo= parseInt(fd.get("cantidadApoyo").toString()) ;*/
 
                   
-                  parte.fechaHoraTerminoOt = null
+                  parte.fechaHoraTerminoOt = ''
                   parte.Turno = values["turno"]
                   
 
@@ -651,14 +660,14 @@ insertnew() {
                     parte.EstadoRegistro= true 
                     parte.Usuario = this.codigoEmpleado.toString()//this.storage.get("codusuario")
                   
-                    const fechahoraregistro:string  = this.miDatePipe.transform(new Date(), "yyyy-MM-ddTHH:mm:ss");
+                 //   const fechahoraregistro:string  = this.miDatePipe.transform(new Date(), "yyyy-MM-ddTHH:mm:ss");
                   
                   parte.FlagTiempoPreparacion= values["tiempopreparacion"]
                     parte.parteActividades = []
 
                     if  (this.Accion ==="nuevo"){
                 
-                    parte.fechaHoraInicioOt= fd.get("fechaHoraInicioOt").toString() ;
+                  //  parte.fechaHoraInicioOt= fd.get("fechaHoraInicioOt").toString() ;
                     parte.NumeroParteProduccion = 0  
                     parte.Accion = "I"     
                   
@@ -668,13 +677,15 @@ insertnew() {
                             const ActParte: parteActividades = <parteActividades>{}
                             ActParte.CodigoParteActividad = 0 
                             ActParte.codigoEmpleado = this.listaEmpleado[x].codigoEmpleado ;
-                            ActParte.fechaHoraTerminoActividad = null
+                         //   ActParte.fechaHoraTerminoActividad = null
 
                             if (values["tiempopreparacion"] ===true){
 
-                              ActParte.fechaHoraInicioActividad= null 
+                         //     ActParte.fechaHoraInicioActividad= null 
                   
-                            }else {ActParte.fechaHoraInicioActividad = fechahoraregistro ;}
+                            }else {
+                              //ActParte.fechaHoraInicioActividad = fechahoraregistro ;
+                            }
 
                           
                             //parte.parteActividades = [];
@@ -685,13 +696,13 @@ insertnew() {
                             const ActParte: parteActividades = <parteActividades>{}
                             ActParte.CodigoParteActividad = 0 
                             if (values["tiempopreparacion"] ===true){
-                              ActParte.fechaHoraInicioActividad=null
+                              ActParte.fechaHoraInicioActividad=''
                             }else { 
-                              ActParte.fechaHoraInicioActividad = this.miDatePipe.transform(new Date(), "yyyy-MM-ddTHH:mm:ss");
+                            //  ActParte.fechaHoraInicioActividad = this.miDatePipe.transform(new Date()?, 'yyyy-MM-ddTHH:mm:ss').toString();
                             }
 
                             ActParte.codigoEmpleado = this.codigoEmpleado ;
-                            ActParte.fechaHoraTerminoActividad = null
+                            ActParte.fechaHoraTerminoActividad = ''
                             
                             parte.parteActividades.push(ActParte);
                             //////////////////////////////////////////
@@ -835,7 +846,7 @@ insertnew() {
   */
 
   listaApertura: any[] = [];
-  dataTable :  ActividadResponse[]
+  dataTable :  ActividadResponse[] = []
 
 
   delete (){
@@ -897,7 +908,7 @@ insertnew() {
    this.listaparteactividad.Cantidad=  row.parteActividads[0].Cantidad
    this.listaparteactividad.Secuencia=  row.parteActividads[0].Secuencia
    this.listaparteactividad.UsuarioCreacion=  row.parteActividads[0].UsuarioCreacion
-   this.listaparteactividad.FechaHoraTerminoActividad=  null
+   this.listaparteactividad.FechaHoraTerminoActividad=  ''
    this.listaparteactividad.FechaHoraInicioActividad=  row.parteActividads[0].FechaHoraInicioActividad
    
  }
@@ -937,7 +948,7 @@ initializeForm(){
  });
  }
 
- listaEmpleado : EmpleadoLista[] ;
+ listaEmpleado : EmpleadoLista[] = [] ;
   
 openModal(record : any =  null){
 
@@ -958,7 +969,7 @@ openModal(record : any =  null){
       options,
     
     );
-    reference.subscribe((response) => {
+    reference.subscribe((response: { CantidadApoyo: number; listaEmpleado: EmpleadoLista[]; }) => {
 
       if (response){
        this.cantidadApoyo = response.CantidadApoyo;

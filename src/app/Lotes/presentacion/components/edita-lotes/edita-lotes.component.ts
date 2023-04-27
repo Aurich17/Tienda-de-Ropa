@@ -1,9 +1,10 @@
-import { LoteResponse, ListaLote } from './../../../domain/response/lote_response';
+
 import { Component,Inject,OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { editaloterequest } from 'src/app/Lotes/domain/request/lote_request';
-import { LoteRepository } from 'src/app/Lotes/domain/lote.repository';
+import { editaloterequest } from 'src/app/lotes/domain/request/lote_request';
+import { ListaLote, LoteResponse } from 'src/app/lotes/domain/response/lote_response';
+import { LoteRepository } from 'src/app/lotes/domain/lote.repository';
 import { UtilService } from 'src/app/services/util.service';
 @Component({
   selector: 'app-edita-lotes',

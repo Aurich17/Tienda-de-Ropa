@@ -15,8 +15,8 @@ import { UtilService } from '../../../../../../src/app/services/util.service';
 })
 export class RegAlmacenComponent implements OnInit {
   select: 'A'|'I' ='A'
-  almacenResponse:AlmacenResponse
-  group:FormGroup
+  almacenResponse:AlmacenResponse | undefined
+  group:FormGroup  = <FormGroup>{}
   almacenAgregar = []
   initializeForm(){
     this.group = new FormGroup({

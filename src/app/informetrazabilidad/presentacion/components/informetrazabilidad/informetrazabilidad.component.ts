@@ -5,8 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+
 import { AperturaParteEmpleado, AperturaParteEstacion, RequestParte } from 'src/app/aperturaparte/domain/parte-entity';
 import { ActividadResponse, EmpleadoResponse, EstacionResponse } from 'src/app/aperturaparte/domain/parte-respuesta';
 import { AperturaparteRepository } from 'src/app/aperturaparte/domain/parte.repository';
@@ -44,7 +43,7 @@ export class InformetrazabilidadComponent implements OnInit {
   collapsed: boolean;
   ngVersion = VERSION.full;
   @ViewChild('scanner')
-  scanner: ZXingScannerComponent;
+  
   hasCameras = false;
   hasPermission: boolean;
   qrResultString: string;
@@ -57,7 +56,7 @@ export class InformetrazabilidadComponent implements OnInit {
   codigoEstacion: string ;
 
  
-  constructor(private barcodeScanner: BarcodeScanner,
+  constructor(
     private readonly router:Router,
     private dialogo: MatDialog,
     private readonly util: UtilService,
@@ -191,7 +190,7 @@ export class InformetrazabilidadComponent implements OnInit {
 
         const RequestEmpleado: AperturaParteEmpleado = <AperturaParteEmpleado>{}; 
         const values = this.group.value
-        RequestEmpleado.codigoCompañia ='02100000'
+       //((//)) RequestEmpleado.codigoCompañia ='02100000'
         RequestEmpleado.codigoEmpleado=  values["codigoEmpleado"];
         if  (this.group.controls['codigoEmpleado'].valid){
 

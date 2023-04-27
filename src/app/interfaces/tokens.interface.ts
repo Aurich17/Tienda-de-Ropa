@@ -1,13 +1,13 @@
 
 export interface Tokens{
 
-    datos: { status:number,totalRegistro: number , result:Result },
+    datos: { status:number,totalRegistro: number , result:result },
     meta: {mensaje}
    // accessToken: string ;
    // refreshToken: string ; 
 }
 
-export interface Result{
+export interface result{
     codigoempresa : string ,
     desEmpresa: string,
     nombreUsuario:string ,
@@ -30,6 +30,7 @@ export interface Menu{
   
     title : string ,
     group:boolean ,
+  
     children : Children[],
     active:boolean
   }

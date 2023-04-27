@@ -3,8 +3,8 @@ import { MantePersonalComponent} from './../mante-personal/mante-personal.compon
 import { Component,Inject,OnInit} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PersonalRepository } from 'src/app/Personal/domain/personal.repository';
-import { editapersonalrequest } from 'src/app/Personal/domain/request/personal_request';
+import { PersonalRepository } from 'src/app/personal/domain/personal.repository';
+import { editapersonalrequest } from 'src/app/personal/domain/request/personal_request';
 import { DatePipe } from '@angular/common';
 import { UtilService } from 'src/app/services/util.service';
 @Component({

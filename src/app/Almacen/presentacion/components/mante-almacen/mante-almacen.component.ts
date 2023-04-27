@@ -1,14 +1,16 @@
-import { AlmacenResponse } from './../../../domain/response/almacen_response';
+import { AlmacenResponse, ListaAlmacen } from './../../../domain/response/almacen_response';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild} from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { RegAlmacenComponent } from '../reg-almacen/reg-almacen.component';
-import { ListaAlmacen } from '../../../../Almacen/domain/response/almacen_response';
-import { MetadataTable } from '../../../../interfaces/metada-table.interface';
-import { EditaAlmacenComponent } from '../edita-almacen/edita-almacen.component';
+
+
+
+
+import {MatDialogModule} from '@angular/material/dialog';
+
 import { almacenrequest } from '../../../../../../src/app/almacen/domain/request/almacen_request';
 import { AlmacenRepository } from '../../../../almacen/domain/almacen.repository';
 import { UtilService } from './../../../../services/util.service';
+import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 
 
 //@ts-ignore
@@ -19,15 +21,17 @@ import { UtilService } from './../../../../services/util.service';
 })
 export class ManteAlmacenComponent implements OnInit {
   labelPosition: 'I'|'A'='A'
-  almacen:string
-  dataTable: ListaAlmacen[]
-  listaAlmacen : ListaAlmacen
-  almacenResponse:AlmacenResponse
-  group:FormGroup
-  dialogConfig = new MatDialogConfig();
+  almacen:string = ''
+  dataTable: ListaAlmacen[] = []
+  listaAlmacen : ListaAlmacen = <ListaAlmacen>{}
+  almacenResponse:AlmacenResponse = <AlmacenResponse>{}
+ 
+  group:FormGroup = <FormGroup>{}
+  
  // modalDialog: MatDialogRef<RegAlmacenComponent, any> | undefined;
 
-  metadataTable: MetadataTable[] = [
+  metadataTable: MetadataTable [] = 
+   [
     {field:"codigoAlmacen",title: "Cod.Almacen"} ,
     {field:"descripcion", title: "Desc.Almacen"},
     {field:"estado", title: "Estado"},
@@ -37,14 +41,17 @@ export class ManteAlmacenComponent implements OnInit {
     {field:"fecha_hora_mod", title: "Fecha Hora Mod"},
 
   ];
-  initializeForm(){
+  
+
+
+  initializeForm(): void{
     this.group = new FormGroup({
     descripcion : new FormControl (null,null),
     radio : new   FormControl(null,null),
    });
    }
 
-  constructor(public matDialog: MatDialog, private readonly almacenService : AlmacenRepository, private readonly util: UtilService) { }
+  constructor( private readonly almacenService : AlmacenRepository, private readonly util: UtilService) { }
 
   ngAfterViewInit(): void {
     document.onclick = (args: any) : void => {
@@ -57,10 +64,10 @@ export class ManteAlmacenComponent implements OnInit {
 
   agregarAlmacen() {
 
-    this.dialogConfig.id = "projects-modal-component";
-    this.dialogConfig.height = "500px";
-    this.dialogConfig.width = "500px";
-    this.dialogConfig.disableClose = true
+    //this.dialogConfig.id = "projects-modal-component";
+   // this.dialogConfig.height = "500px";
+   // this.dialogConfig.width = "500px";
+    //this.dialogConfig.disableClose = true
   //  this.modalDialog = this.matDialog.open(RegAlmacenComponent, this.dialogConfig);
   }
 

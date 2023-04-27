@@ -1,10 +1,12 @@
-import { PromocionResponse, ListaPromocion } from './../../../domain/response/promociones_response';
+
 import { Component,Inject,OnInit} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
-import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { editapromocionrequest } from 'src/app/Promociones/domain/request/promociones_request';
 import { PromocionRepository } from 'src/app/Promociones/domain/promociones.repository';
 import { UtilService } from 'src/app/services/util.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ListaPromocion, PromocionResponse } from 'src/app/Promociones/domain/response/promociones_response';
 @Component({
   selector: 'app-edita-promociones',
   templateUrl: './edita-promociones.component.html',

@@ -4,8 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
-import {NgxQRCodeModule} from 'ngx-qrcode2';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PageManteMenuComponent } from './presentacion/page-mante-menu/page-mante-menu.component';
 import { RegMenuComponent } from './presentacion/components/reg-menu/reg-menu.component';
@@ -20,8 +19,7 @@ import {MatSelectModule} from '@angular/material/select';
     FormsModule,
     CommonModule,
     SharedModule,
-    NgxQRCodeModule,
-    ZXingScannerModule,
+  
     ReactiveFormsModule,
     ManteMenuRoutingModule,
     MatCheckboxModule,

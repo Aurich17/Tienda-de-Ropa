@@ -50,9 +50,12 @@
               "src/web.config"
             ],
             "styles": [
-              "src/custom-theme.scss",
+              
               "src/styles.css",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+             
               "node_modules/material-design-icons/iconfont/material-icons.css"
+              
             ],
             "scripts": []
           },
@@ -64,11 +67,12 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
+
+              "optimization": false,
               "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
+              "sourceMap": true,
+            
+              "namedChunks": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -84,13 +88,22 @@
                   "maximumError": "10kb"
                 }
               ]
-            }
+            },
+            "development": { 
+            "buildOptimizer": false,
+            "optimization": false,
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "sourceMap": true,
+            "namedChunks": true
+          }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "SistemasKopito:build"
+          
           },
           "configurations": {
             "production": {
@@ -149,7 +162,7 @@
       }
     }
   },
-  "defaultProject": "SistemasKopito",
+  
   "cli": {
     "analytics": "adbf43ca-cca3-4474-879d-88f5ad8db8ab"
   }

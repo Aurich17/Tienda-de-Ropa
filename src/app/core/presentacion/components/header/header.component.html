@@ -7,13 +7,13 @@
         <mat-icon>menu</mat-icon>
       </button>
       <img  width="150px" height="100%" src="./assets/Img/LogoKopito.png">
-
+     
     </div>
  
      <!-- This fills the remaining space of the current row -->
 
-     <div fxLayout="row"  fxLayoutGap="1px" fxLayoutAlign="left left">
-     <mat-form-field class="selector">
+     <div fxLayout="row"  fxLayoutGap="20px" >
+     <mat-form-field >
         <mat-select [(value)]="selected1"color='primary'>
           <mat-option  value="light-theme" (click)="onSetTheme('light-theme')">Light</mat-option>
           <mat-option  value="dark-theme" (click)="onSetTheme('dark-theme')">Dark</mat-option>
@@ -44,7 +44,7 @@
  
  <mat-sidenav-container class="sidenav-container" >
  
-     <mat-sidenav style="background-color: aqua;" class="mat-elevation-z10" #start [opened]="open" fixedTopGap="64" [mode]="mode" fixedInViewport="true" style="width:300px;background-color:#f3f0f0;">
+     <mat-sidenav style="background-color: aqua;" class="mat-elevation-z10" #start [opened]="open" fixedTopGap="64"  fixedInViewport="true" style="width:300px;background-color:#f3f0f0;">
          <app-menu></app-menu>      
      </mat-sidenav>
  

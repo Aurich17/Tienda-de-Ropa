@@ -1,6 +1,7 @@
 import { Observable } from "rxjs/internal/Observable";
-import { guardaloterequest, loterequest, editaloterequest } from "./request/lote_request";
-import { LoteResponse} from "./response/lote_response";
+import { loterequest, guardaloterequest, editaloterequest } from "./request/lote_request";
+import { LoteResponse } from "./response/lote_response";
+
 
 export abstract class LoteRepository{
 
