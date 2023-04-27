@@ -1,21 +1,25 @@
-@import '~@angular/material/theming';
+//@import '~@angular/material/theming';
+
+@use '@angular/material' as mat;
 @include mat-core();
 
-$prueba-app-light-primary: mat-palette($mat-green, A700);
-$prueba-app-dark-primary: mat-palette($mat-deep-purple, 100);
-$prueba-app-vivo-primary: mat-palette($mat-blue, 400);
-$dark-app-pink-primary: mat-palette($mat-pink, 500);
-
-$prueba-app-light-accent:  mat-palette($mat-grey, 100);
-$prueba-app-dark-accent:  mat-palette($mat-blue-grey, 900);
-$prueba-app-vivo-accent:  mat-palette($mat-blue-grey, 900);
-
-$prueba-app-light-warn:    mat-palette($mat-red, 700);
-$prueba-app-dark-warn:    mat-palette($mat-red,A400);
-$prueba-app-vivo-warn:    mat-palette($mat-red,A400);
 
 
-$light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
+$prueba-app-light-primary: mat.define-palette(mat.$indigo-palette, A700);
+$prueba-app-dark-primary: mat.define-palette(mat.$mat-deep-purple, 100);
+$prueba-app-vivo-primary: mat.define-palette(mat.$mat-blue, 400);
+$dark-app-pink-primary: mat.define-palette(mat.$mat-pink, 500);
+
+$prueba-app-light-accent:  mat.define-palette(mat.$mat-grey, 100);
+$prueba-app-dark-accent:  mat.define-palette(mat.$mat-blue-grey, 900);
+$prueba-app-vivo-accent:  mat.define-palette(mat.$mat-blue-grey, 900);
+
+$prueba-app-light-warn:    mat.define-palette(mat.$mat-red, 700);
+$prueba-app-dark-warn:    mat.define-palette(mat.$mat-red,A400);
+$prueba-app-vivo-warn:    mat.define-palette(mat.$mat-red,A400);
+
+
+$light-app-theme: mat.define-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
 //Nuevo Tema de prueba
 :root{
   --color-fondo: #F5F5F5;

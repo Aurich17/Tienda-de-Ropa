@@ -17,8 +17,8 @@ export class GestionpartesComponent implements OnInit {
     private readonly util: UtilService,private readonly storage :StorageService,) { }
  
    Heroes:{id:number, name:string}[];
-   path :string ;
-   pathv:string ;
+   path :string  = '';
+   pathv:string  = '';
 
 
    isHabilitado: boolean;

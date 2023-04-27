@@ -1,20 +1,23 @@
-import { BuscarProductoComponent } from './../buscar-producto/buscar-producto.component';
-import { BuscarClienteComponent } from './../buscar-cliente/buscar-cliente.component';
-import { ClienteResponse, EditaListaProducto, VentaResponse } from './../../../domain/response/cliente_response';
+
+import { ClienteResponse, EditaListaProducto, ListaCliente, ListaProducto, ProductoResponse, VentaResponse } from './../../../domain/response/cliente_response';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog} from '@angular/material/dialog';
+
 import { UtilService } from '../../../../services/util.service';
-import { ClienteRepository } from '../../../../RegVentas/domain/cliente.repository';
-import { ListaCliente, ListaProducto, ProductoResponse } from '../../../../RegVentas/domain/response/cliente_response';
-import { DetalleRequest, clienterequest, parametrosRequest, productorequest, ventarequest } from '../../../../RegVentas/domain/request/cliente_request';
+import { ClienteRepository } from '../../../../regventas/domain/cliente.repository';
 import { StorageService } from '../../../../services/storage.service';
-import { ActivatedRoute, Router} from '@angular/router';
-import { listadoVentasRequest } from '../../../../ListadoVentas/domain/request/listadoVentas_request';
-import { ListadoVentasRepository } from '../../../../ListadoVentas/domain/listadoVentas.respository';
-import { tiendarequest } from '../../../../Tienda/domain/request/tienda_request';
-import { TiendaRepository } from '../../../../Tienda/domain/tienda.repository';
+
+import { listadoVentasRequest } from '../../../../listadoVentas/domain/request/listadoVentas_request';
+import { ListadoVentasRepository } from '../../../../listadoVentas/domain/listadoVentas.respository';
+import { tiendarequest } from '../../../../tienda/domain/request/tienda_request';
+import { TiendaRepository } from '../../../../tienda/domain/tienda.repository';
 import { DialogoConfirmacionComponent } from '../../../../shared/components/dialogoconfirmacion/dialogoconfirmacion.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { productorequest, clienterequest, ventarequest, DetalleRequest, parametrosRequest } from 'src/app/regventas/domain/request/cliente_request';
+import { BuscarClienteComponent } from '../buscar-cliente/buscar-cliente.component';
+import { BuscarProductoComponent } from '../buscar-producto/buscar-producto.component';
+
 
 //@ts-ignore
 @Component({
@@ -132,15 +135,15 @@ export class RegVentasComponent implements OnInit {
 
     //RECIBE VALOR
     this.route.params.subscribe(params => {
-      if(params.codigoComprobante != null){
+      if(params['CodigoComprobante'] != null){
         if(this.numero === 0){
           this.numero += 1
-          this.muestraComprobante(params.codigoComprobante)
+          this.muestraComprobante(params['codigoComprobante'])
         }
-        this.codigoComprobante = params.codigoComprobante
-        this.numDoc = params.nroDocumento;
-        this.tipoParametro = params.codigoTipoDocumento
-        this.listar(params.codigoTienda);
+        this.codigoComprobante = params['codigoComprobante']
+        this.numDoc = params['nroDocumento'];
+        this.tipoParametro = params['codigoTipoDocumento']
+        this.listar(params['codigoTienda']);
         this.titulo = 'MODIFICA VENTA'
         this.condicion = false
       }else{this.listar('%')}
@@ -154,14 +157,14 @@ export class RegVentasComponent implements OnInit {
     this.total = 0
 
     this.route.queryParams.subscribe(params => {
-      if(params.nombres != null){
+      if(params['nombres'] != null){
         this.codigoCliente = params['codigoCliente']
-        this.listarCliente(this.codigoCliente)
+        this.listarCliente()
       }
     });
 
     this.route.queryParams.subscribe(producto => {
-      if(producto.codigoProducto != null){
+      if(producto['codigoProducto'] != null){
         this.codigoProducto = producto['codigoProducto'];
         this.listarProducto(this.codigoProducto)
       }
@@ -209,9 +212,13 @@ export class RegVentasComponent implements OnInit {
  listarProducto(value){
   if (this.groupProducto.valid){ //Esto valida que todos los campos requeridos sean validos
 
+    const valuesProducto = this.groupProducto.value
+
+    
+
     const requestProducto: productorequest =<productorequest>{}//  this.group.value;
     requestProducto.CodigoEmpresa = this.storage.get("codcompania").toString()
-    requestProducto.CodigoProducto = value
+    requestProducto.CodigoProducto = valuesProducto['codigoProducto'] 
     requestProducto.Descripcion= '%',requestProducto.Color = '%',requestProducto.Talla = '%',requestProducto.Tipo_Prenda = 0,requestProducto.Genero = '%',requestProducto.Estado= 'A'
 
     if(requestProducto.CodigoProducto === '' || requestProducto.CodigoProducto === null || requestProducto.Descripcion == '%'){
@@ -311,12 +318,14 @@ export class RegVentasComponent implements OnInit {
   }
 
 //LISTA LOS CLIENTES
-listarCliente(value){
+listarCliente(){
   if (this.groupCliente.valid){
+
+    const valuesCliente = this.groupCliente.value
 
     const requestCliente: clienterequest =<clienterequest>{}
 
-    requestCliente.CodigoCliente = value
+    requestCliente.CodigoCliente = valuesCliente['codigo']
     requestCliente.tipoCliente = '%'
     requestCliente.nombres= '%'
     requestCliente.apellidopaterno = '%'

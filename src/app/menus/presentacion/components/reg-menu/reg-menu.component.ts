@@ -46,8 +46,9 @@ export class RegMenuComponent implements OnInit  {
     desUrl : new FormControl (null,Validators.required),
     radio : new   FormControl(null,null),   
    })};
+   
 
-  constructor(private readonly menuService : MenuRepository, @Inject(MAT_DIALOG_DATA) private data : ListaMenus,private readonly  reference: MatDialogRef<RegMenuComponent>, private readonly util: UtilService){}
+  constructor(private readonly menuService : MenuRepository,private readonly  reference: MatDialogRef<RegMenuComponent>, private readonly util: UtilService){}
   
   ngOnInit(): void {
     console.log('Se a inicializado el REG-MENU');

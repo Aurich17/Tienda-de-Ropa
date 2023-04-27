@@ -1,12 +1,12 @@
-import { guardaloterequest, loterequest, editaloterequest } from './../Lotes/domain/request/lote_request';
+import { guardaloterequest, loterequest, editaloterequest } from './../lotes/domain/request/lote_request';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { pluck, timeout } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { LoteResponse } from '../Lotes/domain/response/lote_response';
+import { LoteResponse } from '../lotes/domain/response/lote_response';
 import { StorageService } from './storage.service';
-import { LoteRepository } from '../Lotes/domain/lote.repository';
+import { LoteRepository } from '../lotes/domain/lote.repository';
 
 @Injectable()
 export class LoteService extends LoteRepository{

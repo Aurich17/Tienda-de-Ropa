@@ -4,9 +4,9 @@ import {  Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { StorageService } from './storage.service';
-import { MedidaResponse } from '../Medida/domain/response/medida_response';
-import { Medidarequest, guardaMedidarequest } from '../Medida/domain/request/medida_request';
-import { MedidaRepository } from '../Medida/domain/medida.repository';
+import { MedidaResponse } from '../medida/domain/response/medida_response';
+import { Medidarequest, guardaMedidarequest } from '../medida/domain/request/medida_request';
+import { MedidaRepository } from '../medida/domain/medida.repository';
 
 @Injectable()
 export class MedidaService extends MedidaRepository{

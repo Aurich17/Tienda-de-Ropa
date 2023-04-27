@@ -1,6 +1,7 @@
 import { Observable } from "rxjs/internal/Observable";
-import { guardatiendarequest, tiendarequest, editatiendarequest } from "./request/tienda_request";
-import { TiendaResponse} from "./response/tienda_response";
+import { tiendarequest, guardatiendarequest, editatiendarequest } from "./request/tienda_request";
+import { TiendaResponse } from "./response/tienda_response";
+
 
 export abstract class TiendaRepository{
 

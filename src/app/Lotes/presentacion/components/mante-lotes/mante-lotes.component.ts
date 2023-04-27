@@ -6,8 +6,8 @@ import { RegLotesComponent } from '../reg-lotes/reg-lotes.component';
 import { ListaLote } from '../../../domain/response/lote_response';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { EditaLotesComponent } from '../edita-lotes/edita-lotes.component';
-import { loterequest } from 'src/app/Lotes/domain/request/lote_request';
-import { LoteRepository } from 'src/app/Lotes/domain/lote.repository';
+import { loterequest } from 'src/app/lotes/domain/request/lote_request';
+import { LoteRepository } from 'src/app/lotes/domain/lote.repository';
 import { UtilService } from 'src/app/services/util.service';
 
 

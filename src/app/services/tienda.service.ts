@@ -1,12 +1,11 @@
-import { guardatiendarequest, tiendarequest, editatiendarequest } from './../Tienda/domain/request/tienda_request';
+import { guardatiendarequest, tiendarequest, editatiendarequest } from './../tienda/domain/request/tienda_request';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import {  Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { pluck, timeout } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { TiendaResponse } from '../Tienda/domain/response/tienda_response';
+import { TiendaResponse } from '../tienda/domain/response/tienda_response';
 import { StorageService } from './storage.service';
-import { TiendaRepository } from '../Tienda/domain/tienda.repository';
+import { TiendaRepository } from '../tienda/domain/tienda.repository';
 
 @Injectable()
 export class TiendaService extends TiendaRepository{

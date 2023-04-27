@@ -3,6 +3,7 @@ import { Medidarequest, guardaMedidarequest } from "./request/medida_request";
 import { MedidaResponse } from "./response/medida_response";
 
 
+
 export abstract class MedidaRepository{
 
     //abstract insert( fd : ParteEntity):Observable<ParteInsertResponse>;

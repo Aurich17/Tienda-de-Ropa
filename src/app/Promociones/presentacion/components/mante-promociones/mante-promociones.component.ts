@@ -1,14 +1,17 @@
-import { PromocionResponse } from './../../../domain/response/promociones_response';
+
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { RegPromocionesComponent } from '../reg-promociones/reg-promociones.component';
-import { ListaPromocion } from 'src/app/Promociones/domain/response/promociones_response';
+
+import { ListaPromocion, PromocionResponse } from 'src/app/Promociones/domain/response/promociones_response';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
-import { EditaPromocionesComponent } from '../edita-promociones/edita-promociones.component';
+
 import { promocionrequest } from 'src/app/Promociones/domain/request/promociones_request';
 import { PromocionRepository } from 'src/app/Promociones/domain/promociones.repository';
 import { UtilService } from 'src/app/services/util.service';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { RegPromocionesComponent } from '../reg-promociones/reg-promociones.component';
+import { EditaPromocionesComponent } from '../edita-promociones/edita-promociones.component';
+
 
 
 @Component({

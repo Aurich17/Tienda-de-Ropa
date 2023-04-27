@@ -3,20 +3,20 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
-import { LoteRepository } from 'src/app/Lotes/domain/lote.repository';
-import { loterequest } from 'src/app/Lotes/domain/request/lote_request';
+import { LoteRepository } from 'src/app/lotes/domain/lote.repository';
+import { loterequest } from 'src/app/lotes/domain/request/lote_request';
 
 import { ProductoRepository } from 'src/app/producto/domain/producto.repository';
 import { productorequest } from 'src/app/producto/domain/request/producto_request';
 import { ProductoResponse } from 'src/app/producto/domain/response/producto.response';
 import { UtilService } from 'src/app/services/util.service';
-import { tiendarequest } from 'src/app/Tienda/domain/request/tienda_request';
-import { ListaTienda, TiendaResponse } from 'src/app/Tienda/domain/response/tienda_response';
-import { TiendaRepository } from 'src/app/Tienda/domain/tienda.repository';
+import { tiendarequest } from 'src/app/tienda/domain/request/tienda_request';
+import { ListaTienda, TiendaResponse } from 'src/app/tienda/domain/response/tienda_response';
+import { TiendaRepository } from 'src/app/tienda/domain/tienda.repository';
 import { TransaccionDetalle } from '../../domain/ingresoproducto-entity';
 import { IngresoProductoRequest, ListaTransaccionDetalle, ParametrosRequest } from '../../domain/ingresoproducto-request';
 import { IngresoProducto, IngresoProductoResponse, ParametrosResponse, TransaccionResponse } from '../../domain/ingresoproducto-response';
-import { ListaLote, LoteResponse } from 'src/app/Lotes/domain/response/lote_response';
+import { ListaLote, LoteResponse } from 'src/app/lotes/domain/response/lote_response';
 
 import { IngresoProductoRepository } from '../../domain/ingresorproducto.repository';
 import { AlmacenResponse, ListaAlmacen } from 'src/app/almacen/domain/response/almacen_response';

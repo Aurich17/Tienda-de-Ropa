@@ -4,10 +4,10 @@ import { Component, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegPersonalComponent } from '../reg-personal/reg-personal.component';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
-import { PersonalRepository } from 'src/app/Personal/domain/personal.repository';
+import { PersonalRepository } from 'src/app/personal/domain/personal.repository';
 import { UtilService } from 'src/app/services/util.service';
 import { EditaPersonalComponent } from '../edita-personal/edita-personal.component';
-import { personalrequest } from 'src/app/Personal/domain/request/personal_request';
+import { personalrequest } from 'src/app/personal/domain/request/personal_request';
 
 
 @Component({

@@ -2,9 +2,10 @@ import {TiendaResponse, ListaTienda } from './../../../domain/response/tienda_re
 import { Component,Inject,OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { editatiendarequest } from 'src/app/Tienda/domain/request/tienda_request';
-import { TiendaRepository } from 'src/app/Tienda/domain/tienda.repository';
+import { editatiendarequest } from 'src/app/tienda/domain/request/tienda_request';
+import { TiendaRepository } from 'src/app/tienda/domain/tienda.repository';
 import { UtilService } from 'src/app/services/util.service';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-edita-tienda',

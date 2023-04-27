@@ -16,7 +16,7 @@ export class TableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @Input() dataTable: any[];
-  @Input() metadataTable : MetadataTable[];
+  @Input() metadataTable : MetadataTable[] = [];
   @ViewChild(MatTable,{static: true}) table : MatTable<any>  //contiene una referencia al componente mat-table ,static: true que haga una excepcion
   @ContentChildren(MatColumnDef) columnsDef: QueryList<MatColumnDef>// contieen referencia a mas de un elemento
   columnsToView: string []=[];
@@ -46,7 +46,7 @@ export class TableComponent implements OnInit {
 
     
 
-    loadData(){
+    loadData():any{
       if(!this.columnsDef) return false;
       this.dataSource = new MatTableDataSource<any>(this.dataTable);
       this.columnsDef.forEach((columnsDef)=> this.table.addColumnDef(columnsDef));

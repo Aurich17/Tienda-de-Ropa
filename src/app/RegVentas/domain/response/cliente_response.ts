@@ -1,4 +1,6 @@
-import { result } from './../../../usuario/domain/user-entity';
+
+
+
 export interface ClienteResponse{
 
     datos : {status:number ,TotalRegistro : number ,

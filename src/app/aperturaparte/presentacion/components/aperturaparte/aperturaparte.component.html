@@ -28,7 +28,7 @@
                                <mat-label>Empleados</mat-label>
                                <input #searchElement   type="text"   matInput required formControlName = "codigoEmpleado"
                                 (keyup)="cambiarfocus('empleado')"
-                                (keydown)="handleKeyDown($event,'empleado')"
+                               
                                (blur)="listarEmpleado('')" >
                                <mat-error>Ingrese un empleado por favor</mat-error>
                                <mat-icon matSuffix (click) = "limpiartexto('Empleado')">close</mat-icon>
@@ -49,8 +49,8 @@
                            <mat-label>Estacion</mat-label>
                            <input type="text"   #estacion  matInput required formControlName = "codigoEstacion" 
                            (keyup)="cambiarfocus('estacion')"
-                           (keydown)="handleKeyDown($event,'estacion')"
-                           (blur)="listarEstacion('')">
+                          >
+                     
                            <mat-error>Ingrese una Estacion  por favor</mat-error>
                            <mat-icon matSuffix (click) = "limpiartexto('Estacion')">close</mat-icon>
  
@@ -60,10 +60,10 @@
                             <mat-label>Orden de Trabajo</mat-label>
                             <input type="number"  #ot matInput required formControlName = "codigoOrdenTrabajo" 
                             (keyup)="cambiarfocus('ot')"
-                            (keydown)="handleKeyDown($event,'ot')"
-                            (blur)="listarOT('')" >
                             
-                            <mat-error>Ingrese una Orden de Trabajo por favor</mat-error>
+                            
+                            >
+                            
                             <mat-icon matSuffix (click) = "limpiartexto('OT')">close</mat-icon>
    
                           </mat-form-field>
@@ -76,7 +76,7 @@
                         <mat-form-field appearance="outline" class="example-full-width-alterno">
                           <mat-label>Secuencia</mat-label>
                           <input type="number"  #secuencia matInput required formControlName = "secuencia" 
-                          (keydown)="handleKeyDown($event,'secuencia')"
+                          
                           >
                           <mat-error>Ingrese una Secuencia por favor</mat-error>
                           <mat-icon matSuffix (click) = "limpiartexto('Estacion')">close</mat-icon>

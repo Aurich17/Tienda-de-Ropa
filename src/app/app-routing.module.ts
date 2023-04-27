@@ -1,4 +1,4 @@
-import { RegVentasComponent } from './RegVentas/presentacion/components/reg-ventas/reg-ventas.component';
+import { RegVentasComponent } from './regventas/presentacion/components/reg-ventas/reg-ventas.component';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { PageLoginComponent } from "./core/presentacion/page-login/page-login.component";
@@ -68,7 +68,7 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 },
 {
     path: "Registro",
-    loadChildren: () => import("./RegVentas/reg-ventas.module").then(m => m.RegVentasModule)
+    loadChildren: () => import("./regventas/reg-ventas.module").then(m => m.RegVentasModule)
 },
 {
   path: "Kardex",
@@ -78,7 +78,7 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     path: "ListadoVentas",
     loadChildren: () => import("./ListadoVentas/listado-ventas.module").then(m => m.ListadoVentasModule)
 },
-{ path: './RegVentas/reg-ventas.component/:datos', component: RegVentasComponent }
+{ path: './regventas/reg-ventas.component/:datos', component: RegVentasComponent }
 /*
 {
 

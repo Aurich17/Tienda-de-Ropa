@@ -4,8 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
-import {NgxQRCodeModule} from 'ngx-qrcode2';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageMantePromocionesComponent } from './presentacion/page-mante-promociones/page-mante-promociones.component';
 import { RegPromocionesComponent } from './presentacion/components/reg-promociones/reg-promociones.component';
@@ -18,8 +17,7 @@ import { EditaPromocionesComponent } from './presentacion/components/edita-promo
   imports: [
     CommonModule,
     SharedModule,
-    NgxQRCodeModule,
-    ZXingScannerModule,
+
     ReactiveFormsModule,
     MantePromocionesRoutingModule,
     MatCheckboxModule,

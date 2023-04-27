@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
-import {NgxQRCodeModule} from 'ngx-qrcode2';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
 import { ReactiveFormsModule } from '@angular/forms';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -21,8 +20,7 @@ import {MatRadioModule} from '@angular/material/radio';
   imports: [
     CommonModule,
     SharedModule,
-    NgxQRCodeModule,
-    ZXingScannerModule,
+
     ReactiveFormsModule,
     
     MatCheckboxModule,

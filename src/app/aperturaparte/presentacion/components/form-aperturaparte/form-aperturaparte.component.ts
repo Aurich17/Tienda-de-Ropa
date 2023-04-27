@@ -4,14 +4,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+
 import { EmpleadoLista } from 'src/app/aperturaparte/domain/parte-entity';
 import { AperturaparteRepository } from 'src/app/aperturaparte/domain/parte.repository';
 import { KeyPadButton } from 'src/app/interfaces/keypad-button.interface';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { UtilService } from 'src/app/services/util.service';
 import { DialogoConfirmacionComponent } from 'src/app/shared/components/dialogoconfirmacion/dialogoconfirmacion.component';
-import { AperturaparteComponent } from '../aperturaparte/aperturaparte.component';
 
 @Component({
   selector: 'app-form-aperturaparte',

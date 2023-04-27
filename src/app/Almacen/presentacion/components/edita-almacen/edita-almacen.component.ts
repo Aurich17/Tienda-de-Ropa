@@ -1,21 +1,28 @@
 import { AlmacenResponse, ListaAlmacen } from './../../../domain/response/almacen_response';
 
-import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { editaalmacenrequest } from 'src/app/almacen/domain/request/almacen_request';
-import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
-import { UtilService } from 'src/app/services/util.service';
+import {DIALOG_DATA, DialogModule, DialogRef} from '@angular/cdk/dialog';
+
+import { AlmacenRepository } from '../../../domain/almacen.repository';
+import { UtilService } from '../../../../services/util.service';
+
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Inject } from '@angular/core';
+import { Component, Directive, Inject, OnInit } from '@angular/core';
+import { editaalmacenrequest } from '../../../domain/request/almacen_request';
+
+
+
 
 @Component({
+ 
   selector: 'app-edita-almacen',
   templateUrl: './edita-almacen.component.html',
   styleUrls: ['./edita-almacen.component.css']
 })
+
 export class EditaAlmacenComponent implements OnInit {
-  group:FormGroup
-  codigoAlmacen:number
-  almacenResponse:AlmacenResponse
+  group:any 
+  codigoAlmacen:number = 0 
+  almacenResponse:AlmacenResponse = <AlmacenResponse>{}
   initializeForm(){
     this.group = new FormGroup({
     desAlmacen : new FormControl (this.data?.descripcion,Validators.required),
@@ -23,7 +30,9 @@ export class EditaAlmacenComponent implements OnInit {
     direccion : new FormControl(this.data?.direccion,Validators.required),
    });
   }
-  constructor(private readonly almacenService : AlmacenRepository, @Inject(MAT_DIALOG_DATA) private data : ListaAlmacen,private readonly  reference: MatDialogRef<EditaAlmacenComponent>,private readonly util: UtilService) { }
+
+  @Inject(DIALOG_DATA) private data : ListaAlmacen = <ListaAlmacen>{}
+  constructor(private readonly almacenService : AlmacenRepository,private readonly  reference: DialogRef<EditaAlmacenComponent>,private readonly util: UtilService) { }
 
   ngOnInit(): void {
     this.initializeForm();

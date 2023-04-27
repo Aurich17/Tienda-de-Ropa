@@ -1,7 +1,7 @@
 import { ListadoKardexService } from './services/kardex.service';
 //@ts-ignore
 import { ClienteService } from './services/cliente.service';
-import { ClienteRepository } from '../../src/app/RegVentas/domain/cliente.repository';
+
 import { PromocionService } from './services/promocion.service';
 import { PromocionRepository } from '../../src/app/Promociones/domain/promociones.repository';
 import { TiendaService } from './services/tienda.service';
@@ -15,7 +15,7 @@ import { CoreModule } from './core/core.module';
 import { UserRepository } from './usuario/domain/user-repository';
 import { UserOperations } from './usuario/infraestructura/user-operation';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { StorageService } from './services/storage.service';
+
 import { AppRoutingModule } from './app-routing.module';
 import {APP_BASE_HREF, DatePipe} from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -29,19 +29,19 @@ import { RolService } from './services/rol.service';
 import { ManMenuService } from './services/manMenu.service';
 import { AlmacenService } from './services/almacen.service';
 import { AlmacenRepository } from './almacen/domain/almacen.repository';
-import { PersonalRepository } from './Personal/domain/personal.repository';
+import { PersonalRepository } from './personal/domain/personal.repository';
 import { PersonalService } from './services/personal.service';
-import { LoteRepository } from './Lotes/domain/lote.repository';
+import { LoteRepository } from './lotes/domain/lote.repository';
 import { LoteService } from './services/lote.service';
-import { TiendaRepository } from './Tienda/domain/tienda.repository';
-import { MedidaRepository } from './Medida/domain/medida.repository';
+import { TiendaRepository } from './tienda/domain/tienda.repository';
+import { MedidaRepository } from './medida/domain/medida.repository';
 import { MedidaService } from './services/medida.service';
 import { ProductoRepository } from './producto/domain/producto.repository';
 import { ProductoService } from './services/producto.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ListadoVentasComponent } from './ListadoVentas/presentacion/components/listado-ventas/listado-ventas.component';
 import { ListadoVentasService } from './services/listVentas.service';
-import { ListadoVentasRepository } from './ListadoVentas/domain/listadoVentas.respository';
+import { ListadoVentasRepository } from './listadoVentas/domain/listadoVentas.respository';
 import { ListadoKardexComponent } from './Kardex/presentacion/components/listado-kardex/listado-kardex.component';
 import { ListadoKardexRepository } from './Kardex/domain/kardex.repository';
 
@@ -53,8 +53,9 @@ import { TransferenciaEntreAlmacenesService } from './services/transferenciaentr
 import { DashboardventaComponent } from './dashboardventa/presentacion/components/dashboardventa/dashboardventa.component';
 import { PageDashboardventaComponent } from './dashboardventa/presentacion/components/page-dashboardventa/page-dashboardventa.component';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 
@@ -96,7 +97,7 @@ import { FormsModule } from '@angular/forms';
   {provide: PromocionRepository, useClass: PromocionService},
   {provide: MedidaRepository, useClass: MedidaService},
   {provide: ProductoRepository, useClass: ProductoService},
-  {provide: ClienteRepository, useClass: ClienteService},
+  {provide: LoteRepository, useClass: ClienteService},
   {provide: ListadoVentasRepository, useClass: ListadoVentasService},
   {provide: ListadoKardexRepository, useClass: ListadoKardexService},
   {provide: IngresoProductoRepository, useClass: IngresoProductoService},

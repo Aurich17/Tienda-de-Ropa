@@ -4,8 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
-import {NgxQRCodeModule} from 'ngx-qrcode2';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageMantePersonalComponent } from './presentacion/page-mante-personal/page-mante-personal.component';
 import { RegPersonalComponent } from './presentacion/components/reg-personal/reg-personal.component';
@@ -19,8 +18,7 @@ import { EditaPersonalComponent } from './presentacion/components/edita-personal
   imports: [
     CommonModule,
     SharedModule,
-    NgxQRCodeModule,
-    ZXingScannerModule,
+
     ReactiveFormsModule,
     MantePersonalRoutingModule,
     MatCheckboxModule,

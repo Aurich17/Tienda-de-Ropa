@@ -1,7 +1,7 @@
 import { ListaKardex, ListaKardexResponse } from './../../../domain/response/kardex.response';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AlmacenResponse, ListaAlmacen } from '../../../../Almacen/domain/response/almacen_response';
+
 import { almacenrequest } from '../../../../almacen/domain/request/almacen_request';
 import { AlmacenRepository } from '../../../../almacen/domain/almacen.repository';
 import { listadoKardex } from '../../../domain/request/kardex.request';
@@ -10,6 +10,7 @@ import { ListaProducto, ProductoResponse } from '../../../../producto/domain/res
 import { ProductoRepository } from '../../../../producto/domain/producto.repository';
 import { productorequest } from '../../../../producto/domain/request/producto_request';
 import { StorageService } from '../../../../services/storage.service';
+import { AlmacenResponse, ListaAlmacen } from 'src/app/almacen/domain/response/almacen_response';
 
 
 //@ts-ignore

@@ -4,7 +4,7 @@
       <div class="menu" (click)="toggle(i)">
         <i [class]="menu.title"></i>
         <div fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon>{{menu.icon}}</mat-icon>
+        <mat-icon>account_box</mat-icon>
         {{ menu.title }}
         </div>
           <i class="fa fa-chevron-down">
@@ -13,14 +13,14 @@
         
       </div>
       <ul class="submenu" #submenu 
-        [style.height.px]="menu.active ? submenu.scrollHeight : 0" >
+        [style.height.px]="menu.active ? 20 : 0" >
         
         <li *ngFor="let submenu of menu.children;let i = index" (click)="goto(submenu.link)">
          <div fxLayout="row" fxLayoutAlign="start center" >
           <mat-icon  class="title" >{{submenu.icon}}</mat-icon>
           <a> {{ submenu.title }}</a>
           </div>
-          <ul class="" #submenu2  [style.height.px]="submenu.active ? submenu.scrollHeight : 0">
+          <ul class="" #submenu2  [style.height.px]="submenu.active ? 20 : 0">
             <li *ngFor="let submenu2 of submenu.children;let i = index" (click)="goto(submenu2.link)">
               <div fxLayout="row" fxLayoutAlign="start center"  class="title" >
               <mat-icon >{{submenu2.icon}}</mat-icon>

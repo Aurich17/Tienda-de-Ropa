@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 
 
 import { SharedModule } from '../shared/shared.module';
-import {NgxQRCodeModule} from 'ngx-qrcode2';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageManteLotesComponent } from './presentacion/page-mante-lotes/page-mante-lotes.component';
 import { RegLotesComponent } from './presentacion/components/reg-lotes/reg-lotes.component';

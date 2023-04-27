@@ -1,4 +1,4 @@
-import { listLazyRoutes } from "@angular/compiler/src/aot/lazy_routes";
+
 import { Injectable } from "@angular/core";
 import { AperturaparteService } from "src/app/services/aperturaparte.service"
 import { ParteEntity } from "../domain/parte-entity";

@@ -9,13 +9,17 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class DashboardventaComponent implements OnInit {
 
-  constructor() { }
+  ngOnInit(): void {
+    
+  }
+
+  /*constructor() { }
 
   ngOnInit(): void {
   
 
 
-  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective ;
 
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -68,7 +72,7 @@ export class DashboardventaComponent implements OnInit {
       40 ];
 
     this.chart?.update();
-  }
+  }*/
   
 
 }
