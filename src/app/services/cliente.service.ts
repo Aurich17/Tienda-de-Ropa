@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import { pluck, timeout } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { StorageService } from './storage.service';
-import { ClienteRepository } from '../regventas/domain/cliente.repository';
-import { ClienteResponse, ParametrosResponse, ProductoResponse, VentaResponse } from '../regventas/domain/response/cliente_response';
-import { clienterequest, parametrosRequest, productorequest, ventarequest } from '../regventas/domain/request/cliente_request';
+import { ClienteRepository } from '../RegVentas/domain/cliente.repository';
+import { ClienteResponse, ParametrosResponse, ProductoResponse, VentaResponse } from '../RegVentas/domain/response/cliente_response';
+import { clienterequest, parametrosRequest, productorequest, ventarequest } from '../RegVentas/domain/request/cliente_request';
 
 //@ts-ignore
 @Injectable()

@@ -23,12 +23,12 @@ export class HeaderComponent implements OnInit {
         Validators.required,
         Validators.pattern('valid'),
       ]);
-    
+
       selectFormControl = new FormControl('valid', [
         Validators.required,
         Validators.pattern('valid'),
       ]);
-    
+
       nativeSelectFormControl = new FormControl('valid', [
         Validators.required,
         Validators.pattern('valid'),
@@ -38,9 +38,9 @@ export class HeaderComponent implements OnInit {
     @HostBinding('class') componentCssClass: any
 
     @Output() ResponseLogin = new EventEmitter<ResponseLogin>();
-    
+
     nombreusuario:string;
-    nombreempresa: string; 
+    nombreempresa: string;
     // Sidenav responsive
     width;
     height;
@@ -102,8 +102,8 @@ export class HeaderComponent implements OnInit {
     public onSetTheme(e: string){
         if(e != 'dark-theme')
         this.overlayContainer.getContainerElement().classList.remove("dark-theme")
-         
-       
+
+
          if(e != 'light-theme')
          this.overlayContainer.getContainerElement().classList.remove("light-theme")
 

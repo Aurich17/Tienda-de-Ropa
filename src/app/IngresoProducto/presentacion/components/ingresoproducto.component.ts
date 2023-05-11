@@ -3,25 +3,25 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
-import { LoteRepository } from 'src/app/lotes/domain/lote.repository';
-import { loterequest } from 'src/app/lotes/domain/request/lote_request';
+import { LoteRepository } from 'src/app/Lotes/domain/lote.repository';
+import { loterequest } from 'src/app/Lotes/domain/request/lote_request';
 
 import { ProductoRepository } from 'src/app/producto/domain/producto.repository';
 import { productorequest } from 'src/app/producto/domain/request/producto_request';
 import { ProductoResponse } from 'src/app/producto/domain/response/producto.response';
 import { UtilService } from 'src/app/services/util.service';
-import { tiendarequest } from 'src/app/tienda/domain/request/tienda_request';
-import { ListaTienda, TiendaResponse } from 'src/app/tienda/domain/response/tienda_response';
-import { TiendaRepository } from 'src/app/tienda/domain/tienda.repository';
+import { tiendarequest } from 'src/app/Tienda/domain/request/tienda_request';
+import { ListaTienda, TiendaResponse } from 'src/app/Tienda/domain/response/tienda_response';
+import { TiendaRepository } from 'src/app/Tienda/domain/tienda.repository';
 import { TransaccionDetalle } from '../../domain/ingresoproducto-entity';
 import { IngresoProductoRequest, ListaTransaccionDetalle, ParametrosRequest } from '../../domain/ingresoproducto-request';
 import { IngresoProducto, IngresoProductoResponse, ParametrosResponse, TransaccionResponse } from '../../domain/ingresoproducto-response';
-import { ListaLote, LoteResponse } from 'src/app/lotes/domain/response/lote_response';
+import { ListaLote, LoteResponse } from 'src/app/Lotes/domain/response/lote_response';
 
 import { IngresoProductoRepository } from '../../domain/ingresorproducto.repository';
-import { AlmacenResponse, ListaAlmacen } from 'src/app/almacen/domain/response/almacen_response';
-import { AlmacenRepository } from 'src/app/almacen/domain/almacen.repository';
-import { almacenrequest } from 'src/app/almacen/domain/request/almacen_request';
+import { AlmacenResponse, ListaAlmacen } from 'src/app/Almacen/domain/response/almacen_response';
+import { AlmacenRepository } from 'src/app/Almacen/domain/almacen.repository';
+import { almacenrequest } from 'src/app/Almacen/domain/request/almacen_request';
 
 import * as XLSX from 'xlsx';
 import { DatePipe } from '@angular/common';
@@ -48,16 +48,16 @@ export class IngresoproductoComponent implements OnInit {
   private ResponseParametro: ParametrosResponse
 
   dataTable : TransaccionDetalle[]
-  Almacen: ListaAlmacen[] 
+  Almacen: ListaAlmacen[]
   Tienda : ListaTienda[]
   Lote : ListaLote[]
-  ListaProductoItem :TransaccionDetalle 
+  ListaProductoItem :TransaccionDetalle
   ListaTmpTransaccionItem:TransaccionDetalle[] = []
   ListaTmpTransaccionItemGeneral:TransaccionDetalle[]
-  
 
 
-  
+
+
   constructor(  private readonly IngresoProductoService : IngresoProductoRepository,
     private readonly AlmacenService : AlmacenRepository,
     private readonly TiendaService : TiendaRepository,
@@ -83,13 +83,13 @@ export class IngresoproductoComponent implements OnInit {
 ListarTransaccion (param_CodigoTransaccion: number){
 
   if (this.group.valid){
-     
+
       const fd= new FormData();
       const values = this.group.value
       const ingresoproductorequest: IngresoProductoRequest =<IngresoProductoRequest>{}
 
       ingresoproductorequest.Codigotransaccion = param_CodigoTransaccion
-      this.IngresoProductoService.listartransaccion(ingresoproductorequest).subscribe(response => 
+      this.IngresoProductoService.listartransaccion(ingresoproductorequest).subscribe(response =>
           {
             this.ResponseIngresoProducto = response
             //this.dataTable = this.ResponseIngresoProducto.datos.result;
@@ -108,7 +108,7 @@ const values = this.group.value
 if (values["codigoproducto"]!=null && values["codigoproducto"]!=""){
 
 ProductoRequest.CodigoProducto = param_CodigoProducto
-ProductoRequest.CodigoEmpresa = param_Empresa 
+ProductoRequest.CodigoEmpresa = param_Empresa
 ProductoRequest.Descripcion = "%"
 ProductoRequest.Color = "%"
 ProductoRequest.Talla = "%"
@@ -117,7 +117,7 @@ ProductoRequest.Genero = "%"
 ProductoRequest.Estado = "A"
 
 
-this.ProductoService.listar(ProductoRequest).subscribe(response => 
+this.ProductoService.listar(ProductoRequest).subscribe(response =>
   {
 
     this.ResponseProducto = response
@@ -142,7 +142,7 @@ this.ProductoService.listar(ProductoRequest).subscribe(response =>
   this.group.controls['cantidad'].setValue(0)
   this.group.controls['costounitario'].setValue(0.0)
   this.group.controls['stockactual'].setValue(0)
-  
+
 })
 
 }else {
@@ -161,7 +161,7 @@ ListarAlmacen (Empresa : string ){
 
       Almacenequest.Descripcion = '%'
       Almacenequest.Estado='A'
-      this.AlmacenService.listar(Almacenequest).subscribe(response => 
+      this.AlmacenService.listar(Almacenequest).subscribe(response =>
           {
             this.ResponseAlmacen = response
             this.Almacen = this.ResponseAlmacen.datos.result;
@@ -175,12 +175,12 @@ ListarAlmacen (Empresa : string ){
 ListarTienda (Empresa : string ){
 
 
-  
+
 const TiendaRequest: tiendarequest =<tiendarequest>{}
 
 TiendaRequest.Descripcion = '%'
 TiendaRequest.Estado = 'A'
- 
+
 this.TiendaService.listar(TiendaRequest).subscribe(Response=>
   {
  this.ResponseTienda = Response
@@ -191,7 +191,7 @@ this.TiendaService.listar(TiendaRequest).subscribe(Response=>
 
 ListarLote (Empresa : string ){
   const LoteRequest: loterequest =<loterequest>{}
-  
+
   LoteRequest.Descripcion = '%'
   LoteRequest.Estado = 'A'
 
@@ -207,16 +207,16 @@ ListarLote (Empresa : string ){
 
 
   AgregarItem (event ){
-  
-    //ListaProducto: TransaccionDetalle[] 
 
-    
+    //ListaProducto: TransaccionDetalle[]
+
+
     if (event.pointerType!="") {
         const values = this.group.value
 
         alert(event.pointerType);
-        
-        this.ListaProductoItem   = <TransaccionDetalle>{} 
+
+        this.ListaProductoItem   = <TransaccionDetalle>{}
 
         this.ListaProductoItem.CodigoProducto = values["codigoproducto"]
         this.ListaProductoItem.Descripcion = values["descripcion"]
@@ -232,17 +232,17 @@ ListarLote (Empresa : string ){
 
           if (index ===-1){
 
-           
 
-              
+
+
               this.dataTable = this.ListaTmpTransaccionItemGeneral
               this.ListaTmpTransaccionItem.push(this.ListaProductoItem)
              // alert(this.ListaProductoItem.Descripcion)
-             
-              this.dataTable = Array.from(this.ListaTmpTransaccionItem)   
-          
-           
-             
+
+              this.dataTable = Array.from(this.ListaTmpTransaccionItem)
+
+
+
           }
         }
 
@@ -250,14 +250,14 @@ ListarLote (Empresa : string ){
 
   }
 
-  
+
 
   }
 
   EliminarItem(row :TransaccionDetalle ){
 
     const index  = this.ListaTmpTransaccionItem.findIndex( x => x.CodigoProducto === row.CodigoProducto )
-     
+
 
     if (index !== -1){
 
@@ -271,15 +271,15 @@ ListarLote (Empresa : string ){
   }
 
 
-  editItem(row : any) 
+  editItem(row : any)
   {
-     row.IsEditing = true 
-     
+     row.IsEditing = true
+
      this.dataTable  =  Array.from(this.ListaTmpTransaccionItem)
   }
 
   saveItem(row:any){
-    row.IsEditing = false 
+    row.IsEditing = false
 
     const index = this.ListaTmpTransaccionItem.findIndex(i => i.CodigoProducto === row.codigoproducto);
    // this.ListaTmpTransaccionItem[index].cantidad = row.cantidad;
@@ -287,13 +287,13 @@ ListarLote (Empresa : string ){
 
 
 
-     
+
     this.dataTable  =  Array.from(this.ListaTmpTransaccionItem)
   }
 
   cancelEditItem (row:any){
-   
-    row.IsEditing = false 
+
+    row.IsEditing = false
      this.dataTable  =  Array.from(this.ListaTmpTransaccionItem)
 
   }
@@ -318,45 +318,45 @@ ListarLote (Empresa : string ){
 
   importFile (){
 
-    this.data.forEach(element => { 
+    this.data.forEach(element => {
       if (element.length>0){
-      this.ListaProductoItem   = <TransaccionDetalle>{} 
+      this.ListaProductoItem   = <TransaccionDetalle>{}
 
       this.ListaProductoItem.CodigoProducto = element[0]
       this.ListaProductoItem.Descripcion = element[1]
       this.ListaProductoItem.cantidad = element[2]
       this.ListaProductoItem.PrecioUnitario = element[3]
       this.ListaProductoItem.IsEditing = false
-      
+
       this.ListaTmpTransaccionItem.push(this.ListaProductoItem)
 
       }
 
  });
-    
-    
-    
-    this.dataTable = Array.from(this.ListaTmpTransaccionItem)   
-      
+
+
+
+    this.dataTable = Array.from(this.ListaTmpTransaccionItem)
+
   }
 
   VIngresoProductoRequest : IngresoProductoRequest
   ListItemTransaccion : ListaTransaccionDetalle
-  CorrelativoDocumento : string 
+  CorrelativoDocumento : string
   ResponseTransaccion : TransaccionResponse
   VParametroRequest:  ParametrosRequest
   grabarIngreso(){
 
    if  (this.ListaTmpTransaccionItem.length>0 ) {
 
-    
-   
-         
+
+
+
     this.VIngresoProductoRequest = <IngresoProductoRequest>{}
     const valuesInsert = this.group.value
     this.VIngresoProductoRequest.TransaccionDetalle = []
 
-    this.VIngresoProductoRequest.Codigotransaccion = 0 
+    this.VIngresoProductoRequest.Codigotransaccion = 0
     this.VIngresoProductoRequest.CodigoTipoTransaccion = 'IPP'
     this.VIngresoProductoRequest.CodigoTienda = 0
     this.VIngresoProductoRequest.CodigoAlmacen =  valuesInsert["almacen"]
@@ -370,7 +370,7 @@ ListarLote (Empresa : string ){
     this.VIngresoProductoRequest.Usuario = this.storage.get("codusuario")
     this.VIngresoProductoRequest.Tipo = 'I'
     this.VIngresoProductoRequest.CodigoEmpresa = this.storage.get("codcompania")
-     
+
     this.ListaTmpTransaccionItem.forEach(item => {
       this.ListItemTransaccion = <ListaTransaccionDetalle>{}
 
@@ -383,38 +383,38 @@ ListarLote (Empresa : string ){
       this.ListItemTransaccion.Lote = valuesInsert["lote"],
       this.ListItemTransaccion.MontoTotal = item.cantidad * item.PrecioUnitario,
       this.ListItemTransaccion.CodigoEmpresa=this.storage.get("codcompania")
-      
-      this.ListItemTransaccion.Observaciones =  valuesInsert["ObservacionDetalle"] == null ? "" : valuesInsert["ObservacionDetalle"], 
-      this.ListItemTransaccion.Estado = 'PR' ,
-      this.ListItemTransaccion.Accion = 'I' 
 
-   
+      this.ListItemTransaccion.Observaciones =  valuesInsert["ObservacionDetalle"] == null ? "" : valuesInsert["ObservacionDetalle"],
+      this.ListItemTransaccion.Estado = 'PR' ,
+      this.ListItemTransaccion.Accion = 'I'
+
+
       this.VIngresoProductoRequest.TransaccionDetalle.push(this.ListItemTransaccion)
 
     });
 
 
-    this.IngresoProductoService.GuardarTransaccion(this.VIngresoProductoRequest).subscribe(response => 
+    this.IngresoProductoService.GuardarTransaccion(this.VIngresoProductoRequest).subscribe(response =>
       {
-    
+
         this.ResponseTransaccion = response
-    
+
       if (this.ResponseTransaccion.datos.status!=200){
           this.util.showMessage(this.ResponseTransaccion.meta.mensaje)
       }else{
-    
+
         this.util.showMessage(this.ResponseTransaccion.meta.mensaje +"Registro Exitoso" + " Documento Nro:" + this.CorrelativoDocumento )
         this.Nuevo()
           }
-    
+
     }, (errorServicio)=>{
        var ErrorMensaje =''
-     
+
       this.util.showMessage("Error al guardar la transacción. Por favor, inténtelo de nuevo más tarde.")
-      
+
     })
 
-     
+
    }else {
 
 this.util.showMessage("Agrege un producto por favor")
@@ -424,34 +424,34 @@ this.util.showMessage("Agrege un producto por favor")
   }
 
   ObtenerCorrelativo(TipoDocumento:string): string {
-   
+
     this.VParametroRequest = <ParametrosRequest>{}
 
     this.VParametroRequest.CodigoParametros =TipoDocumento
     this.VParametroRequest.CodigoSistema="VET"
 
-    this.IngresoProductoService.ListarCorrelativo(this.VParametroRequest).subscribe(response => 
+    this.IngresoProductoService.ListarCorrelativo(this.VParametroRequest).subscribe(response =>
       {
-    
+
         this.ResponseParametro = response
-    
+
       if (this.ResponseParametro.datos.status!=200){
           this.util.showMessage(this.ResponseParametro.meta.mensaje)
       }else{
-    
+
         this.CorrelativoDocumento = response.datos.result[0].descripcion.toString().trim()
         this.CorrelativoDocumento =  this.CorrelativoDocumento.toString().padStart(8,'0')
-        
+
         //this.group.controls['lote'].setValue(this.ResponseProducto.datos.result[0])
         //this.group.controls['costounitario'].setValue(0)
         //this.group.controls['stockactual'].setValue(0)
         //lote : new FormControl (null,Validators.required),
-    
+
           }
-    
+
     }, (errorServicio)=>{
       this.util.showMessage( errorServicio.error.meta.mensaje);
-      this.CorrelativoDocumento= "0" 
+      this.CorrelativoDocumento= "0"
     })
 
     return  this.CorrelativoDocumento
@@ -464,7 +464,7 @@ this.util.showMessage("Agrege un producto por favor")
     this.ListaTmpTransaccionItem = []
     this.dataTable = Array.from(this.ListaTmpTransaccionItem)
     this.ObtenerCorrelativo("NI")
-  } 
+  }
 
 ///Metodos utilitarios
 
@@ -481,7 +481,7 @@ initializeForm(){
   almacen : new FormControl (null,Validators.required),
   tienda : new FormControl (null,null),
   ObservacionDetalle : new FormControl (null,null),
-                                    
+
  });
  }
 
@@ -492,25 +492,25 @@ handleKeyDown(event: any,tipo:string)
     {
 
       198
-      
-        
+
+
       if (tipo==="Producto"){
         const values = this.group.value
         this.ListarProducto("00000001",values["codigoproducto"])
 
         alert('producto')
-        
+
     }
 
     }
     else if (event.keyCode == 40)
     {
         // action
-    }  
+    }
     else if (event.keyCode == 38)
     {
         // action
-    }    
+    }
 }
 
   limpiartexto(control:string ){
@@ -523,7 +523,7 @@ handleKeyDown(event: any,tipo:string)
     {field:"cantidad", title: "Cantidad",editable : true,type:"number" },
     // {field:"Lote", title: "Lote"},
     {field:"PrecioUnitario", title: "Precio Unitario",editable : true,type:"number" },
-  
+
   ];
 
 }

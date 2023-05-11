@@ -1,0 +1,60 @@
+<!-- TITULO -->
+<h1>DASHBOARD</h1>
+
+<!-- TARJETAS -->
+  <mat-card class="filtro">
+      <form [formGroup]="groupProducto" class="filtro_input">
+        <!-- CODIGO PRODUCTO -->
+        <mat-form-field appearance="outline" style="width: 30%;"  color="primary">
+           <mat-label>Cod.Producto</mat-label>
+           <input matInput type="number" class="iput" style="text-align: center; font-size: 16px;" min="0" formControlName="codigoProducto">
+         </mat-form-field>
+         <!-- DESCRIPCION PRODUCTO -->
+         <mat-form-field appearance="outline" style="width: 30%;"  color="primary">
+           <mat-label>Desc.Producto</mat-label>
+           <input matInput type="text" class="iput" style="text-align: center; font-size: 16px;">
+         </mat-form-field>
+         <button (click)="listarDashboardVentas()"><mat-icon class="icono">search</mat-icon></button>
+      </form>
+
+     <!-- FILTRO DE FECHAS -->
+        <form [formGroup]="groupFecha" class="filtro_input">
+          <!-- FECHA INICIO Y FECHA FIN -->
+          <mat-form-field appearance="outline">
+             <mat-label>Enter a date range</mat-label>
+             <mat-date-range-input [rangePicker]="picker">
+               <input matStartDate placeholder="Start date" readonly>
+               <input matEndDate placeholder="End date" readonly>
+             </mat-date-range-input>
+             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+             <mat-date-range-picker #picker></mat-date-range-picker>
+           </mat-form-field>
+           <!-- SEMANAS -->
+           <mat-form-field appearance="outline">
+             <mat-label>Semana</mat-label>
+             <mat-select>
+               <mat-option value="option1">Semana 1</mat-option>
+               <mat-option value="option2">Semana 2 </mat-option>
+               <mat-option value="option3">Semana 3</mat-option>
+               <mat-option value="option3">Semana 4</mat-option>
+             </mat-select>
+           </mat-form-field>
+           <button><mat-icon class="icono">search</mat-icon></button>
+        </form>
+  </mat-card>
+<mat-card class="grafico1">
+  <mat-card-header>
+    <mat-card-title>Ventas diarias</mat-card-title>
+  </mat-card-header>
+<mat-card-content>
+  <canvas baseChart class="chart"
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [type]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+  </canvas>
+  </mat-card-content>
+</mat-card>
+

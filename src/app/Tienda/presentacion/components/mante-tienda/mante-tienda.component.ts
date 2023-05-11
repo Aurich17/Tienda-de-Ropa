@@ -2,15 +2,15 @@
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 
-import { ListaTienda, TiendaResponse } from '../../../../tienda/domain/response/tienda_response';
+import { ListaTienda, TiendaResponse } from '../../../../Tienda/domain/response/tienda_response';
 
-import { tiendarequest } from '../../../../tienda/domain/request/tienda_request';
-import { TiendaRepository } from '../../../../tienda/domain/tienda.repository';
+import { tiendarequest } from '../../../../Tienda/domain/request/tienda_request';
+import { TiendaRepository } from '../../../../Tienda/domain/tienda.repository';
 import { UtilService } from '../../../../services/util.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { RegTiendaComponent } from '../reg-tienda/reg-tienda.component';
+import { RegTiendaComponent } from '../../../../Tienda/presentacion/components/reg-tienda/reg-tienda.component';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
-import { EditaTiendaComponent } from '../edita-tienda/edita-tienda.component';
+import { EditaTiendaComponent } from '../../../../Tienda/presentacion/components/edita-tienda/edita-tienda.component';
 
 
 //@ts-ignore

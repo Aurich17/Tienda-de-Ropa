@@ -3,9 +3,9 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { StorageService } from './storage.service';
-import { ListadoVentasRepository } from '../listadoVentas/domain/listadoVentas.respository';
-import { listadoVentasRequest } from '../listadoVentas/domain/request/listadoVentas_request';
-import { ListaVentasResponse } from '../listadoVentas/domain/response/listadoVentas.response';
+import { ListadoVentasRepository } from '../ListadoVentas/domain/listadoVentas.respository';
+import { listadoVentasRequest } from '../ListadoVentas/domain/request/listadoVentas_request';
+import { ListaVentasResponse } from '../ListadoVentas/domain/response/listadoVentas.response';
 
 
 //@ts-ignore

@@ -1,10 +1,10 @@
-import { PersonalResponse, ListaPersonal } from './../../../domain/response/personal_response';
+import { PersonalResponse, ListaPersonal } from '../../../../Personal/domain/response/personal_response';
 import { MantePersonalComponent} from './../mante-personal/mante-personal.component';
 import { Component,Inject,OnInit} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { PersonalRepository } from 'src/app/personal/domain/personal.repository';
-import { editapersonalrequest } from 'src/app/personal/domain/request/personal_request';
+import { PersonalRepository } from 'src/app/Personal/domain/personal.repository';
+import { editapersonalrequest } from 'src/app/Personal/domain/request/personal_request';
 import { DatePipe } from '@angular/common';
 import { UtilService } from 'src/app/services/util.service';
 @Component({
@@ -29,7 +29,7 @@ export class EditaPersonalComponent implements OnInit {
     sueldo : new   FormControl(this.data?.sueldo,Validators.required),
     direccion : new   FormControl(this.data?.direccion,null),
     fechaIngreso : new   FormControl(this.data?.fecha_ing,Validators.required),
-    radio : new   FormControl(this.data?.estado,null), 
+    radio : new   FormControl(this.data?.estado,null),
    });
    }
   constructor(private readonly personalService : PersonalRepository, @Inject(MAT_DIALOG_DATA) private data : ListaPersonal,private readonly  reference: MatDialogRef<EditaPersonalComponent>, private miDatePipe: DatePipe,  private readonly util: UtilService) { }
@@ -46,7 +46,7 @@ export class EditaPersonalComponent implements OnInit {
   guarda(){
     const valores = this.group.value //Esto agarra los valores del HTML dentro del FormGroup
     const requestEditaPersonal: editapersonalrequest =<editapersonalrequest>{}
-    
+
     requestEditaPersonal.CodigoPersonal = this.codigoPersonal
     requestEditaPersonal.nombres = valores['nombre']
     requestEditaPersonal.apellidos = valores['apellido']
@@ -59,18 +59,18 @@ export class EditaPersonalComponent implements OnInit {
     requestEditaPersonal.Estado = valores['radio']
     requestEditaPersonal.Usuario_reg = 'Admin'
     requestEditaPersonal.Tipo = 'U'
-    
+
     this.personalService.editapersonal(requestEditaPersonal).subscribe(response=>
     {
       this.personalResponse = response
       this.util.showMessage('EDITADO CORRECTAMENTE')
       this.closeModal()
     }
-    
+
     )
   }
   clear() {
     this.group.reset({radio: 'A'})
-  }  
+  }
 
 }

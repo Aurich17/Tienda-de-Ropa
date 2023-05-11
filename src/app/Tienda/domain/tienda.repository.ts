@@ -1,6 +1,6 @@
 import { Observable } from "rxjs/internal/Observable";
-import { tiendarequest, guardatiendarequest, editatiendarequest } from "./request/tienda_request";
-import { TiendaResponse } from "./response/tienda_response";
+import { tiendarequest, guardatiendarequest, editatiendarequest } from "../domain/request/tienda_request";
+import { TiendaResponse } from "../domain/response/tienda_response";
 
 
 export abstract class TiendaRepository{
@@ -10,4 +10,4 @@ export abstract class TiendaRepository{
     abstract listarfiltro(fd : tiendarequest):Observable<TiendaResponse>;
     abstract guardatienda(fd : guardatiendarequest):Observable<TiendaResponse>;
     abstract editatienda(fd: editatiendarequest):Observable<TiendaResponse>;
-} 
+}

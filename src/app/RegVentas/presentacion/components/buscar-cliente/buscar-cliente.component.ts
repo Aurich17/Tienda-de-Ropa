@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MetadataTable } from '../../../../interfaces/metada-table.interface';
-import { ClienteRepository } from '../../../../regventas/domain/cliente.repository';
+import { ClienteRepository } from '../../../../RegVentas/domain/cliente.repository';
 import { StorageService } from '../../../../services/storage.service';
 import { Router } from '@angular/router';
-import { clienterequest } from 'src/app/regventas/domain/request/cliente_request';
-import { ListaCliente, ClienteResponse } from 'src/app/regventas/domain/response/cliente_response';
+import { clienterequest } from 'src/app/RegVentas/domain/request/cliente_request';
+import { ListaCliente, ClienteResponse } from 'src/app/RegVentas/domain/response/cliente_response';
 
 
 //@ts-ignore
