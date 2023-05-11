@@ -1,12 +1,12 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 import {MatDialogRef } from '@angular/material/dialog';
-import {  PersonalResponse } from 'src/app/personal/domain/response/personal_response';
+import {  PersonalResponse } from 'src/app/Personal/domain/response/personal_response';
 
 import { DatePipe } from '@angular/common';
 import { UtilService } from 'src/app/services/util.service';
-import { PersonalRepository } from 'src/app/personal/domain/personal.repository';
-import { guardapersonalrequest } from 'src/app/personal/domain/request/personal_request';
+import { PersonalRepository } from 'src/app/Personal/domain/personal.repository';
+import { guardapersonalrequest } from 'src/app/Personal/domain/request/personal_request';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class RegPersonalComponent implements OnInit {
     sueldo : new   FormControl(null,Validators.required),
     direccion : new   FormControl(null,null),
     fechaIngreso : new   FormControl(null,Validators.required),
-    radio : new   FormControl(null,null), 
+    radio : new   FormControl(null,null),
    });
    }
 
@@ -69,7 +69,7 @@ export class RegPersonalComponent implements OnInit {
       requestGuardaPersonal.Estado = valores['radio']
       requestGuardaPersonal.Usuario_reg = 'Admin'
       requestGuardaPersonal.Tipo = 'I'
-      
+
       this.personalService.guardapersonal(requestGuardaPersonal).subscribe(response=>
       {
         this.personalResponse = response
@@ -78,7 +78,7 @@ export class RegPersonalComponent implements OnInit {
       }
       )
     }
-   
+
   }
   clear() {
     this.group.reset({radio: 'A'})

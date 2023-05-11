@@ -1,4 +1,4 @@
-import { RegVentasComponent } from './regventas/presentacion/components/reg-ventas/reg-ventas.component';
+import { RegVentasComponent } from './RegVentas/presentacion/components/reg-ventas/reg-ventas.component';
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { PageLoginComponent } from "./core/presentacion/page-login/page-login.component";
@@ -44,31 +44,31 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 },
 {
     path: "Personal",
-    loadChildren: () => import("./personal/mante-personal.module").then(m => m.MantePersonalModule)
+    loadChildren: () => import("./Personal/mante-personal.module").then(m => m.MantePersonalModule)
 },
 {
     path: "Almacen",
-    loadChildren: () => import("./almacen/mante-almacen.module").then(m => m.ManteAlmacenModule)
+    loadChildren: () => import("./Almacen/mante-almacen.module").then(m => m.ManteAlmacenModule)
 },
 {
     path: "Lotes",
-    loadChildren: () => import("./lotes/mante-lotes.module").then(m => m.ManteLotesModule)
+    loadChildren: () => import("./Lotes/mante-lotes.module").then(m => m.ManteLotesModule)
 },
 {
     path: "Tienda",
-    loadChildren: () => import("./tienda/mante-tienda.module").then(m => m.ManteTiendaModule)
+    loadChildren: () => import("./Tienda/mante-tienda.module").then(m => m.ManteTiendaModule)
 },
 {
     path: "Promociones",
-    loadChildren: () => import("./promociones/mante-promociones.module").then(m => m.MantePromocionesModule)
+    loadChildren: () => import("./Promociones/mante-promociones.module").then(m => m.MantePromocionesModule)
 },
 {
     path: "Medida",
-    loadChildren: () => import("./medida/mante-medida.module").then(m => m.ManteMedidaModule)
+    loadChildren: () => import("./Medida/mante-medida.module").then(m => m.ManteMedidaModule)
 },
 {
     path: "Registro",
-    loadChildren: () => import("./regventas/reg-ventas.module").then(m => m.RegVentasModule)
+    loadChildren: () => import("./RegVentas/reg-ventas.module").then(m => m.RegVentasModule)
 },
 {
   path: "Kardex",
@@ -77,6 +77,10 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 {
     path: "ListadoVentas",
     loadChildren: () => import("./ListadoVentas/listado-ventas.module").then(m => m.ListadoVentasModule)
+},
+{
+  path: "DashboardAlmacen",
+  loadChildren: () => import("./Graficos/graficos.module").then(m => m.GraficosModule)
 },
 { path: './regventas/reg-ventas.component/:datos', component: RegVentasComponent }
 /*

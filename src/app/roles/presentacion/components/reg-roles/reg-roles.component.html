@@ -14,7 +14,7 @@
 </form>
 
 <div class="botones">
-    <button mat-raised-button color="primary" (click)="clear()">Limpiar</button>
-    <button mat-raised-button color="primary" (click)="guardarol()" [disabled]= "mygroup.invalid">Guardar</button>   
-    <button mat-raised-button color="primary" (click)="closeModal()">Salir</button> 
+    <button mat-raised-button  (click)="clear()" style="background-color: var(--color-boton);">Limpiar</button>
+    <button mat-raised-button  (click)="guardarol()" [disabled]= "mygroup.invalid" style="background-color: var(--color-boton);">Guardar</button>
+    <button mat-raised-button  (click)="closeModal()" style="background-color: var(--color-boton);">Salir</button>
 </div>

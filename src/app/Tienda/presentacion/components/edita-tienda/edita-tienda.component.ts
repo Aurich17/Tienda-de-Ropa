@@ -1,9 +1,9 @@
-import {TiendaResponse, ListaTienda } from './../../../domain/response/tienda_response';
+import {TiendaResponse, ListaTienda } from './../../../../Tienda/domain/response/tienda_response';
 import { Component,Inject,OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { editatiendarequest } from 'src/app/tienda/domain/request/tienda_request';
-import { TiendaRepository } from 'src/app/tienda/domain/tienda.repository';
+import { editatiendarequest } from 'src/app/Tienda/domain/request/tienda_request';
+import { TiendaRepository } from 'src/app/Tienda/domain/tienda.repository';
 import { UtilService } from 'src/app/services/util.service';
 import { MatRadioModule } from '@angular/material/radio';
 
@@ -37,7 +37,7 @@ export class EditaTiendaComponent implements OnInit {
   editaTienda(){
     const valores = this.group.value //Esto agarra los valores del HTML dentro del FormGroup
     const requestEditaTienda: editatiendarequest =<editatiendarequest>{}
-    
+
     requestEditaTienda.CodigoTienda = this.codigoTienda.toString()
     requestEditaTienda.Descripcion = valores['descripcion']
     requestEditaTienda.Direccion = valores['direccion']
@@ -45,17 +45,17 @@ export class EditaTiendaComponent implements OnInit {
     requestEditaTienda.Usuario_reg = 'Admin'
     requestEditaTienda.Direccion = valores['direccion']
     requestEditaTienda.Tipo = 'U'
-    
+
     this.tiendaService.editatienda(requestEditaTienda).subscribe(response=>
     {
       this.tiendaResponse = response
       this.util.showMessage('EDITADO CORRECTAMENTE')
       this.closeModal()
     }
-    
+
     )
   }
   clear(){
     this.group.reset({radio: 'A'})
-  }  
+  }
 }

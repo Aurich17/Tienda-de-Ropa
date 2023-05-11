@@ -1,17 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
+// import { Component, OnInit, ViewChild } from '@angular/core';
+// import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+// import { BaseChartDirective } from 'ng2-charts';
 
-@Component({
-  selector: 'app-dashboardventa',
-  templateUrl: './dashboardventa.component.html',
-  styleUrls: ['./dashboardventa.component.css']
-})
-export class DashboardventaComponent implements OnInit {
+// @Component({
+//   selector: 'app-dashboardventa',
+//   templateUrl: './dashboardventa.component.html',
+//   styleUrls: ['./dashboardventa.component.css']
+// })
+// export class DashboardventaComponent implements OnInit {
 
-  ngOnInit(): void {
+//   ngOnInit(): void {
     
-  }
+//   }
 
   /*constructor() { }
 
@@ -75,4 +75,4 @@ export class DashboardventaComponent implements OnInit {
   }*/
   
 
-}
+// }

@@ -5,8 +5,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
-
-
+import {MatTableModule} from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageManteRolesComponent } from './presentacion/page-mante-roles/page-mante-roles.component';
 import {MatRadioModule} from '@angular/material/radio';
@@ -18,7 +17,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     SharedModule,
-
+    MatTableModule,
     ReactiveFormsModule,
     ManteRolesRoutingModule,
     MatRadioModule ,

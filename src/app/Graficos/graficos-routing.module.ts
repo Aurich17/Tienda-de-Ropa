@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RegVentasComponent } from '../RegVentas/presentacion/components/reg-ventas/reg-ventas.component';
-
+import { DashboardProductoComponent } from './presentacion/components/dashboard-producto/dashboard-producto.component';
 const routes: Routes = [
 
-  {path:'', component: RegVentasComponent,},
+  {path:'', component: DashboardProductoComponent},
 ];
 
-
-//@ts-ignore
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RegVentasRoutingModule { }
+export class GraficosRoutingModule { }

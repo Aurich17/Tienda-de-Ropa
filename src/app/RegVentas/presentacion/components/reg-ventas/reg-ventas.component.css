@@ -234,6 +234,7 @@ button {
     background-color: var(--color-hover);
   }
 .boton_icono{
+    width: 60px;
     background-color: var(--color-filas);
 }
 

@@ -4,19 +4,19 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { UtilService } from '../../../../services/util.service';
-import { ClienteRepository } from '../../../../regventas/domain/cliente.repository';
+import { ClienteRepository } from '../../../../RegVentas/domain/cliente.repository';
 import { StorageService } from '../../../../services/storage.service';
 
-import { listadoVentasRequest } from '../../../../listadoVentas/domain/request/listadoVentas_request';
-import { ListadoVentasRepository } from '../../../../listadoVentas/domain/listadoVentas.respository';
-import { tiendarequest } from '../../../../tienda/domain/request/tienda_request';
-import { TiendaRepository } from '../../../../tienda/domain/tienda.repository';
+import { listadoVentasRequest } from '../../../../ListadoVentas/domain/request/listadoVentas_request';
+import { ListadoVentasRepository } from '../../../../ListadoVentas/domain/listadoVentas.respository';
+import { tiendarequest } from '../../../../Tienda/domain/request/tienda_request';
+import { TiendaRepository } from '../../../../Tienda/domain/tienda.repository';
 import { DialogoConfirmacionComponent } from '../../../../shared/components/dialogoconfirmacion/dialogoconfirmacion.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { productorequest, clienterequest, ventarequest, DetalleRequest, parametrosRequest } from 'src/app/regventas/domain/request/cliente_request';
-import { BuscarClienteComponent } from '../buscar-cliente/buscar-cliente.component';
-import { BuscarProductoComponent } from '../buscar-producto/buscar-producto.component';
+import { productorequest, clienterequest, ventarequest, DetalleRequest, parametrosRequest } from 'src/app/RegVentas/domain/request/cliente_request';
+import { BuscarClienteComponent } from '../../components/buscar-cliente/buscar-cliente.component';
+import { BuscarProductoComponent } from '../../components/buscar-producto/buscar-producto.component';
 
 
 //@ts-ignore
@@ -214,11 +214,11 @@ export class RegVentasComponent implements OnInit {
 
     const valuesProducto = this.groupProducto.value
 
-    
-
     const requestProducto: productorequest =<productorequest>{}//  this.group.value;
     requestProducto.CodigoEmpresa = this.storage.get("codcompania").toString()
-    requestProducto.CodigoProducto = valuesProducto['codigoProducto'] 
+    requestProducto.CodigoProducto = valuesProducto['codigo']
+    console.log(valuesProducto['codigo'])
+    console.log(requestProducto.CodigoProducto)
     requestProducto.Descripcion= '%',requestProducto.Color = '%',requestProducto.Talla = '%',requestProducto.Tipo_Prenda = 0,requestProducto.Genero = '%',requestProducto.Estado= 'A'
 
     if(requestProducto.CodigoProducto === '' || requestProducto.CodigoProducto === null || requestProducto.Descripcion == '%'){

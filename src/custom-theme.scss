@@ -1,25 +1,24 @@
-//@import '~@angular/material/theming';
-
 @use '@angular/material' as mat;
-@include mat-core();
+@include mat.core();
 
+$SistemasKopito-primary: mat.define-palette(mat.$blue-palette, A200, A100, A400, A700);
+$SistemasKopito-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400, A700);
+$SistemasKopito-warn: mat.define-palette(mat.$red-palette, A200, A100, A400, A700);
 
+$prueba-app-light-primary: mat.define-palette(mat.$blue-palette, A200, A100, A400, A700);
+$prueba-app-dark-primary: mat.define-palette(mat.$indigo-palette, 100);
+$prueba-app-vivo-primary: mat.define-palette(mat.$blue-palette, 400);
+$dark-app-pink-primary: mat.define-palette(mat.$pink-palette, 500);
 
-$prueba-app-light-primary: mat.define-palette(mat.$indigo-palette, A700);
-$prueba-app-dark-primary: mat.define-palette(mat.$mat-deep-purple, 100);
-$prueba-app-vivo-primary: mat.define-palette(mat.$mat-blue, 400);
-$dark-app-pink-primary: mat.define-palette(mat.$mat-pink, 500);
+$prueba-app-light-accent:  mat.define-palette(mat.$grey-palette, 100);
+$prueba-app-dark-accent:  mat.define-palette(mat.$blue-grey-palette, 900);
+$prueba-app-vivo-accent:  mat.define-palette(mat.$blue-grey-palette, 900);
 
-$prueba-app-light-accent:  mat.define-palette(mat.$mat-grey, 100);
-$prueba-app-dark-accent:  mat.define-palette(mat.$mat-blue-grey, 900);
-$prueba-app-vivo-accent:  mat.define-palette(mat.$mat-blue-grey, 900);
+$prueba-app-light-warn:    mat.define-palette(mat.$red-palette, 700);
+$prueba-app-dark-warn:    mat.define-palette(mat.$red-palette,A400);
+$prueba-app-vivo-warn:    mat.define-palette(mat.$red-palette,A400);
 
-$prueba-app-light-warn:    mat.define-palette(mat.$mat-red, 700);
-$prueba-app-dark-warn:    mat.define-palette(mat.$mat-red,A400);
-$prueba-app-vivo-warn:    mat.define-palette(mat.$mat-red,A400);
-
-
-$light-app-theme: mat.define-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
+$light-app-theme: mat.define-light-theme($SistemasKopito-primary, $SistemasKopito-accent, $SistemasKopito-warn);
 //Nuevo Tema de prueba
 :root{
   --color-fondo: #F5F5F5;
@@ -32,8 +31,8 @@ $light-app-theme: mat.define-light-theme($prueba-app-light-primary, $prueba-app-
   --color-texto: black;
   --color-accent: #ECF0F1;
 }
-@include angular-material-theme($light-app-theme);
-//Aqui termina el experimento
+@include mat.all-component-themes($light-app-theme);
+// //Aqui termina el experimento
 
 
 .light-theme{
@@ -46,7 +45,8 @@ $light-app-theme: mat.define-light-theme($prueba-app-light-primary, $prueba-app-
   --color-texto: black;
   --color-warn: #ff2200;
   --color-accent: #ECF0F1;
-  $light-app-theme: mat-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
+  $light-app-theme: mat.define-light-theme($prueba-app-light-primary, $prueba-app-light-accent, $prueba-app-light-warn);
+  @include mat.all-component-themes($light-app-theme);
 };
 
 
@@ -60,8 +60,8 @@ $light-app-theme: mat.define-light-theme($prueba-app-light-primary, $prueba-app-
   --color-texto: white;
   --color-warn: #ff2200;
   --color-accent: #3D3D7E;
-  $dark-app-theme: mat-dark-theme($prueba-app-dark-primary, $prueba-app-dark-accent, $prueba-app-dark-warn);
-  @include angular-material-theme($dark-app-theme);
+  $dark-app-theme: mat.define-dark-theme($prueba-app-dark-primary, $prueba-app-dark-accent, $prueba-app-dark-warn);
+  @include mat.all-component-themes($dark-app-theme);
 }
 
 .vivo-theme{
@@ -74,8 +74,8 @@ $light-app-theme: mat.define-light-theme($prueba-app-light-primary, $prueba-app-
   --color-texto: white;
   --color-warn: #ff2200;
   --color-accent:  #292929;
-  $dark-app-theme: mat-dark-theme($prueba-app-vivo-primary, $prueba-app-dark-accent, $prueba-app-dark-warn);
-  @include angular-material-theme($dark-app-theme);
+  $dark-app-theme: mat.define-dark-theme($prueba-app-vivo-primary, $prueba-app-dark-accent, $prueba-app-dark-warn);
+  @include mat.all-component-themes($dark-app-theme);
 }
 
 .tema-claro-dos{
@@ -88,6 +88,9 @@ $light-app-theme: mat.define-light-theme($prueba-app-light-primary, $prueba-app-
   --color-texto: white;
   --color-warn: #FFF0F4;
   --color-accent:  #FFF0F4;
-  $light-app-theme: mat-light-theme($dark-app-pink-primary, $prueba-app-light-accent, $prueba-app-light-warn);
-  @include angular-material-theme($light-app-theme);
+  $light-app-theme: mat.define-light-theme($dark-app-pink-primary, $prueba-app-light-accent, $prueba-app-light-warn);
+  @include mat.all-component-themes($light-app-theme);
 }
+
+
+

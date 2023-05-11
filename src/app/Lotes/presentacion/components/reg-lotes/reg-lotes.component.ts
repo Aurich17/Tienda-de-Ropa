@@ -1,9 +1,9 @@
-import { LoteResponse} from './../../../domain/response/lote_response';
+import { LoteResponse} from '../../../../Lotes/domain/response/lote_response';
 import { Component,OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
-import {  guardaloterequest } from 'src/app/lotes/domain/request/lote_request';
-import { LoteRepository } from 'src/app/lotes/domain/lote.repository';
+import {  guardaloterequest } from 'src/app/Lotes/domain/request/lote_request';
+import { LoteRepository } from 'src/app/Lotes/domain/lote.repository';
 import { UtilService } from 'src/app/services/util.service';
 
 @Component({
@@ -19,11 +19,11 @@ export class RegLotesComponent implements OnInit {
   initializeForm(){
     this.group = new FormGroup({
     descripcion : new FormControl (null,Validators.required),
-    radio : new   FormControl(null,Validators.required),   
+    radio : new   FormControl(null,Validators.required),
    });
    }
   constructor(private readonly  loteService : LoteRepository,private readonly  reference: MatDialogRef<RegLotesComponent>,  private readonly util: UtilService) { }
-  
+
 
   ngOnInit(): void {
     this.initializeForm();
@@ -35,12 +35,12 @@ export class RegLotesComponent implements OnInit {
   guardalote(){
     const requestGuardaLote: guardaloterequest =<guardaloterequest>{}
     const valores = this.group.value
-    
+
       requestGuardaLote.Descripcion = valores['descripcion']
       requestGuardaLote.Estado = valores['radio']
       requestGuardaLote.Usuario = 'Admin'
       requestGuardaLote.Tipo = 'I'
-      
+
       this.loteService.guardalote(requestGuardaLote).subscribe(response=>
       {
         this.loteResponse = response
