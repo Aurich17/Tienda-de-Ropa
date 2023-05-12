@@ -19,15 +19,15 @@ export class LoteService extends LoteRepository{
     super();
   }
 
-  listar(prolrequest:loterequest): Observable<LoteResponse> 
+  listarLote(prolrequest:loterequest): Observable<LoteResponse> 
     {
         return this.http.post<LoteResponse>(`${environment.PATH_API}/lote/ListaLote/`,prolrequest);
-    
+
 
     }
   listarfiltro(prolrequest:loterequest): Observable<LoteResponse>
     {
-      return this.http.post<LoteResponse>(`${environment.PATH_API}/lote/ListaLote/`,prolrequest);
+      return this.http.post<LoteResponse>(`${environment.PATH_API}/Lote/ListaLote/`,prolrequest);
     }
 
   guardalote(prolrequest:guardaloterequest): Observable<LoteResponse>

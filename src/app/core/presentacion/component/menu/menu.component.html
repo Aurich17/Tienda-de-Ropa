@@ -1,6 +1,7 @@
 
   <ul id="accordion" class="accordion">
-    <li *ngFor="let menu of menus; let i = index">
+    <li *ngFor="let menu of menus; let i = index"
+      [class.active]="menu.active">
       <div class="menu" (click)="toggle(i)">
         <i [class]="menu.title"></i>
         <div fxLayout="row" fxLayoutAlign="start center">
@@ -12,15 +13,15 @@
           </i>
         
       </div>
-      <ul class="submenu" #submenu 
-        [style.height.px]="menu.active ? 20 : 0" >
+      <ul class="submenu" #submenu3 
+        [style.height.px]="menu.active ? submenu3?.scrollHeight : 0" >
         
         <li *ngFor="let submenu of menu.children;let i = index" (click)="goto(submenu.link)">
          <div fxLayout="row" fxLayoutAlign="start center" >
           <mat-icon  class="title" >{{submenu.icon}}</mat-icon>
           <a> {{ submenu.title }}</a>
           </div>
-          <ul class="" #submenu2  [style.height.px]="submenu.active ? 20 : 0">
+          <ul class="" #submenu3  [style.height.px]="menu.active ? submenu3?.scrollHeight : 0" >
             <li *ngFor="let submenu2 of submenu.children;let i = index" (click)="goto(submenu2.link)">
               <div fxLayout="row" fxLayoutAlign="start center"  class="title" >
               <mat-icon >{{submenu2.icon}}</mat-icon>

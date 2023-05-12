@@ -2,9 +2,21 @@
 <mat-sidenav-container>
   <mat-sidenav >Menu</mat-sidenav>
   <mat-sidenav-content >
-  <app-header *ngIf="userLogged"></app-header>
+  
+    <app-header *ngIf="userLogged"></app-header>
+
+
+  <div class="content">
+
+  
   <router-outlet></router-outlet>
+
+  </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
   
-  
+
+
+
+
+

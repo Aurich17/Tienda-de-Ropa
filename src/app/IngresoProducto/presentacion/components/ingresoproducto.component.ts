@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
-import { LoteRepository } from 'src/app/lotes/domain/lote.repository';
+
 import { loterequest } from 'src/app/lotes/domain/request/lote_request';
 
 import { ProductoRepository } from 'src/app/producto/domain/producto.repository';
@@ -26,6 +26,8 @@ import { almacenrequest } from 'src/app/almacen/domain/request/almacen_request';
 import * as XLSX from 'xlsx';
 import { DatePipe } from '@angular/common';
 import { StorageService } from 'src/app/services/storage.service';
+import { LoteService } from 'src/app/services/lote.service';
+import { LoteRepository } from 'src/app/lotes/domain/lote.repository';
 
 
 
@@ -62,10 +64,10 @@ export class IngresoproductoComponent implements OnInit {
     private readonly AlmacenService : AlmacenRepository,
     private readonly TiendaService : TiendaRepository,
     private readonly ProductoService: ProductoRepository,
-    private readonly LoteService : LoteRepository,
     private readonly util: UtilService,
     private miDatePipe: DatePipe,
-    private readonly storage :StorageService
+    private readonly storage :StorageService,
+    private  LoteServ : LoteRepository
     ) { }
 
   ngOnInit(): void {
@@ -190,19 +192,23 @@ this.TiendaService.listar(TiendaRequest).subscribe(Response=>
 }
 
 ListarLote (Empresa : string ){
+
+  
   const LoteRequest: loterequest =<loterequest>{}
   
   LoteRequest.Descripcion = '%'
+
   LoteRequest.Estado = 'A'
 
-  this.LoteService.listar(LoteRequest).subscribe(Response=>
+  this.LoteServ.listarLote(LoteRequest).subscribe(Response=>
     {
    this.ResponseLote = Response
    this.Lote = this.ResponseLote.datos.result
     }
     )
-
-    alert('listalote')
+   
+   
+    
   }
 
 

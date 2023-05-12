@@ -20,6 +20,8 @@
 td{
     background-color: var(--color-filas);
     color: var(--color-texto);
+    align-content:center ;
+    text-align: center;
 }
 table{
     width: 99%;

@@ -3,3 +3,8 @@ mat-sidenav-container,mat-sidenav{
 height: 100vh;
 
 }
+
+.content {
+    padding: 16px;
+    height: calc(100% - 64px);
+  }

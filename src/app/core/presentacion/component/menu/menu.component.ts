@@ -1,4 +1,4 @@
-import { Input } from '@angular/core';
+import { ElementRef, Input, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -27,7 +27,8 @@ export class MenuComponent  {
   @Input() options;
   @Input() menus: GroupMenu[];
   config: Config;
-  
+
+
   
   constructor(
     private readonly menu: MenuService,
@@ -36,7 +37,8 @@ export class MenuComponent  {
     ) { }
 
     responselogin : ResponseLogin=  <ResponseLogin>{}
-    
+  
+
 
   ngOnInit(): void {
     this.config = this.mergeConfig(this.options);
@@ -74,6 +76,8 @@ export class MenuComponent  {
 
   toggle(index: number) {
     // 멀티 오픈을 허용하지 않으면 타깃 이외의 모든 submenu를 클로즈한다.
+
+    
     if (!this.config.multi) {
       this.menus.filter(
         (menu, i) => i !== index && menu.active
@@ -82,6 +86,7 @@ export class MenuComponent  {
 
     // Menu의 active를 반전
     this.menus[index].active = !this.menus[index].active;
+    
   }
 
   goto (path:string): void {

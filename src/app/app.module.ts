@@ -56,6 +56,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { NavigationComponent } from './navigation/navigation.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { DashboardprincipalComponent } from './dashboardprincipal/dashboardprincipal.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { ClienteRepository } from './regventas/domain/cliente.repository';
 
 
 
@@ -69,6 +80,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     AppComponent,
     DashboardventaComponent,
     PageDashboardventaComponent,
+    NavigationComponent,
+    DashboardprincipalComponent,
     
     
   ],
@@ -83,6 +96,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
   ],
   providers: [
   DatePipe,
@@ -97,10 +119,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
   {provide: PromocionRepository, useClass: PromocionService},
   {provide: MedidaRepository, useClass: MedidaService},
   {provide: ProductoRepository, useClass: ProductoService},
-  {provide: LoteRepository, useClass: ClienteService},
+  
   {provide: ListadoVentasRepository, useClass: ListadoVentasService},
   {provide: ListadoKardexRepository, useClass: ListadoKardexService},
   {provide: IngresoProductoRepository, useClass: IngresoProductoService},
+  {provide: ClienteRepository, useClass: ClienteService},
   {provide: TransferenciaEntreAlmacenesRepository, useClass: TransferenciaEntreAlmacenesService},
 
   

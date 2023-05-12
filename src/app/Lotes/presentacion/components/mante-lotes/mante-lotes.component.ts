@@ -106,7 +106,7 @@ listar (){
     requestLote.Descripcion='%'
     requestLote.Estado='A'
 
-      this.loteService.listar(requestLote).subscribe(response => 
+      this.loteService.listarLote(requestLote).subscribe(response => 
 
         {
           this.loteResponse = response

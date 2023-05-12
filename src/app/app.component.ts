@@ -4,7 +4,14 @@ import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { UserRepository } from './usuario/domain/user-repository';
 import { UserOperations } from './usuario/infraestructura/user-operation';
-
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 
 @Component({
   selector: 'app-component',

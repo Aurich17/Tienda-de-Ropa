@@ -23,6 +23,13 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
     loadChildren: () => import("./IngresoProducto/ingreso-producto.module").then(m => m.IngresoProductoModule)
 },
 
+{
+    path: "Transferencia",
+    loadChildren: () => import("./transferenciaentrealmacenes/transferenciaentrealmacenes.module").then(m => m.TransferenciaentrealmacenesModule)
+},
+
+
+
 
 {
 

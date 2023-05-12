@@ -46,7 +46,7 @@
     }
   
   
-  .mat-card{
+  .mat-mdc-card{
   
    padding:  0px 0px 10px 0px;
   
@@ -58,7 +58,7 @@
       
     }
     
-    .mat-cell {
+    .mat-mdc-cell {
       font-size: 14px;
       min-height: 48px;
       text-align: center;

@@ -125,6 +125,15 @@ ListarProducto (param_Empresa:string,param_CodigoProducto:string){
   }
 */
 
+
+editItem(row){}
+
+saveItem(row){
+}
+cancelEditItem(row) {}
+EliminarItem(row){}
+
+
 ListarProducto (param_Empresa:string,param_CodigoProducto:string){
 
   const ProductoLoteRequest : ProductoLoteRequest = <ProductoLoteRequest>{}
