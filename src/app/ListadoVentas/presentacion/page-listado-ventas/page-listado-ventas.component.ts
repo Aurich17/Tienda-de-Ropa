@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ListadoVentasComponent } from '../components/listado-ventas/listado-ventas.component';
 
 @Component({
   selector: 'app-page-listado-ventas',

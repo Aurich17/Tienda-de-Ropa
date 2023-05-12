@@ -1,6 +1,6 @@
 <div class="">
 
-    <mat-toolbar color ="primary" style="height: 33px;" fxLayout  >
+    <mat-toolbar  style="height: 33px;" fxLayout  >
         <h3 class="title">Ingreso Producto</h3>
     </mat-toolbar>
 
@@ -78,7 +78,7 @@
                                           type="text"   matInput  formControlName = "descripcion">
                                         </mat-form-field>
 
-                                        <button mat-raised-button  color="primary" style="height: 48px;"
+                                        <button mat-raised-button   style="height: 48px;"
                                           matTooltip="Buscar Producto"
                                           type="button">
                                           <mat-icon>search</mat-icon>
@@ -113,7 +113,7 @@
                                           
                                         </mat-form-field>
                                         <div  style="padding-top: 4px;">
-                                              <button mat-raised-button  color="primary"  style="height: 70%;"
+                                              <button mat-raised-button    style="height: 70%;"
                                                 matTooltip="Agregar Producto"
                                                 (click) = "AgregarItem($event)" 
                                                 >
@@ -126,7 +126,7 @@
                                     
                                         <input type="file"  (change)="onFileSelected($event)">
                             
-                                        <button mat-raised-button color="primary"
+                                        <button mat-raised-button 
                                           matTooltip="Importar"
                                           (click) = "importFile()"
                                           type="button">Importar
@@ -140,20 +140,20 @@
                       </form>
                       <div fxLayoutAlign="center center" fxLayoutGap="20px"  color="primary" >
                        
-                          <button mat-raised-button color="primary"
+                          <button mat-raised-button 
                               matTooltip="Nuevo registro"
                               (click) = "Nuevo()"
                               type="button">Nuevo
                           <mat-icon>description</mat-icon>
                           </button>
-                          <button mat-raised-button color="primary" #guardar [disabled]="group.invalid"
+                          <button mat-raised-button  #guardar [disabled]="group.invalid"
                               matTooltip="Grabar registro"
                               (click) = "grabarIngreso()"
                               type="button">Grabar
                               <mat-icon>save</mat-icon>
                           </button>
 
-                          <button mat-raised-button color="primary"
+                          <button mat-raised-button  class="mat-primary"
                               matTooltip="Cerrar de la pantalla actual"
                             
                               type="button">Salir

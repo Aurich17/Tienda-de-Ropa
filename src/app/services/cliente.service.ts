@@ -6,8 +6,9 @@ import { pluck, timeout } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { StorageService } from './storage.service';
 import { ClienteRepository } from '../regventas/domain/cliente.repository';
-import { ClienteResponse, ParametrosResponse, ProductoResponse, VentaResponse } from '../regventas/domain/response/cliente_response';
-import { clienterequest, parametrosRequest, productorequest, ventarequest } from '../regventas/domain/request/cliente_request';
+
+import { productorequest, clienterequest, ventarequest, parametrosRequest } from '../regventas/domain/request/cliente_request';
+import { ProductoResponse, ClienteResponse, VentaResponse, ParametrosResponse } from '../regventas/domain/response/cliente_response';
 
 //@ts-ignore
 @Injectable()
@@ -37,6 +38,7 @@ export class ClienteService extends ClienteRepository{
   {
     return this.http.post<VentaResponse>(`${environment.PATH_API}/comprobante/mantcomprobante/`,prolrequest);
   }
+
   listaParametros(prolrequest:parametrosRequest): Observable<ParametrosResponse>
   {
       return this.http.post<ParametrosResponse>(`${environment.PATH_API}/ventas/listaparametros/`,prolrequest);

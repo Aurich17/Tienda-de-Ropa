@@ -33,29 +33,30 @@ import { PersonalRepository } from './personal/domain/personal.repository';
 import { PersonalService } from './services/personal.service';
 import { LoteRepository } from './lotes/domain/lote.repository';
 import { LoteService } from './services/lote.service';
-import { TiendaRepository } from './tienda/domain/tienda.repository';
+import { TiendaRepository } from './Tienda/domain/tienda.repository';
 import { MedidaRepository } from './medida/domain/medida.repository';
 import { MedidaService } from './services/medida.service';
 import { ProductoRepository } from './producto/domain/producto.repository';
 import { ProductoService } from './services/producto.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { ListadoVentasComponent } from './ListadoVentas/presentacion/components/listado-ventas/listado-ventas.component';
 import { ListadoVentasService } from './services/listVentas.service';
 import { ListadoVentasRepository } from './listadoVentas/domain/listadoVentas.respository';
-import { ListadoKardexComponent } from './Kardex/presentacion/components/listado-kardex/listado-kardex.component';
-import { ListadoKardexRepository } from './Kardex/domain/kardex.repository';
+import { ListadoKardexRepository } from './kardex/domain/kardex.repository';
 
 
 import { IngresoProductoRepository } from './IngresoProducto/domain/ingresorproducto.repository';
 import { IngresoProductoService } from './services/ingresoproducto';
 import { TransferenciaEntreAlmacenesRepository } from './transferenciaentrealmacenes/domain/transferenciaentrealmacenes.repository';
 import { TransferenciaEntreAlmacenesService } from './services/transferenciaentrealmacenes.service';
-import { DashboardventaComponent } from './dashboardventa/presentacion/components/dashboardventa/dashboardventa.component';
 import { PageDashboardventaComponent } from './dashboardventa/presentacion/components/page-dashboardventa/page-dashboardventa.component';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { ClienteRepository } from './regventas/domain/cliente.repository';
+import { NgChartsModule, NgChartsConfiguration } from 'ng2-charts';
+import { GraficoRepository } from './Graficos/domain/graficos.repository';
+import { GraficoService } from './services/graficos.service';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -66,7 +67,7 @@ import { DashboardprincipalComponent } from './dashboardprincipal/dashboardprinc
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { ClienteRepository } from './regventas/domain/cliente.repository';
+
 
 
 
@@ -78,8 +79,9 @@ import { ClienteRepository } from './regventas/domain/cliente.repository';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardventaComponent,
     PageDashboardventaComponent,
+
+
     NavigationComponent,
     DashboardprincipalComponent,
     
@@ -96,6 +98,7 @@ import { ClienteRepository } from './regventas/domain/cliente.repository';
     FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    NgChartsModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -125,8 +128,11 @@ import { ClienteRepository } from './regventas/domain/cliente.repository';
   {provide: IngresoProductoRepository, useClass: IngresoProductoService},
   {provide: ClienteRepository, useClass: ClienteService},
   {provide: TransferenciaEntreAlmacenesRepository, useClass: TransferenciaEntreAlmacenesService},
+  {provide: ClienteRepository, useClass: ClienteService},
+  {provide: GraficoRepository, useClass: GraficoService},
+  { provide: NgChartsConfiguration, useValue: { generateColors: false }},
 
-  
+
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider
 

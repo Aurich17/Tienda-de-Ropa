@@ -2,16 +2,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 
 
-@Component({
-  selector: 'app-dashboardventa',
-  templateUrl: './dashboardventa.component.html',
-  styleUrls: ['./dashboardventa.component.css']
-})
-export class DashboardventaComponent implements OnInit {
+// @Component({
+//   selector: 'app-dashboardventa',
+//   templateUrl: './dashboardventa.component.html',
+//   styleUrls: ['./dashboardventa.component.css']
+// })
+// export class DashboardventaComponent implements OnInit {
 
-  ngOnInit(): void {
+//   ngOnInit(): void {
     
-  }
+//   }
 
   /*constructor() { }
 
@@ -75,4 +75,4 @@ export class DashboardventaComponent implements OnInit {
   }*/
   
 
-}
+// }

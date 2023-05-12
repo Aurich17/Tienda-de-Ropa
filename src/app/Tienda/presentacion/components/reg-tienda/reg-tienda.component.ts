@@ -1,9 +1,9 @@
-import { TiendaResponse} from './../../../domain/response/tienda_response';
+import { TiendaResponse} from './../../../../Tienda/domain/response/tienda_response';
 import { Component,OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
-import {guardatiendarequest } from 'src/app/tienda/domain/request/tienda_request';
-import {TiendaRepository } from 'src/app/tienda/domain/tienda.repository';
+import {guardatiendarequest } from 'src/app/Tienda/domain/request/tienda_request';
+import {TiendaRepository } from 'src/app/Tienda/domain/tienda.repository';
 import { UtilService } from 'src/app/services/util.service';
 
 
@@ -45,7 +45,7 @@ export class RegTiendaComponent implements OnInit {
       requestGuardaTienda.Estado = valores['radio']
       requestGuardaTienda.Usuario_reg = 'Admin'
       requestGuardaTienda.Tipo = 'I'
-      
+
       this.tiendaService.guardatienda(requestGuardaTienda).subscribe(response=>
       {
         this.tiendaResponse = response

@@ -1,6 +1,6 @@
 import { Observable } from "rxjs/internal/Observable";
-import { Medidarequest, guardaMedidarequest } from "./request/medida_request";
-import { MedidaResponse } from "./response/medida_response";
+import { Medidarequest, guardaMedidarequest } from "../domain/request/medida_request";
+import { MedidaResponse } from "../domain/response/medida_response";
 
 
 
@@ -11,4 +11,4 @@ export abstract class MedidaRepository{
     abstract listarfiltro(fd : Medidarequest):Observable<MedidaResponse>;
     abstract guardaalmacen(fd : guardaMedidarequest):Observable<MedidaResponse>;
     abstract editaalmacen(fd: guardaMedidarequest):Observable<MedidaResponse>;
-} 
+}

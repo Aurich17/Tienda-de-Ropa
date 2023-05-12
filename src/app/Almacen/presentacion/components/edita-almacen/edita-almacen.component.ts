@@ -1,27 +1,27 @@
-import { AlmacenResponse, ListaAlmacen } from './../../../domain/response/almacen_response';
+import { AlmacenResponse, ListaAlmacen } from './../../../../almacen/domain/response/almacen_response';
 
 import {DIALOG_DATA, DialogModule, DialogRef} from '@angular/cdk/dialog';
 
-import { AlmacenRepository } from '../../../domain/almacen.repository';
+import { AlmacenRepository } from '../../../../almacen/domain/almacen.repository';
 import { UtilService } from '../../../../services/util.service';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, Directive, Inject, OnInit } from '@angular/core';
-import { editaalmacenrequest } from '../../../domain/request/almacen_request';
+import { editaalmacenrequest } from '../../../../almacen/domain/request/almacen_request';
 
 
 
 
 @Component({
- 
+
   selector: 'app-edita-almacen',
   templateUrl: './edita-almacen.component.html',
   styleUrls: ['./edita-almacen.component.css']
 })
 
 export class EditaAlmacenComponent implements OnInit {
-  group:any 
-  codigoAlmacen:number = 0 
+  group:any
+  codigoAlmacen:number = 0
   almacenResponse:AlmacenResponse = <AlmacenResponse>{}
   initializeForm(){
     this.group = new FormGroup({
@@ -46,25 +46,25 @@ export class EditaAlmacenComponent implements OnInit {
   editaalmacen(){
     const valores = this.group.value //Esto agarra los valores del HTML dentro del FormGroup
     const requestEditaAlmacen: editaalmacenrequest =<editaalmacenrequest>{}
-    
+
     requestEditaAlmacen.CodigoAlmacen = this.codigoAlmacen.toString()
     requestEditaAlmacen.Descripcion = valores['desAlmacen']
     requestEditaAlmacen.Estado = valores['radio']
     requestEditaAlmacen.Usuario_reg = 'Admin'
     requestEditaAlmacen.Direccion = valores['direccion']
     requestEditaAlmacen.Tipo = 'U'
-    
+
     this.almacenService.editaalmacen(requestEditaAlmacen).subscribe(response=>
     {
       this.almacenResponse = response
       this.util.showMessage('EDITADO CORRECTAMENTE')
       this.closeModal()
     }
-    
+
     )
   }
   clear() {
     this.group.reset({radio: 'A'})
-  }  
+  }
 
 }

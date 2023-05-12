@@ -3,9 +3,9 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { StorageService } from './storage.service';
-import { ListadoKardexRepository } from '../Kardex/domain/kardex.repository';
-import { listadoKardex } from '../Kardex/domain/request/kardex.request';
-import { ListaKardexResponse } from '../Kardex/domain/response/kardex.response';
+import { ListadoKardexRepository } from '../kardex/domain/kardex.repository';
+import { listadoKardex } from '../kardex/domain/request/kardex.request';
+import { ListaKardexResponse } from '../kardex/domain/response/kardex.response';
 
 
 //@ts-ignore

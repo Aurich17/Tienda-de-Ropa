@@ -79,11 +79,15 @@ import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
 },
 {
   path: "Kardex",
-  loadChildren: () => import("./Kardex/kardex.module").then(m => m.KardexModule)
+  loadChildren: () => import("./kardex/kardex.module").then(m => m.KardexModule)
 },
 {
     path: "ListadoVentas",
-    loadChildren: () => import("./ListadoVentas/listado-ventas.module").then(m => m.ListadoVentasModule)
+    loadChildren: () => import("./listadoVentas/listado-ventas.module").then(m => m.ListadoVentasModule)
+},
+{
+  path: "DashboardAlmacen",
+  loadChildren: () => import("./Graficos/graficos.module").then(m => m.GraficosModule)
 },
 { path: './regventas/reg-ventas.component/:datos', component: RegVentasComponent }
 /*

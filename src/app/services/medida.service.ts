@@ -10,19 +10,19 @@ import { MedidaRepository } from '../medida/domain/medida.repository';
 
 @Injectable()
 export class MedidaService extends MedidaRepository{
-  
+
   constructor(private readonly http:HttpClient,
     private readonly storage: StorageService
-    
+
     ){
 
     super();
   }
 
-  listar(prolrequest:Medidarequest): Observable<MedidaResponse> 
+  listar(prolrequest:Medidarequest): Observable<MedidaResponse>
     {
         return this.http.post<MedidaResponse>(`${environment.PATH_API}/unidadmedida/listaunidadmedida`,prolrequest);
-    
+
 
     }
   listarfiltro(prolrequest:Medidarequest): Observable<MedidaResponse>

@@ -36,24 +36,24 @@ export class EditaLotesComponent implements OnInit {
   editaLote(){
     const valores = this.group.value //Esto agarra los valores del HTML dentro del FormGroup
     const requestEditaLote: editaloterequest =<editaloterequest>{}
-    
+
     requestEditaLote.CodigoLote = this.codigoLote.toString()
     requestEditaLote.Descripcion = valores['descripcion']
     requestEditaLote.Estado = valores['radio']
     requestEditaLote.Usuario = 'Admin'
     requestEditaLote.Tipo = 'U'
-    
+
     this.loteService.editalote(requestEditaLote).subscribe(response=>
     {
       this.loteResponse = response
       this.util.showMessage('EDITADO CORRECTAMENTE')
       this.closeModal()
     }
-    
+
     )
   }
   clear() {
     this.group.reset({radio: 'A'})
-  }  
+  }
 
 }

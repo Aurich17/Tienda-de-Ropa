@@ -7,11 +7,12 @@ import { SharedModule } from '../shared/shared.module';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageMantePersonalComponent } from './presentacion/page-mante-personal/page-mante-personal.component';
-import { RegPersonalComponent } from './presentacion/components/reg-personal/reg-personal.component';
+
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { EditaPersonalComponent } from './presentacion/components/edita-personal/edita-personal.component';
+import { RegPersonalComponent } from './presentacion/components/reg-personal/reg-personal.component';
 
 @NgModule({
   declarations: [MantePersonalComponent, PageMantePersonalComponent, RegPersonalComponent, EditaPersonalComponent],

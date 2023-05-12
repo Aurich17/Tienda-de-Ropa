@@ -1,9 +1,9 @@
-import { LoteResponse } from './../../../domain/response/lote_response';
+import { LoteResponse } from '../../../../lotes/domain/response/lote_response';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegLotesComponent } from '../reg-lotes/reg-lotes.component';
-import { ListaLote } from '../../../domain/response/lote_response';
+import { ListaLote } from '../../../../lotes/domain/response/lote_response';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { EditaLotesComponent } from '../edita-lotes/edita-lotes.component';
 import { loterequest } from 'src/app/lotes/domain/request/lote_request';
@@ -33,14 +33,14 @@ export class ManteLotesComponent implements OnInit {
     {field:"usuario_reg", title: "Usu.Reg"},
     {field:"fecha_hora_reg", title: "Fecha Hora Registro"},
     {field:"usuario_mod", title: "Usu.Mod"},
-    {field:"fecha_hora_mod", title: "Fecha Hora Mod"},     
+    {field:"fecha_hora_mod", title: "Fecha Hora Mod"},
 
   ];
-  
+
   initializeForm(){
     this.group = new FormGroup({
     descripcion : new FormControl (null,null),
-    radio : new   FormControl(null,null),   
+    radio : new   FormControl(null,null),
    });
    }
 
@@ -55,56 +55,57 @@ export class ManteLotesComponent implements OnInit {
   }
 
   agregaLote() {
-    
+
     this.dialogConfig.id = "projects-modal-component";
     this.dialogConfig.height = "500px";
     this.dialogConfig.width = "500px";
     this.dialogConfig.disableClose = true;
     this.modalDialog = this.matDialog.open(RegLotesComponent, this.dialogConfig);
   }
-  
+
   openModal(record : any){
     record =  this.listaLote
    //record = this.codigoEmpleado
    //this.cantidadApoyo = 0;
- 
+
    const options = {
-        
+
      disableClose: true,
      panelClass:'editaLote',
      data: record,
    };
- 
+
    const reference =  this.util.openModal(
     EditaLotesComponent,
       options,
-     
+
      );
      reference.subscribe((response) => {
       this.listar()
        if (response){
-        
+
         // this.cantidadApoyo = response.CantidadApoyo;
         // this.listaEmpleado = response.listaEmpleado
        }
      });
  }
 
- ngOnInit(): void {  
+ ngOnInit(): void {
   this.initializeForm();
   this.listar();
 }
 
 listar (){
   if (this.group.valid){
-   
+
     const fd= new FormData();
     const values = this.group.value
-  
+
     const requestLote: loterequest =<loterequest>{}//  this.group.value;
-   
+
     requestLote.Descripcion='%'
     requestLote.Estado='A'
+
 
       this.loteService.listarLote(requestLote).subscribe(response => 
 
@@ -124,19 +125,19 @@ editar(lote:ListaLote){
 listarfiltro(){
   // console.log(this.jj)
   if (this.group.valid){
-   
+
     const fd= new FormData();
     const values = this.group.value
-  
+
     const requestLote: loterequest =<loterequest>{}//  this.group.value;
-   
+
     requestLote.Descripcion= values['descripcion']
     requestLote.Estado= values['radio']
 
     if(requestLote.Descripcion === '' || requestLote.Descripcion == null){
       requestLote.Descripcion = '%'
     }
-      this.loteService.listarfiltro(requestLote).subscribe(response => 
+      this.loteService.listarfiltro(requestLote).subscribe(response =>
         {
           this.loteResponse = response
           this.dataTable = this.loteResponse.datos.result;

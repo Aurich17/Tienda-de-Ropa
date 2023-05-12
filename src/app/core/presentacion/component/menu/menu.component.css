@@ -46,11 +46,11 @@
 }
 
 .accordion li.active .menu {
-  color: #b63b4d;
+  color: primary;
 }
 
 .accordion li.active i {
-  color: #b63b4d;
+  color: ward;
 }
 
 /* Show submenu */

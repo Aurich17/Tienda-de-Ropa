@@ -1,4 +1,4 @@
-import { AlmacenResponse, ListaAlmacen } from './../../../domain/response/almacen_response';
+import { AlmacenResponse, ListaAlmacen } from './../../../../almacen/domain/response/almacen_response';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild} from '@angular/core';
 
@@ -7,7 +7,7 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 
 import {MatDialogModule} from '@angular/material/dialog';
 
-import { almacenrequest } from '../../../../../../src/app/almacen/domain/request/almacen_request';
+import { almacenrequest } from 'src/app/almacen/domain/request/almacen_request';
 import { AlmacenRepository } from '../../../../almacen/domain/almacen.repository';
 import { UtilService } from './../../../../services/util.service';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
@@ -25,12 +25,12 @@ export class ManteAlmacenComponent implements OnInit {
   dataTable: ListaAlmacen[] = []
   listaAlmacen : ListaAlmacen = <ListaAlmacen>{}
   almacenResponse:AlmacenResponse = <AlmacenResponse>{}
- 
+
   group:FormGroup = <FormGroup>{}
-  
+
  // modalDialog: MatDialogRef<RegAlmacenComponent, any> | undefined;
 
-  metadataTable: MetadataTable [] = 
+  metadataTable: MetadataTable [] =
    [
     {field:"codigoAlmacen",title: "Cod.Almacen"} ,
     {field:"descripcion", title: "Desc.Almacen"},
@@ -41,7 +41,7 @@ export class ManteAlmacenComponent implements OnInit {
     {field:"fecha_hora_mod", title: "Fecha Hora Mod"},
 
   ];
-  
+
 
 
   initializeForm(): void{

@@ -53,7 +53,7 @@
     width: 50%;
     margin: 2px;
     border: 0px;
-    background-color: #E0E0E0;
+    background-color: var(--color-tarjeta);
   }
 
 
@@ -62,5 +62,15 @@
     height: 15px;
   }
 
- 
+  mat-toolbar {
+    background-color: var(--color-primary);;
+   
+}
+
+.mat-button.mat-primary {
+  background-color: var(--color-primary); /* Cambia este valor al color deseado */
+  color: var(--color-primary); /* Cambia este valor al color deseado */
+}
+
+
  

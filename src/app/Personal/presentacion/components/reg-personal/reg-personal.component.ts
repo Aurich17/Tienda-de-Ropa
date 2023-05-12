@@ -34,7 +34,7 @@ export class RegPersonalComponent implements OnInit {
     sueldo : new   FormControl(null,Validators.required),
     direccion : new   FormControl(null,null),
     fechaIngreso : new   FormControl(null,Validators.required),
-    radio : new   FormControl(null,null), 
+    radio : new   FormControl(null,null),
    });
    }
 
@@ -69,7 +69,7 @@ export class RegPersonalComponent implements OnInit {
       requestGuardaPersonal.Estado = valores['radio']
       requestGuardaPersonal.Usuario_reg = 'Admin'
       requestGuardaPersonal.Tipo = 'I'
-      
+
       this.personalService.guardapersonal(requestGuardaPersonal).subscribe(response=>
       {
         this.personalResponse = response
@@ -78,7 +78,7 @@ export class RegPersonalComponent implements OnInit {
       }
       )
     }
-   
+
   }
   clear() {
     this.group.reset({radio: 'A'})

@@ -10,19 +10,19 @@ import { AlmacenRepository } from '../almacen/domain/almacen.repository';
 
 @Injectable()
 export class AlmacenService extends AlmacenRepository{
-  
+
   constructor(private readonly http:HttpClient,
     private readonly storage: StorageService
-    
+
     ){
 
     super();
   }
 
-  listar(prolrequest:almacenrequest): Observable<AlmacenResponse> 
+  listar(prolrequest:almacenrequest): Observable<AlmacenResponse>
     {
         return this.http.post<AlmacenResponse>(`${environment.PATH_API}/almacen/ListaAlmacen/`,prolrequest);
-    
+
 
     }
   listarfiltro(prolrequest:almacenrequest): Observable<AlmacenResponse>

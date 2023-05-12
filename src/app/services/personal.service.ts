@@ -10,20 +10,20 @@ import { PersonalRepository } from '../personal/domain/personal.repository';
 
 @Injectable()
 export class PersonalService extends PersonalRepository{
-  
+
   constructor(private readonly http:HttpClient,
     private readonly storage: StorageService
-    
+
     ){
 
     super();
   }
 
   //LISTA LOS OBJETOS AL INICIO
-  listar(prolrequest:personalrequest): Observable<PersonalResponse> 
+  listar(prolrequest:personalrequest): Observable<PersonalResponse>
     {
         return this.http.post<PersonalResponse>(`${environment.PATH_API}/personal/listapersonal/`,prolrequest);
-    
+
     }
 
     //LISTA SEGUN LOS PARAMETROS
@@ -31,7 +31,7 @@ export class PersonalService extends PersonalRepository{
     {
       return this.http.post<PersonalResponse>(`${environment.PATH_API}/personal/listapersonal/`,prolrequest);
     }
-    
+
     //GUARDA LOS ELEMENTOS
   guardapersonal(prolrequest:guardapersonalrequest): Observable<PersonalResponse>
   {
