@@ -11,6 +11,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 import { AgregarClienteComponent } from '../regventas/presentacion/components/agregar-cliente/agregar-cliente.component';
 import { RegVentasComponent } from '../regventas/presentacion/components/reg-ventas/reg-ventas.component';
 import { PageRegVentasComponent } from '../regventas/presentacion/page-reg-ventas/page-reg-ventas.component';

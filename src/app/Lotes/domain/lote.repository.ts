@@ -1,4 +1,5 @@
 import { Observable } from "rxjs/internal/Observable";
+
 import { loterequest, guardaloterequest, editaloterequest } from "./request/lote_request";
 import { LoteResponse } from "./response/lote_response";
 

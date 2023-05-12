@@ -1,12 +1,12 @@
+
 import { AlmacenResponse, ListaAlmacen } from './../../../../almacen/domain/response/almacen_response';
-
 import {DIALOG_DATA, DialogModule, DialogRef} from '@angular/cdk/dialog';
-
 import { AlmacenRepository } from '../../../../almacen/domain/almacen.repository';
 import { UtilService } from '../../../../services/util.service';
 
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, Directive, Inject, OnInit } from '@angular/core';
+
 import { editaalmacenrequest } from '../../../../almacen/domain/request/almacen_request';
 
 

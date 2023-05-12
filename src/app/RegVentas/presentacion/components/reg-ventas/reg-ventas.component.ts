@@ -4,17 +4,21 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 
 import { UtilService } from '../../../../services/util.service';
+
 import { ClienteRepository } from '../../../../regventas/domain/cliente.repository';
 import { StorageService } from '../../../../services/storage.service';
 
 import { listadoVentasRequest } from '../../../../listadoVentas/domain/request/listadoVentas_request';
 import { ListadoVentasRepository } from '../../../../listadoVentas/domain/listadoVentas.respository';
+
 import { tiendarequest } from '../../../../Tienda/domain/request/tienda_request';
 import { TiendaRepository } from '../../../../Tienda/domain/tienda.repository';
 import { DialogoConfirmacionComponent } from '../../../../shared/components/dialogoconfirmacion/dialogoconfirmacion.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+
 import { productorequest, clienterequest, ventarequest, DetalleRequest, parametrosRequest } from 'src/app/regventas/domain/request/cliente_request';
+
 import { BuscarClienteComponent } from '../../components/buscar-cliente/buscar-cliente.component';
 import { BuscarProductoComponent } from '../../components/buscar-producto/buscar-producto.component';
 

@@ -1,13 +1,17 @@
+
 import { ListaPersonal, PersonalResponse } from '../../../../personal/domain/response/personal_response';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegPersonalComponent } from '../../../../personal/presentacion/components/reg-personal/reg-personal.component';
+
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { PersonalRepository } from 'src/app/personal/domain/personal.repository';
 import { UtilService } from 'src/app/services/util.service';
+
 import { EditaPersonalComponent } from '../../../../personal/presentacion/components/edita-personal/edita-personal.component';
 import { personalrequest } from 'src/app/personal/domain/request/personal_request';
+
 
 
 @Component({

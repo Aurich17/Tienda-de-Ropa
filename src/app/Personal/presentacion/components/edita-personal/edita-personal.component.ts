@@ -1,4 +1,6 @@
+
 import { PersonalResponse, ListaPersonal } from '../../../../personal/domain/response/personal_response';
+
 import { MantePersonalComponent} from './../mante-personal/mante-personal.component';
 import { Component,Inject,OnInit} from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';

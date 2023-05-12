@@ -2,6 +2,7 @@ import { ListadoKardexService } from './services/kardex.service';
 //@ts-ignore
 import { ClienteService } from './services/cliente.service';
 
+
 import { PromocionService } from './services/promocion.service';
 import { PromocionRepository } from '../../src/app/Promociones/domain/promociones.repository';
 import { TiendaService } from './services/tienda.service';
@@ -15,6 +16,7 @@ import { CoreModule } from './core/core.module';
 import { UserRepository } from './usuario/domain/user-repository';
 import { UserOperations } from './usuario/infraestructura/user-operation';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import {APP_BASE_HREF, DatePipe} from '@angular/common';
@@ -131,6 +133,10 @@ import { MatMenuModule } from '@angular/material/menu';
   {provide: ClienteRepository, useClass: ClienteService},
   {provide: GraficoRepository, useClass: GraficoService},
   { provide: NgChartsConfiguration, useValue: { generateColors: false }},
+  {provide: ClienteRepository, useClass: ClienteService},
+  {provide: GraficoRepository, useClass: GraficoService},
+  { provide: NgChartsConfiguration, useValue: { generateColors: false }},
+
 
 
   // todo lo que se necesita que se instacie una vez se tieen que poner aca en el provider

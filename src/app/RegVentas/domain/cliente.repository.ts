@@ -1,6 +1,8 @@
 import { Observable } from "rxjs/internal/Observable";
+
 import { productorequest, clienterequest, ventarequest, parametrosRequest } from "./request/cliente_request";
 import { ProductoResponse, ClienteResponse, VentaResponse, ParametrosResponse } from "./response/cliente_response";
+
 
 export abstract class ClienteRepository{
     abstract listar( fd : productorequest):Observable<ProductoResponse>;

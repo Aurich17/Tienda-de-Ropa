@@ -8,6 +8,7 @@ import { tiendarequest } from '../../../../Tienda/domain/request/tienda_request'
 import { TiendaRepository } from '../../../../Tienda/domain/tienda.repository';
 import { UtilService } from '../../../../services/util.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+
 import { RegTiendaComponent } from '../../../../tienda/presentacion/components/reg-tienda/reg-tienda.component';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { EditaTiendaComponent } from '../../../../tienda/presentacion/components/edita-tienda/edita-tienda.component';

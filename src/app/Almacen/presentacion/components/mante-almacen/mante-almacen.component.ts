@@ -1,14 +1,11 @@
+
 import { AlmacenResponse, ListaAlmacen } from './../../../../almacen/domain/response/almacen_response';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit, ViewChild} from '@angular/core';
 
-
-
-
-import {MatDialogModule} from '@angular/material/dialog';
-
 import { almacenrequest } from 'src/app/almacen/domain/request/almacen_request';
 import { AlmacenRepository } from '../../../../almacen/domain/almacen.repository';
+
 import { UtilService } from './../../../../services/util.service';
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 

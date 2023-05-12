@@ -1,9 +1,13 @@
+
 import { LoteResponse } from '../../../../lotes/domain/response/lote_response';
+
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit} from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { RegLotesComponent } from '../reg-lotes/reg-lotes.component';
+
 import { ListaLote } from '../../../../lotes/domain/response/lote_response';
+
 import { MetadataTable } from 'src/app/interfaces/metada-table.interface';
 import { EditaLotesComponent } from '../edita-lotes/edita-lotes.component';
 import { loterequest } from 'src/app/lotes/domain/request/lote_request';
@@ -108,6 +112,7 @@ listar (){
 
 
       this.loteService.listarLote(requestLote).subscribe(response => 
+
 
         {
           this.loteResponse = response

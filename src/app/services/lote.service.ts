@@ -11,8 +11,10 @@ import { LoteRepository } from '../lotes/domain/lote.repository';
 @Injectable()
 export class LoteService extends LoteRepository{
 
+
   constructor(private readonly http:HttpClient,
     private readonly storage: StorageService
+
 
     ){
 
@@ -22,6 +24,7 @@ export class LoteService extends LoteRepository{
   listarLote(prolrequest:loterequest): Observable<LoteResponse> 
     {
         return this.http.post<LoteResponse>(`${environment.PATH_API}/lote/ListaLote/`,prolrequest);
+
 
 
 

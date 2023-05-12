@@ -14,11 +14,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 //   }
 
   /*constructor() { }
+  /*constructor() { }
 
   ngOnInit(): void {
   
 
 
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective ;
   @ViewChild(BaseChartDirective) chart: BaseChartDirective ;
 
   public barChartOptions: ChartConfiguration['options'] = {
@@ -73,6 +75,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
     this.chart?.update();
   }*/
+  }*/
   
 
+// }
 // }
