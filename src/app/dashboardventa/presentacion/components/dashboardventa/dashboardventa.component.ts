@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+//import { Component, OnInit, ViewChild } from '@angular/core';
 
 
 
@@ -10,14 +10,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 // export class DashboardventaComponent implements OnInit {
 
 //   ngOnInit(): void {
-    
+
 //   }
 
   /*constructor() { }
   /*constructor() { }
 
   ngOnInit(): void {
-  
+
 
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective ;
@@ -36,8 +36,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
       legend: {
         display: true,
       },
-      
-     
+
+
     }
   };
   public barChartType: ChartType = 'bar';
@@ -75,8 +75,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
     this.chart?.update();
   }*/
-  }*/
-  
+  //}*/
+
 
 // }
 // }

@@ -1,36 +1,4 @@
-export interface GraficoResponse{
-
-  datos : {status:number ,TotalRegistro : number ,
-
-      result :ListaISProducto[]
-
-  },
-
-
-  meta: { mensaje : string }
-}
-
-export interface ListaISProducto{
-codigoAlmacen:number;
-desAlmacen:string;
-codigoProducto:number;
-descripcion:string;
-color:string;
-talla:string;
-tipoPrenda:string;
-genero:string;
-estado:string;
-usuario_reg:string;
-fecha_hora_reg:string;
-usuario_mod:string;
-fecha_hora_mod:string;
-stock:number;
-}
-
-
-
-
-//PRIMER GRAFICO
+//DASHBOARD VENTAS
 export interface DashboardVentasResponse{
   datos : {status:number ,TotalRegistro : number ,
 
@@ -44,4 +12,39 @@ export interface DashboardVentasResponse{
 export interface DashboardVentas{
   fechaEmision:string;
   montoTotal:number;
+}
+
+
+//DASHBOARD PROMEDIO VENTAS
+export interface DashboardPromedioVentasResponse{
+  datos : {status:number ,TotalRegistro : number ,
+
+    result :DashboardPromedioVentas[]
+
+  },
+  meta: { mensaje : string }
+}
+
+export interface DashboardPromedioVentas{
+  diaSemana:string;
+  montoTotal:number;
+}
+
+//DASHBOARD INDICADOR
+export interface DashboardIndicadorResponse{
+  datos : {status:number ,TotalRegistro : number ,
+
+    result :DashboardIndicador[]
+
+  },
+  meta: { mensaje : string }
+}
+
+export interface DashboardIndicador{
+  cantidadVendida:number;
+  totalVenta:number;
+  totalUtilidad:number;
+  totalCosto:number;
+  porcetajeAvance:number;
+  totalGasto:number;
 }

@@ -11,6 +11,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { DashboardProductoComponent } from './presentacion/components/dashboard-producto/dashboard-producto.component';
 import { GraficosRoutingModule } from './graficos-routing.module';
 import { NgChartsModule } from 'ng2-charts';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { NgChartsModule } from 'ng2-charts';
     GraficosRoutingModule,
     MatCheckboxModule,
     MatRadioModule,
-    NgChartsModule
+    NgChartsModule,
+    MatAutocompleteModule
   ],
   exports: [DashboardProductoComponent],
   providers:[DatePipe]

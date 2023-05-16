@@ -1,60 +1,136 @@
-<!-- TITULO -->
-<h1>DASHBOARD</h1>
-
-<!-- TARJETAS -->
+<div class="todo">
+  <!-- TITULO -->
+  <h1>DASHBOARD</h1>
+  <!-- TARJETAS -->
   <mat-card class="filtro">
+    <mat-card-content class="filtro_content">
       <form [formGroup]="groupProducto" class="filtro_input">
         <!-- CODIGO PRODUCTO -->
-        <mat-form-field appearance="outline" style="width: 30%;"  color="primary">
+        <mat-form-field appearance="outline" style="width: 20%; height: 10px;"  color="primary">
            <mat-label>Cod.Producto</mat-label>
-           <input matInput type="number" class="iput" style="text-align: center; font-size: 16px;" min="0" formControlName="codigoProducto">
+           <input matInput type="number" class="iput" style="text-align: center;" min="0" formControlName="codigoProducto" value={{codigoProducto}}>
          </mat-form-field>
          <!-- DESCRIPCION PRODUCTO -->
-         <mat-form-field appearance="outline" style="width: 30%;"  color="primary">
-           <mat-label>Desc.Producto</mat-label>
-           <input matInput type="text" class="iput" style="text-align: center; font-size: 16px;">
-         </mat-form-field>
+         <mat-form-field appearance="outline" style="width: 35%; height: 10px;">
+          <mat-label>Desc. Producto</mat-label>
+          <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
          <button (click)="listarDashboardVentas()"><mat-icon class="icono">search</mat-icon></button>
       </form>
 
      <!-- FILTRO DE FECHAS -->
         <form [formGroup]="groupFecha" class="filtro_input">
           <!-- FECHA INICIO Y FECHA FIN -->
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline"  class="fecha">
              <mat-label>Enter a date range</mat-label>
              <mat-date-range-input [rangePicker]="picker">
-               <input matStartDate placeholder="Start date" readonly>
-               <input matEndDate placeholder="End date" readonly>
+               <input matStartDate placeholder="Start date" formControlName="fechaInicio" readonly>
+               <input matEndDate placeholder="End date" formControlName="fechaFin" readonly>
              </mat-date-range-input>
              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
              <mat-date-range-picker #picker></mat-date-range-picker>
            </mat-form-field>
            <!-- SEMANAS -->
-           <mat-form-field appearance="outline">
+           <mat-form-field appearance="outline"  class="semana">
              <mat-label>Semana</mat-label>
-             <mat-select>
-               <mat-option value="option1">Semana 1</mat-option>
-               <mat-option value="option2">Semana 2 </mat-option>
-               <mat-option value="option3">Semana 3</mat-option>
-               <mat-option value="option3">Semana 4</mat-option>
+             <mat-select formControlName="semana">
+               <mat-option value="0">Todas las semanas</mat-option>
+               <mat-option value="1">Semana 1</mat-option>
+               <mat-option value="2">Semana 2 </mat-option>
+               <mat-option value="3">Semana 3</mat-option>
+               <mat-option value="4">Semana 4</mat-option>
              </mat-select>
            </mat-form-field>
-           <button><mat-icon class="icono">search</mat-icon></button>
+           <button (click)="listarDashboardVentas()"><mat-icon class="icono">search</mat-icon></button>
         </form>
+    </mat-card-content>
   </mat-card>
-<mat-card class="grafico1">
-  <mat-card-header>
-    <mat-card-title>Ventas diarias</mat-card-title>
-  </mat-card-header>
-<mat-card-content>
-  <canvas baseChart class="chart"
-            [data]="barChartData"
-            [options]="barChartOptions"
-            [plugins]="barChartPlugins"
-            [type]="barChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
-  </canvas>
-  </mat-card-content>
-</mat-card>
 
+    <div class="labels">
+      <mat-card class="indicadores">
+        <mat-card-title style="font-size: 14px;">Cantidad Vendida</mat-card-title>
+        <mat-card-content>{{cantidadVendida}}</mat-card-content>
+      </mat-card>
+      <mat-card class="indicadores">
+        <mat-card-title style="font-size: 14px;">Total Venta</mat-card-title>
+        <mat-card-content>{{totalVenta}}</mat-card-content>
+      </mat-card>
+      <mat-card class="indicadores">
+        <mat-card-title style="font-size: 14px;">Total Utilidad</mat-card-title>
+        <mat-card-content>{{totalUtilidad}}</mat-card-content>
+      </mat-card>
+      <mat-card class="indicadores">
+        <mat-card-title style="font-size: 14px;">Total Costo</mat-card-title>
+        <mat-card-content>{{totalCosto}}</mat-card-content>
+      </mat-card>
+      <mat-card class="indicadores">
+        <mat-card-title style="font-size: 14px;">Porcentaje Avance</mat-card-title>
+        <mat-card-content>{{porcentajeAvance}}</mat-card-content>
+      </mat-card>
+      <mat-card class="indicadores">
+        <mat-card-title style="font-size: 14px;">Total Gasto</mat-card-title>
+        <mat-card-content>{{totalGasto}}</mat-card-content>
+      </mat-card>
+    </div>
+
+  <!-- GRAFICO DE VENTAS -->
+  <mat-card class="grafico1">
+    <div class="graficoInferior">
+      <!-- TABLA -->
+      <mat-card class="grafico2">
+        <mat-card-header>
+          <mat-card-title>TABLA</mat-card-title>
+        </mat-card-header>
+      <mat-card-content>
+        <canvas baseChart class="chart"
+                  [data]="promedioVentas"
+                  [options]="barChartOptions"
+                  [plugins]="barChartPlugins"
+                  [type]="barChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)">
+        </canvas>
+        </mat-card-content>
+      </mat-card>
+
+
+      <!-- GRAFICO DE PROMEDIO DE VENTAS -->
+      <mat-card class="grafico2">
+        <mat-card-header>
+          <mat-card-title>PROMEDIO VENTAS</mat-card-title>
+        </mat-card-header>
+      <mat-card-content>
+        <canvas baseChart class="chart"
+                  [data]="promedioVentas"
+                  [options]="barChartOptions"
+                  [plugins]="barChartPlugins"
+                  [type]="barChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)">
+        </canvas>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- GRAFICO DERECHO -->
+    <mat-card class="graficoVentas">
+      <mat-card-header>
+        <mat-card-title>VENTAS DIARIAS</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+      <canvas baseChart class="chart"
+                [data]="barChartData"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [type]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+      </canvas>
+      </mat-card-content>
+    </mat-card>
+  </mat-card>
+</div>
